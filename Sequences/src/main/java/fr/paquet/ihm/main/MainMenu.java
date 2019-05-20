@@ -5,6 +5,7 @@ import java.util.Hashtable;
 import javax.swing.*;
 
 import fr.paquet.ihm.action.*;
+import fr.paquet.sequence.Sequence;
 
 @SuppressWarnings("serial")
 public class MainMenu extends JMenuBar {
@@ -14,29 +15,47 @@ public class MainMenu extends JMenuBar {
 	 */
 
 	private ActionSave actionSave = null;
-	private Action3D action3D = null;
-	private ActionUrl actionUrl = null;
+	private ActionRef actionRef = null;
 	private static MainMenu mainMenu = null;
+	private Sequence sequence = null;
+	private ActionOuvrir actionOuvrir = null;
 
 	/**
 	 * Constructeur de la class ajoute les Action a MainMenu<br/>
+	 * 
+	 * @throws Exception
 	 */
-	private MainMenu() {
+	private MainMenu() throws Exception {
 
 		addAction(new ActionNouveau());
-		addAction(new ActionGestionnaire());
+		setActionOuvrir(new ActionOuvrir(getSequence()));
+		addAction(getActionOuvrir(getSequence()));
 		addAction(new ActionQuitter());
-		setAction3D(new Action3D());
-		addAction(getAction3D());
-		addAction(new ActionMotCle());
+		setActionRef(new ActionRef(getSequence()));
+		addAction(getActionRef(getSequence()));
 		setActionSave(new ActionSave());
 		addAction(getActionSave());
-		setActionUrl(new ActionUrl());
-		addAction(getActionUrl());
 
 	}
 
-	public static MainMenu getUniqInstance() {
+	private ActionBDA getActionRef(Sequence sequence) {
+		// TODO Auto-generated method stub
+		return actionRef;
+	}
+
+	private void setActionRef(ActionRef actionRef) {
+		this.actionRef = actionRef;
+	}
+
+	private void setActionOuvrir(ActionOuvrir actionOuvrir) {
+		this.actionOuvrir = actionOuvrir;
+	}
+
+	private ActionOuvrir getActionOuvrir(Sequence sequence) {
+		return actionOuvrir;
+	}
+
+	public static MainMenu getUniqInstance() throws Exception {
 		if (mainMenu == null)
 			mainMenu = new MainMenu();
 		return mainMenu;
@@ -70,19 +89,11 @@ public class MainMenu extends JMenuBar {
 		this.actionSave = actionSave;
 	}
 
-	public Action3D getAction3D() {
-		return action3D;
+	public Sequence getSequence() {
+		return sequence;
 	}
 
-	public void setAction3D(Action3D action3d) {
-		action3D = action3d;
-	}
-
-	public ActionUrl getActionUrl() {
-		return actionUrl;
-	}
-
-	public void setActionUrl(ActionUrl actionUrl) {
-		this.actionUrl = actionUrl;
+	public void setSequence(Sequence sequence) {
+		this.sequence = sequence;
 	}
 }

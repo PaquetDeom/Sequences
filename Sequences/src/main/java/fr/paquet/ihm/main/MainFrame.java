@@ -23,7 +23,7 @@ import javax.swing.*;
 @SuppressWarnings("serial")
 public class MainFrame extends JFrame implements WindowListener {
 
-	/**
+	/*
 	 * @author Nathanael
 	 * 
 	 *         Fenetre pricipale du logiciel<br/>
@@ -31,7 +31,7 @@ public class MainFrame extends JFrame implements WindowListener {
 
 	private static MainFrame mainFrame = null;
 
-	private MainFrame() {
+	private MainFrame() throws Exception {
 		super("Logiciel d'écriture pédagogique");
 		addWindowListener(this);
 		setAlwaysOnTop(false);
@@ -63,8 +63,10 @@ public class MainFrame extends JFrame implements WindowListener {
 	/**
 	 * 
 	 * @return l'instance unique de la class<br/>
+	 * @throws Exception 
+	 * @throws s 
 	 */
-	public static MainFrame getUniqInstance() {
+	public static MainFrame getUniqInstance() throws Exception {
 		if (mainFrame == null)
 			mainFrame = new MainFrame();
 		return mainFrame;

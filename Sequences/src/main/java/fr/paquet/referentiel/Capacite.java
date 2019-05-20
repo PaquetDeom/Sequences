@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -39,6 +40,7 @@ public class Capacite {
 	@Column(name = "INTITULE", length = 200)
 	private String intitule;
 
+	@OneToOne
 	private Referentiel referentiel = null;
 
 	@OneToMany(mappedBy = "cap", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

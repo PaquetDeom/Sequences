@@ -8,9 +8,28 @@
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 
 		<class> fr.paquet.referentiel.Activite</class>
+		<class> fr.paquet.referentiel.Capacite</class>
+		<class> fr.paquet.referentiel.Competence</class>
+		<class> fr.paquet.referentiel.CompetenceIntermediaire</class>
+		<class> fr.paquet.referentiel.Condition</class>
+		<class> fr.paquet.referentiel.CritereEvaluation</class>
+		<class> fr.paquet.referentiel.Fonction</class>
+		<class> fr.paquet.referentiel.Rap</class>
+		<class> fr.paquet.referentiel.Referentiel</class>
+		<class> fr.paquet.referentiel.Savoir</class>
+		<class> fr.paquet.referentiel.SavoirAssocie</class>
+		<class> fr.paquet.referentiel.SousSavoirAssocie</class>
+		<class> fr.paquet.referentiel.Tache</class>
+		<class> fr.paquet.referentiel.Unite</class>
 
-
-
+		<class> fr.paquet.sequence.Decouverte</class>
+		<class> fr.paquet.sequence.Execution</class>
+		<class> fr.paquet.sequence.Introduction</class>
+		<class> fr.paquet.sequence.Phase</class>
+		<class> fr.paquet.sequence.Pretexte</class>
+		<class> fr.paquet.sequence.Sequence</class>
+		<class> fr.paquet.sequence.Validation</class>
+		<class>fr.paquet.commun.Diplome</class>
 
 
 		<properties>

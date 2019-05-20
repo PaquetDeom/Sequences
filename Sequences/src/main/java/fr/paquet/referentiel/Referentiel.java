@@ -47,6 +47,9 @@ public class Referentiel {
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Unite> unites = null;
+	
+	@Column(name = "REREUR", length = 100)
+	private String url = null;
 
 	/**
 	 * Constructeur de la classe : <br/>
@@ -69,6 +72,14 @@ public class Referentiel {
 
 	public Referentiel() {
 		super();
+	}
+	
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	
+	public String getUrl() {
+		return url;
 	}
 
 	private void setDiplome(Diplome dip) throws Exception {

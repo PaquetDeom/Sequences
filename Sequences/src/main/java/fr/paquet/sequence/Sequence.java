@@ -18,6 +18,7 @@ import fr.paquet.progression.ConfigCompInt;
 import fr.paquet.progression.Progression;
 import fr.paquet.referentiel.Competence;
 import fr.paquet.referentiel.CompetenceIntermediaire;
+import fr.paquet.referentiel.Referentiel;
 import fr.paquet.referentiel.Unite;
 import fr.paquet.seance.Seance;
 
@@ -31,8 +32,8 @@ public class Sequence {
 	 *         La classe Sequence represente une sequence d'enseignement de
 	 *         l'education national<br/>
 	 * 
-	 *         Mode d'utilisation : new Sequence(Progression, "Sequence 1", 2,
-	 *         9, Phase).
+	 *         Mode d'utilisation : new Sequence(Progression, "Sequence 1", 2, 9,
+	 *         Phase).
 	 * 
 	 */
 
@@ -64,55 +65,43 @@ public class Sequence {
 	private List<CompetenceIntermediaire> compInts = null;
 
 	@ManyToOne()
-	private Progression progression = null;
+	private Referentiel referentiel = null;
 
 	/**
 	 * Constructeur de la classe<br/>
 	 * 
-	 * @param prog
-	 *            prog de type Progression<br/>
-	 *            une Sequence peut appartenir a une progression<br/>
+	 * @param prog  prog de type Progression<br/>
+	 *              une Sequence peut appartenir a une progression<br/>
 	 * 
-	 * @param titre
-	 *            titre de type String "Sequence rabotage"<br/>
+	 * @param titre titre de type String "Sequence rabotage"<br/>
 	 * 
-	 * @param debut
-	 *            debut de type int<br/>
-	 *            represente le N de seance de debut de debut de la sequence
-	 *            <br/>
+	 * @param debut debut de type int<br/>
+	 *              represente le N de seance de debut de debut de la sequence <br/>
 	 * 
-	 * @param fin
-	 *            fin de type int<br/>
-	 *            represente le N de seance de fin de la sequence<br/>
+	 * @param fin   fin de type int<br/>
+	 *              represente le N de seance de fin de la sequence<br/>
 	 * 
-	 * @param ph1
-	 *            ph1 est de type Phase<br/>
-	 *            une sequence est composee de differentes phases<br/>
+	 * @param ph1   ph1 est de type Phase<br/>
+	 *              une sequence est composee de differentes phases<br/>
 	 * 
-	 * @throws Exception
-	 *             debut doit etre inferieur a fin.
+	 * @throws Exception debut doit etre inferieur a fin.
 	 */
-	public Sequence(String titre) throws Exception {
-		this(null, titre);
 
-	}
-
-	public Sequence(Progression prog, String titre) throws Exception {
+	public Sequence(Referentiel ref, String titre) throws Exception {
 		this();
-		setProgression(prog);
+		setReferentiel(ref);
 		setTitre(titre);
 		setPhase(new Phase(this));
-		if (getProgression() != null)
-			prog.addSequence(this);
+
 	}
 
 	public Sequence() {
 		super();
 	}
 
-	private void setProgression(Progression prog) {
+	private void setReferentiel(Referentiel referentiel) {
 
-		this.progression = prog;
+		this.referentiel = referentiel;
 	}
 
 	private void setTitre(String titre2) {
@@ -334,16 +323,15 @@ public class Sequence {
 	 * @return null si pas de progression</br>
 	 */
 
-	public Progression getProgression() {
-		if (progression == null)
-			return null;
-		return progression;
+	public Referentiel getReferentiel() {
+
+		return referentiel;
 	}
 
 	/**
 	 * 
-	 * @return "La sequence ne fait pas parti d'une progression" si la sequence
-	 *         ne fait pas parti d'une progression<br/>
+	 * @return "La sequence ne fait pas parti d'une progression" si la sequence ne
+	 *         fait pas parti d'une progression<br/>
 	 * @return "LA SEQUENCE CHEVAUCHE UNE AUTRE SEQUENCE DANS LA PROGRESSION" si
 	 *         plusieurs sequences se chevauchent<br/>
 	 * @return null pour les autres cas<br/>
