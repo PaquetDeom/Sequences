@@ -87,12 +87,9 @@ public class Sequence {
 	 * @throws Exception debut doit etre inferieur a fin.
 	 */
 
-	public Sequence(Referentiel ref, String titre) throws Exception {
+	public Sequence(String titre) throws Exception {
 		this();
-		setReferentiel(ref);
 		setTitre(titre);
-		setPhase(new Phase(this));
-
 	}
 
 	public Sequence() {
@@ -104,8 +101,10 @@ public class Sequence {
 		this.referentiel = referentiel;
 	}
 
-	private void setTitre(String titre2) {
-		this.titre = titre2.trim().toUpperCase();
+	private void setTitre(String titre2) throws Exception {
+		if (titre2 == null || titre2.equals(""))
+			throw new Exception("La séquence doit avoir un titre");
+		this.titre = titre2.trim();
 	}
 
 	public void setDebut(int debut) throws Exception {

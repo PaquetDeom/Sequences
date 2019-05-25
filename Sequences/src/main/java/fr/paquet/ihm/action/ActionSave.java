@@ -5,8 +5,8 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.KeyStroke;
 
-import fr.paquet.projet.Projet;
-import fr.paquet.projet.ProjetFactory;
+import fr.paquet.sequence.Sequence;
+import fr.paquet.sequence.SequenceFactory;
 
 public class ActionSave extends ActionBDA {
 
@@ -14,7 +14,7 @@ public class ActionSave extends ActionBDA {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Projet projet = null;
+	private Sequence sequence = null;
 
 	public ActionSave() {
 		super();
@@ -29,8 +29,8 @@ public class ActionSave extends ActionBDA {
 	public void actionPerformed(ActionEvent arg0) {
 
 		try {
-			ProjetFactory pF = new ProjetFactory();
-			pF.saveProjet(getProjet());
+			SequenceFactory pF = new SequenceFactory();
+			pF.save(getSequence());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -43,12 +43,14 @@ public class ActionSave extends ActionBDA {
 		return "Fichier";
 	}
 
-	private Projet getProjet() {
-		return projet;
+	private Sequence getSequence() {
+		return sequence;
 	}
 
-	public void setProjet(Projet projet) {
-		this.projet = projet;
+	public void setSequence(Sequence sequence) throws Exception {
+		if(sequence == null)
+			throw new Exception("Veuillez renseigner une séquence");
+		this.sequence = sequence;
 	}
 
 	@Override

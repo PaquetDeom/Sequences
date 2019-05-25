@@ -13,7 +13,6 @@ import org.hsqldb.server.ServerAcl.AclFormatException;
 import fr.paquet.ihm.alert.AlertListener;
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
-import fr.paquet.ihm.main.MainFrame;
 
 public class Main {
 
@@ -29,7 +28,7 @@ public class Main {
 			HsqlProperties p = new HsqlProperties();
 			p.setProperty("server.database.0",
 					"file:./target/classes/hsql/sequences;user=sequences;password=Login5340");
-			p.setProperty("server.dbname.0", "R408");
+			p.setProperty("server.dbname.0", "sequences");
 			p.setProperty("server.port", "5434");
 			server = new Server();
 			server.setProperties(p);

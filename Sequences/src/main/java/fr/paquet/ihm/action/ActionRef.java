@@ -20,9 +20,9 @@ public class ActionRef extends ActionBDA {
 	private static final long serialVersionUID = 1L;
 	private Sequence sequence = null;
 
-	public ActionRef(Sequence sequence) {
+	public ActionRef() {
 		super();
-		setSequence(sequence);
+		
 		putValue(NAME, getName());
 		putValue(ACCELERATOR_KEY,
 				KeyStroke.getKeyStroke('D', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
@@ -49,7 +49,9 @@ public class ActionRef extends ActionBDA {
 		return "firefox " + getSequence().getReferentiel().getUrl();
 	}
 
-	public void setSequence(Sequence sequence) {
+	public void setSequence(Sequence sequence) throws Exception {
+		if(sequence == null)
+			throw new Exception("Veuillez renseigner une séquence");
 		this.sequence = sequence;
 	}
 	

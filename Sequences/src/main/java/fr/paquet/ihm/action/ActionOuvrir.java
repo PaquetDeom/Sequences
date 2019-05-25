@@ -15,9 +15,9 @@ public class ActionOuvrir extends ActionBDA {
 	private static final long serialVersionUID = 1L;
 	private Sequence sequence = null;
 
-	public ActionOuvrir(Sequence sequence) throws Exception {
+	public ActionOuvrir() throws Exception {
 		super();
-		setSequence(sequence);
+
 		putValue(NAME, getName());
 		putValue(ACCELERATOR_KEY,
 				KeyStroke.getKeyStroke('O', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
@@ -39,9 +39,9 @@ public class ActionOuvrir extends ActionBDA {
 		return sequence;
 	}
 
-	private void setSequence(Sequence sequence) throws Exception {
+	public void setSequence(Sequence sequence) throws Exception {
 		if (sequence == null)
-			throw new Exception("Veuillez séletionner un sequence");
+			throw new Exception("Veuillez renseigner une séquence");
 		this.sequence = sequence;
 	}
 

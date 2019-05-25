@@ -3,10 +3,11 @@ package fr.paquet.ihm.action;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 
+import javax.swing.JDialog;
 import javax.swing.KeyStroke;
 
-import fr.paquet.ihm.nouveau.JDialogNouveau;
-import fr.paquet.projet.*;;
+import fr.paquet.ihm.nouveau.JDialogNewSequence;
+import fr.paquet.sequence.Sequence;;
 
 public class ActionNouveau extends ActionBDA {
 
@@ -26,9 +27,8 @@ public class ActionNouveau extends ActionBDA {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 
-		Projet projet = new Projet();
-
-		new JDialogNouveau(projet).setVisible(true);
+		JDialogNewSequence fNS = new JDialogNewSequence("Nouvelle Séquence", "Titre de la Séquence");
+		fNS.setVisible(true);
 
 	}
 
