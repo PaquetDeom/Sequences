@@ -17,9 +17,7 @@ public class SequencePanelEntetePbTemps extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	private SequencePanelEntete sequencePanelEntete = null;
-	private JPanel panelTemps = null;
-	private JPanel panelTempsEtiquette = null;
-	private JSlider tempsSlider = null;
+	private SequencePanelEntetePbTempsJSlider sequencePanelEntetePbTempsJSlider = null;
 	private SequencePanelEntetePbTempsProblématique sequencePanelEntetePbTempsProblematique = null;
 
 	public SequencePanelEntetePbTemps(SequencePanelEntete sPE) {
@@ -28,16 +26,14 @@ public class SequencePanelEntetePbTemps extends JPanel {
 		// set des objets
 		setSequencePanelEntete(sPE);
 		setSequencePanelEntetePbTempsProblematique(new SequencePanelEntetePbTempsProblématique(this, "Problématique"));
-		setTempsSlider(new JSlider());
-		setPanelTempsEtiquette(new JPanel());
-		setPanelTemps(new JPanel());
+		setSequencePanelEntetePbTempsJSlider(new SequencePanelEntetePbTempsJSlider(this));
 
 		// Gestion du layout
 		setLayout(new GridLayout(2, 1, 0, 0));
 
 		// integration de PanelProblematique et PanelTemps
 		add(getSequencePanelEntetePbTempsProblematique());
-		add(getPanelTemps());
+		add(getSequencePanelEntetePbTempsJSlider());
 
 		// attribut du panel
 		setBorder(CommunStyle.BORDER.getBorder());
@@ -51,75 +47,6 @@ public class SequencePanelEntetePbTemps extends JPanel {
 		this.sequencePanelEntete = sequencePanelEntete;
 	}
 
-	private JPanel getPanelTemps() {
-		return panelTemps;
-	}
-
-	private void setPanelTemps(JPanel panelTemps) {
-
-		// Gestion du Layout
-		panelTemps.setLayout(new GridLayout(3, 1, 0, 0));
-
-		// Ajout des éléments
-		JLabel label = new JLabel("Positionnement dans le temps");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		panelTemps.add(label);
-		panelTemps.add(getTempsSlider());
-		panelTemps.add(getPanelTempsEtiquette());
-
-		this.panelTemps = panelTemps;
-	}
-
-	public JSlider getTempsSlider() {
-		return tempsSlider;
-	}
-
-	private void setTempsSlider(JSlider tempsSlider) {
-
-		tempsSlider.addChangeListener(new ChangeListener() {
-
-			@Override
-			public void stateChanged(ChangeEvent arg0) {
-				// TODO Auto-generated method stub
-
-			}
-		});
-
-		this.tempsSlider = tempsSlider;
-	}
-
-	private JPanel getPanelTempsEtiquette() {
-		return panelTempsEtiquette;
-	}
-
-	private void setPanelTempsEtiquette(JPanel panelTempsEtiquette) {
-
-		// ajout du layout
-		panelTempsEtiquette.setLayout(new GridLayout(0, 5, 0, 0));
-
-		// création des JLabel
-		JLabel labelP1 = new JLabel("P1");
-		JLabel labelP2 = new JLabel("P2");
-		JLabel labelP3 = new JLabel("P3");
-		JLabel labelP4 = new JLabel("P4");
-		JLabel labelP5 = new JLabel("P5");
-
-		labelP1.setHorizontalAlignment(SwingConstants.CENTER);
-		labelP2.setHorizontalAlignment(SwingConstants.CENTER);
-		labelP3.setHorizontalAlignment(SwingConstants.CENTER);
-		labelP4.setHorizontalAlignment(SwingConstants.CENTER);
-		labelP5.setHorizontalAlignment(SwingConstants.CENTER);
-
-		// ajout des composants
-		panelTempsEtiquette.add(labelP1);
-		panelTempsEtiquette.add(labelP2);
-		panelTempsEtiquette.add(labelP3);
-		panelTempsEtiquette.add(labelP4);
-		panelTempsEtiquette.add(labelP5);
-
-		this.panelTempsEtiquette = panelTempsEtiquette;
-	}
-
 	private SequencePanelEntetePbTempsProblématique getSequencePanelEntetePbTempsProblematique() {
 		return sequencePanelEntetePbTempsProblematique;
 	}
@@ -127,5 +54,14 @@ public class SequencePanelEntetePbTemps extends JPanel {
 	private void setSequencePanelEntetePbTempsProblematique(
 			SequencePanelEntetePbTempsProblématique sequencePanelEntetePbTempsProblematique) {
 		this.sequencePanelEntetePbTempsProblematique = sequencePanelEntetePbTempsProblematique;
+	}
+
+	private SequencePanelEntetePbTempsJSlider getSequencePanelEntetePbTempsJSlider() {
+		return sequencePanelEntetePbTempsJSlider;
+	}
+
+	private void setSequencePanelEntetePbTempsJSlider(
+			SequencePanelEntetePbTempsJSlider sequencePanelEntetePbTempsJSlider) {
+		this.sequencePanelEntetePbTempsJSlider = sequencePanelEntetePbTempsJSlider;
 	}
 }

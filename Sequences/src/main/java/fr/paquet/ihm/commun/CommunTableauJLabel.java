@@ -17,6 +17,7 @@ public class CommunTableauJLabel extends JPanel {
 		public CommunLabel(int i) {
 			super();
 			setHorizontalAlignment(SwingConstants.CENTER);
+			setBorder(CommunStyle.BORDERTITLEAREA.getBorder());
 		}
 
 		@Override

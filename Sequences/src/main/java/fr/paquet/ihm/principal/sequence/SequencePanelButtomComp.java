@@ -1,17 +1,14 @@
 package fr.paquet.ihm.principal.sequence;
 
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.Rectangle;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JPanel;
-import javax.swing.Scrollable;
 
-import fr.paquet.ihm.commun.CommunStyle;
 import fr.paquet.ihm.commun.Title;
 
 public class SequencePanelButtomComp extends JPanel {
@@ -38,12 +35,11 @@ public class SequencePanelButtomComp extends JPanel {
 		setLayout(new GridBagLayout());
 
 		// Gestion de l'affichage
-		add(getSequencePanelButtomCompTitre(), new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER,
-				GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
+		add(getSequencePanelButtomCompTitre(), new GridBagConstraints(0, 0, 1, 1, 1, 0, GridBagConstraints.CENTER,
+				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 		affiche();
 
 		// Attribut du panel
-		setBorder(CommunStyle.BORDER.getBorder());
 
 	}
 
@@ -54,14 +50,14 @@ public class SequencePanelButtomComp extends JPanel {
 		if (!getSequencePanelButtomCompJLabel().isEmpty()) {
 			for (SequencePanelButtomCompJLabel a : getSequencePanelButtomCompJLabel()) {
 
-				add(a, new GridBagConstraints(rows, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-						new Insets(0, 0, 5, 0), 0, 0));
+				add(a, new GridBagConstraints(0, rows, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+						new Insets(0, 0, 0, 0), 0, 0));
 				rows++;
 
 			}
 		}
 
-		add(getSequencePanelButtomCompButton(), new GridBagConstraints(rows, 0, 1, 1, 0, 0, GridBagConstraints.CENTER,
+		add(getSequencePanelButtomCompButton(), new GridBagConstraints(0, rows, 1, 1, 0, 0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
 
 		this.revalidate();

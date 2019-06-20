@@ -38,12 +38,11 @@ public class SequencePanelButtomAct extends JPanel {
 		setLayout(new GridBagLayout());
 
 		// Gestion de l'affichage
-		add(getSequencePanelButtomActTitre(), new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER,
+		add(getSequencePanelButtomActTitre(), new GridBagConstraints(0, 0, 1, 1, 1, 0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
 		affiche();
 
 		// Attribut du panel
-		setBorder(CommunStyle.BORDER.getBorder());
 
 	}
 
@@ -54,14 +53,14 @@ public class SequencePanelButtomAct extends JPanel {
 		if (!getSequencePanelButtomActJLabel().isEmpty()) {
 			for (SequencePanelButtomActJLabel a : getSequencePanelButtomActJLabel()) {
 
-				add(a, new GridBagConstraints(rows, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+				add(a, new GridBagConstraints(0, rows, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
 						new Insets(0, 0, 5, 0), 0, 0));
 				rows++;
 
 			}
 		}
 
-		add(getSequencePanelButtomActButton(), new GridBagConstraints(rows, 0, 1, 1, 0, 0, GridBagConstraints.CENTER,
+		add(getSequencePanelButtomActButton(), new GridBagConstraints(0, rows, 1, 1, 0, 0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
 
 		this.revalidate();

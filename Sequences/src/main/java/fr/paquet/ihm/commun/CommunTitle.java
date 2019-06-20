@@ -23,7 +23,8 @@ public class CommunTitle extends JPanel {
 			JLabel label = new JLabel(a);
 			label.setHorizontalAlignment(SwingConstants.CENTER);
 			JPanel panel = new JPanel();
-			panel.setBorder(CommunStyle.BORDER.getBorder());
+			panel.setBorder(CommunStyle.BORDERTITLEAREA.getBorder());
+			panel.setBackground(CommunStyle.PANELTITLE.getColor());
 			panel.add(label);
 			add(panel);
 		}
