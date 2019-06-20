@@ -20,99 +20,26 @@ public class SequencePanelCenterLienEval extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	private SequencePanelCenter sequencePanelCenter = null;
-	private JPanel sequencePanelCenterLienEvalTitre = null;
-	private JPanel sequencePanelCenterLienEvalSaisi = null;
+	private SequencePanelCenterLienEvalLien sequencePanelCenterLienEvalLien = null;
+	private SequencePanelCenterLienEvalEval sequencePanelCenterLienEvalEval = null;
 
 	public SequencePanelCenterLienEval(SequencePanelCenter sequencePanelCenter) {
 		super();
 
 		// set des Elements
 		setSequencePanelCenter(sequencePanelCenter);
-		setSequencePanelCenterLienEvalTitre(new JPanel());
-		setSequencePanelCenterLienEvalSaisi(new JPanel());
+		setSequencePanelCenterLienEvalLien(
+				new SequencePanelCenterLienEvalLien(this, "Liens avec les autres disciplines"));
+		setSequencePanelCenterLienEvalEval(new SequencePanelCenterLienEvalEval(this, "Modalités d'évaluation"));
 
 		// Ajout du Layout
 		setLayout(new GridBagLayout());
 
 		// Ajout des Composants
-		add(getSequencePanelCenterLienEvalTitre(), new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER,
+		add(getSequencePanelCenterLienEvalLien(), new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
-		add(getSequencePanelCenterLienEvalSaisi(), new GridBagConstraints(0, 1, 1, 1, 0, 1, GridBagConstraints.CENTER,
+		add(getSequencePanelCenterLienEvalEval(), new GridBagConstraints(1, 0, 1, 1, 1, 1, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
-	}
-
-	private JPanel getSequencePanelCenterLienEvalTitre() {
-		return sequencePanelCenterLienEvalTitre;
-	}
-
-	private void setSequencePanelCenterLienEvalTitre(JPanel sequencePanelCenterLienEvalTitre) {
-
-		// Ajout du Layout
-		sequencePanelCenterLienEvalTitre.setLayout(new GridLayout(0, 2, 0, 0));
-
-		// Attributs
-		sequencePanelCenterLienEvalTitre.setBackground(CommunStyle.PANELTITLE.getColor());
-
-		// Création des components
-		JLabel label1 = new JLabel("Liens avec d'autres disciplines");
-		label1.setHorizontalTextPosition(GridBagConstraints.CENTER);
-		JLabel label2 = new JLabel("Mode d'évaluation");
-		label2.setHorizontalTextPosition(GridBagConstraints.CENTER);
-
-		// Ajout des Components
-		add(label1);
-		add(label2);
-
-		this.sequencePanelCenterLienEvalTitre = sequencePanelCenterLienEvalTitre;
-	}
-
-	private JPanel getSequencePanelCenterLienEvalSaisi() {
-		return sequencePanelCenterLienEvalSaisi;
-	}
-
-	private void setSequencePanelCenterLienEvalSaisi(JPanel sequencePanelCenterLienEvalSaisi) {
-
-		// Ajout du Layout
-		setLayout(new GridLayout(0, 2, 0, 0));
-
-		// Création des Components
-		JTextArea lienArea = new JTextArea();
-		lienArea.addFocusListener(new FocusListener() {
-
-			@Override
-			public void focusLost(FocusEvent arg0) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void focusGained(FocusEvent arg0) {
-				// TODO Auto-generated method stub
-
-			}
-		});
-
-		JTextArea evalArea = new JTextArea();
-		evalArea.addFocusListener(new FocusListener() {
-
-			@Override
-			public void focusLost(FocusEvent arg0) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void focusGained(FocusEvent arg0) {
-				// TODO Auto-generated method stub
-
-			}
-		});
-
-		// Ajout des Components
-		add(lienArea);
-		add(evalArea);
-
-		this.sequencePanelCenterLienEvalSaisi = sequencePanelCenterLienEvalSaisi;
 	}
 
 	private SequencePanelCenter getSequencePanelCenter() {
@@ -121,6 +48,22 @@ public class SequencePanelCenterLienEval extends JPanel {
 
 	private void setSequencePanelCenter(SequencePanelCenter sequencePanelCenter) {
 		this.sequencePanelCenter = sequencePanelCenter;
+	}
+
+	private SequencePanelCenterLienEvalLien getSequencePanelCenterLienEvalLien() {
+		return sequencePanelCenterLienEvalLien;
+	}
+
+	private void setSequencePanelCenterLienEvalLien(SequencePanelCenterLienEvalLien sequencePanelCenterLienEvalLien) {
+		this.sequencePanelCenterLienEvalLien = sequencePanelCenterLienEvalLien;
+	}
+
+	private SequencePanelCenterLienEvalEval getSequencePanelCenterLienEvalEval() {
+		return sequencePanelCenterLienEvalEval;
+	}
+
+	private void setSequencePanelCenterLienEvalEval(SequencePanelCenterLienEvalEval sequencePanelCenterLienEvalEval) {
+		this.sequencePanelCenterLienEvalEval = sequencePanelCenterLienEvalEval;
 	}
 
 }

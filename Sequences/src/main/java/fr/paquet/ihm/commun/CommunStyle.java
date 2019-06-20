@@ -2,9 +2,13 @@ package fr.paquet.ihm.commun;
 
 import java.awt.Color;
 
+import javax.swing.BorderFactory;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
+
 public enum CommunStyle {
 
-	PANELTITLE;
+	PANELTITLE, BORDER, BORDERTITLEAREA;
 
 	public Color getColor() {
 		switch (this) {
@@ -15,4 +19,15 @@ public enum CommunStyle {
 			return null;
 		}
 	};
+
+	public Border getBorder() {
+		switch (this) {
+		case BORDER:
+			return BorderFactory.createTitledBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED), "");
+		case BORDERTITLEAREA:
+			return BorderFactory.createLineBorder(Color.BLACK);
+		default:
+			return null;
+		}
+	}
 }

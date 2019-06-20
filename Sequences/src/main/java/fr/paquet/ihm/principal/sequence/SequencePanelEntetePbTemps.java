@@ -8,6 +8,8 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import fr.paquet.ihm.commun.CommunStyle;
+
 public class SequencePanelEntetePbTemps extends JPanel {
 
 	/**
@@ -15,29 +17,30 @@ public class SequencePanelEntetePbTemps extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	private SequencePanelEntete sequencePanelEntete = null;
-	private JPanel panelProblematique = null;
 	private JPanel panelTemps = null;
 	private JPanel panelTempsEtiquette = null;
-	private JTextArea problematiqueArea = null;
 	private JSlider tempsSlider = null;
+	private SequencePanelEntetePbTempsProblématique sequencePanelEntetePbTempsProblematique = null;
 
 	public SequencePanelEntetePbTemps(SequencePanelEntete sPE) {
 		super();
 
 		// set des objets
 		setSequencePanelEntete(sPE);
-		setPanelProblematique(new JPanel());
-		setPanelTemps(new JPanel());
-		setPanelTempsEtiquette(new JPanel());
-		setProblematiqueArea(new JTextArea());
+		setSequencePanelEntetePbTempsProblematique(new SequencePanelEntetePbTempsProblématique(this, "Problématique"));
 		setTempsSlider(new JSlider());
+		setPanelTempsEtiquette(new JPanel());
+		setPanelTemps(new JPanel());
 
 		// Gestion du layout
 		setLayout(new GridLayout(2, 1, 0, 0));
 
 		// integration de PanelProblematique et PanelTemps
-		add(getPanelProblematique());
+		add(getSequencePanelEntetePbTempsProblematique());
 		add(getPanelTemps());
+
+		// attribut du panel
+		setBorder(CommunStyle.BORDER.getBorder());
 	}
 
 	private SequencePanelEntete getSequencePanelEntete() {
@@ -46,24 +49,6 @@ public class SequencePanelEntetePbTemps extends JPanel {
 
 	private void setSequencePanelEntete(SequencePanelEntete sequencePanelEntete) {
 		this.sequencePanelEntete = sequencePanelEntete;
-	}
-
-	private JPanel getPanelProblematique() {
-		return panelProblematique;
-	}
-
-	private void setPanelProblematique(JPanel panelProblematique) {
-
-		// Gestion du layout du panel
-		panelProblematique.setLayout(new GridLayout(2, 0, 0, 0));
-
-		// Ajout des elements
-		JLabel label = new JLabel("Problématique");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		panelProblematique.add(label);
-		panelProblematique.add(getProblematiqueArea());
-
-		this.panelProblematique = panelProblematique;
 	}
 
 	private JPanel getPanelTemps() {
@@ -76,36 +61,13 @@ public class SequencePanelEntetePbTemps extends JPanel {
 		panelTemps.setLayout(new GridLayout(3, 1, 0, 0));
 
 		// Ajout des éléments
-		JLabel label = new JLabel("Positionnement dans le tems");
+		JLabel label = new JLabel("Positionnement dans le temps");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		panelTemps.add(label);
 		panelTemps.add(getTempsSlider());
 		panelTemps.add(getPanelTempsEtiquette());
 
 		this.panelTemps = panelTemps;
-	}
-
-	public JTextArea getProblematiqueArea() {
-		return problematiqueArea;
-	}
-
-	private void setProblematiqueArea(JTextArea problematiqueArea) {
-
-		problematiqueArea.addFocusListener(new FocusListener() {
-
-			@Override
-			public void focusLost(FocusEvent arg0) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void focusGained(FocusEvent arg0) {
-				// TODO Auto-generated method stub
-
-			}
-		});
-		this.problematiqueArea = problematiqueArea;
 	}
 
 	public JSlider getTempsSlider() {
@@ -156,5 +118,14 @@ public class SequencePanelEntetePbTemps extends JPanel {
 		panelTempsEtiquette.add(labelP5);
 
 		this.panelTempsEtiquette = panelTempsEtiquette;
+	}
+
+	private SequencePanelEntetePbTempsProblématique getSequencePanelEntetePbTempsProblematique() {
+		return sequencePanelEntetePbTempsProblematique;
+	}
+
+	private void setSequencePanelEntetePbTempsProblematique(
+			SequencePanelEntetePbTempsProblématique sequencePanelEntetePbTempsProblematique) {
+		this.sequencePanelEntetePbTempsProblematique = sequencePanelEntetePbTempsProblematique;
 	}
 }

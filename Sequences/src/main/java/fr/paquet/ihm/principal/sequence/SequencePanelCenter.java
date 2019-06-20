@@ -6,6 +6,8 @@ import java.awt.Insets;
 
 import javax.swing.JPanel;
 
+import fr.paquet.ihm.commun.CommunStyle;
+
 public class SequencePanelCenter extends JPanel {
 
 	/**
@@ -27,19 +29,23 @@ public class SequencePanelCenter extends JPanel {
 		// Ajout du Layout
 		setLayout(new GridBagLayout());
 		setSequencePanelCenterPrérequis(new SequencePanelCenterPrérequis("Prérequis Elèves", this));
-		setSequencePanelCenterPresentation(new SequencePanelCenterPrésentation("Présentation du contexte professionnel", this));
+		setSequencePanelCenterPresentation(
+				new SequencePanelCenterPrésentation("Présentation du contexte professionnel", this));
 		setSequencePanelCenterElements(new SequencePanelCenterElements("Eléments à retenir", this));
 		setSequencePanelCenterLienEval(new SequencePanelCenterLienEval(this));
 
 		// Ajout des composants
-		add(getSequencePanelCenterPrérequis(), new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER,
+		add(getSequencePanelCenterPrérequis(), new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
-		add(getSequencePanelCenterPresentation(), new GridBagConstraints(0, 1, 1, 1, 0, 0, GridBagConstraints.CENTER,
+		add(getSequencePanelCenterPresentation(), new GridBagConstraints(0, 1, 1, 1, 1, 1, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
-		add(getSequencePanelCenterElements(), new GridBagConstraints(0, 2, 1, 1, 0, 0, GridBagConstraints.CENTER,
+		add(getSequencePanelCenterElements(), new GridBagConstraints(0, 2, 1, 1, 1, 1, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
-		add(getSequencePanelCenterLienEval(), new GridBagConstraints(0, 3, 1, 1, 0, 1, GridBagConstraints.CENTER,
+		add(getSequencePanelCenterLienEval(), new GridBagConstraints(0, 3, 1, 1, 1, 1, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
+
+		// Attribut du panel
+		setBorder(CommunStyle.BORDER.getBorder());
 
 	}
 

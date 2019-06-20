@@ -7,16 +7,29 @@ import javax.swing.JTextArea;
 
 import fr.paquet.ihm.commun.CommunJLabelJTextAreaVertical;
 
-public class SequencePanelCenterPrésentation extends CommunJLabelJTextAreaVertical {
+public class SequencePanelEntetePbTempsProblématique extends CommunJLabelJTextAreaVertical {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private SequencePanelEntetePbTemps sequencePanelEntetePbTemps = null;
 
-	public SequencePanelCenterPrésentation(String title, SequencePanelCenter sequencePanelCenter) {
+	public SequencePanelEntetePbTempsProblématique(SequencePanelEntetePbTemps sequencePanelEntetePbTemps,
+			String title) {
 		super(title);
 
+		// setteur
+		setSequencePanelEntetePbTemps(sequencePanelEntetePbTemps);
+
+	}
+
+	public SequencePanelEntetePbTemps getSequencePanelEntetePbTemps() {
+		return sequencePanelEntetePbTemps;
+	}
+
+	public void setSequencePanelEntetePbTemps(SequencePanelEntetePbTemps sequencePanelEntetePbTemps) {
+		this.sequencePanelEntetePbTemps = sequencePanelEntetePbTemps;
 	}
 
 	@Override
@@ -38,6 +51,7 @@ public class SequencePanelCenterPrésentation extends CommunJLabelJTextAreaVerti
 		});
 
 		this.textArea = textArea;
+
 	}
 
 }

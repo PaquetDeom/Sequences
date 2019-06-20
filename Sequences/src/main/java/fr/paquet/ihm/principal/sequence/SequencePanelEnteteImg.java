@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import fr.paquet.ihm.commun.CommunStyle;
+
 public class SequencePanelEnteteImg extends JPanel {
 
 	/**
@@ -31,6 +33,9 @@ public class SequencePanelEnteteImg extends JPanel {
 		add(new JPanel(), BorderLayout.SOUTH);
 		add(new JPanel(), BorderLayout.EAST);
 		add(new JPanel(), BorderLayout.WEST);
+
+		// attribut du panel
+		setBorder(CommunStyle.BORDER.getBorder());
 
 	}
 

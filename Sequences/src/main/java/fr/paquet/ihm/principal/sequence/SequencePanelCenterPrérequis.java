@@ -16,6 +16,8 @@ public class SequencePanelCenterPrérequis extends CommunJLabelJTextAreaVertical
 
 	public SequencePanelCenterPrérequis(String title, SequencePanelCenter sequencePanelCenter) {
 		super(title);
+		
+		
 	}
 
 	@Override

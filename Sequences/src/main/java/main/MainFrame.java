@@ -3,6 +3,7 @@ package main;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.WindowEvent;
@@ -27,19 +28,24 @@ public class MainFrame extends JFrame implements WindowListener {
 	 */
 	private static final long serialVersionUID = 1L;
 	private static MainFrame mainFrame = null;
+	private JPanel panelOuverture = null;
 
 	private MainFrame() throws Exception {
+
 		super("Logiciel d'écriture pédagogique");
+
+		setPanelOuverture();
+
 		addWindowListener(this);
-		setAlwaysOnTop(false);
+		setAlwaysOnTop(true);
 		setMinimumSize(new Dimension(900, 600));
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setJMenuBar(MainMenu.getUniqInstance());
-		add(getmasterPanel());
+		add(getPanelOuverture());
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 	}
 
-	private Component getmasterPanel() {
+	private void setPanelOuverture() {
 		JPanel p = new JPanel() {
 			/**
 			 * 
@@ -58,8 +64,12 @@ public class MainFrame extends JFrame implements WindowListener {
 			}
 
 		};
-		p.setLayout(new BorderLayout());
-		return p;
+		p.setLayout(new FlowLayout());
+		this.panelOuverture = p;
+	}
+
+	public JPanel getPanelOuverture() {
+		return panelOuverture;
 	}
 
 	/**
@@ -71,7 +81,31 @@ public class MainFrame extends JFrame implements WindowListener {
 	public static MainFrame getUniqInstance() throws Exception {
 		if (mainFrame == null)
 			mainFrame = new MainFrame();
+		mainFrame.repaint();
+
 		return mainFrame;
+	}
+
+	/**
+	 * 
+	 * @param panel
+	 * supprime le panel de la fenêtre
+	 * @throws Exception
+	 */
+	private void removePanel(JPanel panel) throws Exception {
+		MainFrame.getUniqInstance().remove(panel);
+	}
+
+	/**
+	 * Remplace le panel de la fenêtre
+	 * @param panelRemove
+	 * @param panelAdd
+	 * @throws Exception
+	 */
+	public void addPanel(JPanel panelRemove, JPanel panelAdd) throws Exception {
+		removePanel(panelRemove);
+		add(panelAdd);
+		revalidate();
 	}
 
 	@Override
