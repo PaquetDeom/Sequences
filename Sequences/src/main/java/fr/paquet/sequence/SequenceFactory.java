@@ -7,9 +7,7 @@ import javax.persistence.Query;
 import fr.paquet.dataBase.Connect;
 import fr.paquet.progression.Progression;
 
-
 public class SequenceFactory extends Connect {
-
 
 	/**
 	 * 
@@ -37,6 +35,17 @@ public class SequenceFactory extends Connect {
 	}
 
 	/**
+	 * 
+	 * @return toute les sequences de la table
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Sequence> findAllSequences() {
+		Query query = getEm().createQuery("SELECT seq FROM Sequence");
+
+		return (List<Sequence>) query.getResultList();
+	}
+
+	/**
 	 * Sauvegarde d'une sequence<br/>
 	 * 
 	 * @param seq
@@ -61,7 +70,7 @@ public class SequenceFactory extends Connect {
 	 * @param seq
 	 * @throws Exception
 	 */
-	public void remove(Sequence seq) {
+	public void removeSequence(Sequence seq) {
 
 		EntityTransaction t = getEm().getTransaction();
 

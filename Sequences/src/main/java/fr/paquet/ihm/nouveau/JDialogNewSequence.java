@@ -10,9 +10,7 @@ import javax.swing.JTextField;
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.ihm.commun.CommunJDialogTextField;
-import fr.paquet.ihm.principal.sequence.*;
 import fr.paquet.sequence.Sequence;
-import fr.paquet.sequence.SequenceFactory;
 import main.MainFrame;
 
 public class JDialogNewSequence extends CommunJDialogTextField {
@@ -37,10 +35,8 @@ public class JDialogNewSequence extends CommunJDialogTextField {
 
 				try {
 					Sequence sequence = new Sequence(getTitleField().getText());
-					SequencePanel sequencePanel = new SequencePanel(sequence);
 
-					MainFrame.getUniqInstance().addPanel(MainFrame.getUniqInstance().getPanelOuverture(),
-							sequencePanel);
+					MainFrame.getUniqInstance().addPanel(sequence);
 
 				} catch (Exception e) {
 					JDialogNewSequence.this.dispose();

@@ -46,9 +46,9 @@ public abstract class CommunJDialogTextField extends JDialog {
 		//new GridBagConstraints(gridx, gridy, gridwidth, gridheight, weightx, weighty, anchor, fill, insets, ipadx, ipady)
 		// ajout de du label et du textField;
 		getContentPane().add(getTitleLabel(), new GridBagConstraints(0, 0, 1, 1, 1.0, 2.0, GridBagConstraints.CENTER,
-				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+				GridBagConstraints.BOTH, new Insets(2, 2, 2, 2), 0, 0));
 		getContentPane().add(getTitleField(), new GridBagConstraints(1, 0, 1, 1, 2.0, 3.0, GridBagConstraints.CENTER,
-				GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
+				GridBagConstraints.HORIZONTAL, new Insets(2, 2, 2, 2), 0, 0));
 
 		// création d'un panelButton
 		JPanel panelButton = new JPanel();

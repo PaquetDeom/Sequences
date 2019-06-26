@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import fr.paquet.ihm.commun.CommunJPanelButton;
+import fr.paquet.ihm.principal.activite.OngletActivite;
 
 public class SequencePanelButtomActButton extends CommunJPanelButton {
 
@@ -38,10 +39,12 @@ public class SequencePanelButtomActButton extends CommunJPanelButton {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
-				// TODO FENETRE DES COMPETENCES
 				SequencePanelButtomActJLabel sPBCJ = new SequencePanelButtomActJLabel(getColumn());
-				getSequencePanelButtomAct().addSequencePanelButtomActJLabel(sPBCJ);
-				getSequencePanelButtomAct().affiche();
+				getSequencePanelButtomAct().getSequencePanelButtomActJPanelJLabel()
+						.addSequencePanelButtomActJLabel(sPBCJ);
+				getSequencePanelButtomAct().getSequencePanelButtomActJPanelJLabel().affiche();
+
+				new OngletActivite(getSequencePanelButtomAct().getSequencePanel().getOngletSequence().getMainOnglet());
 
 			}
 		});

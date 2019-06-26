@@ -1,7 +1,5 @@
 package main;
 
-import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
@@ -14,6 +12,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+
+import fr.paquet.sequence.Sequence;
 
 public class MainFrame extends JFrame implements WindowListener {
 
@@ -29,6 +29,7 @@ public class MainFrame extends JFrame implements WindowListener {
 	private static final long serialVersionUID = 1L;
 	private static MainFrame mainFrame = null;
 	private JPanel panelOuverture = null;
+	private MainOnglet mainOnglet = null;
 
 	private MainFrame() throws Exception {
 
@@ -88,8 +89,7 @@ public class MainFrame extends JFrame implements WindowListener {
 
 	/**
 	 * 
-	 * @param panel
-	 * supprime le panel de la fenêtre
+	 * @param panel supprime le panel de la fenêtre
 	 * @throws Exception
 	 */
 	private void removePanel(JPanel panel) throws Exception {
@@ -98,13 +98,15 @@ public class MainFrame extends JFrame implements WindowListener {
 
 	/**
 	 * Remplace le panel de la fenêtre
+	 * 
 	 * @param panelRemove
 	 * @param panelAdd
 	 * @throws Exception
 	 */
-	public void addPanel(JPanel panelRemove, JPanel panelAdd) throws Exception {
-		removePanel(panelRemove);
-		add(panelAdd);
+	public void addPanel(Sequence sequence) throws Exception {
+		removePanel(getPanelOuverture());
+		setMainOnglet(new MainOnglet(sequence));
+		add(getMainOnglet());
 		revalidate();
 	}
 
@@ -148,6 +150,14 @@ public class MainFrame extends JFrame implements WindowListener {
 	public void windowOpened(WindowEvent arg0) {
 		// TODO Auto-generated method stub
 
+	}
+
+	public MainOnglet getMainOnglet() {
+		return mainOnglet;
+	}
+
+	public void setMainOnglet(MainOnglet mainOnglet) {
+		this.mainOnglet = mainOnglet;
 	}
 
 }

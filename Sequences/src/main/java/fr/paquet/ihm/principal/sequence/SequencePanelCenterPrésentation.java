@@ -6,6 +6,7 @@ import java.awt.event.FocusListener;
 import javax.swing.JTextArea;
 
 import fr.paquet.ihm.commun.CommunJLabelJTextAreaVertical;
+import fr.paquet.ihm.commun.CommunStyle;
 
 public class SequencePanelCenterPrésentation extends CommunJLabelJTextAreaVertical {
 
@@ -21,6 +22,8 @@ public class SequencePanelCenterPrésentation extends CommunJLabelJTextAreaVerti
 
 	@Override
 	protected void setTextArea(JTextArea textArea) {
+		
+		textArea.setFont(CommunStyle.TEXTAREASEQUENCE.getFont());
 
 		textArea.addFocusListener(new FocusListener() {
 

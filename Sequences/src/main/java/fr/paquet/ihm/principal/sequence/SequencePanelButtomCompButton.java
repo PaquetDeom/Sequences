@@ -42,8 +42,9 @@ public class SequencePanelButtomCompButton extends CommunJPanelButton {
 
 				// TODO FENETRE DES COMPETENCES
 				SequencePanelButtomCompJLabel sPBCJ = new SequencePanelButtomCompJLabel(getColumn());
-				getSequencePanelButtomComp().addSequencePanelButtomCompJLabel(sPBCJ);
-				getSequencePanelButtomComp().affiche();
+				getSequencePanelButtomComp().getSequencePanelButtomCompJPanelJLabel()
+						.addSequencePanelButtomCompJLabel(sPBCJ);
+				getSequencePanelButtomComp().getSequencePanelButtomCompJPanelJLabel().affiche();
 
 			}
 		});

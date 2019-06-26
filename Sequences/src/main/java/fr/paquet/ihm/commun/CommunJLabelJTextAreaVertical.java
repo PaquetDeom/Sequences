@@ -3,6 +3,7 @@ package fr.paquet.ihm.commun;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.Insets;
 
 import javax.swing.*;
@@ -90,7 +91,7 @@ public abstract class CommunJLabelJTextAreaVertical extends JPanel {
 	private void setPanelJTextArea(JPanel panelJTextArea) {
 
 		// ajout du Layout
-		panelJTextArea.setLayout(new FlowLayout());
+		panelJTextArea.setLayout(new GridLayout(1,0,0,0));
 
 		// Attribut du panel
 		panelJTextArea.setBorder(CommunStyle.BORDERTITLEAREA.getBorder());

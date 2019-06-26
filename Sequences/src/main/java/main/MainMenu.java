@@ -21,7 +21,7 @@ public class MainMenu extends JMenuBar {
 	private ActionRef actionRef = null;
 	private static MainMenu mainMenu = null;
 
-	private ActionOuvrir actionOuvrir = null;
+	private ActionGestionnaire actionGestionnaire = null;
 
 	/**
 	 * Constructeur de la class ajoute les Action a MainMenu<br/>
@@ -31,8 +31,8 @@ public class MainMenu extends JMenuBar {
 	private MainMenu() throws Exception {
 
 		addAction(new ActionNouveau());
-		setActionOuvrir(new ActionOuvrir());
-		addAction(getActionOuvrir());
+		setActionGestionnaire(new ActionGestionnaire());
+		addAction(getActionGestionnaire());
 		addAction(new ActionQuitter());
 		setActionRef(new ActionRef());
 		addAction(getActionRef());
@@ -50,12 +50,12 @@ public class MainMenu extends JMenuBar {
 		this.actionRef = actionRef;
 	}
 
-	private void setActionOuvrir(ActionOuvrir actionOuvrir) {
-		this.actionOuvrir = actionOuvrir;
+	private void setActionGestionnaire(ActionGestionnaire actionGestionnaire) {
+		this.actionGestionnaire = actionGestionnaire;
 	}
 
-	private ActionOuvrir getActionOuvrir() {
-		return actionOuvrir;
+	private ActionGestionnaire getActionGestionnaire() {
+		return actionGestionnaire;
 	}
 
 	public static MainMenu getUniqInstance() throws Exception {

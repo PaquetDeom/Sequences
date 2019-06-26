@@ -29,7 +29,7 @@ public class SequencePanelEntetePbTempsJSlider extends JPanel {
 
 		// setteur des Component
 		setSequencePanelEntetePbTemps(sequencePanelEntetePbTemps);
-		setSlider(new JSlider());
+		setSlider(new JSlider(JSlider.HORIZONTAL));
 		setPanelTitre(new JPanel());
 		setPanelEtiquette(new JPanel());
 		setPanelSlider(new JPanel());
@@ -83,6 +83,15 @@ public class SequencePanelEntetePbTempsJSlider extends JPanel {
 	}
 
 	private void setPanelSlider(JPanel panelSlider) {
+
+		// ajout du layout
+		panelSlider.setLayout(new GridLayout(1, 0, 0, 0));
+
+		// attribut du panel
+
+		// ajout des component
+		panelSlider.add(getSlider());
+
 		this.panelSlider = panelSlider;
 	}
 
