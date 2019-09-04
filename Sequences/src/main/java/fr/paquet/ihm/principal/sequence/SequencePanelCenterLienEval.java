@@ -2,16 +2,10 @@ package fr.paquet.ihm.principal.sequence;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
+
 import java.awt.Insets;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
-
-import fr.paquet.ihm.commun.CommunStyle;
 
 public class SequencePanelCenterLienEval extends JPanel {
 

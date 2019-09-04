@@ -1,6 +1,12 @@
 package fr.paquet.ihm.principal.sequence;
 
+import java.awt.Dimension;
+import java.awt.Point;
+
 import javax.swing.JComponent;
+import javax.swing.JScrollPane;
+import javax.swing.JViewport;
+import javax.swing.ScrollPaneConstants;
 
 import main.MainOnglet;
 
@@ -21,13 +27,16 @@ public class OngletSequence extends JComponent {
 
 		super();
 
-		//setteur des components
+		// setteur des components
 		setSequencePanel(new SequencePanel(this));
 		setMainOnglet(mainOnglet);
 
 		// Ajout de l'onglet
-		getMainOnglet().addTab("Séquence " + getMainOnglet().getSequence().getTitre(), getSequencePanel());
-
+		JScrollPane js = new JScrollPane(getSequencePanel());
+		js.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+		js.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		getMainOnglet().addTab("Séquence " + getMainOnglet().getSequence().getTitre(), js);
+		// getMainOnglet().setPreferredSize(new Dimension(800, 600));
 	}
 
 	private SequencePanel getSequencePanel() {

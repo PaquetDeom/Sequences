@@ -33,6 +33,9 @@ public class SequencePanelEntete extends JPanel {
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 5), 0, 0));
 		add(getSequencePanelEntetePbTemps(), new GridBagConstraints(1, 0, 1, 1, 3, 1, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 5), 0, 0));
+		
+		//attribut du panel
+		
 	}
 
 	private SequencePanel getSequencePanel() {

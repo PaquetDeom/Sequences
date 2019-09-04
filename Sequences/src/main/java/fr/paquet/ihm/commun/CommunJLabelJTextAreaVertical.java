@@ -8,6 +8,10 @@ import java.awt.Insets;
 
 import javax.swing.*;
 
+import fr.paquet.ihm.style.StyleBorder;
+import fr.paquet.ihm.style.StyleColor;
+import fr.paquet.ihm.style.StyleFont;
+
 public abstract class CommunJLabelJTextAreaVertical extends JPanel {
 
 	/**
@@ -46,6 +50,7 @@ public abstract class CommunJLabelJTextAreaVertical extends JPanel {
 	}
 
 	private void setTitle(String title) {
+
 		Title = title;
 	}
 
@@ -56,6 +61,7 @@ public abstract class CommunJLabelJTextAreaVertical extends JPanel {
 	private void setTitleLabel(JLabel titleLabel) {
 
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		titleLabel.setFont(StyleFont.TITLESEQ.getFont());
 		this.titleLabel = titleLabel;
 	}
 
@@ -75,8 +81,8 @@ public abstract class CommunJLabelJTextAreaVertical extends JPanel {
 		panelTitre.setLayout(new FlowLayout());
 
 		// attribut du panel
-		panelTitre.setBackground(CommunStyle.PANELTITLE.getColor());
-		panelTitre.setBorder(CommunStyle.BORDERTITLEAREA.getBorder());
+		panelTitre.setBackground(StyleColor.PANELTITLE.getColor());
+		panelTitre.setBorder(StyleBorder.BORDERTITLEAREA.getBorder());
 
 		// ajut des component
 		panelTitre.add(getTitleLabel());
@@ -91,10 +97,10 @@ public abstract class CommunJLabelJTextAreaVertical extends JPanel {
 	private void setPanelJTextArea(JPanel panelJTextArea) {
 
 		// ajout du Layout
-		panelJTextArea.setLayout(new GridLayout(1,0,0,0));
+		panelJTextArea.setLayout(new GridLayout(1, 0, 0, 0));
 
 		// Attribut du panel
-		panelJTextArea.setBorder(CommunStyle.BORDERTITLEAREA.getBorder());
+		panelJTextArea.setBorder(StyleBorder.BORDERTITLEAREA.getBorder());
 
 		// ajout des component
 		panelJTextArea.add(getTextArea());

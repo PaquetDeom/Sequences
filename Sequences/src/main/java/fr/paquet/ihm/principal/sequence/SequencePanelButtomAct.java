@@ -5,9 +5,10 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import javax.swing.JPanel;
+import javax.swing.JTable;
 
-import fr.paquet.ihm.commun.CommunStyle;
 import fr.paquet.ihm.commun.Title;
+import fr.paquet.ihm.style.StyleBorder;
 
 public class SequencePanelButtomAct extends JPanel {
 
@@ -42,7 +43,7 @@ public class SequencePanelButtomAct extends JPanel {
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
 		// Attribut du panel
-		setBorder(CommunStyle.BORDER.getBorder());
+		setBorder(StyleBorder.BORDERPANEL.getBorder());
 
 	}
 

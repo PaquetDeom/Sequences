@@ -5,6 +5,8 @@ import java.util.*;
 
 import javax.swing.*;
 
+import fr.paquet.ihm.style.StyleBorder;
+
 public class CommunTableauJLabel extends JPanel {
 
 	public class CommunLabel extends JLabel implements JLabelValue {
@@ -17,7 +19,7 @@ public class CommunTableauJLabel extends JPanel {
 		public CommunLabel(int i) {
 			super();
 			setHorizontalAlignment(SwingConstants.CENTER);
-			setBorder(CommunStyle.BORDERTITLEAREA.getBorder());
+			setBorder(StyleBorder.BORDERTITLEAREA.getBorder());
 		}
 
 		@Override

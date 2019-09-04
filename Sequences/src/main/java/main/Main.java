@@ -4,11 +4,6 @@ import java.awt.EventQueue;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.io.IOException;
-
-import org.hsqldb.persist.HsqlProperties;
-import org.hsqldb.server.Server;
-import org.hsqldb.server.ServerAcl.AclFormatException;
 
 import fr.paquet.ihm.alert.AlertListener;
 import fr.paquet.ihm.alert.AlertType;
@@ -16,37 +11,10 @@ import fr.paquet.ihm.alert.AlertWindow;
 
 public class Main {
 
-	private static Server server = null;
-
 	/**
 	 * Demmarrage de l application.
 	 */
 	public static void main(String[] args) {
-
-		try {
-
-			HsqlProperties p = new HsqlProperties();
-			p.setProperty("server.database.0",
-					"file:./target/classes/hsql/sequences;user=sequences;password=Login5340");
-			p.setProperty("server.dbname.0", "sequences");
-			p.setProperty("server.port", "5434");
-			server = new Server();
-			server.setProperties(p);
-			server.start();
-
-		} catch (IOException | AclFormatException e1) {
-
-			// fermeture avec erreur
-			e1.printStackTrace(System.out);
-			FermetureAvecErreur();
-
-		} finally {
-
-			try {
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
 
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -91,12 +59,12 @@ public class Main {
 	}
 
 	public static void FermetureSansErreur() {
-		server.shutdown();
+
 		System.exit(0);
 	}
 
 	public static void FermetureAvecErreur() {
-		server.shutdown();
+
 		System.exit(1);
 	}
 

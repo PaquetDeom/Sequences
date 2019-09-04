@@ -6,7 +6,7 @@ import java.awt.Insets;
 
 import javax.swing.JPanel;
 
-import fr.paquet.ihm.commun.CommunStyle;
+import fr.paquet.ihm.style.StyleBorder;
 
 public class SequencePanelCenter extends JPanel {
 
@@ -45,7 +45,7 @@ public class SequencePanelCenter extends JPanel {
 				GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
 
 		// Attribut du panel
-		setBorder(CommunStyle.BORDER.getBorder());
+		setBorder(StyleBorder.BORDERPANEL.getBorder());
 
 	}
 

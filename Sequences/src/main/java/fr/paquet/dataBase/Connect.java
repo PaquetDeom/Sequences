@@ -24,7 +24,7 @@ public class Connect {
 		if (emf != null && emf.isOpen())
 			return emf;
 		else
-			emf = Persistence.createEntityManagerFactory("sequences");
+			emf = Persistence.createEntityManagerFactory("sequence");
 		return emf;
 
 	}

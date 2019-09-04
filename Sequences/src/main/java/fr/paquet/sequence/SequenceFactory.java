@@ -6,6 +6,7 @@ import javax.persistence.Query;
 
 import fr.paquet.dataBase.Connect;
 import fr.paquet.progression.Progression;
+import fr.paquet.referentiel.Referentiel;
 
 public class SequenceFactory extends Connect {
 
@@ -14,9 +15,20 @@ public class SequenceFactory extends Connect {
 	 * @return La liste des sequences d'une progression<br/>
 	 */
 	@SuppressWarnings("unchecked")
-	public List<Sequence> findSequences(Progression progression) {
-		Query query = getEm().createQuery("SELECT seq FROM Sequence seq where seq.progression=:progression");
-		query.setParameter("progression", progression);
+	public List<Sequence> findAllSequences(Referentiel referentiel) {
+		Query query = getEm().createQuery("SELECT seq FROM Sequence seq where seq.referentiel=:referentiel");
+		query.setParameter("referentiel", referentiel);
+		return (List<Sequence>) query.getResultList();
+	}
+
+	/**
+	 * 
+	 * @return La liste des sequences d'une progression<br/>
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Sequence> findAllAuthorSequences(auteur auteur) {
+		Query query = getEm().createQuery("SELECT seq FROM Sequence seq where seq.auteur=:auteur");
+		query.setParameter("auteur", auteur);
 		return (List<Sequence>) query.getResultList();
 	}
 
@@ -26,10 +38,10 @@ public class SequenceFactory extends Connect {
 	 * @param titre
 	 * @return Une sequence selon sa progression et son titre<br/>
 	 */
-	public static Sequence findSequence(Progression prog, String titre) {
+	public static Sequence findSequence(Referentiel ref, String titre) {
 		Query query = getEm()
-				.createQuery("SELECT seq FROM Sequence seq where seq.progression=:progression and seq.titre=:titre");
-		query.setParameter("progression", prog);
+				.createQuery("SELECT seq FROM Sequence seq where seq.refrentiel=:referentiel and seq.titre=:titre");
+		query.setParameter("referentiel", ref);
 		query.setParameter("titre", titre);
 		return (Sequence) query.getSingleResult();
 	}

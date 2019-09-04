@@ -1,14 +1,13 @@
 package fr.paquet.ihm.principal.sequence;
 
 import java.awt.GridLayout;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
-import fr.paquet.ihm.commun.CommunStyle;
+
+import fr.paquet.ihm.style.StyleBorder;
+
+
 
 public class SequencePanelEntetePbTemps extends JPanel {
 
@@ -36,7 +35,7 @@ public class SequencePanelEntetePbTemps extends JPanel {
 		add(getSequencePanelEntetePbTempsJSlider());
 
 		// attribut du panel
-		setBorder(CommunStyle.BORDER.getBorder());
+		setBorder(StyleBorder.BORDERPANEL.getBorder());
 	}
 
 	private SequencePanelEntete getSequencePanelEntete() {

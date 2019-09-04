@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JDialog;
 import javax.swing.KeyStroke;
 
+import fr.paquet.ihm.alert.AlertType;
+import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.ihm.nouveau.JDialogNewSequence;
 import fr.paquet.sequence.Sequence;;
 
@@ -27,8 +29,12 @@ public class ActionNouveau extends ActionBDA {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 
-		JDialogNewSequence fNS = new JDialogNewSequence("Nouvelle Séquence", "Titre de la Séquence");
-		fNS.setVisible(true);
+		try {
+			new JDialogNewSequence();
+		} catch (Exception e) {
+			new AlertWindow(AlertType.ERREUR, "Erreur lors du chargement de la fenêtre");
+			e.printStackTrace();
+		}
 
 	}
 

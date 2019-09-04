@@ -3,7 +3,7 @@
 	xmlns="http://xmlns.jcp.org/xml/ns/persistence"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-	<persistence-unit name="sequences"
+	<persistence-unit name="sequence"
 		transaction-type="RESOURCE_LOCAL">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 
@@ -22,37 +22,28 @@
 		<class> fr.paquet.referentiel.Tache</class>
 		<class> fr.paquet.referentiel.Unite</class>
 
-		<class> fr.paquet.sequence.Decouverte</class>
-		<class> fr.paquet.sequence.Execution</class>
-		<class> fr.paquet.sequence.Introduction</class>
-		<class> fr.paquet.sequence.Phase</class>
-		<class> fr.paquet.sequence.Pretexte</class>
-		<class> fr.paquet.sequence.Sequence</class>
-		<class> fr.paquet.sequence.Validation</class>
-		<class>fr.paquet.commun.Diplome</class>
+		<!-- <class> fr.paquet.sequence.Decouverte</class> <class> fr.paquet.sequence.Execution</class> 
+			<class> fr.paquet.sequence.Introduction</class> <class> fr.paquet.sequence.Phase</class> 
+			<class> fr.paquet.sequence.Pretexte</class> <class> fr.paquet.sequence.Sequence</class> 
+			<class> fr.paquet.sequence.Validation</class> <class>fr.paquet.commun.Diplome</class> -->
 
 
 		<properties>
+
 			<property name="javax.persistence.jdbc.driver"
-				value="org.hsqldb.jdbcDriver" />
-
+				value="org.postgresql.Driver" />
 			<property name="javax.persistence.jdbc.url"
-				value="jdbc:hsqldb:hsql://localhost:5434/sequences" />
+				value="jdbc:postgresql://localhost:5432/sequence" />
 			<property name="javax.persistence.jdbc.user"
-				value="sequences" />
-
-
-			<property name="eclipselink.ddl-generation"
-				value="drop-and-create-tables" />
-
+				value="postgres" />
 			<property name="javax.persistence.jdbc.password"
 				value="Login5340" />
+			<!-- <property name="eclipselink.ddl-generation" value="drop-and-create-tables" 
+				/> -->
+			<property name="eclipselink.ddl-generation" value="none" />
 
-			<!-- <property name="eclipselink.ddl-generation" value="none" /> -->
 
 
-			<property name="eclipselink.ddl-generation.output-mode"
-				value="database" />
 
 
 		</properties>

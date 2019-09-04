@@ -20,7 +20,7 @@ import javax.persistence.Table;
  *         La classe competence represente une competence du referentiel de
  *         l'education <br/>
  *         mode d'utilisation : new Competence("C2.5", "Etablir et representer")
- *         
+ * 
  * 
  */
 @Entity
@@ -35,6 +35,9 @@ public class Competence {
 
 	@ManyToOne()
 	private Capacite cap = null;
+
+	@Column(name = "TRANSVERSAL")
+	private boolean transversal = false;
 
 	@ManyToOne()
 	private Unite unite = null;
@@ -63,28 +66,23 @@ public class Competence {
 	/**
 	 * Contructeur de la classe Competence<br/>
 	 * 
-	 * @param Capacite
-	 *            La classe competence peut charger une liste de competences
-	 *            dans une capacite<br/>
+	 * @param Capacite   La classe competence peut charger une liste de competences
+	 *                   dans une capacite<br/>
 	 * 
-	 * @param Unite
-	 *            La classe competence charge une liste de competences dans
-	 *            Unite<br/>
+	 * @param Unite      La classe competence charge une liste de competences dans
+	 *                   Unite<br/>
 	 * 
-	 * @param UnCode
-	 *            code de la comp�tence compos� du code Capacite . et d'un
-	 *            Chiffre<br/>
-	 *            exemple : C1.1, C3.1, etc...
-	 * @param UnIntitule
-	 *            le libell� de la comp�tence : <br/>
-	 *            exemple : "Etablir les docuements de suivi de r�alisation"
-	 *            <br/>
-	 *            ATTENTION : l'intitul� doit commencer par un verbe
-	 * @throws Exception
-	 *             si le code est �gale � 0
+	 * @param UnCode     code de la comp�tence compos� du code Capacite . et d'un
+	 *                   Chiffre<br/>
+	 *                   exemple : C1.1, C3.1, etc...
+	 * @param UnIntitule le libell� de la comp�tence : <br/>
+	 *                   exemple : "Etablir les docuements de suivi de r�alisation"
+	 *                   <br/>
+	 *                   ATTENTION : l'intitul� doit commencer par un verbe
+	 * @throws Exception si le code est �gale � 0
 	 */
 
-	public Competence(Capacite cap, Unite unt, int UnCode, String UnIntitule) throws Exception  {
+	public Competence(Capacite cap, Unite unt, int UnCode, String UnIntitule, boolean trans) throws Exception {
 
 		this();
 		setCode(UnCode);
@@ -92,18 +90,28 @@ public class Competence {
 		setCapacite(cap);
 		unt.addCompetence(this);
 		setUnite(unt);
+
+		setTransversal(trans);
 		if (getCapacite() != null)
 			cap.addCompetence(this);
 	}
 
-	public Competence(Unite unt, int UnCode, String UnIntitule) throws Exception {
+	public Competence(Unite unt, int UnCode, String UnIntitule, boolean trans) throws Exception {
 
-		this(null, unt, UnCode, UnIntitule);
+		this(null, unt, UnCode, UnIntitule, trans);
 		// TODO Competence sans capacite
 	}
 
 	public Competence() {
 		super();
+	}
+
+	public void setTransversal(boolean b) {
+		this.transversal = b;
+	}
+
+	public boolean isTranversale() {
+		return transversal;
 	}
 
 	private void setCapacite(Capacite cap) {
@@ -152,15 +160,15 @@ public class Competence {
 	}
 
 	public void addSavoir(Savoir sav) throws Exception {
-		
-		if(sav.getReferentiel()!=getCapacite().getReferentiel())
+
+		if (sav.getReferentiel() != getCapacite().getReferentiel())
 			throw new Exception("Ce savoir ne fait pas parti du referentiel de la competence");
 		getSavoirs().add(sav);
 	}
 
 	public void addTache(Tache tac) throws Exception {
-		
-		if(tac.getActivite().getFonction().getRap().getReferentiel()!=getCapacite().getReferentiel())
+
+		if (tac.getActivite().getFonction().getRap().getReferentiel() != getCapacite().getReferentiel())
 			throw new Exception("La tache ne fait pas partie du même referentiel que la competence");
 		getTaches().add(tac);
 	}
@@ -241,7 +249,8 @@ public class Competence {
 	/**
 	 * 
 	 * @return La liste des savoirs associes a la competence<br/>
-	 * @throws Verifie que les savoirs et les competences font partis du mçeme referentiel<br/>
+	 * @throws Verifie que les savoirs et les competences font partis du mçeme
+	 *                 referentiel<br/>
 	 */
 	public List<Savoir> getSavoirs() {
 		if (savoirs == null)
@@ -252,7 +261,8 @@ public class Competence {
 	/**
 	 * 
 	 * @return LA liste des taches associees a la competence<br/>
-	 * @throws Verifie que les taches et les competences font partis du meme referentiel<br/>
+	 * @throws Verifie que les taches et les competences font partis du meme
+	 *                 referentiel<br/>
 	 */
 	public List<Tache> getTaches() {
 		if (taches == null)

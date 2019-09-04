@@ -10,7 +10,9 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import fr.paquet.ihm.commun.CommunStyle;
+import fr.paquet.ihm.style.StyleBorder;
+import fr.paquet.ihm.style.StyleColor;
+import fr.paquet.ihm.style.StyleFont;
 
 public class SequencePanelEntetePbTempsJSlider extends JPanel {
 
@@ -38,7 +40,7 @@ public class SequencePanelEntetePbTempsJSlider extends JPanel {
 		setLayout(new GridBagLayout());
 
 		// Attribut du panel;
-		setBorder(CommunStyle.BORDERTITLEAREA.getBorder());
+		setBorder(StyleBorder.BORDERTITLEAREA.getBorder());
 
 		// Gestion de l'affichage des component
 		add(getPanelTitre(), new GridBagConstraints(0, 0, 1, 1, 1, 0, GridBagConstraints.CENTER,
@@ -105,12 +107,13 @@ public class SequencePanelEntetePbTempsJSlider extends JPanel {
 		panelTitre.setLayout(new FlowLayout());
 
 		// Attribut du panel
-		panelTitre.setBorder(CommunStyle.BORDERTITLEAREA.getBorder());
-		panelTitre.setBackground(CommunStyle.PANELTITLE.getColor());
+		panelTitre.setBorder(StyleBorder.BORDERTITLEAREA.getBorder());
+		panelTitre.setBackground(StyleColor.PANELTITLE.getColor());
 
 		// Création du label
 		JLabel titreLabel = new JLabel("Positionnement sur l'année");
 		titreLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		titreLabel.setFont(StyleFont.TITLESEQ.getFont());
 
 		// Ajout des component au panel
 		panelTitre.add(titreLabel);

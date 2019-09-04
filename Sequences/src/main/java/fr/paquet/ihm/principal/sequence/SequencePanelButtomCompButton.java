@@ -6,6 +6,11 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import fr.paquet.ihm.commun.CommunJPanelButton;
+import fr.paquet.ihm.commun.competence.JDialogCompetence;
+import fr.paquet.referentiel.Capacite;
+import fr.paquet.referentiel.Competence;
+import fr.paquet.referentiel.CompetenceIntermediaire;
+import fr.paquet.referentiel.Unite;
 
 public class SequencePanelButtomCompButton extends CommunJPanelButton {
 
@@ -41,10 +46,21 @@ public class SequencePanelButtomCompButton extends CommunJPanelButton {
 			public void actionPerformed(ActionEvent arg0) {
 
 				// TODO FENETRE DES COMPETENCES
-				SequencePanelButtomCompJLabel sPBCJ = new SequencePanelButtomCompJLabel(getColumn());
-				getSequencePanelButtomComp().getSequencePanelButtomCompJPanelJLabel()
-						.addSequencePanelButtomCompJLabel(sPBCJ);
-				getSequencePanelButtomComp().getSequencePanelButtomCompJPanelJLabel().affiche();
+
+				/**
+				 * SequenceCompTableModel mt = (SequenceCompTableModel)
+				 * getSequencePanelButtomComp() .getSequencePanelCompTable().getModel();
+				 * mt.setRowCount(mt.getRowCount() + 1);
+				 * 
+				 * getSequencePanelButtomComp().revalidate();
+				 */
+
+				try {
+					new SequencePanelButtomCompButtonJDialogComp();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
 			}
 		});

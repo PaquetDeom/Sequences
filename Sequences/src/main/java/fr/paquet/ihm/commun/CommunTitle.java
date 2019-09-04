@@ -6,6 +6,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import fr.paquet.ihm.style.StyleBorder;
+import fr.paquet.ihm.style.StyleColor;
+import fr.paquet.ihm.style.StyleFont;
+
 public class CommunTitle extends JPanel {
 
 	/**
@@ -22,9 +26,10 @@ public class CommunTitle extends JPanel {
 		for (String a : title.getTitle()) {
 			JLabel label = new JLabel(a);
 			label.setHorizontalAlignment(SwingConstants.CENTER);
+			label.setFont(StyleFont.TITLESEQ.getFont());
 			JPanel panel = new JPanel();
-			panel.setBorder(CommunStyle.BORDERTITLEAREA.getBorder());
-			panel.setBackground(CommunStyle.PANELTITLE.getColor());
+			panel.setBorder(StyleBorder.BORDERTITLEAREA.getBorder());
+			panel.setBackground(StyleColor.PANELTITLE.getColor());
 			panel.add(label);
 			add(panel);
 		}

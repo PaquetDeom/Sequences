@@ -27,8 +27,8 @@ public class MainOnglet extends JTabbedPane {
 		setSequence(sequence);
 		setOngletSequence(new OngletSequence(this));
 
-		if (getSequence().getSeances() != null && !getSequence().getSeances().isEmpty())
-			initOngletsActivites();
+		/**if (getSequence().getActivites() != null && !getSequence().getActivites().isEmpty())
+			initData();*/
 
 	}
 
@@ -47,9 +47,9 @@ public class MainOnglet extends JTabbedPane {
 		return ongletsActivites;
 	}
 
-	private void initOngletsActivites() {
+	private void initData() {
 
-		for (int i = 0; i < getSequence().getSeances().size(); i++) {
+		for (int i = 0; i < getSequence().getActivites().size(); i++) {
 			addOngletsActivites(new OngletActivite(this));
 		}
 

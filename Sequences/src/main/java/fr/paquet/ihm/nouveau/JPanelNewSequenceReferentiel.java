@@ -1,0 +1,57 @@
+package fr.paquet.ihm.nouveau;
+
+import javax.swing.JPanel;
+
+import fr.paquet.referentiel.Referentiel;
+
+import java.awt.GridBagLayout;
+import javax.swing.JLabel;
+import java.awt.GridBagConstraints;
+import javax.swing.JList;
+import java.awt.Insets;
+
+public class JPanelNewSequenceReferentiel extends JPanel {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JPanelNewSequence jPanelNewSequence = null;
+	private JList<Referentiel> listReferentiels = null;
+
+	public JPanelNewSequenceReferentiel(JPanelNewSequence jPanelNewSequence) {
+		super();
+
+		// setteur des éléments
+		setjPanelNewSequence(jPanelNewSequence);
+		setListReferentiels(new JList<Referentiel>());
+
+		// ajout du Layout
+		setLayout(new GridBagLayout());
+
+		// Attribut du panel
+
+		// affichage des components
+		add(new JLabel("Référentiel :"), new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER,
+				GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
+		add(getListReferentiels(), new GridBagConstraints(1, 0, 1, 1, 2, 0, GridBagConstraints.CENTER,
+				GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
+	}
+
+	public JPanelNewSequence getjPanelNewSequence() {
+		return jPanelNewSequence;
+	}
+
+	private void setjPanelNewSequence(JPanelNewSequence jPanelNewSequence) {
+		this.jPanelNewSequence = jPanelNewSequence;
+	}
+
+	public JList<Referentiel> getListReferentiels() {
+		return listReferentiels;
+	}
+
+	public void setListReferentiels(JList<Referentiel> listReferentiels) {
+		this.listReferentiels = listReferentiels;
+	}
+
+}
