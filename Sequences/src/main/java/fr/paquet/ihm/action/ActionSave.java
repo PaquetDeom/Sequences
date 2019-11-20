@@ -5,8 +5,9 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.KeyStroke;
 
+import fr.paquet.dataBase.Factory.sequence.SequenceFactory;
 import fr.paquet.sequence.Sequence;
-import fr.paquet.sequence.SequenceFactory;
+
 
 public class ActionSave extends ActionBDA {
 
@@ -30,7 +31,7 @@ public class ActionSave extends ActionBDA {
 
 		try {
 			SequenceFactory pF = new SequenceFactory();
-			pF.save(getSequence());
+			pF.persist(getSequence());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -48,7 +49,7 @@ public class ActionSave extends ActionBDA {
 	}
 
 	public void setSequence(Sequence sequence) throws Exception {
-		if(sequence == null)
+		if (sequence == null)
 			throw new Exception("Veuillez renseigner une séquence");
 		this.sequence = sequence;
 	}

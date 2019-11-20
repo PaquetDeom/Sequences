@@ -68,7 +68,7 @@ public class JPanelNewSequenceButton extends JPanelButtonAnnulOk {
 
 				JPanelNewSequence jp = (JPanelNewSequence) getJPanel();
 				try {
-					MainFrame.getUniqInstance().addPanel(new Sequence(jp.getjPanelNewSequenceTitle().getTitre()));
+					MainFrame.getUniqInstance().addPanel(new Sequence(jp.getjPanelNewSequenceTitle().getTitre(), null));
 					jp.getjDialogNewSequence().dispose();
 				} catch (Exception e) {
 					new AlertWindow(AlertType.ERREUR, e.getMessage());

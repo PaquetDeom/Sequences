@@ -48,7 +48,7 @@ public class Referentiel {
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Unite> unites = null;
 	
-	@Column(name = "REREUR", length = 100)
+	@Column(name = "REREUR", length = 300)
 	private String url = null;
 
 	/**

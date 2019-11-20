@@ -6,28 +6,54 @@ import java.util.List;
 import javax.swing.*;
 
 import fr.paquet.referentiel.*;
+import fr.paquet.sequence.Sequence;
 import main.MainFrame;
 
-public abstract class JDialogCompetence extends JDialog {
+public class JDialogCompetence extends JDialog {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private JDialogJPanel jDialogJpanel = null;
-	protected List<CompetenceIntermediaire> competenceIntermediaires = null;
-	protected List<Savoir> savoirs = null;
+	private List<CompetenceIntermediaire> compInts = null;
 
-	public JDialogCompetence() throws Exception {
+	public JDialogCompetence(Referentiel referentiel) throws Exception {
 		super(MainFrame.getUniqInstance());
 
 		// setteur des elements
 		setjDialogJpanel(new JDialogJPanel(this));
-		setCompetenceIntermediaires(new ArrayList<CompetenceIntermediaire>());
-		setSavoirs(new ArrayList<Savoir>());
+		// initialisation des compétences
+		for (Capacite cap : referentiel.getCapacites()) {
+			for (Competence comp : cap.getCompetences()) {
+				for (CompetenceIntermediaire compInt : comp.getCompetencesIntermediaires()) {
+					getCompetenceIntermediaires().add(compInt);
+				}
+			}
+		}
 
 		// ajout du Panel
 		setContentPane(getjDialogJpanel());
+	}
+
+	public JDialogCompetence(Sequence sequence) {
+		super();
+
+		// setteur des elements
+		setjDialogJpanel(new JDialogJPanel(this));
+		// initialisation des competences
+
+		for (CompetenceIntermediaire competenceIntermediaire : sequence.getCompetenceIntermediaires()) {
+			getCompetenceIntermediaires().add(competenceIntermediaire);
+		}
+		// ajout du Panel
+		setContentPane(getjDialogJpanel());
+	}
+
+	public List<CompetenceIntermediaire> getCompetenceIntermediaires() {
+		if (compInts == null)
+			compInts = new ArrayList<CompetenceIntermediaire>();
+		return compInts;
 	}
 
 	public JDialogJPanel getjDialogJpanel() {
@@ -37,17 +63,5 @@ public abstract class JDialogCompetence extends JDialog {
 	private void setjDialogJpanel(JDialogJPanel jDialogJpanel) {
 		this.jDialogJpanel = jDialogJpanel;
 	}
-
-	public List<CompetenceIntermediaire> getCompetenceIntermediaires() {
-		return competenceIntermediaires;
-	}
-
-	public List<Savoir> getSavoirs() {
-		return savoirs;
-	}
-
-	public abstract void setCompetenceIntermediaires(List<CompetenceIntermediaire> competenceIntermediaires);
-
-	public abstract void setSavoirs(List<Savoir> savoirs);
 
 }

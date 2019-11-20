@@ -21,10 +21,10 @@ public class Diplome {
 	@Column(name = "ID")
 	private int id = 0;
 
-	@Column(name = "DIPLOME", length = 10)
+	@Column(name = "DIPLOME", length = 50)
 	private String diplome = null;
 
-	@Column(name = "TYPE", length = 50)
+	@Column(name = "TYPE", length = 10)
 	private String type = null;
 
 	/**

@@ -29,6 +29,7 @@ public class SequencePanelButtomCompButton extends CommunJPanelButton {
 
 	}
 
+	@SuppressWarnings("unused")
 	private SequencePanelButtomComp getSequencePanelButtomComp() {
 		return sequencePanelButtomComp;
 	}
@@ -45,18 +46,9 @@ public class SequencePanelButtomCompButton extends CommunJPanelButton {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
-				// TODO FENETRE DES COMPETENCES
-
-				/**
-				 * SequenceCompTableModel mt = (SequenceCompTableModel)
-				 * getSequencePanelButtomComp() .getSequencePanelCompTable().getModel();
-				 * mt.setRowCount(mt.getRowCount() + 1);
-				 * 
-				 * getSequencePanelButtomComp().revalidate();
-				 */
-
 				try {
-					new SequencePanelButtomCompButtonJDialogComp();
+					new JDialogCompetence(getSequencePanelButtomComp().getSequencePanel()
+							.getOngletSequence().getMainOnglet().getSequence().getReferentiel());
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

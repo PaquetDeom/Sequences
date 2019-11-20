@@ -83,7 +83,7 @@ public class JDialogJPanelCompetence extends JPanel {
 			for (int i = 0; i < getValuesJTree().size(); i++) {
 
 				new JDialogJtreeComp(getValuesJTree().get(i));
-				
+
 			}
 
 		}

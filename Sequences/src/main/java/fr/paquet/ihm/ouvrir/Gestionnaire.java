@@ -18,11 +18,11 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.plaf.FileChooserUI;
 
+import fr.paquet.dataBase.Factory.sequence.SequenceFactory;
 import fr.paquet.ihm.alert.AlertListener;
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.sequence.Sequence;
-import fr.paquet.sequence.SequenceFactory;
 
 public class Gestionnaire extends JDialog implements AlertListener {
 
@@ -42,8 +42,9 @@ public class Gestionnaire extends JDialog implements AlertListener {
 	 * @return la liste des sequences</br>
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	private List<Sequence> getSequences() throws Exception {
-		sequences = new SequenceFactory().findAllSequences();
+		sequences = (List<Sequence>) new SequenceFactory().findAll();
 		return sequences;
 	}
 
@@ -228,7 +229,12 @@ public class Gestionnaire extends JDialog implements AlertListener {
 	@Override
 	public void buttonClick(String button) {
 		if (button.equals("Oui")) {
-			new SequenceFactory().removeSequence(getSequenceSelected());
+			try {
+				new SequenceFactory().remove(getSequenceSelected());
+			} catch (Exception e) {
+				e.printStackTrace();
+				new AlertWindow(AlertType.ERREUR, e.getMessage());
+			}
 			Gestionnaire.this.dispose();
 		}
 

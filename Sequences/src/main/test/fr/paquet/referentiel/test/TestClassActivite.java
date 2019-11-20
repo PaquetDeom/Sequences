@@ -19,7 +19,7 @@ public class TestClassActivite {
 		try {
 
 			Diplome dip = new DiplomeFactory().findDiplome("BAC PRO", "TECHNICIEN CONSTRUCTEUR BOIS");
-			
+
 			Referentiel ref = new ReferentielFactory().findReferentiel(dip);
 
 			Fonction fc = ref.getRap().getFonctions().get(0);
@@ -50,7 +50,8 @@ public class TestClassActivite {
 	public void testgetFonction() {
 		try {
 
-			Activite act = new Activite(new Fonction(new Rap(new Referentiel(new Diplome("BAC PRO", "CB"))), "   REALISATION"),
+			Activite act = new Activite(
+					new Fonction(new Rap(new Referentiel(new Diplome("BAC PRO", "CB"))), "   REALISATION"),
 					"PREPARATION : Contr�le et r�ception de l'existant");
 
 			assertEquals(act.getFonction().getIntitule(), "REALISATION");
@@ -64,9 +65,11 @@ public class TestClassActivite {
 	public void testgetIntitule() {
 		try {
 
-			Activite act1 = new Activite(new Fonction(new Rap(new Referentiel(new Diplome("BAC PRO", "CB"))), "REALISATION"),
+			Activite act1 = new Activite(
+					new Fonction(new Rap(new Referentiel(new Diplome("BAC PRO", "CB"))), "REALISATION"),
 					"mise en oeuvre : d�finition d'un produit       ");
-			Activite act = new Activite(new Fonction(new Rap(new Referentiel(new Diplome("BAC PRO", "CB"))), "REALISATION"),
+			Activite act = new Activite(
+					new Fonction(new Rap(new Referentiel(new Diplome("BAC PRO", "CB"))), "REALISATION"),
 					"       PREPARAtion : d�finition d'un produit");
 
 			assertTrue(act1.getIntitule().equals("MISE EN OEUVRE : d�finition d'un produit"));
@@ -80,7 +83,8 @@ public class TestClassActivite {
 	@Test
 	public void testgetTaches() {
 		try {
-			Activite act = new Activite(new Fonction(new Rap(new Referentiel(new Diplome("BAC PRO", "CB"))), "REALISATION"),
+			Activite act = new Activite(
+					new Fonction(new Rap(new Referentiel(new Diplome("BAC PRO", "CB"))), "REALISATION"),
 					"PREPARATION : Contr�le et r�ception de l'existant");
 
 			assertEquals(act.getFonction().getIntitule(), "REALISATION");
@@ -96,11 +100,14 @@ public class TestClassActivite {
 			new Activite(new Fonction(new Rap(new Referentiel(new Diplome("BAC PRO", "CB"))), "REALISATION"),
 					"PREPARATION : Contr�le et r�ception de l'existant");
 
-			Activite act = new Activite(new Fonction(new Rap(new Referentiel(new Diplome("BAC PRO", "CB"))), "REALISATION"),
+			Activite act = new Activite(
+					new Fonction(new Rap(new Referentiel(new Diplome("BAC PRO", "CB"))), "REALISATION"),
 					"    PREPAration : D�finition d'un produit   ");
-			Activite act1 = new Activite(new Fonction(new Rap(new Referentiel(new Diplome("BAC PRO", "CB"))), "REALISATION"),
+			Activite act1 = new Activite(
+					new Fonction(new Rap(new Referentiel(new Diplome("BAC PRO", "CB"))), "REALISATION"),
 					"    fabrication : organisation et preparation de la fabrication   ");
-			Activite act2 = new Activite(new Fonction(new Rap(new Referentiel(new Diplome("BAC PRO", "CB"))), "REALISATION"),
+			Activite act2 = new Activite(
+					new Fonction(new Rap(new Referentiel(new Diplome("BAC PRO", "CB"))), "REALISATION"),
 					"    LOGISTIQUE   ");
 
 			assertEquals(act.getTypeTache(), "PREPARATION");

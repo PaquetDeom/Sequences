@@ -54,13 +54,10 @@
 			</plugin>
 		</plugins>
 	</build>
-	<!-- PERSISTENCE -->
+
 	<dependencies>
-		<dependency>
-			<groupId>org.eclipse.persistence</groupId>
-			<artifactId>eclipselink</artifactId>
-			<version>2.6.5-RC2</version>
-		</dependency>
+		<!-- PERSISTENCE <dependency> <groupId>org.eclipse.persistence</groupId> 
+			<artifactId>eclipselink</artifactId> <version>2.6.5-RC2</version> </dependency> -->
 
 		<!-- XSTREAM -->
 		<dependency>
