@@ -5,13 +5,9 @@ import fr.paquet.referentiel.Condition;
 
 public class ConditionFactory extends Factory {
 
-	public ConditionFactory() {
-		super();
-	}
-
 	@Override
 	public Class<?> getClassObject() {
-		
+
 		return Condition.class;
 	}
 }

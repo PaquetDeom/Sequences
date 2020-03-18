@@ -5,10 +5,6 @@ import fr.paquet.referentiel.Rap;
 
 public class RapFactory extends Factory {
 
-	public RapFactory() {
-		super();
-	}
-
 	@Override
 	public Class<?> getClassObject() {
 		return Rap.class;

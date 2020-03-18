@@ -5,9 +5,12 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+import fr.paquet.dataBase.Connect;
+import fr.paquet.dataBase.User;
 import fr.paquet.ihm.alert.AlertListener;
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
+import fr.paquet.ihm.dataBase.JDialogIdDataBase;
 
 public class Main {
 
@@ -22,6 +25,9 @@ public class Main {
 
 					// creation de la mainFrame
 					MainFrame mainFrame = MainFrame.getUniqInstance();
+
+					// tentative de connexion à la base
+					connectDataBase();
 
 					// fermeture du logiciel
 					WindowListener l = new WindowAdapter() {
@@ -66,6 +72,22 @@ public class Main {
 	public static void FermetureAvecErreur() {
 
 		System.exit(1);
+	}
+
+	public static void connectDataBase() {
+
+		try {
+			Connect.getUniqInstance();
+		} catch (Exception e) {
+			try {
+				new JDialogIdDataBase();
+				
+			} catch (Exception e1) {
+				e1.printStackTrace();
+				FermetureAvecErreur();
+			}
+
+		}
 	}
 
 }

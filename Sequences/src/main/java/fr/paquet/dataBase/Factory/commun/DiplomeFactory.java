@@ -6,14 +6,16 @@ import fr.paquet.commun.Diplome;
 
 public class DiplomeFactory extends Factory {
 
+	
 	/**
 	 * 
 	 * @param diplome
 	 * @param type
 	 * @return un diplome donne<br/>
+	 * @throws Exception 
 	 */
-	public Diplome findDiplome(String diplome, String type) {
-		Query query = getEm().createQuery("SELECT dip FROM Diplome dip where dip.diplome=:diplome and dip.type=:type");
+	public Diplome findDiplome(String diplome, String type) throws Exception {
+		Query query = getConnect().getEm().createQuery("SELECT dip FROM Diplome dip where dip.diplome=:diplome and dip.type=:type");
 		query.setParameter("diplome", diplome);
 		query.setParameter("type", type);
 		return (Diplome) query.getSingleResult();

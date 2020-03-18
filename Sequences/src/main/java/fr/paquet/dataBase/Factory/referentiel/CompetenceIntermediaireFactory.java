@@ -5,10 +5,6 @@ import fr.paquet.referentiel.CompetenceIntermediaire;
 
 public class CompetenceIntermediaireFactory extends Factory {
 
-	public CompetenceIntermediaireFactory() {
-		super();
-	}
-
 	@Override
 	public Class<?> getClassObject() {
 		// TODO Auto-generated method stub

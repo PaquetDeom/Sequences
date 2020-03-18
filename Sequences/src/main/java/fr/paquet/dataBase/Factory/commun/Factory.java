@@ -7,7 +7,7 @@ import javax.persistence.Query;
 
 import fr.paquet.dataBase.Connect;
 
-public abstract class Factory extends Connect {
+public abstract class Factory {
 
 	public Factory() {
 		super();
@@ -18,7 +18,7 @@ public abstract class Factory extends Connect {
 		if (getClassObject() == null)
 			throw new Exception("Vous n'avez pas saisi de nom de class");
 
-		Query query = getEm().createQuery("SELECT obj FROM" + getClassObject() + "obj");
+		Query query = getConnect().getEm().createQuery("SELECT obj FROM" + getClassObject() + "obj");
 
 		@SuppressWarnings("unchecked")
 		List<Object> objects = (List<Object>) query.getResultList();
@@ -38,11 +38,11 @@ public abstract class Factory extends Connect {
 
 		test(object);
 
-		EntityTransaction t = getEm().getTransaction();
+		EntityTransaction t = getConnect().getEm().getTransaction();
 
 		try {
 			t.begin();
-			getEm().persist(object);
+			getConnect().getEm().persist(object);
 			t.commit();
 		} catch (Exception e) {
 			t.rollback();
@@ -54,18 +54,22 @@ public abstract class Factory extends Connect {
 	public void remove(Object object) throws Exception {
 
 		test(object);
-		
-		EntityTransaction t = getEm().getTransaction();
+
+		EntityTransaction t = getConnect().getEm().getTransaction();
 
 		try {
 			t.begin();
-			getEm().remove(object);
+			getConnect().getEm().remove(object);
 			t.commit();
 		} catch (Exception e) {
 			t.rollback();
 			throw (e);
 		}
 
+	}
+
+	protected static Connect getConnect() throws Exception {
+		return Connect.getUniqInstance();
 	}
 
 }

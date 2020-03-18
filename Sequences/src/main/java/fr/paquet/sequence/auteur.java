@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.paquet.commun.personne;
+import fr.paquet.dataBase.User;
 
 public class auteur extends personne {
 
@@ -43,6 +44,12 @@ public class auteur extends personne {
 	protected void setType(String type) {
 		this.type = type;
 
+	}
+
+	@Override
+	public void setUser(User user) {
+		this.user = user;
+		
 	}
 
 }

@@ -5,13 +5,9 @@ import fr.paquet.referentiel.Capacite;
 
 public class CapaciteFactory extends Factory {
 
-	public CapaciteFactory() {
-		super();
-	}
-
 	@Override
 	public Class<?> getClassObject() {
-		
+
 		return Capacite.class;
 	}
 

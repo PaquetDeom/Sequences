@@ -5,13 +5,9 @@ import fr.paquet.referentiel.Competence;
 
 public class CompetenceFactory extends Factory {
 
-	public CompetenceFactory() {
-		super();
-	}
-
 	@Override
 	public Class<?> getClassObject() {
-	
+
 		return Competence.class;
 	}
 

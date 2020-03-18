@@ -13,9 +13,10 @@ public class ReferentielFactory extends Factory {
 	 * 
 	 * @param diplome
 	 * @return Le referentiel du diplome<br/>
+	 * @throws Exception
 	 */
-	public Referentiel findReferentiel(Diplome diplome) {
-		Query query = getEm().createQuery("SELECT ref FROM Referentiel ref where ref.diplome=:diplome");
+	public Referentiel findReferentiel(Diplome diplome) throws Exception {
+		Query query = getConnect().getEm().createQuery("SELECT ref FROM Referentiel ref where ref.diplome=:diplome");
 		query.setParameter("diplome", diplome);
 		return (Referentiel) query.getSingleResult();
 	}

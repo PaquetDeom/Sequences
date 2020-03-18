@@ -38,6 +38,7 @@ public class MainMenu extends JMenuBar {
 		addAction(getActionRef());
 		setActionSave(new ActionSave());
 		addAction(getActionSave());
+		addAction(new ActionUtilisateur());
 
 	}
 
