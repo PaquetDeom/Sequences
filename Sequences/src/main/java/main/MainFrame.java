@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.awt.image.BufferedImage;
@@ -13,6 +14,9 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import fr.paquet.ihm.alert.AlertListener;
+import fr.paquet.ihm.alert.AlertType;
+import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.sequence.Sequence;
 
 public class MainFrame extends JFrame implements WindowListener {
@@ -36,14 +40,13 @@ public class MainFrame extends JFrame implements WindowListener {
 		super("Logiciel d'écriture pédagogique");
 
 		setPanelOuverture();
-
 		addWindowListener(this);
-		setAlwaysOnTop(true);
+		setAlwaysOnTop(false);
 		setMinimumSize(new Dimension(900, 600));
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setJMenuBar(MainMenu.getUniqInstance());
 		add(getPanelOuverture());
-		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 	}
 
 	private void setPanelOuverture() {
@@ -110,6 +113,14 @@ public class MainFrame extends JFrame implements WindowListener {
 		revalidate();
 	}
 
+	public MainOnglet getMainOnglet() {
+		return mainOnglet;
+	}
+
+	public void setMainOnglet(MainOnglet mainOnglet) {
+		this.mainOnglet = mainOnglet;
+	}
+
 	@Override
 	public void windowActivated(WindowEvent arg0) {
 		// TODO Auto-generated method stub
@@ -124,8 +135,8 @@ public class MainFrame extends JFrame implements WindowListener {
 
 	@Override
 	public void windowClosing(WindowEvent arg0) {
-		// TODO
-
+		Main.Fermeture();
+		
 	}
 
 	@Override
@@ -150,14 +161,6 @@ public class MainFrame extends JFrame implements WindowListener {
 	public void windowOpened(WindowEvent arg0) {
 		// TODO Auto-generated method stub
 
-	}
-
-	public MainOnglet getMainOnglet() {
-		return mainOnglet;
-	}
-
-	public void setMainOnglet(MainOnglet mainOnglet) {
-		this.mainOnglet = mainOnglet;
 	}
 
 }

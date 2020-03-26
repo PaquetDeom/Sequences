@@ -1,10 +1,13 @@
 package fr.paquet.ihm.principal.sequence;
 
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import javax.swing.*;
+
+import main.MainFrame;
 
 public class SequencePanelEntete extends JPanel {
 
@@ -13,29 +16,22 @@ public class SequencePanelEntete extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	private SequencePanel sequencePanel = null;
-	private SequencePanelEnteteImg sequencePanelEntetImg = null;
-	private SequencePanelEntetePbTemps sequencePanelEntetePbTemps = null;
 
-	public SequencePanelEntete(SequencePanel sequencePanel) {
+	public SequencePanelEntete(SequencePanel sequencePanel) throws Exception {
 
 		super();
 
 		// set des elements
 		setSequencePanel(sequencePanel);
-		setSequencePanelEntetImg(new SequencePanelEnteteImg(this));
-		setSequencePanelEntetePbTemps(new SequencePanelEntetePbTemps(this));
 
 		// ajout du Layout
 		setLayout(new GridBagLayout());
 
 		// ajout des composants
-		add(getSequencePanelEntetImg(), new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER,
+		add(getSequencePanelEntetImg(), new GridBagConstraints(0, 0, 1, 1, 0.3, 0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 5), 0, 0));
-		add(getSequencePanelEntetePbTemps(), new GridBagConstraints(1, 0, 1, 1, 3, 1, GridBagConstraints.CENTER,
+		add(getSequencePanelEntetePbTemps(), new GridBagConstraints(1, 0, 1, 1, 0.7, 0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 5), 0, 0));
-		
-		//attribut du panel
-		
 	}
 
 	private SequencePanel getSequencePanel() {
@@ -46,20 +42,19 @@ public class SequencePanelEntete extends JPanel {
 		this.sequencePanel = sequencePanel;
 	}
 
-	private SequencePanelEnteteImg getSequencePanelEntetImg() {
+	private SequencePanelEnteteImg sequencePanelEntetImg = null;
+
+	private SequencePanelEnteteImg getSequencePanelEntetImg() throws Exception {
+		if (sequencePanelEntetImg == null)
+			sequencePanelEntetImg = new SequencePanelEnteteImg(this);
 		return sequencePanelEntetImg;
 	}
 
-	private void setSequencePanelEntetImg(SequencePanelEnteteImg sequencePanelEntetImg) {
-		this.sequencePanelEntetImg = sequencePanelEntetImg;
-	}
+	private SequencePanelEntetePbTemps sequencePanelEntetePbTemps = null;
 
-	private SequencePanelEntetePbTemps getSequencePanelEntetePbTemps() {
+	private SequencePanelEntetePbTemps getSequencePanelEntetePbTemps() throws Exception {
+		if (sequencePanelEntetePbTemps == null)
+			sequencePanelEntetePbTemps = new SequencePanelEntetePbTemps(this);
 		return sequencePanelEntetePbTemps;
 	}
-
-	private void setSequencePanelEntetePbTemps(SequencePanelEntetePbTemps sequencePanelEntetePbTemps) {
-		this.sequencePanelEntetePbTemps = sequencePanelEntetePbTemps;
-	}
-
 }

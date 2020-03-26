@@ -33,12 +33,12 @@ public class MainMenu extends JMenuBar {
 		addAction(new ActionNouveau());
 		setActionGestionnaire(new ActionGestionnaire());
 		addAction(getActionGestionnaire());
-		addAction(new ActionQuitter());
 		setActionRef(new ActionRef());
 		addAction(getActionRef());
 		setActionSave(new ActionSave());
 		addAction(getActionSave());
 		addAction(new ActionUtilisateur());
+		addAction(new ActionQuitter());
 
 	}
 

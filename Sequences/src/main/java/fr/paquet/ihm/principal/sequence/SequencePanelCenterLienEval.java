@@ -14,17 +14,12 @@ public class SequencePanelCenterLienEval extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	private SequencePanelCenter sequencePanelCenter = null;
-	private SequencePanelCenterLienEvalLien sequencePanelCenterLienEvalLien = null;
-	private SequencePanelCenterLienEvalEval sequencePanelCenterLienEvalEval = null;
 
 	public SequencePanelCenterLienEval(SequencePanelCenter sequencePanelCenter) {
 		super();
 
 		// set des Elements
 		setSequencePanelCenter(sequencePanelCenter);
-		setSequencePanelCenterLienEvalLien(
-				new SequencePanelCenterLienEvalLien(this, "Liens avec les autres disciplines"));
-		setSequencePanelCenterLienEvalEval(new SequencePanelCenterLienEvalEval(this, "Modalités d'évaluation"));
 
 		// Ajout du Layout
 		setLayout(new GridBagLayout());
@@ -44,20 +39,21 @@ public class SequencePanelCenterLienEval extends JPanel {
 		this.sequencePanelCenter = sequencePanelCenter;
 	}
 
+	private SequencePanelCenterLienEvalLien sequencePanelCenterLienEvalLien = null;
+
 	private SequencePanelCenterLienEvalLien getSequencePanelCenterLienEvalLien() {
+		if (sequencePanelCenterLienEvalLien == null)
+			sequencePanelCenterLienEvalLien = new SequencePanelCenterLienEvalLien(this,
+					"Liens avec les autres disciplines");
 		return sequencePanelCenterLienEvalLien;
 	}
 
-	private void setSequencePanelCenterLienEvalLien(SequencePanelCenterLienEvalLien sequencePanelCenterLienEvalLien) {
-		this.sequencePanelCenterLienEvalLien = sequencePanelCenterLienEvalLien;
-	}
+	private SequencePanelCenterLienEvalEval sequencePanelCenterLienEvalEval = null;
 
 	private SequencePanelCenterLienEvalEval getSequencePanelCenterLienEvalEval() {
+		if (sequencePanelCenterLienEvalEval == null)
+			sequencePanelCenterLienEvalEval = new SequencePanelCenterLienEvalEval(this, "Modalités d'évaluation");
 		return sequencePanelCenterLienEvalEval;
-	}
-
-	private void setSequencePanelCenterLienEvalEval(SequencePanelCenterLienEvalEval sequencePanelCenterLienEvalEval) {
-		this.sequencePanelCenterLienEvalEval = sequencePanelCenterLienEvalEval;
 	}
 
 }

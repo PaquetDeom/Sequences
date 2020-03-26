@@ -16,6 +16,7 @@ public class SequencePanelButtomActJPanelJLabel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private SequencePanelButtomAct sequencePanelButtomAct = null;
 	private List<SequencePanelButtomActJLabel> sequencePanelButtomActJLabel = null;
+	
 
 	public SequencePanelButtomActJPanelJLabel(SequencePanelButtomAct sequencePanelButtomAct) {
 		super();
@@ -26,20 +27,21 @@ public class SequencePanelButtomActJPanelJLabel extends JPanel {
 		// création du layout
 		setLayout(new GridBagLayout());
 
-		// attribut du panel
-
 		// affichage des Component
 		affiche();
+		
+		//attribut du panel
+		
 	}
 
 	public void affiche() {
 
 		int rows = 0;
 
-		if (!getSequencePanelButtomActJLabel().isEmpty()) {
-			for (SequencePanelButtomActJLabel a : getSequencePanelButtomActJLabel()) {
+		if (!getSequencePanelButtomActJLabels().isEmpty()) {
+			for (SequencePanelButtomActJLabel a : getSequencePanelButtomActJLabels()) {
 
-				add(a, new GridBagConstraints(0, rows, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+				add(a, new GridBagConstraints(0, rows, 1, 1, 1, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
 						new Insets(0, 0, 0, 0), 0, 0));
 				rows++;
 
@@ -57,18 +59,19 @@ public class SequencePanelButtomActJPanelJLabel extends JPanel {
 		this.sequencePanelButtomAct = sequencePanelButtomAct;
 	}
 
-	private List<SequencePanelButtomActJLabel> getSequencePanelButtomActJLabel() {
+	private List<SequencePanelButtomActJLabel> getSequencePanelButtomActJLabels() {
 		if (sequencePanelButtomActJLabel == null)
 			sequencePanelButtomActJLabel = new ArrayList<SequencePanelButtomActJLabel>();
 		return sequencePanelButtomActJLabel;
 	}
 
 	public void addSequencePanelButtomActJLabel(SequencePanelButtomActJLabel sequencePanelButtomActJLabel) {
-		getSequencePanelButtomActJLabel().add(sequencePanelButtomActJLabel);
+		getSequencePanelButtomActJLabels().add(sequencePanelButtomActJLabel);
 	}
 
-	private void setSequencePanelButtomActJLabels(List<SequencePanelButtomActJLabel> sequencePanelButtomActJLabels) {
-		this.sequencePanelButtomActJLabel = sequencePanelButtomActJLabels;
+	
+	public void addActivite() throws Exception {
+		addSequencePanelButtomActJLabel(new SequencePanelButtomActJLabel());
 	}
 
 }

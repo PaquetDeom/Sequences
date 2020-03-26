@@ -1,12 +1,14 @@
 package fr.paquet.ihm.principal.sequence;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
 import fr.paquet.ihm.style.StyleBorder;
+import main.MainFrame;
 
 public class SequencePanelEnteteImg extends JPanel {
 
@@ -17,7 +19,7 @@ public class SequencePanelEnteteImg extends JPanel {
 	private SequencePanelEntete sequencePanelEntete = null;
 	private JButton buttonImage = null;
 
-	public SequencePanelEnteteImg(SequencePanelEntete sPE) {
+	public SequencePanelEnteteImg(SequencePanelEntete sPE) throws Exception {
 		super();
 
 		// set des éléments
@@ -34,9 +36,7 @@ public class SequencePanelEnteteImg extends JPanel {
 		add(new JPanel(), BorderLayout.EAST);
 		add(new JPanel(), BorderLayout.WEST);
 
-		// attribut du panel
 		setBorder(StyleBorder.BORDERPANEL.getBorder());
-
 	}
 
 	private SequencePanelEntete getSequencePanelEntete() {

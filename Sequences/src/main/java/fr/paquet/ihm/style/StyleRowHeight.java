@@ -8,7 +8,7 @@ public enum StyleRowHeight {
 		switch (this) {
 		case COMPROWHEIGHT:
 
-			return 80;
+			return 85;
 
 		default:
 			return 0;

@@ -6,15 +6,8 @@ import java.awt.Insets;
 
 import javax.swing.JPanel;
 
-import javax.swing.JTable;
-
-import javax.swing.table.JTableHeader;
-
 import fr.paquet.ihm.commun.Title;
 import fr.paquet.ihm.style.StyleBorder;
-import fr.paquet.ihm.style.StyleColor;
-import fr.paquet.ihm.style.StyleFont;
-import fr.paquet.ihm.style.StyleRowHeight;
 
 public class SequencePanelButtomComp extends JPanel {
 
@@ -23,27 +16,23 @@ public class SequencePanelButtomComp extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	private SequencePanel sequencePanel = null;
-	private SequencePanelButtomCompButton sequencePanelButtomCompButton = null;
-	private JTable sequencePanelCompTable = null;
 
-	public SequencePanelButtomComp(SequencePanel sequencePanel) {
+	public SequencePanelButtomComp(SequencePanel sequencePanel) throws Exception {
 		super();
 
 		// set des compposants
 		setSequencePanel(sequencePanel);
-		setSequencePanelButtomCompButton(
-				new SequencePanelButtomCompButton("+ Compétence", Title.COMPETENCES.getcolumn(), this));
 
 		// Ajout du Layout
 		setLayout(new GridBagLayout());
 
 		// Gestion de l'affichage
 
-		add(getSequencePanelCompTableHeader(), new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.PAGE_START,
+		add(getSequencePanelButtomCompTitre(), new GridBagConstraints(0, 0, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-		add(getSequencePanelCompTable(), new GridBagConstraints(0, 1, 1, 1, 1, 1, GridBagConstraints.CENTER,
-				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-		add(getSequencePanelButtomCompButton(), new GridBagConstraints(0, 2, 1, 1, 0, 0, GridBagConstraints.CENTER,
+		add(getSequencePanelButtomCompJPanelJlabel(), new GridBagConstraints(0, 1, 1, 1, 1.0, 0,
+				GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+		add(getSequencePanelButtomCompButton(), new GridBagConstraints(0, 2, 1, 1, 1, 0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
 		// Attribut du panel
@@ -51,35 +40,29 @@ public class SequencePanelButtomComp extends JPanel {
 
 	}
 
-	private JTableHeader getSequencePanelCompTableHeader() {
+	private SequencePanelButtomCompJPanelJlabel sequencePanelButtomCompJPanelJlabel = null;
 
-		JTableHeader header = getSequencePanelCompTable().getTableHeader();
-
-		// attributs du header
-		header.setBackground(StyleColor.PANELTITLE.getColor());
-		header.setFont(StyleFont.TITLESEQ.getFont());
-
-		return header;
+	public SequencePanelButtomCompJPanelJlabel getSequencePanelButtomCompJPanelJlabel() {
+		if (sequencePanelButtomCompJPanelJlabel == null)
+			sequencePanelButtomCompJPanelJlabel = new SequencePanelButtomCompJPanelJlabel(this);
+		return sequencePanelButtomCompJPanelJlabel;
 	}
 
-	public JTable getSequencePanelCompTable() {
-		if (sequencePanelCompTable == null) {
-			sequencePanelCompTable = new JTable(new SequenceCompTableModel());
+	private SequencePanelButtomCompTitre sequencePanelButtomCompTitre = null;
 
-			// attribut du JTable
-			sequencePanelCompTable.setRowHeight(StyleRowHeight.COMPROWHEIGHT.getHeight());
-			sequencePanelCompTable.setRowSelectionAllowed(false);
-			sequencePanelCompTable.setColumnSelectionAllowed(false);
-		}
-		return sequencePanelCompTable;
+	private SequencePanelButtomCompTitre getSequencePanelButtomCompTitre() throws Exception {
+		if (sequencePanelButtomCompTitre == null)
+			sequencePanelButtomCompTitre = new SequencePanelButtomCompTitre(Title.COMPETENCES, this);
+		return sequencePanelButtomCompTitre;
 	}
 
-	private SequencePanelButtomCompButton getSequencePanelButtomCompButton() {
+	private SequencePanelButtomCompButton sequencePanelButtomCompButton = null;
+
+	private SequencePanelButtomCompButton getSequencePanelButtomCompButton() throws Exception {
+		if (sequencePanelButtomCompButton == null)
+			sequencePanelButtomCompButton = new SequencePanelButtomCompButton("+ Compétence",
+					Title.COMPETENCES.getcolumn(), this);
 		return sequencePanelButtomCompButton;
-	}
-
-	private void setSequencePanelButtomCompButton(SequencePanelButtomCompButton sequencePanelButtomCompButton) {
-		this.sequencePanelButtomCompButton = sequencePanelButtomCompButton;
 	}
 
 	public SequencePanel getSequencePanel() {
@@ -88,6 +71,11 @@ public class SequencePanelButtomComp extends JPanel {
 
 	private void setSequencePanel(SequencePanel sequencePanel) {
 		this.sequencePanel = sequencePanel;
+	}
+
+	public void addCompetence() throws Exception {
+		getSequencePanelButtomCompJPanelJlabel().addCompetence();
+
 	}
 
 }

@@ -7,10 +7,6 @@ import javax.swing.JButton;
 
 import fr.paquet.ihm.commun.CommunJPanelButton;
 import fr.paquet.ihm.commun.competence.JDialogCompetence;
-import fr.paquet.referentiel.Capacite;
-import fr.paquet.referentiel.Competence;
-import fr.paquet.referentiel.CompetenceIntermediaire;
-import fr.paquet.referentiel.Unite;
 
 public class SequencePanelButtomCompButton extends CommunJPanelButton {
 
@@ -21,7 +17,7 @@ public class SequencePanelButtomCompButton extends CommunJPanelButton {
 	private SequencePanelButtomComp sequencePanelButtomComp = null;
 
 	public SequencePanelButtomCompButton(String titleButton, int column,
-			SequencePanelButtomComp sequencePanelButtomComp) {
+			SequencePanelButtomComp sequencePanelButtomComp) throws Exception {
 		super(titleButton, column);
 
 		// setteur des objets
@@ -45,15 +41,13 @@ public class SequencePanelButtomCompButton extends CommunJPanelButton {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-
 				try {
-					new JDialogCompetence(getSequencePanelButtomComp().getSequencePanel()
-							.getOngletSequence().getMainOnglet().getSequence().getReferentiel());
+					getSequencePanelButtomComp().addCompetence();
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 
+				getSequencePanelButtomComp().getSequencePanelButtomCompJPanelJlabel().affiche();
 			}
 		});
 		this.button = button;

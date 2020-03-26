@@ -1,5 +1,6 @@
 package fr.paquet.ihm.commun;
 
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -40,9 +41,10 @@ public abstract class CommunJLabelJTextAreaVertical extends JPanel {
 		// Ajout des Elements
 		add(getPanelTitre(), new GridBagConstraints(0, 0, 1, 1, 1, 0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 1, 0));
-
-		add(getPanelJTextArea(), new GridBagConstraints(0, 1, 1, 1, 1, 2, GridBagConstraints.CENTER,
+		add(getPanelJTextArea(), new GridBagConstraints(0, 1, 1, 1, 1, 0.0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 1, 0));
+		add(new JPanel(), new GridBagConstraints(0, 1, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+				new Insets(0, 0, 0, 0), 1, 0));
 	}
 
 	private String getTitle() {
@@ -99,12 +101,12 @@ public abstract class CommunJLabelJTextAreaVertical extends JPanel {
 		// ajout du Layout
 		panelJTextArea.setLayout(new GridLayout(1, 0, 0, 0));
 
-		// Attribut du panel
-		panelJTextArea.setBorder(StyleBorder.BORDERTITLEAREA.getBorder());
-
 		// ajout des component
 		panelJTextArea.add(getTextArea());
 
+		// Attribut du panel
+		panelJTextArea.setBorder(StyleBorder.BORDERTITLEAREA.getBorder());
+		setPreferredSize(new Dimension(getPreferredSize().width, getPreferredSize().height * 8));
 		this.panelJTextArea = panelJTextArea;
 	}
 

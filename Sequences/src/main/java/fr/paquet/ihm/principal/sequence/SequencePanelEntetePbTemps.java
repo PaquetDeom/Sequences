@@ -4,10 +4,7 @@ import java.awt.GridLayout;
 
 import javax.swing.*;
 
-
 import fr.paquet.ihm.style.StyleBorder;
-
-
 
 public class SequencePanelEntetePbTemps extends JPanel {
 
@@ -16,16 +13,12 @@ public class SequencePanelEntetePbTemps extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	private SequencePanelEntete sequencePanelEntete = null;
-	private SequencePanelEntetePbTempsJSlider sequencePanelEntetePbTempsJSlider = null;
-	private SequencePanelEntetePbTempsProblématique sequencePanelEntetePbTempsProblematique = null;
 
-	public SequencePanelEntetePbTemps(SequencePanelEntete sPE) {
+	public SequencePanelEntetePbTemps(SequencePanelEntete sPE) throws Exception {
 		super();
 
 		// set des objets
 		setSequencePanelEntete(sPE);
-		setSequencePanelEntetePbTempsProblematique(new SequencePanelEntetePbTempsProblématique(this, "Problématique"));
-		setSequencePanelEntetePbTempsJSlider(new SequencePanelEntetePbTempsJSlider(this));
 
 		// Gestion du layout
 		setLayout(new GridLayout(2, 1, 0, 0));
@@ -36,6 +29,7 @@ public class SequencePanelEntetePbTemps extends JPanel {
 
 		// attribut du panel
 		setBorder(StyleBorder.BORDERPANEL.getBorder());
+
 	}
 
 	private SequencePanelEntete getSequencePanelEntete() {
@@ -46,21 +40,20 @@ public class SequencePanelEntetePbTemps extends JPanel {
 		this.sequencePanelEntete = sequencePanelEntete;
 	}
 
+	private SequencePanelEntetePbTempsProblématique sequencePanelEntetePbTempsProblematique = null;
+
 	private SequencePanelEntetePbTempsProblématique getSequencePanelEntetePbTempsProblematique() {
+		if (sequencePanelEntetePbTempsProblematique == null)
+			sequencePanelEntetePbTempsProblematique = new SequencePanelEntetePbTempsProblématique(this,
+					"Problématique");
 		return sequencePanelEntetePbTempsProblematique;
 	}
 
-	private void setSequencePanelEntetePbTempsProblematique(
-			SequencePanelEntetePbTempsProblématique sequencePanelEntetePbTempsProblematique) {
-		this.sequencePanelEntetePbTempsProblematique = sequencePanelEntetePbTempsProblematique;
-	}
+	private SequencePanelEntetePbTempsJSlider sequencePanelEntetePbTempsJSlider = null;
 
 	private SequencePanelEntetePbTempsJSlider getSequencePanelEntetePbTempsJSlider() {
+		if (sequencePanelEntetePbTempsJSlider == null)
+			sequencePanelEntetePbTempsJSlider = new SequencePanelEntetePbTempsJSlider(this);
 		return sequencePanelEntetePbTempsJSlider;
-	}
-
-	private void setSequencePanelEntetePbTempsJSlider(
-			SequencePanelEntetePbTempsJSlider sequencePanelEntetePbTempsJSlider) {
-		this.sequencePanelEntetePbTempsJSlider = sequencePanelEntetePbTempsJSlider;
 	}
 }

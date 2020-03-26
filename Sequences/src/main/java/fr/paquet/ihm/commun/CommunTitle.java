@@ -17,11 +17,13 @@ public class CommunTitle extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public CommunTitle(Title title) {
+	public CommunTitle(Title title) throws Exception {
 		super();
 
 		// creation du layout
 		setLayout(new GridLayout(0, title.getcolumn(), 0, 0));
+
+		int i = 0;
 
 		for (String a : title.getTitle()) {
 			JLabel label = new JLabel(a);
@@ -32,7 +34,11 @@ public class CommunTitle extends JPanel {
 			panel.setBackground(StyleColor.PANELTITLE.getColor());
 			panel.add(label);
 			add(panel);
+			i++;
 		}
+
+		// attributs du panel
+
 	}
 
 }

@@ -28,7 +28,7 @@ public enum Title {
 			return values;
 		case ACTIVITES:
 			List<String> value = new ArrayList<String>();
-			value.add("Questionnement pour mettre en réflexion les élèves");
+			value.add("Questionnement");
 			value.add("Démarche pédagogique");
 			value.add("Activités élèves");
 			value.add("Ressources - Matériels");

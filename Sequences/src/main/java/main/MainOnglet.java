@@ -17,19 +17,19 @@ public class MainOnglet extends JTabbedPane {
 
 	/**
 	 * Constructeur de la class private car ne doit etre instanciee qu une fois<br/>
+	 * @throws Exception 
 	 * 
 	 * 
 	 */
-	public MainOnglet(Sequence sequence) {
+	public MainOnglet(Sequence sequence) throws Exception {
 		super(SwingConstants.TOP);
 
 		// setteur des component
 		setSequence(sequence);
 		setOngletSequence(new OngletSequence(this));
 
-		/**if (getSequence().getActivites() != null && !getSequence().getActivites().isEmpty())
-			initData();*/
-
+		// attributs de l'onglet
+		
 	}
 
 	public OngletSequence getOngletSequence() {

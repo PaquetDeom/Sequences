@@ -21,15 +21,7 @@ public class ActionQuitter extends ActionBDA {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		new AlertWindow(AlertType.QUESTION, "Etes-vous sûre de vouloir quitter", new AlertListener() {
-
-			@Override
-			public void buttonClick(String button) {
-				if (button.equals("Oui"))
-					Main.FermetureSansErreur();
-
-			}
-		});
+		Main.Fermeture();
 	}
 
 	@Override

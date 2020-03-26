@@ -29,26 +29,6 @@ public class Main {
 					// tentative de connexion à la base
 					connectDataBase();
 
-					// fermeture du logiciel
-					WindowListener l = new WindowAdapter() {
-						public void windowClosing(WindowEvent e) {
-
-							new AlertWindow(AlertType.QUESTION, "Etes-vous sûre de vouloir quitter",
-									new AlertListener() {
-
-										@Override
-										public void buttonClick(String button) {
-											if (button.equals("Oui"))
-												FermetureSansErreur();
-
-										}
-									});
-
-						}
-					};
-
-					// add listener
-					mainFrame.addWindowListener(l);
 					mainFrame.setVisible(true);
 
 				} catch (Exception e) {
@@ -64,12 +44,24 @@ public class Main {
 		});
 	}
 
-	public static void FermetureSansErreur() {
+	public static void Fermeture() {
+		new AlertWindow(AlertType.QUESTION, "Etes-vous sûre de vouloir quitter ?", new AlertListener() {
+			
+			@Override
+			public void buttonClick(String button) {
+				if (button.equals("Oui"))
+					FermetureSansErreur();					
+				
+			}
+		});
+	}
+
+	private static void FermetureSansErreur() {
 
 		System.exit(0);
 	}
 
-	public static void FermetureAvecErreur() {
+	private static void FermetureAvecErreur() {
 
 		System.exit(1);
 	}
@@ -81,7 +73,7 @@ public class Main {
 		} catch (Exception e) {
 			try {
 				new JDialogIdDataBase();
-				
+
 			} catch (Exception e1) {
 				e1.printStackTrace();
 				FermetureAvecErreur();

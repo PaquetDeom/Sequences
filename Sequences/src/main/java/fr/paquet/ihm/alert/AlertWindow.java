@@ -34,6 +34,7 @@ public class AlertWindow extends JOptionPane {
 
 		super();
 
+
 		ImageIcon img = new ImageIcon();
 
 		if (type == AlertType.ERREUR) {

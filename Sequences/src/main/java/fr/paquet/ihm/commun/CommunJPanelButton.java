@@ -1,8 +1,11 @@
 package fr.paquet.ihm.commun;
 
+import java.awt.Dimension;
 import java.awt.GridLayout;
 
 import javax.swing.*;
+
+import main.MainFrame;
 
 public abstract class CommunJPanelButton extends JPanel {
 
@@ -13,7 +16,7 @@ public abstract class CommunJPanelButton extends JPanel {
 	protected JButton button = null;
 	private int column = 0;
 
-	protected CommunJPanelButton(String titleButton, int column) {
+	protected CommunJPanelButton(String titleButton, int column) throws Exception {
 		super();
 
 		// setteur des objet
@@ -25,6 +28,8 @@ public abstract class CommunJPanelButton extends JPanel {
 
 		// gestion des contrainte d'affichage
 		add(getButton());
+
+		// attribut du panel
 	}
 
 	private JButton getButton() {

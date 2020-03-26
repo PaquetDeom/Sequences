@@ -1,5 +1,6 @@
 package fr.paquet.ihm.commun;
 
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.*;
 
@@ -16,8 +17,8 @@ public class CommunTableauJLabel extends JPanel {
 		 */
 		private static final long serialVersionUID = 1L;
 
-		public CommunLabel(int i) {
-			super();
+		public CommunLabel(int i) throws Exception {
+			super(" ");
 			setHorizontalAlignment(SwingConstants.CENTER);
 			setBorder(StyleBorder.BORDERTITLEAREA.getBorder());
 		}
@@ -37,20 +38,21 @@ public class CommunTableauJLabel extends JPanel {
 	private int columns = 0;
 	private HashMap<Integer, CommunLabel> jLabels = null;
 
-	public CommunTableauJLabel(int columns) {
+	public CommunTableauJLabel(int columns) throws Exception {
 		super();
 
 		setColumns(columns);
 
 		// ajout du layout
-		setLayout(new GridLayout(getColumns(), 0, 0, 0));
+		setLayout(new GridLayout(1, getColumns(), 0, 0));
 
 		for (int i = 0; i < getColumns(); i++) {
 			CommunLabel communLabel = new CommunLabel(i);
 			getjLabels().put(i, communLabel);
 			add(communLabel);
 		}
-
+		setPreferredSize(new Dimension(getPreferredSize().width, getPreferredSize().height * 5));
+		setMinimumSize(getPreferredSize());
 	}
 
 	public int getColumns() {
