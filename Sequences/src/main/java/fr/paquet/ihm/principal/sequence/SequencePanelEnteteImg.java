@@ -1,59 +1,34 @@
 package fr.paquet.ihm.principal.sequence;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 
 import javax.swing.*;
 
-import fr.paquet.ihm.style.StyleBorder;
-import main.MainFrame;
+import fr.paquet.ihm.commun.CommunJPanelImg;
 
-public class SequencePanelEnteteImg extends JPanel {
+public class SequencePanelEnteteImg extends CommunJPanelImg {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private SequencePanelEntete sequencePanelEntete = null;
-	private JButton buttonImage = null;
 
-	public SequencePanelEnteteImg(SequencePanelEntete sPE) throws Exception {
-		super();
+	protected SequencePanelEnteteImg(BufferedImage image, SequencePanelEntete sequencePanelEntete) {
+		super(image);
 
-		// set des éléments
-		setSequencePanelEntete(sPE);
-		setButtonImage(new JButton("Image"));
-
-		// ajout du Layout
-		setLayout(new BorderLayout());
-
-		// Ajout des Elements
-		add(getButtonImage(), BorderLayout.CENTER);
-		add(new JPanel(), BorderLayout.NORTH);
-		add(new JPanel(), BorderLayout.SOUTH);
-		add(new JPanel(), BorderLayout.EAST);
-		add(new JPanel(), BorderLayout.WEST);
-
-		setBorder(StyleBorder.BORDERPANEL.getBorder());
+		// set des composants
+		setSequencePanelEntete(sequencePanelEntete);
 	}
 
-	private SequencePanelEntete getSequencePanelEntete() {
-		return sequencePanelEntete;
-	}
+	@Override
+	protected void setJButton(JButton jButton) {
 
-	private void setSequencePanelEntete(SequencePanelEntete sequencePanelEntete) {
-		this.sequencePanelEntete = sequencePanelEntete;
-	}
+		jButton.setText("Image séquence");
 
-	private JButton getButtonImage() {
-		return buttonImage;
-	}
-
-	private void setButtonImage(JButton buttonImage) {
-
-		buttonImage.addActionListener(new ActionListener() {
+		jButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -62,7 +37,15 @@ public class SequencePanelEnteteImg extends JPanel {
 			}
 		});
 
-		this.buttonImage = buttonImage;
+		this.jButton = jButton;
+	}
+
+	public SequencePanelEntete getSequencePanelEntete() {
+		return sequencePanelEntete;
+	}
+
+	private void setSequencePanelEntete(SequencePanelEntete sequencePanelEntete) {
+		this.sequencePanelEntete = sequencePanelEntete;
 	}
 
 }

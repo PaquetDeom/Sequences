@@ -1,13 +1,10 @@
 package fr.paquet.ihm.principal.sequence;
 
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import javax.swing.*;
-
-import main.MainFrame;
 
 public class SequencePanelEntete extends JPanel {
 
@@ -46,7 +43,7 @@ public class SequencePanelEntete extends JPanel {
 
 	private SequencePanelEnteteImg getSequencePanelEntetImg() throws Exception {
 		if (sequencePanelEntetImg == null)
-			sequencePanelEntetImg = new SequencePanelEnteteImg(this);
+			sequencePanelEntetImg = new SequencePanelEnteteImg(null, this);
 		return sequencePanelEntetImg;
 	}
 
