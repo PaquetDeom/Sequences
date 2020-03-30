@@ -1,11 +1,10 @@
 package fr.paquet.ihm.commun;
 
-import java.awt.Dimension;
 import java.awt.GridLayout;
 
 import javax.swing.*;
 
-import main.MainFrame;
+
 
 public abstract class CommunJPanelButton extends JPanel {
 

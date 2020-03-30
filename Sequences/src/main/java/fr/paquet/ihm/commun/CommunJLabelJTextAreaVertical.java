@@ -33,6 +33,7 @@ public abstract class CommunJLabelJTextAreaVertical extends JPanel {
 		setTitleLabel(new JLabel(getTitle()));
 		setTextArea(new JTextArea());
 		setPanelTitre(new JPanel());
+		setPanelJTextAreaTextSize(getPreferredSize());
 		setPanelJTextArea(new JPanel());
 
 		// Ajout du Layout
@@ -96,6 +97,14 @@ public abstract class CommunJLabelJTextAreaVertical extends JPanel {
 		return panelJTextArea;
 	}
 
+	protected Dimension dimensionTextArea = null;
+
+	protected abstract void setPanelJTextAreaTextSize(Dimension dimensionTextArea);
+
+	private Dimension getDimensionTextArea() {
+		return dimensionTextArea;
+	}
+
 	private void setPanelJTextArea(JPanel panelJTextArea) {
 
 		// ajout du Layout
@@ -106,7 +115,7 @@ public abstract class CommunJLabelJTextAreaVertical extends JPanel {
 
 		// Attribut du panel
 		panelJTextArea.setBorder(StyleBorder.BORDERTITLEAREA.getBorder());
-		setPreferredSize(new Dimension(getPreferredSize().width, getPreferredSize().height * 8));
+		setPreferredSize(getDimensionTextArea());
 		this.panelJTextArea = panelJTextArea;
 	}
 

@@ -1,5 +1,6 @@
 package fr.paquet.ihm.principal.sequence;
 
+import java.awt.Dimension;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
@@ -54,6 +55,12 @@ public class SequencePanelEntetePbTempsProblématique extends CommunJLabelJTextA
 		});
 
 		this.textArea = textArea;
+
+	}
+
+	@Override
+	protected void setPanelJTextAreaTextSize(Dimension dimensionTextArea) {
+		this.dimensionTextArea = new Dimension(getPreferredSize().width, getPreferredSize().height * 8);
 
 	}
 

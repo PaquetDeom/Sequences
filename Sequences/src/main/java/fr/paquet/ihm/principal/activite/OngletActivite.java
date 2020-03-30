@@ -25,19 +25,10 @@ public class OngletActivite extends JComponent {
 		JScrollPane js = new JScrollPane(getActivitePanel());
 		js.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		js.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
+		// TODO revoir la position du titre
 		getMainOnglet().addOngletsActivites(this);
-		getMainOnglet().addTab(getTitre(), js);
-	}
-
-	private String getTitre() {
-
-		if (getMainOnglet().getOngletsActivites().size() != 0) {
-			int i = getMainOnglet().getOngletsActivites().size();
-			return "Activité : " + i;
-		}
-
-		else
-			return "Activité :" + 1;
+		getMainOnglet().addTab(getActivitePanel().getTitre(), js);
 	}
 
 	private ActivitePanel activitePanel = null;

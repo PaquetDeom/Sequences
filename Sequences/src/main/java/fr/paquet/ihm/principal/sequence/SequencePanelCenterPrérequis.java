@@ -1,5 +1,6 @@
 package fr.paquet.ihm.principal.sequence;
 
+import java.awt.Dimension;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
@@ -41,6 +42,12 @@ public class SequencePanelCenterPrérequis extends CommunJLabelJTextAreaVertical
 		});
 
 		this.textArea = textArea;
+	}
+
+	@Override
+	protected void setPanelJTextAreaTextSize(Dimension dimensionTextArea) {
+		this.dimensionTextArea = new Dimension(dimensionTextArea.width, dimensionTextArea.height * 8);
+
 	}
 
 }

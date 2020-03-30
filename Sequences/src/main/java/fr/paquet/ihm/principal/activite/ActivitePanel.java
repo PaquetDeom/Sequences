@@ -13,12 +13,14 @@ public class ActivitePanel extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	private OngletActivite ongletActivite = null;
+	private String titre = null;
 
 	public ActivitePanel(OngletActivite ongletActivite) {
 		super();
 
 		// set des composants
 		setOngletActivite(ongletActivite);
+		setTitre(getOngletActivite().getMainOnglet().getOngletsActivites().size() + 1);
 
 		// ajout du Layout
 		setLayout(new GridBagLayout());
@@ -30,9 +32,9 @@ public class ActivitePanel extends JPanel {
 				GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 		add(new ActivitePanelCorps(this), new GridBagConstraints(0, 2, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-		add(new ActivitePanelDescription(this), new GridBagConstraints(0, 3, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
+		add(new ActivitePanelActivite(this), new GridBagConstraints(0, 3, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-		add(new ActivitePanelActivite(this), new GridBagConstraints(0, 4, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
+		add(new ActivitePanelDescription(this), new GridBagConstraints(0, 4, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 		add(new ActivitePanelConception(this), new GridBagConstraints(0, 5, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
@@ -44,7 +46,16 @@ public class ActivitePanel extends JPanel {
 		// attribut du Panel
 	}
 
-	private OngletActivite getOngletActivite() {
+	private void setTitre(int size) {
+
+		this.titre = "Activité N°" + size;
+	}
+
+	public String getTitre() {
+		return titre;
+	}
+
+	public OngletActivite getOngletActivite() {
 		return ongletActivite;
 	}
 
