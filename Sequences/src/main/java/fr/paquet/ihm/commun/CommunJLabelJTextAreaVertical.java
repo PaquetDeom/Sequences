@@ -40,9 +40,9 @@ public abstract class CommunJLabelJTextAreaVertical extends JPanel {
 		setLayout(new GridBagLayout());
 
 		// Ajout des Elements
-		add(getPanelTitre(), new GridBagConstraints(0, 0, 1, 1, 1, 0, GridBagConstraints.CENTER,
+		add(getPanelTitre(), new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 1, 0));
-		add(getPanelJTextArea(), new GridBagConstraints(0, 1, 1, 1, 1, 0.0, GridBagConstraints.CENTER,
+		add(getPanelJTextArea(), new GridBagConstraints(0, 1, 1, 1, 0, 0.0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 1, 0));
 		add(new JPanel(), new GridBagConstraints(0, 1, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
 				new Insets(0, 0, 0, 0), 1, 0));
@@ -69,6 +69,7 @@ public abstract class CommunJLabelJTextAreaVertical extends JPanel {
 	}
 
 	private JTextArea getTextArea() {
+		
 		return textArea;
 	}
 

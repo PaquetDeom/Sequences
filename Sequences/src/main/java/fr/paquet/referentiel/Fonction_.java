@@ -5,7 +5,7 @@ import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="Dali", date="2020-03-17T16:18:45.135+0100")
+@Generated(value="Dali", date="2020-03-31T17:14:35.035+0200")
 @StaticMetamodel(Fonction.class)
 public class Fonction_ {
 	public static volatile SingularAttribute<Fonction, Integer> id;

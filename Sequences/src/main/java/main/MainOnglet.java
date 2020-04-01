@@ -17,7 +17,8 @@ public class MainOnglet extends JTabbedPane {
 
 	/**
 	 * Constructeur de la class private car ne doit etre instanciee qu une fois<br/>
-	 * @throws Exception 
+	 * 
+	 * @throws Exception
 	 * 
 	 * 
 	 */
@@ -29,7 +30,7 @@ public class MainOnglet extends JTabbedPane {
 		setOngletSequence(new OngletSequence(this));
 
 		// attributs de l'onglet
-		
+
 	}
 
 	public OngletSequence getOngletSequence() {
@@ -47,7 +48,7 @@ public class MainOnglet extends JTabbedPane {
 		return ongletsActivites;
 	}
 
-	private void initData() {
+	private void initData() throws Exception {
 
 		for (int i = 0; i < getSequence().getActivites().size(); i++) {
 			addOngletsActivites(new OngletActivite(this));

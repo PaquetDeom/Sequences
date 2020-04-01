@@ -6,6 +6,7 @@ import fr.paquet.dataBase.Connect;
 import fr.paquet.dataBase.User;
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
+import fr.paquet.ihm.auteur.JDialogAuteur;
 import fr.paquet.ihm.commun.JPanelButtonAnnulOk;
 import fr.paquet.io.dataBase.WriteFileUser;
 
@@ -83,6 +84,7 @@ public class JPanelNewConnexionButton extends JPanelButtonAnnulOk {
 					new WriteFileUser(new User(utilisateur, pass));
 					Connect.getUniqInstance();
 					jp.getjDialogIdDataBase().dispose();
+					new JDialogAuteur();
 				} catch (Exception e) {
 					e.printStackTrace(System.out);
 					new AlertWindow(AlertType.ERREUR, e.getMessage());

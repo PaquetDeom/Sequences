@@ -1,5 +1,8 @@
 package fr.paquet.ihm.dataBase;
 
+import java.awt.event.ActionEvent;
+import java.beans.PropertyChangeEvent;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
@@ -26,6 +29,18 @@ public class JPanelNewUser extends CommunJPanelHorizontalJLabelJTexField {
 	protected void setJTextField(JTextField jTextField) {
 		this.jTextField = jTextField;
 
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void objectSelected(PropertyChangeEvent o) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

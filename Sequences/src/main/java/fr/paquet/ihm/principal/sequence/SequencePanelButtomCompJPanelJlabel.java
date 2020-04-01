@@ -15,7 +15,6 @@ public class SequencePanelButtomCompJPanelJlabel extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	private SequencePanelButtomComp sequencePanelButtomComp = null;
-	private List<SequencePanelButtomCompJLabel> sequencePanelButtomCompJLabels = null;
 
 	public SequencePanelButtomCompJPanelJlabel(SequencePanelButtomComp sequencePanelButtomComp) {
 		super();
@@ -57,6 +56,8 @@ public class SequencePanelButtomCompJPanelJlabel extends JPanel {
 	private void setSequencePanelButtomComp(SequencePanelButtomComp sequencePanelButtomComp) {
 		this.sequencePanelButtomComp = sequencePanelButtomComp;
 	}
+
+	private List<SequencePanelButtomCompJLabel> sequencePanelButtomCompJLabels = null;
 
 	public List<SequencePanelButtomCompJLabel> getSequencePanelButtomCompJLabels() {
 		if (sequencePanelButtomCompJLabels == null)

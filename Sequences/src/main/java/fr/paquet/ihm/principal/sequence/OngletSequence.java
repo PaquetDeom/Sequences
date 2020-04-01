@@ -40,7 +40,7 @@ public class OngletSequence extends JComponent {
 
 	private SequencePanel sequencePanel = null;
 
-	private SequencePanel getSequencePanel() throws Exception {
+	public SequencePanel getSequencePanel() throws Exception {
 		if (sequencePanel == null)
 			sequencePanel = new SequencePanel(this);
 		return sequencePanel;

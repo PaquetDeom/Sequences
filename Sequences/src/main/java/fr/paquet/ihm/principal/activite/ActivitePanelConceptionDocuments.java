@@ -29,7 +29,7 @@ public class ActivitePanelConceptionDocuments extends CommunJLabelJTextAreaVerti
 
 	@Override
 	protected void setPanelJTextAreaTextSize(Dimension dimensionTextArea) {
-		this.dimensionTextArea = new Dimension(getPreferredSize().width, getPreferredSize().height * 20);
+		this.dimensionTextArea = new Dimension(getPreferredSize().width, getPreferredSize().height * 10);
 
 	}
 

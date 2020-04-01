@@ -14,7 +14,7 @@ public class OngletActivite extends JComponent {
 	private static final long serialVersionUID = 1L;
 	private MainOnglet mainOnglet = null;
 
-	public OngletActivite(MainOnglet mainOnglet) {
+	public OngletActivite(MainOnglet mainOnglet) throws Exception {
 
 		super();
 
@@ -33,7 +33,7 @@ public class OngletActivite extends JComponent {
 
 	private ActivitePanel activitePanel = null;
 
-	private ActivitePanel getActivitePanel() {
+	private ActivitePanel getActivitePanel() throws Exception {
 		if (activitePanel == null)
 			activitePanel = new ActivitePanel(this);
 		return activitePanel;

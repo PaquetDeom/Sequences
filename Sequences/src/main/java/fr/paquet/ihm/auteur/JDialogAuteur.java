@@ -1,24 +1,24 @@
-package fr.paquet.ihm.dataBase;
+package fr.paquet.ihm.auteur;
 
 import javax.swing.JDialog;
 
 import fr.paquet.dataBase.User;
 import main.MainFrame;
 
-public class JDialogIdDataBase extends JDialog {
+public class JDialogAuteur extends JDialog {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JPanelNewConnexion jPanelNewConnexion = null;
+	private JPanelAuteur jPanelAuteur = null;
 	private User user = null;
 
-	public JDialogIdDataBase() throws Exception {
+	public JDialogAuteur() throws Exception {
 		super(MainFrame.getUniqInstance());
 
 		// construction de la fenêtre
-		setTitle("Identifiant de connexion à la base de données");
+		setTitle("Identification de l'auteur");
 		setSize(600, 150);
 		setResizable(false);
 		setLocationRelativeTo(null);
@@ -27,19 +27,19 @@ public class JDialogIdDataBase extends JDialog {
 		setVisible(true);
 
 		// setteur des elements
-		setjPanelNewConnexion(new JPanelNewConnexion(this));
+		setJPanelAuteur(new JPanelAuteur(this));
 
 		// ajout du panel
-		setContentPane(getjPanelNewConnexion());
+		setContentPane(getJPanelAuteur());
 
 	}
 
-	private JPanelNewConnexion getjPanelNewConnexion() {
-		return jPanelNewConnexion;
+	private JPanelAuteur getJPanelAuteur() {
+		return jPanelAuteur;
 	}
 
-	private void setjPanelNewConnexion(JPanelNewConnexion jPanelNewConnexion) {
-		this.jPanelNewConnexion = jPanelNewConnexion;
+	private void setJPanelAuteur(JPanelAuteur jPanelAuteur) {
+		this.jPanelAuteur = jPanelAuteur;
 	}
 
 	public User getUser() {

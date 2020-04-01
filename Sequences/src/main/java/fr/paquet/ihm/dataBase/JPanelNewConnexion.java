@@ -8,8 +8,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import fr.paquet.ihm.principal.sequence.SequencePanelEntete;
-
 public class JPanelNewConnexion extends JPanel {
 
 	/**

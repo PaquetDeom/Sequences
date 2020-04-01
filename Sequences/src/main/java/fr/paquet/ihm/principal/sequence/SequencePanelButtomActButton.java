@@ -16,7 +16,8 @@ public class SequencePanelButtomActButton extends CommunJPanelButton {
 	private static final long serialVersionUID = 1L;
 	private SequencePanelButtomAct sequencePanelButtomAct = null;
 
-	public SequencePanelButtomActButton(String titleButton, int column, SequencePanelButtomAct sequencePanelButtonAct) throws Exception {
+	public SequencePanelButtomActButton(String titleButton, int column, SequencePanelButtomAct sequencePanelButtonAct)
+			throws Exception {
 		super(titleButton, column);
 
 		// setteur des objets
@@ -44,12 +45,16 @@ public class SequencePanelButtomActButton extends CommunJPanelButton {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
-				
-				
+
 				getSequencePanelButtomAct().getSequencePanelButtomActJPanelJLabel().affiche();
 
-				new OngletActivite(getSequencePanelButtomAct().getSequencePanel().getOngletSequence().getMainOnglet());
+				try {
+					new OngletActivite(
+							getSequencePanelButtomAct().getSequencePanel().getOngletSequence().getMainOnglet());
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
 			}
 		});

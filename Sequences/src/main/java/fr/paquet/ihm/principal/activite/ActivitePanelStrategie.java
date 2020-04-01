@@ -6,7 +6,7 @@ import javax.swing.JTextArea;
 
 import fr.paquet.ihm.commun.CommunJLabelJTextAreaVertical;
 
-public class ActivitePanelDescription extends CommunJLabelJTextAreaVertical {
+public class ActivitePanelStrategie extends CommunJLabelJTextAreaVertical {
 
 	/**
 	 * 
@@ -14,13 +14,13 @@ public class ActivitePanelDescription extends CommunJLabelJTextAreaVertical {
 	private static final long serialVersionUID = 1L;
 	private ActivitePanel activitepanel = null;
 
-	public ActivitePanelDescription(ActivitePanel activitePanel) {
-		super("Description de l'activité");
+	public ActivitePanelStrategie(ActivitePanel activitePanel) {
+		super("Strategie Pédagogique");
 
-		//set des composants
+		// set des composants
 		setActivitepanel(activitePanel);
 	}
-	
+
 	public ActivitePanel getActivitepanel() {
 		return activitepanel;
 	}
@@ -40,7 +40,5 @@ public class ActivitePanelDescription extends CommunJLabelJTextAreaVertical {
 		this.dimensionTextArea = new Dimension(getPreferredSize().width, getPreferredSize().height * 16);
 
 	}
-
-	
 
 }

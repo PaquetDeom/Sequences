@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import fr.paquet.ihm.commun.CommunJPanelButton;
-import fr.paquet.ihm.commun.competence.JDialogCompetence;
 
 public class SequencePanelButtomCompButton extends CommunJPanelButton {
 

@@ -6,7 +6,7 @@ import javax.swing.JTextArea;
 
 import fr.paquet.ihm.commun.CommunJLabelJTextAreaVertical;
 
-public class ActivitePanelConceptionRessources extends CommunJLabelJTextAreaVertical {
+public class ActivitePanelConceptionTrace extends CommunJLabelJTextAreaVertical {
 
 	/**
 	 * 
@@ -14,8 +14,8 @@ public class ActivitePanelConceptionRessources extends CommunJLabelJTextAreaVert
 	private static final long serialVersionUID = 1L;
 	private ActivitePanelConception activitePanelConception = null;
 
-	public ActivitePanelConceptionRessources(ActivitePanelConception activitePanelConception) {
-		super("Ressouces / Conditions");
+	public ActivitePanelConceptionTrace(ActivitePanelConception activitePanelConception) {
+		super("Trace écrite");
 
 		// set des composants
 		setActivitePanelConception(activitePanelConception);

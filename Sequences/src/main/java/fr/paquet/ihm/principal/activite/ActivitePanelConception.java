@@ -1,5 +1,6 @@
 package fr.paquet.ihm.principal.activite;
 
+import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -26,12 +27,22 @@ public class ActivitePanelConception extends JPanel {
 		// attribut du panel
 
 		// ajout des Composants
-		add(getActivitePanelConceptionQuestion(), new GridBagConstraints(0, 0, 1, 2, 0.5, 1.0,
+		add(getActivitePanelConceptionQuestion(), new GridBagConstraints(0, 0, 1, 3, 0.5, 1.0,
 				GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-		add(getActivitePanelConceptionDocuments(), new GridBagConstraints(1, 0, 1, 1, 0.5, 0.5,
+		add(getActivitePanelConceptionDocuments(), new GridBagConstraints(1, 0, 1, 1, 0.5, 0.33,
 				GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-		add(getActivitePanelConceptionRessources(), new GridBagConstraints(1, 1, 1, 1, 0, 0.5,
+		add(getActivitePanelConceptionRessources(), new GridBagConstraints(1, 1, 1, 1, 0, 0.33,
 				GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+		add(getActivitePanelConceptionTrace(), new GridBagConstraints(1, 2, 1, 1, 0, 0.34, GridBagConstraints.CENTER,
+				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+	}
+
+	private ActivitePanelConceptionTrace activitePanelConceptionTrace = null;
+
+	private ActivitePanelConceptionTrace getActivitePanelConceptionTrace() {
+		if (activitePanelConceptionTrace == null)
+			activitePanelConceptionTrace = new ActivitePanelConceptionTrace(this);
+		return activitePanelConceptionTrace;
 	}
 
 	private ActivitePanelConceptionRessources activitePanelConceptionRessources = null;
