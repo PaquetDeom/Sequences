@@ -3,9 +3,10 @@ package fr.paquet.dataBase.Factory.referentiel;
 import javax.persistence.Query;
 
 import fr.paquet.commun.Diplome;
-
+import fr.paquet.dataBase.Connect;
 import fr.paquet.dataBase.Factory.commun.Factory;
 import fr.paquet.referentiel.Referentiel;
+
 
 public class ReferentielFactory extends Factory {
 
@@ -16,7 +17,7 @@ public class ReferentielFactory extends Factory {
 	 * @throws Exception
 	 */
 	public Referentiel findReferentiel(Diplome diplome) throws Exception {
-		Query query = getConnect().getEm().createQuery("SELECT ref FROM Referentiel ref where ref.diplome=:diplome");
+		Query query = Connect.getEm().createQuery("SELECT ref FROM Referentiel ref where ref.diplome=:diplome");
 		query.setParameter("diplome", diplome);
 		return (Referentiel) query.getSingleResult();
 	}

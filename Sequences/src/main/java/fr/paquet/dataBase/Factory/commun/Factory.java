@@ -2,6 +2,7 @@ package fr.paquet.dataBase.Factory.commun;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
@@ -18,7 +19,7 @@ public abstract class Factory {
 		if (getClassObject() == null)
 			throw new Exception("Vous n'avez pas saisi de nom de class");
 
-		Query query = getConnect().getEm().createQuery("SELECT obj FROM" + getClassObject() + "obj");
+		Query query = Connect.getEm().createQuery("SELECT obj FROM" + getClassObject() + "obj");
 
 		@SuppressWarnings("unchecked")
 		List<Object> objects = (List<Object>) query.getResultList();
@@ -37,12 +38,13 @@ public abstract class Factory {
 	public void persist(Object object) throws Exception {
 
 		test(object);
-
-		EntityTransaction t = getConnect().getEm().getTransaction();
+		EntityManager em = Connect.getEm();
+		EntityTransaction t = em.getTransaction();
 
 		try {
 			t.begin();
-			getConnect().getEm().persist(object);
+			em.persist(object);
+			em.flush();
 			t.commit();
 		} catch (Exception e) {
 			t.rollback();
@@ -55,21 +57,19 @@ public abstract class Factory {
 
 		test(object);
 
-		EntityTransaction t = getConnect().getEm().getTransaction();
+		EntityManager em = Connect.getEm();
+		EntityTransaction t = em.getTransaction();
 
 		try {
 			t.begin();
-			getConnect().getEm().remove(object);
+			em.remove(object);
+			em.flush();
 			t.commit();
 		} catch (Exception e) {
 			t.rollback();
 			throw (e);
 		}
 
-	}
-
-	protected static Connect getConnect() throws Exception {
-		return Connect.getUniqInstance();
 	}
 
 }

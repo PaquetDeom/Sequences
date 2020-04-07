@@ -5,7 +5,6 @@ import java.util.Hashtable;
 import javax.swing.*;
 
 import fr.paquet.ihm.action.*;
-import fr.paquet.sequence.Sequence;
 
 public class MainMenu extends JMenuBar {
 
@@ -28,7 +27,7 @@ public class MainMenu extends JMenuBar {
 	 * 
 	 * @throws Exception
 	 */
-	private MainMenu() throws Exception {
+	private MainMenu() {
 
 		addAction(new ActionNouveau());
 		setActionGestionnaire(new ActionGestionnaire());
@@ -37,7 +36,6 @@ public class MainMenu extends JMenuBar {
 		addAction(getActionRef());
 		setActionSave(new ActionSave());
 		addAction(getActionSave());
-		addAction(new ActionUtilisateur());
 		addAction(new ActionQuitter());
 
 	}
@@ -59,7 +57,7 @@ public class MainMenu extends JMenuBar {
 		return actionGestionnaire;
 	}
 
-	public static MainMenu getUniqInstance() throws Exception {
+	public static MainMenu getUniqInstance() {
 		if (mainMenu == null)
 			mainMenu = new MainMenu();
 		return mainMenu;

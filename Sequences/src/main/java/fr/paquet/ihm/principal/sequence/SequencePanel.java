@@ -24,8 +24,8 @@ public class SequencePanel extends JPanel {
 		setLayout(new GridBagLayout());
 
 		// Ajout des composants
-		add(new SequencePanelVersion(this), new GridBagConstraints(0, 0, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
-				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+		//add(new SequencePanelVersion(this), new GridBagConstraints(0, 0, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
+				//GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 		add(new SequencePanelEntete(this), new GridBagConstraints(0, 1, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 		add(new SequencePanelButtomComp(this), new GridBagConstraints(0, 2, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,

@@ -3,13 +3,11 @@ package fr.paquet.ihm.action;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 
-import javax.swing.JDialog;
 import javax.swing.KeyStroke;
 
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.ihm.nouveau.JDialogNewSequence;
-import fr.paquet.sequence.Sequence;;
 
 public class ActionNouveau extends ActionBDA {
 
@@ -20,6 +18,7 @@ public class ActionNouveau extends ActionBDA {
 
 	public ActionNouveau() {
 		super();
+
 		putValue(NAME, getName());
 		putValue(ACCELERATOR_KEY,
 				KeyStroke.getKeyStroke('N', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
@@ -30,7 +29,10 @@ public class ActionNouveau extends ActionBDA {
 	public void actionPerformed(ActionEvent arg0) {
 
 		try {
+
 			new JDialogNewSequence();
+			this.setEnabled(false);
+
 		} catch (Exception e) {
 			new AlertWindow(AlertType.ERREUR, "Erreur lors du chargement de la fenêtre");
 			e.printStackTrace();
@@ -45,7 +47,7 @@ public class ActionNouveau extends ActionBDA {
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
+		
 		return "Nouveau";
 	}
 

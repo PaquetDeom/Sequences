@@ -33,9 +33,9 @@ public class JPanelNewSequenceTitle extends JPanel {
 
 		// Getion de l'affichage
 		add(new JLabel("Titre de la séquence :"), new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER,
-				GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
+				GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5, 5), 0, 0));
 		add(getTextField(), new GridBagConstraints(1, 0, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-				new Insets(0, 0, 0, 0), 0, 0));
+				new Insets(5, 5, 5, 5), 0, 0));
 	}
 
 	public JPanelNewSequence getjPanelNewSequence() {

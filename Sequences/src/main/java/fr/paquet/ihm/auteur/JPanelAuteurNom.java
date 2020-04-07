@@ -21,7 +21,7 @@ public class JPanelAuteurNom extends CommunJPanelHorizontalJLabelJTexField {
 		super(jLabel, jTextField);
 	}
 
-	public JPanelAuteurNom(JLabel jLabel, JTextField jTextField, Class dialogClass) {
+	public JPanelAuteurNom(JLabel jLabel, JTextField jTextField, @SuppressWarnings("rawtypes") Class dialogClass) {
 		super(jLabel, jTextField, dialogClass);
 	}
 
@@ -39,6 +39,7 @@ public class JPanelAuteurNom extends CommunJPanelHorizontalJLabelJTexField {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		
 		Constructor<JSearchDialog> ctor;
 		try {
 			ctor = dialogClass.getConstructor(String.class);

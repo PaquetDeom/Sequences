@@ -1,16 +1,12 @@
 package main;
 
 import java.awt.EventQueue;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 
 import fr.paquet.dataBase.Connect;
-import fr.paquet.dataBase.User;
+import fr.paquet.dataBase.PrepareConnection;
 import fr.paquet.ihm.alert.AlertListener;
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
-import fr.paquet.ihm.dataBase.JDialogIdDataBase;
 
 public class Main {
 
@@ -25,11 +21,10 @@ public class Main {
 
 					// creation de la mainFrame
 					MainFrame mainFrame = MainFrame.getUniqInstance();
+					mainFrame.setVisible(true);
 
 					// tentative de connexion à la base
 					connectDataBase();
-
-					mainFrame.setVisible(true);
 
 				} catch (Exception e) {
 
@@ -46,22 +41,22 @@ public class Main {
 
 	public static void Fermeture() {
 		new AlertWindow(AlertType.QUESTION, "Etes-vous sûre de vouloir quitter ?", new AlertListener() {
-			
+
 			@Override
 			public void buttonClick(String button) {
 				if (button.equals("Oui"))
-					FermetureSansErreur();					
-				
+					FermetureSansErreur();
+
 			}
 		});
 	}
 
-	private static void FermetureSansErreur() {
+	public static void FermetureSansErreur() {
 
 		System.exit(0);
 	}
 
-	private static void FermetureAvecErreur() {
+	public static void FermetureAvecErreur() {
 
 		System.exit(1);
 	}
@@ -69,15 +64,15 @@ public class Main {
 	public static void connectDataBase() {
 
 		try {
-			Connect.getUniqInstance();
-		} catch (Exception e) {
-			try {
-				new JDialogIdDataBase();
 
-			} catch (Exception e1) {
-				e1.printStackTrace();
-				FermetureAvecErreur();
-			}
+			Connect.setPConnexion(new PrepareConnection(null));
+			Connect.getPConnexion().prepareUser();
+			Connect.getPConnexion().prepareAuteur();
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+			FermetureAvecErreur();
 
 		}
 	}

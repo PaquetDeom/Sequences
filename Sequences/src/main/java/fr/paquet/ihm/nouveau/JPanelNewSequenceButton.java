@@ -2,10 +2,12 @@ package fr.paquet.ihm.nouveau;
 
 import javax.swing.JPanel;
 
+import fr.paquet.dataBase.Connect;
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.ihm.commun.JPanelButtonAnnulOk;
 import fr.paquet.sequence.Sequence;
+import main.Main;
 import main.MainFrame;
 
 import java.awt.BorderLayout;
@@ -68,9 +70,12 @@ public class JPanelNewSequenceButton extends JPanelButtonAnnulOk {
 
 				JPanelNewSequence jp = (JPanelNewSequence) getJPanel();
 				try {
-					MainFrame.getUniqInstance()
-							.addPanel(new Sequence(jp.getjPanelNewSequenceTitle().getTitre(), null, null, null));
+
+					Sequence seq = new Sequence(jp.getjPanelNewSequenceTitle().getTitre(), null,
+							Connect.getPConnexion().getUser().getAuteur());
+					MainFrame.getUniqInstance().addPanel(seq);
 					jp.getjDialogNewSequence().dispose();
+
 				} catch (Exception e) {
 					new AlertWindow(AlertType.ERREUR, e.getMessage());
 					e.printStackTrace();

@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import fr.paquet.dataBase.Factory.sequence.AuteurFactory;
+import fr.paquet.ihm.auteur.JPanelAuteurNom;
 import fr.paquet.ihm.commun.JSearchDialog;
 import fr.paquet.sequence.Auteur;
 
@@ -16,25 +17,38 @@ public class JSearchAuteur extends JSearchDialog {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	JPanelSearchAuteur jPanelSearchAuteur = null;
-
-	private Auteur auteur = null;
+	JPanelAuteurNom jPanelAuteurNom = null;
+	private String nom = null;
 
 	public JSearchAuteur(String nom) throws Exception {
 		super();
 
-		jPanelSearchAuteur = new JPanelSearchAuteur(new JLabel("Nom :"), new JTextField(30));
-		jPanelSearchAuteur.getjTextField().setText(nom);
+		setNom(nom);
 		doSearchAction();
+		getPanelCritere().add(getJPanelAuteurNom(nom));
+	}
+
+	private void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	private String getNom() {
+		return nom;
+	}
+
+	private static JPanelAuteurNom getJPanelAuteurNom(String nom) {
+		JPanelAuteurNom jPanelAuteurNom = new JPanelAuteurNom(new JLabel("Nom :"), new JTextField());
+		jPanelAuteurNom.getjTextField().setText(nom);
+		return jPanelAuteurNom;
 	}
 
 	@Override
 	public List getValues() {
-		if (jPanelSearchAuteur == null)
+		if (JSearchAuteur.getJPanelAuteurNom(getNom()) == null)
 			return new ArrayList();
 		AuteurFactory aF = new AuteurFactory();
 		try {
-			return aF.findListAuteurByName(jPanelSearchAuteur.getText());
+			return aF.findListAuteurByName(JSearchAuteur.getJPanelAuteurNom(getNom()).getText());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

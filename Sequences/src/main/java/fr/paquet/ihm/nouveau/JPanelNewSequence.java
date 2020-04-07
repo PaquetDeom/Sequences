@@ -6,7 +6,7 @@ import java.awt.Insets;
 
 import javax.swing.JPanel;
 
-import fr.paquet.ihm.principal.sequence.SequencePanelEntete;
+import fr.paquet.ihm.style.StyleBorder;
 
 public class JPanelNewSequence extends JPanel {
 
@@ -15,66 +15,73 @@ public class JPanelNewSequence extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JDialogNewSequence jDialogNewSequence = null;
-	private JPanelNewSequenceTitle jPanelNewSequenceTitle = null;
-	private JPanelNewSequenceReferentiel jPanelNewSequenceReferentiel = null;
-	private JPanelNewSequenceVisible jPanelNewSequenceVisible = null;
-	private JPanelNewSequenceButton jPanelNewSequenceButton = null;
 
 	public JPanelNewSequence(JDialogNewSequence jDialogNewSequence) {
 		super();
 
 		// setteur des éléments
 		setjDialogNewSequence(jDialogNewSequence);
-		setjPanelNewSequenceTitle(new JPanelNewSequenceTitle(this));
-		setjPanelNewSequenceReferentiel(new JPanelNewSequenceReferentiel(this));
-		setjPanelNewSequenceVisible(new JPanelNewSequenceVisible(this));
-		setjPanelNewSequenceButton(new JPanelNewSequenceButton(this));
 
 		// ajout du layout
 		setLayout(new GridBagLayout());
 
 		// ajout des elements aux panel
-		add(getjPanelNewSequenceTitle(), new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER,
+		add(getjPanelNewSequenceTitle(), new GridBagConstraints(0, 0, 1, 1, 1.0, 0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(5, 5, 0, 5), 0, 0));
-		add(getjPanelNewSequenceReferentiel(), new GridBagConstraints(0, 1, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER,
+		add(getjPanelNewSequenceReferentiel(), new GridBagConstraints(0, 1, 1, 1, 1.0, 0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 5, 0, 5), 0, 0));
-		add(getjPanelNewSequenceVisible(), new GridBagConstraints(0, 2, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER,
+		add(getjPanelNewSequenceClasse(), new GridBagConstraints(0, 2, 1, 1, 1.0, 0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 5, 0, 5), 0, 0));
-		add(getjPanelNewSequenceButton(), new GridBagConstraints(0, 3, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER,
+		add(getjPanelNewSequenceVisible(), new GridBagConstraints(0, 3, 1, 1, 1.0, 0, GridBagConstraints.CENTER,
+				GridBagConstraints.BOTH, new Insets(0, 5, 0, 5), 0, 0));
+		add(getjPanelNewSequenceButton(), new GridBagConstraints(0, 4, 1, 1, 1.0, 0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 5, 5, 5), 0, 0));
+		add(new JPanel(), new GridBagConstraints(0, 4, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER,
+				GridBagConstraints.BOTH, new Insets(0, 5, 5, 5), 0, 0));
+
+		// atributs du Panel
+		setBorder(StyleBorder.BORDERPANEL.getBorder());
 
 	}
 
+	private JPanelNewSequenceClasse jPanelNewSequenceClasse = null;
+
+	private JPanelNewSequenceClasse getjPanelNewSequenceClasse() {
+		if (jPanelNewSequenceClasse == null)
+			jPanelNewSequenceClasse = new JPanelNewSequenceClasse(this);
+		return jPanelNewSequenceClasse;
+	}
+
+	private JPanelNewSequenceTitle jPanelNewSequenceTitle = null;
+
 	public JPanelNewSequenceTitle getjPanelNewSequenceTitle() {
+		if (jPanelNewSequenceTitle == null)
+			jPanelNewSequenceTitle = new JPanelNewSequenceTitle(this);
 		return jPanelNewSequenceTitle;
 	}
 
-	private void setjPanelNewSequenceTitle(JPanelNewSequenceTitle jPanelNewSequenceTitle) {
-		this.jPanelNewSequenceTitle = jPanelNewSequenceTitle;
-	}
+	private JPanelNewSequenceReferentiel jPanelNewSequenceReferentiel = null;
 
 	public JPanelNewSequenceReferentiel getjPanelNewSequenceReferentiel() {
+		if (jPanelNewSequenceReferentiel == null)
+			jPanelNewSequenceReferentiel = new JPanelNewSequenceReferentiel(this);
 		return jPanelNewSequenceReferentiel;
 	}
 
-	private void setjPanelNewSequenceReferentiel(JPanelNewSequenceReferentiel jPanelNewSequenceReferentiel) {
-		this.jPanelNewSequenceReferentiel = jPanelNewSequenceReferentiel;
-	}
+	private JPanelNewSequenceVisible jPanelNewSequenceVisible = null;
 
 	public JPanelNewSequenceVisible getjPanelNewSequenceVisible() {
+		if (jPanelNewSequenceVisible == null)
+			jPanelNewSequenceVisible = new JPanelNewSequenceVisible(this);
 		return jPanelNewSequenceVisible;
 	}
 
-	private void setjPanelNewSequenceVisible(JPanelNewSequenceVisible jPanelNewSequenceVisible) {
-		this.jPanelNewSequenceVisible = jPanelNewSequenceVisible;
-	}
+	private JPanelNewSequenceButton jPanelNewSequenceButton = null;
 
 	private JPanelNewSequenceButton getjPanelNewSequenceButton() {
+		if (jPanelNewSequenceButton == null)
+			jPanelNewSequenceButton = new JPanelNewSequenceButton(this);
 		return jPanelNewSequenceButton;
-	}
-
-	private void setjPanelNewSequenceButton(JPanelNewSequenceButton jPanelNewSequenceButton) {
-		this.jPanelNewSequenceButton = jPanelNewSequenceButton;
 	}
 
 	public JDialogNewSequence getjDialogNewSequence() {

@@ -15,18 +15,12 @@ public class JPanelNewConnexion extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JDialogIdDataBase jDialogIdDataBase = null;
-	private JPanelNewUser jPanelNewUser = null;
-	private JPanelNewPass jPanelNewPass = null;
-	private JPanelNewConnexionButton jPanelNewConnexionButton = null;
 
 	public JPanelNewConnexion(JDialogIdDataBase jDialogIdDataBase) {
 		super();
 
 		// setteur des éléments
 		setjDialogIdDataBase(jDialogIdDataBase);
-		setjPanelNewUser(new JPanelNewUser(new JLabel("Utilisateur :"), new JTextField(30)));
-		setjPanelNewPass(new JPanelNewPass(new JLabel("Mot de passe :"), new JTextField(30)));
-		setjPanelNewConnexionButton(new JPanelNewConnexionButton(this));
 
 		// ajout du layout
 		setLayout(new GridBagLayout());
@@ -41,12 +35,12 @@ public class JPanelNewConnexion extends JPanel {
 
 	}
 
-	private JPanelNewConnexionButton getjPanelNewSequenceButton() {
-		return jPanelNewConnexionButton;
-	}
+	private JPanelNewConnexionButton jPanelNewConnexionButton = null;
 
-	private void setjPanelNewConnexionButton(JPanelNewConnexionButton jPanelNewConnexionButton) {
-		this.jPanelNewConnexionButton = jPanelNewConnexionButton;
+	public JPanelNewConnexionButton getjPanelNewSequenceButton() {
+		if (jPanelNewConnexionButton == null)
+			jPanelNewConnexionButton = new JPanelNewConnexionButton(this);
+		return jPanelNewConnexionButton;
 	}
 
 	public JDialogIdDataBase getjDialogIdDataBase() {
@@ -57,20 +51,20 @@ public class JPanelNewConnexion extends JPanel {
 		this.jDialogIdDataBase = jDialogIdDataBase;
 	}
 
+	private JPanelNewUser jPanelNewUser = null;
+
 	public JPanelNewUser getjPanelNewUser() {
+		if (jPanelNewUser == null)
+			jPanelNewUser = new JPanelNewUser(new JLabel("Utilisateur :"), new JTextField(30));
 		return jPanelNewUser;
 	}
 
-	private void setjPanelNewUser(JPanelNewUser jPanelNewUser) {
-		this.jPanelNewUser = jPanelNewUser;
-	}
+	private JPanelNewPass jPanelNewPass = null;
 
 	public JPanelNewPass getjPanelNewPass() {
+		if (jPanelNewPass == null)
+			jPanelNewPass = new JPanelNewPass(new JLabel("Mot de passe :"), new JTextField(30));
 		return jPanelNewPass;
-	}
-
-	private void setjPanelNewPass(JPanelNewPass jPanelNewPass) {
-		this.jPanelNewPass = jPanelNewPass;
 	}
 
 }

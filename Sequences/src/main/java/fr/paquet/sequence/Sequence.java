@@ -3,33 +3,62 @@ package fr.paquet.sequence;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 import fr.paquet.activite.Activite;
 import fr.paquet.referentiel.CompetenceIntermediaire;
 import fr.paquet.referentiel.Referentiel;
 import fr.paquet.referentiel.SavoirAssocie;
-import fr.paquet.version.VersionSequence;
 
+@Entity
+@Table(name = "SEQUENCENUM")
 public class Sequence {
 
-	private String titre = null;
-	private Referentiel referentiel = null;
-	private Auteur auteur = null;
-	private String problematique = null;
-	private String prerequis = null;
-	private String contexte = null;
-	private String elementsARetenir = null;
-	private String lien = null;
-	private String Eval = null;
-	private VersionSequence versionSequence = null;
+	@Id
+	@GeneratedValue
+	@Column(name = "SESEID")
+	private long id = 0;
 
-	public Sequence(String titre, Referentiel referentiel, Auteur auteur, VersionSequence versionSequence)
-			throws Exception {
+	@Column(name = "SESETI", length = 20)
+	private String titre = null;
+
+	@Transient
+	private Referentiel referentiel = null;
+
+	@ManyToOne
+	private Auteur auteur = null;
+
+	@Column(name = "SESEPR", length = 20)
+	private String problematique = null;
+
+	@Column(name = "SESEPRE", length = 20)
+	private String prerequis = null;
+
+	@Column(name = "SESECO", length = 20)
+	private String contexte = null;
+
+	@Column(name = "SESEEL", length = 20)
+	private String elementsARetenir = null;
+
+	@Column(name = "SESELI", length = 20)
+	private String lien = null;
+
+	@Column(name = "SESEEV", length = 20)
+	private String Eval = null;
+
+	public Sequence(String titre, Referentiel referentiel, Auteur auteur) throws Exception {
 		this();
 
 		setTitre(titre);
 		setReferentiel(referentiel);
 		setAuteur(auteur);
-		setVersionSequence(versionSequence);
 
 	}
 
@@ -55,6 +84,7 @@ public class Sequence {
 		return referentiel;
 	}
 
+	@Transient
 	private List<Activite> activites = null;
 
 	public List<Activite> getActivites() {
@@ -63,6 +93,7 @@ public class Sequence {
 		return activites;
 	}
 
+	@Transient
 	private List<CompetenceIntermediaire> competenceIntermediaires = null;
 
 	public List<CompetenceIntermediaire> getCompetenceIntermediaires() {
@@ -71,6 +102,7 @@ public class Sequence {
 		return competenceIntermediaires;
 	}
 
+	@Transient
 	private List<SavoirAssocie> savoirAssocies = null;
 
 	public List<SavoirAssocie> getSavoirAssocies() {
@@ -133,16 +165,6 @@ public class Sequence {
 
 	public void setEval(String eval) {
 		Eval = eval;
-	}
-
-	public VersionSequence getVersionSequence() {
-		return versionSequence;
-	}
-
-	public void setVersionSequence(VersionSequence versionSequence) {
-		if (versionSequence == null)
-			versionSequence = new VersionSequence(null, this, null, getAuteur());
-		this.versionSequence = versionSequence;
 	}
 
 }

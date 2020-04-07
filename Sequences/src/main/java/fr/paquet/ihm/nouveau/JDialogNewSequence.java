@@ -17,8 +17,8 @@ public class JDialogNewSequence extends JDialog {
 
 		// construction de la fenêtre
 		setTitle("Création d'une nouvelle séquence");
-		setSize(900, 250);
 		setResizable(false);
+		setSize(600, 220);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setAlwaysOnTop(false);

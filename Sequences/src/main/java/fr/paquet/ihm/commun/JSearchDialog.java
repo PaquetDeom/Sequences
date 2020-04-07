@@ -2,15 +2,12 @@ package fr.paquet.ihm.commun;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -18,17 +15,17 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.TableModel;
 
+import fr.paquet.ihm.alert.AlertType;
+import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.ihm.commun.SelectListener;
 import main.MainFrame;
 
-
 public abstract class JSearchDialog extends JDialog implements ActionListener, SelectListener {
 
-	JPanel searchPanel = new JPanel(new GridBagLayout());
+	protected JPanel searchPanel = new JPanel(new GridLayout());
+
 	private static final long serialVersionUID = 1L;
 
 	public abstract Object getListValue(Object object, int columnIndex);
@@ -38,6 +35,10 @@ public abstract class JSearchDialog extends JDialog implements ActionListener, S
 	public abstract String[] getColumnsName();
 
 	public abstract Class[] getColumnsClass();
+
+	private void setSearchPanel(JPanel jPanel) {
+		this.searchPanel = jPanel;
+	}
 
 	private class InnerTableModel extends AbstractTableModel {
 		List list = null;
@@ -90,15 +91,17 @@ public abstract class JSearchDialog extends JDialog implements ActionListener, S
 		}
 	}
 
-	public JSearchDialog() throws Exception {
+	protected JSearchDialog() throws Exception {
 		super(MainFrame.getUniqInstance());
 		setAlwaysOnTop(true);
+		setTitle("Recherche");
 		JPanel panel = new JPanel(new BorderLayout());
 		setContentPane(panel);
 		panel.add(getSearchPanel(), BorderLayout.NORTH);
 		panel.add(new JScrollPane(getListPanel()), BorderLayout.CENTER);
 		panel.add(getButtonPanel(), BorderLayout.SOUTH);
 		setSize(600, 500);
+		setLocationRelativeTo(null);
 		setVisible(true);
 	}
 
@@ -169,7 +172,8 @@ public abstract class JSearchDialog extends JDialog implements ActionListener, S
 				showMaintenanceDialog(getTableModel().getObject(table.getSelectedRows()[0]));
 				doSearchAction();
 			} else {
-				// TODO : message d'erreur=>Veuillez selectionner une ligne dans la table
+				new AlertWindow(AlertType.ATTENTION, "Veuillez sélectionner une ligne dans la table");
+
 			}
 		} else if (e.getActionCommand().equals("Ok")) {
 			if (table.getSelectedRows().length != 0) {
@@ -177,7 +181,8 @@ public abstract class JSearchDialog extends JDialog implements ActionListener, S
 				this.setVisible(false);
 				this.dispose();
 			} else {
-				// TODO : message d'erreur=>Veuillez selectionner une ligne dans la table
+				
+				new AlertWindow(AlertType.ATTENTION, "Veuillez sélectionner une ligne dans la table");
 			}
 		} else if (e.getActionCommand().equals("Annuler")) {
 			this.setVisible(false);

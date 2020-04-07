@@ -3,6 +3,7 @@ package fr.paquet.ihm.auteur;
 import javax.swing.JDialog;
 
 import fr.paquet.dataBase.User;
+import fr.paquet.sequence.Auteur;
 import main.MainFrame;
 
 public class JDialogAuteur extends JDialog {
@@ -14,15 +15,15 @@ public class JDialogAuteur extends JDialog {
 	private JPanelAuteur jPanelAuteur = null;
 	private User user = null;
 
-	public JDialogAuteur() throws Exception {
+	public JDialogAuteur()  {
 		super(MainFrame.getUniqInstance());
 
 		// construction de la fenêtre
 		setTitle("Identification de l'auteur");
-		setSize(600, 150);
+		setSize(600, 130);
 		setResizable(false);
 		setLocationRelativeTo(null);
-		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setAlwaysOnTop(false);
 		setVisible(true);
 
@@ -48,6 +49,11 @@ public class JDialogAuteur extends JDialog {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public Auteur getAuteur() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

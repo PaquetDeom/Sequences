@@ -3,6 +3,8 @@ package fr.paquet.dataBase.Factory.commun;
 import javax.persistence.Query;
 
 import fr.paquet.commun.Diplome;
+import fr.paquet.dataBase.Connect;
+import main.Main;
 
 public class DiplomeFactory extends Factory {
 
@@ -15,7 +17,7 @@ public class DiplomeFactory extends Factory {
 	 * @throws Exception 
 	 */
 	public Diplome findDiplome(String diplome, String type) throws Exception {
-		Query query = getConnect().getEm().createQuery("SELECT dip FROM Diplome dip where dip.diplome=:diplome and dip.type=:type");
+		Query query = Connect.getEm().createQuery("SELECT dip FROM Diplome dip where dip.diplome=:diplome and dip.type=:type");
 		query.setParameter("diplome", diplome);
 		query.setParameter("type", type);
 		return (Diplome) query.getSingleResult();

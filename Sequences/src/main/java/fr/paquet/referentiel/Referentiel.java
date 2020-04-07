@@ -12,8 +12,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import fr.paquet.commun.Diplome;
+import fr.paquet.sequence.Sequence;
 
 @Entity
 @Table(name = "REFERENTIEL")
@@ -47,20 +49,17 @@ public class Referentiel {
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Unite> unites = null;
-	
+
 	@Column(name = "REREUR", length = 300)
 	private String url = null;
 
 	/**
 	 * Constructeur de la classe : <br/>
 	 * 
-	 * @param unDiplome
-	 *            Type de diplome ex : "BAC PROFESSIONNEL"<br/>
+	 * @param unDiplome  Type de diplome ex : "BAC PROFESSIONNEL"<br/>
 	 * 
-	 * @param unIntitule
-	 *            Represente l'objet du diplome ex : "CONSTRUCTEUR BOIS".
-	 * @throws Exception
-	 *             Le diplome et/ou l'intule egale null<br/>
+	 * @param unIntitule Represente l'objet du diplome ex : "CONSTRUCTEUR BOIS".
+	 * @throws Exception Le diplome et/ou l'intule egale null<br/>
 	 */
 
 	public Referentiel(Diplome unDiplome) throws Exception {
@@ -73,11 +72,11 @@ public class Referentiel {
 	public Referentiel() {
 		super();
 	}
-	
+
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	
+
 	public String getUrl() {
 		return url;
 	}

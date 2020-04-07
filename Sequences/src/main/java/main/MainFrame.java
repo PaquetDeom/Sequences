@@ -4,7 +4,6 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.awt.image.BufferedImage;
@@ -14,9 +13,6 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-import fr.paquet.ihm.alert.AlertListener;
-import fr.paquet.ihm.alert.AlertType;
-import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.sequence.Sequence;
 
 public class MainFrame extends JFrame implements WindowListener {
@@ -35,7 +31,7 @@ public class MainFrame extends JFrame implements WindowListener {
 	private JPanel panelOuverture = null;
 	private MainOnglet mainOnglet = null;
 
-	private MainFrame() throws Exception {
+	private MainFrame() {
 
 		super("Logiciel d'écriture pédagogique");
 
@@ -82,7 +78,7 @@ public class MainFrame extends JFrame implements WindowListener {
 	 * @throws Exception
 	 * @throws s
 	 */
-	public static MainFrame getUniqInstance() throws Exception {
+	public static MainFrame getUniqInstance() {
 		if (mainFrame == null)
 			mainFrame = new MainFrame();
 		mainFrame.repaint();
@@ -136,7 +132,7 @@ public class MainFrame extends JFrame implements WindowListener {
 	@Override
 	public void windowClosing(WindowEvent arg0) {
 		Main.Fermeture();
-		
+
 	}
 
 	@Override

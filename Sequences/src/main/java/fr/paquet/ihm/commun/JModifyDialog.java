@@ -2,7 +2,6 @@ package fr.paquet.ihm.commun;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,20 +20,20 @@ public abstract class JModifyDialog extends JDialog implements ActionListener {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	protected JPanel maintenancePanel = null;
-	private Object modifyObject = null;
+	protected JPanel maintenancePanel = new JPanel(new GridLayout());
+	private static Object modifyObject = null;
 
 	public JModifyDialog(Object o) throws Exception {
 		super(MainFrame.getUniqInstance());
+		setTitle("Modification / Création");
 		setAlwaysOnTop(true);
-		setModifyObject(o);
+		setSize(400, 100);
 		JPanel mainPanel = new JPanel(new BorderLayout());
 		setContentPane(mainPanel);
-
-		maintenancePanel = new JPanel(new GridBagLayout());
 		mainPanel.add(maintenancePanel, BorderLayout.CENTER);
-
 		mainPanel.add(getButtonPanel(), BorderLayout.SOUTH);
+		setLocationRelativeTo(null);
+		setModifyObject(o);
 		setVisible(true);
 	}
 
@@ -82,7 +81,7 @@ public abstract class JModifyDialog extends JDialog implements ActionListener {
 		}
 	}
 
-	public Object getModifyObject() {
+	public static Object getModifyObject() {
 		return modifyObject;
 	}
 

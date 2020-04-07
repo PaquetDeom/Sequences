@@ -6,8 +6,6 @@ import java.awt.Insets;
 
 import javax.swing.JPanel;
 
-import fr.paquet.ihm.principal.sequence.SequencePanelVersion;
-
 public class ActivitePanel extends JPanel {
 
 	/**
@@ -28,9 +26,11 @@ public class ActivitePanel extends JPanel {
 		setLayout(new GridBagLayout());
 
 		// ajout des composants
-		add(new SequencePanelVersion(getOngletActivite().getMainOnglet().getOngletSequence().getSequencePanel()),
-				new GridBagConstraints(0, 0, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-						new Insets(0, 0, 0, 0), 0, 0));
+		// add(new
+		// SequencePanelVersion(getOngletActivite().getMainOnglet().getOngletSequence().getSequencePanel()),
+		// new GridBagConstraints(0, 0, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
+		// GridBagConstraints.BOTH,
+		// new Insets(0, 0, 0, 0), 0, 0));
 		add(new ActivitePanelEntete(this), new GridBagConstraints(0, 1, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 		add(new ActivitePanelCorps(this), new GridBagConstraints(0, 2, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
