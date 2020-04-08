@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 
+import fr.paquet.dataBase.Factory.commun.UserFactory;
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.ihm.auteur.JDialogAuteur;
@@ -25,10 +26,16 @@ public class PrepareConnection {
 
 	}
 
-	public void prepareAuteur() {
+	public void prepareAuteur() throws Exception {
 
-		if (getUser().getAuteur() == null)
+		if (getUser().getAuteur() == null) {
 			new JDialogAuteur();
+		}
+
+	}
+
+	public void save() throws Exception {
+		new UserFactory().persist(getUser());
 
 	}
 
@@ -39,8 +46,7 @@ public class PrepareConnection {
 			buff = new BufferedReader(
 					new InputStreamReader(new FileInputStream(new File("./target/classes/user/user.txt")), "UTF-8"));
 			ReadTxtUser rt = new ReadTxtUser(buff);
-			createUser(rt);
-			Connect.getEmf();
+			createUser(new User(rt.getLines().get(0), rt.getLines().get(1)));
 			buff.close();
 
 		} catch (UnsupportedEncodingException e) {
@@ -55,17 +61,29 @@ public class PrepareConnection {
 
 	}
 
-	public void createUser(ReadTxtUser rt) throws Exception {
+	public void createUser(User user) throws Exception {
 
-		setUser(new User(rt.getLines().get(0), rt.getLines().get(1)));
+		setUser(user);
 
+		if (userIsInDb(user.getUtilisateur()))
+			setUser(new UserFactory().FindUserByUserName(user.getUtilisateur()));
+
+	}
+
+	private boolean userIsInDb(String utilisateur) throws Exception {
+		UserFactory uF = new UserFactory();
+		User user = uF.FindUserByUserName(utilisateur);
+		if (user == null)
+			return false;
+		else
+			return true;
 	}
 
 	public User getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	private void setUser(User user) {
 		this.user = user;
 	}
 }

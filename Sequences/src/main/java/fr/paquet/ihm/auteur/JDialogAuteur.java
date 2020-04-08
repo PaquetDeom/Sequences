@@ -1,21 +1,25 @@
 package fr.paquet.ihm.auteur;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
 import javax.swing.JDialog;
 
-import fr.paquet.dataBase.User;
+import fr.paquet.dataBase.Connect;
+import fr.paquet.ihm.alert.AlertType;
+import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.sequence.Auteur;
 import main.MainFrame;
 
-public class JDialogAuteur extends JDialog {
+public class JDialogAuteur extends JDialog implements ActionListener {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JPanelAuteur jPanelAuteur = null;
-	private User user = null;
 
-	public JDialogAuteur()  {
+	public JDialogAuteur() {
 		super(MainFrame.getUniqInstance());
 
 		// construction de la fenêtre
@@ -27,33 +31,51 @@ public class JDialogAuteur extends JDialog {
 		setAlwaysOnTop(false);
 		setVisible(true);
 
-		// setteur des elements
-		setJPanelAuteur(new JPanelAuteur(this));
-
 		// ajout du panel
 		setContentPane(getJPanelAuteur());
 
+		// listener
+		getJPanelAuteur().getButtonOk().addActionListener(this);
+		getJPanelAuteur().getButtonAnnul().addActionListener(this);
+
 	}
 
+	private JPanelAuteur jPanelAuteur = null;
+
 	private JPanelAuteur getJPanelAuteur() {
+		if (jPanelAuteur == null)
+			jPanelAuteur = new JPanelAuteur(this);
 		return jPanelAuteur;
 	}
 
-	private void setJPanelAuteur(JPanelAuteur jPanelAuteur) {
-		this.jPanelAuteur = jPanelAuteur;
-	}
+	@Override
+	public void actionPerformed(ActionEvent evt) {
 
-	public User getUser() {
-		return user;
-	}
+		JButton button = (JButton) evt.getSource();
+		String buttontext = button.getText();
 
-	public void setUser(User user) {
-		this.user = user;
-	}
+		Auteur auteur = (Auteur) getJPanelAuteur().getJPanelAuteurNom().getObjet();
 
-	public Auteur getAuteur() {
-		// TODO Auto-generated method stub
-		return null;
+		if (buttontext.equals("Valider")) {
+			if (auteur != null) {
+				Connect.getPConnexion().getUser().setAuteur(auteur);
+				try {
+					Connect.getPConnexion().save();
+				} catch (Exception e) {
+					new AlertWindow(AlertType.ERREUR, "Savegarde impossible");
+					e.printStackTrace();
+				}
+				dispose();
+			} else
+				new AlertWindow(AlertType.ERREUR, "Auteur invalide");
+		} else {
+			if (Connect.getPConnexion().getUser().getAuteur() != null) {
+				dispose();
+			} else {
+				new AlertWindow(AlertType.ERREUR, "Vous devez renseigner un auteur");
+
+			}
+		}
 	}
 
 }

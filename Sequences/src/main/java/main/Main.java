@@ -23,8 +23,8 @@ public class Main {
 					MainFrame mainFrame = MainFrame.getUniqInstance();
 					mainFrame.setVisible(true);
 
-					// tentative de connexion à la base
-					connectDataBase();
+					// identification de l'utilisateur
+					prepareIdentification();
 
 				} catch (Exception e) {
 
@@ -61,7 +61,7 @@ public class Main {
 		System.exit(1);
 	}
 
-	public static void connectDataBase() {
+	public static void prepareIdentification() {
 
 		try {
 

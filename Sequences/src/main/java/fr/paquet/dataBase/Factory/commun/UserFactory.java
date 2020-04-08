@@ -4,7 +4,6 @@ import javax.persistence.Query;
 
 import fr.paquet.dataBase.Connect;
 import fr.paquet.dataBase.User;
-import main.Main;
 
 public class UserFactory extends Factory {
 
@@ -20,11 +19,14 @@ public class UserFactory extends Factory {
 
 	public User FindUserByUserName(String utilisateur) throws Exception {
 
-		Query query = Connect.getEm()
-				.createQuery("SELECT user FROM User user where user.utilisateur=:utilisateur");
+		Query query = Connect.getEm().createQuery("SELECT user FROM User user where user.utilisateur=:utilisateur");
 		query.setParameter("utilisateur", utilisateur);
 
-		return (User) query.getSingleResult();
+		try {
+			return (User) query.getSingleResult();
+		} catch (Exception e) {
+			return null;
+		}
 
 	}
 

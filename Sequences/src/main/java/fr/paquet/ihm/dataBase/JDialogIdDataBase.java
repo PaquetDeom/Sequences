@@ -7,12 +7,10 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 
 import fr.paquet.dataBase.Connect;
-import fr.paquet.dataBase.PrepareConnection;
 import fr.paquet.dataBase.User;
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.io.dataBase.WriteFileUser;
-import main.Main;
 import main.MainFrame;
 
 public class JDialogIdDataBase extends JDialog implements ActionListener {
@@ -68,7 +66,7 @@ public class JDialogIdDataBase extends JDialog implements ActionListener {
 			String pass = getjPanelNewConnexion().getjPanelNewPass().getjTextField().getText();
 
 			try {
-				Connect.getPConnexion().setUser(new User(utilisateur, pass));
+				Connect.getPConnexion().createUser(new User(utilisateur, pass));
 				Connect.getEmf();
 				new WriteFileUser(Connect.getPConnexion().getUser());
 				dispose();

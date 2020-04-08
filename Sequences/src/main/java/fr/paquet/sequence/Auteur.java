@@ -22,7 +22,7 @@ import fr.paquet.dataBase.User;
 		@AttributeOverride(name = "prenom", column = @Column(name = "PEPEPR", length = 20)) })
 public class Auteur extends personne {
 
-	@OneToMany(mappedBy = "auteur", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "auteur", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private List<Sequence> sequences = null;
 
 	public Auteur() {
