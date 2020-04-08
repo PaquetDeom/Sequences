@@ -5,7 +5,7 @@ import java.util.List;
 
 public enum Title {
 
-	COMPETENCES, ACTIVITES;
+	COMPETENCES, ACTIVITES, STRATEGIE;
 
 	public int getcolumn() {
 		switch (this) {
@@ -13,6 +13,8 @@ public enum Title {
 			return 3;
 		case ACTIVITES:
 			return 5;
+		case STRATEGIE:
+			return 1;
 		default:
 			return 0;
 		}
@@ -34,6 +36,11 @@ public enum Title {
 			value.add("Ressources - Matériels");
 			value.add("Conclusion - Bilan");
 			return value;
+		case STRATEGIE:
+			List<String> valu = new ArrayList<String>();
+			valu.add("Sratégie pédagogique");
+
+			return valu;
 		default:
 			return null;
 		}

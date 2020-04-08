@@ -17,7 +17,7 @@ public class CommunTitle extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public CommunTitle(Title title) throws Exception {
+	public CommunTitle(Title title) {
 		super();
 
 		// creation du layout
