@@ -42,11 +42,12 @@ public class SequencePanelCenterPrérequis extends CommunJLabelJTextAreaVertical
 		});
 
 		this.textArea = textArea;
+		textArea.setLineWrap(true);
 	}
 
 	@Override
 	protected void setPanelJTextAreaTextSize(Dimension dimensionTextArea) {
-		this.dimensionTextArea = new Dimension(dimensionTextArea.width, dimensionTextArea.height * 8);
+		this.dimensionTextArea = new Dimension(0, dimensionTextArea.height * 8);
 
 	}
 

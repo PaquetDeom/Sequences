@@ -25,6 +25,7 @@ public class ActivitePanelConceptionQuestion extends CommunJLabelJTextAreaVertic
 	@Override
 	protected void setTextArea(JTextArea textArea) {
 		this.textArea = textArea;
+		textArea.setLineWrap(true);
 
 	}
 

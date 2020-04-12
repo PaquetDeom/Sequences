@@ -43,11 +43,9 @@ public class ActivitePanel extends JPanel {
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 		add(new ActivitePanelConception(this), new GridBagConstraints(0, 6, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-		add(new ActivitePanelStrategie(this), new GridBagConstraints(0, 7, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
+		add(new ActivitePanelStrategie(this), new GridBagConstraints(0, 7, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-		add(new JPanel(), new GridBagConstraints(0, 8, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER,
-				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-
+		
 		// attribut du Panel
 	}
 

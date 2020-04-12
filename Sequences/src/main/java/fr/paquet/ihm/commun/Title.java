@@ -38,7 +38,7 @@ public enum Title {
 			return value;
 		case STRATEGIE:
 			List<String> valu = new ArrayList<String>();
-			valu.add("Sratégie pédagogique");
+			valu.add("Stratégie pédagogique");
 
 			return valu;
 		default:

@@ -3,16 +3,20 @@ package fr.paquet.sequence;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import fr.paquet.activite.Activite;
+import fr.paquet.activite.Activite_1;
+import fr.paquet.dataBase.Connect;
+import fr.paquet.referentiel.Capacite;
 import fr.paquet.referentiel.CompetenceIntermediaire;
 import fr.paquet.referentiel.Referentiel;
 import fr.paquet.referentiel.SavoirAssocie;
@@ -53,6 +57,12 @@ public class Sequence {
 	@Column(name = "SESEEV", length = 20)
 	private String Eval = null;
 
+	@Column(name = "SESEVI")
+	private boolean visible = false;
+
+	@Column(name = "SESEMO")
+	private boolean modifiable = false;
+
 	public Sequence(String titre, Referentiel referentiel, Auteur auteur) throws Exception {
 		this();
 
@@ -64,6 +74,18 @@ public class Sequence {
 
 	public Sequence() {
 		super();
+	}
+
+	/**
+	 * 
+	 * @return la première capacite de la competence intermediaire, pout trier les
+	 *         sequences</br>
+	 */
+	public Capacite getCapacite() {
+		if (getCompetenceIntermediaires().isEmpty() || getCompetenceIntermediaires() == null)
+			return null;
+		else
+			return getCompetenceIntermediaires().get(0).getCompetence().getCapacite();
 	}
 
 	public String getTitre() {
@@ -84,12 +106,12 @@ public class Sequence {
 		return referentiel;
 	}
 
-	@Transient
-	private List<Activite> activites = null;
+	@OneToMany(mappedBy = "sequence", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<Activite_1> activites = null;
 
-	public List<Activite> getActivites() {
+	public List<Activite_1> getActivites() {
 		if (activites == null)
-			activites = new ArrayList<Activite>();
+			activites = new ArrayList<Activite_1>();
 		return activites;
 	}
 
@@ -165,6 +187,28 @@ public class Sequence {
 
 	public void setEval(String eval) {
 		Eval = eval;
+	}
+
+	public boolean isVisible() {
+		return visible;
+	}
+
+	public void setVisible(boolean visible) {
+		this.visible = visible;
+	}
+
+	public boolean isModifiable() {
+		return modifiable;
+	}
+
+	private void setModifiable(boolean modifiable) {
+
+		// la sequence et modifiable uniquement par son auteur et si il n'y a pas de
+		// version supérieur.
+		if (getAuteur().equals(Connect.getPConnexion().getUser().getAuteur()))
+			modifiable = true;
+
+		this.modifiable = modifiable;
 	}
 
 }

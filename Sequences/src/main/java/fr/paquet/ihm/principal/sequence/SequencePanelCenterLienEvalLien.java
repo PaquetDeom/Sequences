@@ -44,6 +44,7 @@ public class SequencePanelCenterLienEvalLien extends CommunJLabelJTextAreaVertic
 			}
 		});
 		this.textArea = textArea;
+		textArea.setLineWrap(true);
 	}
 
 	private SequencePanelCenterLienEval getSequencePanelCenterLienEval() {
@@ -56,7 +57,7 @@ public class SequencePanelCenterLienEvalLien extends CommunJLabelJTextAreaVertic
 
 	@Override
 	protected void setPanelJTextAreaTextSize(Dimension dimensionTextArea) {
-		this.dimensionTextArea = new Dimension(getPreferredSize().width, getPreferredSize().height * 8);
+		this.dimensionTextArea = new Dimension(0, getPreferredSize().height * 8);
 
 	}
 

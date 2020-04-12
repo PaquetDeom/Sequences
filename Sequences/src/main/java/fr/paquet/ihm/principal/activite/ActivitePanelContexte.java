@@ -23,6 +23,7 @@ public class ActivitePanelContexte extends CommunJLabelJTextAreaVertical {
 	
 	public ActivitePanel getActivitepanel() {
 		return activitepanel;
+		
 	}
 
 	private void setActivitepanel(ActivitePanel activitepanel) {
@@ -32,12 +33,13 @@ public class ActivitePanelContexte extends CommunJLabelJTextAreaVertical {
 	@Override
 	protected void setTextArea(JTextArea textArea) {
 		this.textArea = textArea;
+		textArea.setLineWrap(true);
 
 	}
 
 	@Override
 	protected void setPanelJTextAreaTextSize(Dimension dimensionTextArea) {
-		this.dimensionTextArea = new Dimension(getPreferredSize().width, getPreferredSize().height * 10);
+		this.dimensionTextArea = new Dimension(0, getPreferredSize().height * 10);
 
 	}
 

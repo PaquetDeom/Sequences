@@ -1,11 +1,11 @@
 package fr.paquet.ihm.principal.activite;
 
-import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import javax.swing.JPanel;
+import javax.swing.JSplitPane;
 
 public class ActivitePanelConception extends JPanel {
 
@@ -27,14 +27,48 @@ public class ActivitePanelConception extends JPanel {
 		// attribut du panel
 
 		// ajout des Composants
-		add(getActivitePanelConceptionQuestion(), new GridBagConstraints(0, 0, 1, 3, 0.5, 1.0,
-				GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-		add(getActivitePanelConceptionDocuments(), new GridBagConstraints(1, 0, 1, 1, 0.5, 0.33,
-				GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-		add(getActivitePanelConceptionRessources(), new GridBagConstraints(1, 1, 1, 1, 0, 0.33,
-				GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-		add(getActivitePanelConceptionTrace(), new GridBagConstraints(1, 2, 1, 1, 0, 0.34, GridBagConstraints.CENTER,
+		add(getMainSplitPane(), new GridBagConstraints(0, 0, 1, 1, 1, 0.0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+
+	}
+
+	private JSplitPane getMainSplitPane() {
+		JSplitPane mainSplitPane = new JSplitPane();
+
+		mainSplitPane.setOrientation(JSplitPane.HORIZONTAL_SPLIT);
+		mainSplitPane.setLeftComponent(getActivitePanelConceptionQuestion());
+		mainSplitPane.setRightComponent(getRightMainSplitPane());
+
+		mainSplitPane.setResizeWeight(0.25);
+		mainSplitPane.setContinuousLayout(true);
+
+		return mainSplitPane;
+	}
+
+	private JSplitPane getRightMainSplitPane() {
+		JSplitPane mainRightSplitPane = new JSplitPane();
+
+		mainRightSplitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		mainRightSplitPane.setTopComponent(getActivitePanelConceptionDocuments());
+		mainRightSplitPane.setBottomComponent(getSecondRightSplitPane());
+
+		mainRightSplitPane.setResizeWeight(0.33);
+		mainRightSplitPane.setContinuousLayout(true);
+
+		return mainRightSplitPane;
+	}
+
+	private JSplitPane getSecondRightSplitPane() {
+		JSplitPane secondRightSplitPane = new JSplitPane();
+
+		secondRightSplitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		secondRightSplitPane.setTopComponent(getActivitePanelConceptionRessources());
+		secondRightSplitPane.setBottomComponent(getActivitePanelConceptionTrace());
+
+		secondRightSplitPane.setResizeWeight(0.5);
+		secondRightSplitPane.setContinuousLayout(true);
+
+		return secondRightSplitPane;
 	}
 
 	private ActivitePanelConceptionTrace activitePanelConceptionTrace = null;

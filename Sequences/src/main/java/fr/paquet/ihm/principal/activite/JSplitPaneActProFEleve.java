@@ -1,7 +1,8 @@
 package fr.paquet.ihm.principal.activite;
 
-import javax.swing.JLabel;
 import javax.swing.JSplitPane;
+
+import fr.paquet.ihm.style.StyleBorder;
 
 public class JSplitPaneActProFEleve extends JSplitPane {
 
@@ -18,28 +19,35 @@ public class JSplitPaneActProFEleve extends JSplitPane {
 		setActivitePanelStrategie(activitePanelStrategie);
 
 		// attributs du splitpane
-		this.setOrientation(JSplitPane.HORIZONTAL_SPLIT);
+		setOrientation(JSplitPane.HORIZONTAL_SPLIT);
 
 		// ajout des composants au plitpane
-		setLeftComponent(new JLabel("essai1"));
-		setRightComponent(new JLabel("essai2"));
-		
+		setLeftComponent(getJPanelActiviteProf());
+		setRightComponent(getJPanelActiviteEleve());
+
+		setResizeWeight(0.5);
+		setContinuousLayout(true);
+
 	}
 
-	private JSrollPaneProf jSrollPaneProf = null;
+	private JPanelActiviteProf jPanelActiviteProf = null;
 
-	public JSrollPaneProf getJScrollPaneProf() {
-		if (jSrollPaneProf == null)
-			jSrollPaneProf = new JSrollPaneProf(this);
-		return jSrollPaneProf;
+	public JPanelActiviteProf getJPanelActiviteProf() {
+		if (jPanelActiviteProf == null) {
+			jPanelActiviteProf = new JPanelActiviteProf(this);
+			jPanelActiviteProf.setBorder(StyleBorder.BORDERTITLEAREA.getBorder());
+		}
+		return jPanelActiviteProf;
 	}
 
-	private JSrollPaneEleve jSrollPaneEleve = null;
+	private JPanelActiviteEleve jPanelActiviteEleve = null;
 
-	public JSrollPaneEleve getJScrollPaneEleve() {
-		if (jSrollPaneEleve == null)
-			jSrollPaneEleve = new JSrollPaneEleve(this);
-		return jSrollPaneEleve;
+	public JPanelActiviteEleve getJPanelActiviteEleve() {
+		if (jPanelActiviteEleve == null) {
+			jPanelActiviteEleve = new JPanelActiviteEleve(this);
+			jPanelActiviteEleve.setBorder(StyleBorder.BORDERTITLEAREA.getBorder());
+		}
+		return jPanelActiviteEleve;
 	}
 
 	public ActivitePanelStrategie getActivitePanelStrategie() {

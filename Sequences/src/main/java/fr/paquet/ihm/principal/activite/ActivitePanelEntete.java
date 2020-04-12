@@ -39,7 +39,7 @@ public class ActivitePanelEntete extends JPanel {
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 5), 0, 0));
 
 		// attribut du Jpanel
-		setPreferredSize(new Dimension(getPreferredSize().width, getPreferredSize().height * 4));
+		setPreferredSize(new Dimension(0, getPreferredSize().height * 4));
 
 	}
 
