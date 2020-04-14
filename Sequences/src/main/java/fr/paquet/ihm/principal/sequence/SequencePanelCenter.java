@@ -40,7 +40,7 @@ public class SequencePanelCenter extends JPanel {
 
 	}
 
-	private SequencePanel getSequencePanel() {
+	public SequencePanel getSequencePanel() {
 		return sequencePanel;
 	}
 

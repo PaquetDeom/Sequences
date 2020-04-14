@@ -22,7 +22,7 @@ public class SequencePanelButtomActTitre extends CommunTitle {
 
 	}
 
-	private SequencePanelButtomAct getSequencePanelButtomAct() {
+	public SequencePanelButtomAct getSequencePanelButtomAct() {
 		return sequencePanelButtomAct;
 	}
 

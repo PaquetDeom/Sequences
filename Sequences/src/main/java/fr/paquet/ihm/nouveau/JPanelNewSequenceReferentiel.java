@@ -2,14 +2,11 @@ package fr.paquet.ihm.nouveau;
 
 import javax.swing.JPanel;
 
-import fr.paquet.referentiel.Referentiel;
-
 import java.awt.GridBagLayout;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
-import javax.swing.JList;
 import java.awt.Insets;
 
 public class JPanelNewSequenceReferentiel extends JPanel {

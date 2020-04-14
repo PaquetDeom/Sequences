@@ -23,8 +23,6 @@ public class CommunTitle extends JPanel {
 		// creation du layout
 		setLayout(new GridLayout(0, title.getcolumn(), 0, 0));
 
-		int i = 0;
-
 		for (String a : title.getTitle()) {
 			JLabel label = new JLabel(a);
 			label.setHorizontalAlignment(SwingConstants.CENTER);
@@ -34,7 +32,6 @@ public class CommunTitle extends JPanel {
 			panel.setBackground(StyleColor.PANELTITLE.getColor());
 			panel.add(label);
 			add(panel);
-			i++;
 		}
 
 		// attributs du panel

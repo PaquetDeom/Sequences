@@ -85,6 +85,7 @@ public abstract class JModifyDialog extends JDialog implements ActionListener {
 		return modifyObject;
 	}
 
+	@SuppressWarnings("static-access")
 	public void setModifyObject(Object modifyObject) {
 		this.modifyObject = modifyObject;
 	}

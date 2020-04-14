@@ -8,7 +8,6 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
-import fr.paquet.ihm.principal.sequence.SequencePanelButtomCompJLabel;
 
 public class ActiviteJPanelJlabel extends JPanel {
 
@@ -58,7 +57,7 @@ public class ActiviteJPanelJlabel extends JPanel {
 		return activitePanelCompJLabels;
 	}
 
-	private ActivitePanelCompetencesSavoirs getActivitePanelCompetencesSavoirs() {
+	public ActivitePanelCompetencesSavoirs getActivitePanelCompetencesSavoirs() {
 		return activitePanelCompetencesSavoirs;
 	}
 

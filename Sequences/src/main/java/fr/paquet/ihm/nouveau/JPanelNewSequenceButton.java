@@ -7,7 +7,6 @@ import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.ihm.commun.JPanelButtonAnnulOk;
 import fr.paquet.sequence.Sequence;
-import main.Main;
 import main.MainFrame;
 
 import java.awt.BorderLayout;
@@ -72,7 +71,7 @@ public class JPanelNewSequenceButton extends JPanelButtonAnnulOk {
 				try {
 
 					Sequence seq = new Sequence(jp.getjPanelNewSequenceTitle().getTitre(), null,
-							Connect.getPConnexion().getUser().getAuteur());
+							Connect.getPConnexion().getUser().getAuteur(), 1);
 					MainFrame.getUniqInstance().addPanel(seq);
 					jp.getjDialogNewSequence().dispose();
 

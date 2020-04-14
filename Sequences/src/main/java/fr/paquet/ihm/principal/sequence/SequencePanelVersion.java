@@ -1,14 +1,17 @@
 package fr.paquet.ihm.principal.sequence;
 
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+
 
 import javax.swing.*;
 
-import fr.paquet.ihm.style.StyleBorder;
+
 
 public class SequencePanelVersion extends JPanel {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * 

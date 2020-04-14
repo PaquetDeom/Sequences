@@ -8,7 +8,6 @@ import javax.swing.KeyStroke;
 import fr.paquet.dataBase.Factory.sequence.SequenceFactory;
 import fr.paquet.sequence.Sequence;
 
-
 public class ActionSave extends ActionBDA {
 
 	/**
@@ -24,6 +23,7 @@ public class ActionSave extends ActionBDA {
 		putValue(ACCELERATOR_KEY,
 				KeyStroke.getKeyStroke('S', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
 
+		setEnabled(false);
 	}
 
 	@Override
@@ -51,7 +51,10 @@ public class ActionSave extends ActionBDA {
 	public void setSequence(Sequence sequence) throws Exception {
 		if (sequence == null)
 			throw new Exception("Veuillez renseigner une séquence");
-		this.sequence = sequence;
+		else {
+			setEnabled(true);
+			this.sequence = sequence;
+		}
 	}
 
 	@Override

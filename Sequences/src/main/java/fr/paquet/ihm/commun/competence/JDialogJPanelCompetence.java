@@ -76,6 +76,7 @@ public class JDialogJPanelCompetence extends JPanel {
 		this.jDialogJPanelRef = jDialogJPanelRef;
 	}
 
+	@SuppressWarnings("unlikely-arg-type")
 	private List<JDialogJtreeComp> getjDialogJtreeComps() {
 		if (jDialogJtreeComps == null) {
 			jDialogJtreeComps = new ArrayList<JDialogJtreeComp>();

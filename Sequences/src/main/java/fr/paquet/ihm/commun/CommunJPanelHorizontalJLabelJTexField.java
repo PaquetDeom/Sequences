@@ -22,7 +22,8 @@ public abstract class CommunJPanelHorizontalJLabelJTexField extends JPanel imple
 	protected JTextField jTextField = null;
 	protected Class<JSearchDialog> dialogClass = null;
 
-	public CommunJPanelHorizontalJLabelJTexField(JLabel jLabel, JTextField jTextField, Class dialogClass) {
+	@SuppressWarnings("unchecked")
+	public CommunJPanelHorizontalJLabelJTexField(JLabel jLabel, JTextField jTextField, @SuppressWarnings("rawtypes") Class dialogClass) {
 		super();
 
 		// setteur des éléments

@@ -30,22 +30,23 @@ public abstract class JSearchDialog extends JDialog implements ActionListener, S
 
 	public abstract Object getListValue(Object object, int columnIndex);
 
+	@SuppressWarnings("rawtypes")
 	public abstract List getValues();
 
 	public abstract String[] getColumnsName();
 
+	@SuppressWarnings("rawtypes")
 	public abstract Class[] getColumnsClass();
 
-	private void setSearchPanel(JPanel jPanel) {
-		this.searchPanel = jPanel;
-	}
-
+	@SuppressWarnings("serial")
 	private class InnerTableModel extends AbstractTableModel {
+		@SuppressWarnings("rawtypes")
 		List list = null;
 		String[] columnName = null;
+		@SuppressWarnings("rawtypes")
 		Class[] columnClass = null;
 
-		public InnerTableModel(List list, String[] columnName, Class[] columnClass) {
+		public InnerTableModel(@SuppressWarnings("rawtypes") List list, String[] columnName, @SuppressWarnings("rawtypes") Class[] columnClass) {
 			this.list = list;
 			this.columnName = columnName;
 			this.columnClass = columnClass;
@@ -85,7 +86,7 @@ public abstract class JSearchDialog extends JDialog implements ActionListener, S
 			return getListValue(getObject(rowIndex), columnIndex);
 		}
 
-		public void setValues(List values) {
+		public void setValues(@SuppressWarnings("rawtypes") List values) {
 			list = values;
 			fireTableDataChanged();
 		}
@@ -181,7 +182,7 @@ public abstract class JSearchDialog extends JDialog implements ActionListener, S
 				this.setVisible(false);
 				this.dispose();
 			} else {
-				
+
 				new AlertWindow(AlertType.ATTENTION, "Veuillez sélectionner une ligne dans la table");
 			}
 		} else if (e.getActionCommand().equals("Annuler")) {
@@ -195,6 +196,7 @@ public abstract class JSearchDialog extends JDialog implements ActionListener, S
 		getListPanel().repaint();
 	}
 
+	@SuppressWarnings("unchecked")
 	private void showMaintenanceDialog(Object object) {
 		Constructor<JModifyDialog> ctor;
 		try {
@@ -208,6 +210,7 @@ public abstract class JSearchDialog extends JDialog implements ActionListener, S
 		}
 	}
 
+	@SuppressWarnings("rawtypes")
 	protected abstract Class getDialogClass();
 
 	private ArrayList<SelectListener> selectListeners = new ArrayList<SelectListener>();

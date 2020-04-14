@@ -31,7 +31,7 @@ public class SequencePanelEntete extends JPanel {
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 5), 0, 0));
 	}
 
-	private SequencePanel getSequencePanel() {
+	public SequencePanel getSequencePanel() {
 		return sequencePanel;
 	}
 

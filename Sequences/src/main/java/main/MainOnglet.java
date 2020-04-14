@@ -29,6 +29,9 @@ public class MainOnglet extends JTabbedPane {
 		setSequence(sequence);
 		setOngletSequence(new OngletSequence(this));
 
+		// activé les commandes du menu
+		MainMenu.getUniqInstance().addSequence(sequence);
+
 		// attributs de l'onglet
 
 	}
@@ -46,14 +49,6 @@ public class MainOnglet extends JTabbedPane {
 		if (ongletsActivites == null)
 			ongletsActivites = new ArrayList<OngletActivite>();
 		return ongletsActivites;
-	}
-
-	private void initData() throws Exception {
-
-		for (int i = 0; i < getSequence().getActivites().size(); i++) {
-			addOngletsActivites(new OngletActivite(this));
-		}
-
 	}
 
 	public void addOngletsActivites(OngletActivite ongletsActivite) {

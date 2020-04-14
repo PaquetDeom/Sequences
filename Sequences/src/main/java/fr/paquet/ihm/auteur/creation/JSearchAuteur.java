@@ -42,6 +42,7 @@ public class JSearchAuteur extends JSearchDialog {
 		return jPanelAuteurNom;
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public List getValues() {
 		if (JSearchAuteur.getJPanelAuteurNom(getNom()) == null)
@@ -61,6 +62,7 @@ public class JSearchAuteur extends JSearchDialog {
 		return new String[] { "nom", "prenom" };
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public Class[] getColumnsClass() {
 		return new Class[] { String.class, String.class };
@@ -78,6 +80,7 @@ public class JSearchAuteur extends JSearchDialog {
 		return "";
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	protected Class getDialogClass() {
 		return JModifyAuteur.class;

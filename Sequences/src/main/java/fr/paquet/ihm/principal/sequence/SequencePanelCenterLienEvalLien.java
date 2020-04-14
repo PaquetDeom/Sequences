@@ -47,7 +47,7 @@ public class SequencePanelCenterLienEvalLien extends CommunJLabelJTextAreaVertic
 		textArea.setLineWrap(true);
 	}
 
-	private SequencePanelCenterLienEval getSequencePanelCenterLienEval() {
+	public SequencePanelCenterLienEval getSequencePanelCenterLienEval() {
 		return sequencePanelCenterLienEval;
 	}
 

@@ -19,7 +19,7 @@ import fr.paquet.referentiel.SavoirAssocie;
 import fr.paquet.sequence.Sequence;
 
 @Entity
-@Table(name = "ACTIVITE")
+@Table(name = "ACTIVITE_1")
 public class Activite_1 {
 
 	@Id

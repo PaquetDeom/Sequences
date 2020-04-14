@@ -81,7 +81,7 @@ public class ActivitePanelEntete extends JPanel {
 		return activitePanelEnteteImage;
 	}
 
-	private ActivitePanel getActivitePanel() {
+	public ActivitePanel getActivitePanel() {
 		return activitePanel;
 	}
 

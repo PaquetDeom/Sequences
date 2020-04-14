@@ -54,7 +54,7 @@ public class SequencePanelEntetePbTempsJSlider extends JPanel {
 
 	}
 
-	private SequencePanelEntetePbTemps getSequencePanelEntetePbTemps() {
+	public SequencePanelEntetePbTemps getSequencePanelEntetePbTemps() {
 		return sequencePanelEntetePbTemps;
 	}
 

@@ -51,7 +51,7 @@ public class SequencePanelButtomActJPanelJLabel extends JPanel {
 		this.revalidate();
 	}
 
-	private SequencePanelButtomAct getSequencePanelButtomAct() {
+	public SequencePanelButtomAct getSequencePanelButtomAct() {
 		return sequencePanelButtomAct;
 	}
 

@@ -31,7 +31,7 @@ public class SequencePanelCenterLienEval extends JPanel {
 				GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
 	}
 
-	private SequencePanelCenter getSequencePanelCenter() {
+	public SequencePanelCenter getSequencePanelCenter() {
 		return sequencePanelCenter;
 	}
 

@@ -22,7 +22,7 @@ public class ActiviteCompTitre extends CommunTitle {
 
 	}
 
-	private ActivitePanelCompetencesSavoirs getActivitePanelCompetencesSavoirs() {
+	public ActivitePanelCompetencesSavoirs getActivitePanelCompetencesSavoirs() {
 		return activitePanelCompetencesSavoirs;
 	}
 

@@ -25,7 +25,7 @@ public class SequencePanelButtomCompTitre extends CommunTitle {
 
 	}
 
-	private SequencePanelButtomComp getSequencePanelButtomComp() {
+	public SequencePanelButtomComp getSequencePanelButtomComp() {
 		return sequencePanelButtomComp;
 
 	}

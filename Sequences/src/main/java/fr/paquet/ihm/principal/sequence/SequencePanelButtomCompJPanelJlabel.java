@@ -49,7 +49,7 @@ public class SequencePanelButtomCompJPanelJlabel extends JPanel {
 		this.revalidate();
 	}
 
-	private SequencePanelButtomComp getSequencePanelButtomComp() {
+	public SequencePanelButtomComp getSequencePanelButtomComp() {
 		return sequencePanelButtomComp;
 	}
 

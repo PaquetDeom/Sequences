@@ -2,7 +2,6 @@ package fr.paquet.ihm.commun.competence;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Hashtable;
 import java.util.List;
 
 import javax.swing.JTree;

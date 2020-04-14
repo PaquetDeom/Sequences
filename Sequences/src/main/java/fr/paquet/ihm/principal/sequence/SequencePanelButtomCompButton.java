@@ -24,7 +24,6 @@ public class SequencePanelButtomCompButton extends CommunJPanelButton {
 
 	}
 
-	@SuppressWarnings("unused")
 	private SequencePanelButtomComp getSequencePanelButtomComp() {
 		return sequencePanelButtomComp;
 	}

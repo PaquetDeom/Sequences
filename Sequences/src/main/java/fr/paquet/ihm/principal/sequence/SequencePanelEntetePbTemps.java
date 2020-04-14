@@ -32,7 +32,7 @@ public class SequencePanelEntetePbTemps extends JPanel {
 
 	}
 
-	private SequencePanelEntete getSequencePanelEntete() {
+	public SequencePanelEntete getSequencePanelEntete() {
 		return sequencePanelEntete;
 	}
 

@@ -4,7 +4,7 @@ import javax.persistence.Query;
 
 import fr.paquet.commun.Diplome;
 import fr.paquet.dataBase.Connect;
-import main.Main;
+
 
 public class DiplomeFactory extends Factory {
 

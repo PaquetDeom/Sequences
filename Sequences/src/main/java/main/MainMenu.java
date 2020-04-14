@@ -5,6 +5,7 @@ import java.util.Hashtable;
 import javax.swing.*;
 
 import fr.paquet.ihm.action.*;
+import fr.paquet.sequence.Sequence;
 
 public class MainMenu extends JMenuBar {
 
@@ -19,8 +20,10 @@ public class MainMenu extends JMenuBar {
 	private ActionSave actionSave = null;
 	private ActionRef actionRef = null;
 	private static MainMenu mainMenu = null;
-
 	private ActionGestionnaire actionGestionnaire = null;
+	private ActionActivite actionActivites = null;
+	private ActionCompetences actionCompetences = null;
+	private ActionNewVersion actionNewVersion = null;
 
 	/**
 	 * Constructeur de la class ajoute les Action a MainMenu<br/>
@@ -36,12 +39,55 @@ public class MainMenu extends JMenuBar {
 		addAction(getActionRef());
 		setActionSave(new ActionSave());
 		addAction(getActionSave());
+		setActionNewVersion(new ActionNewVersion());
+		addAction(getActionNewVersion());
+		setActionCompetences(new ActionCompetences());
+		addAction(getActionCompetences());
+		setActionActivites(new ActionActivite());
+		addAction(getActionActivites());
 		addAction(new ActionQuitter());
 
 	}
 
-	private ActionBDA getActionRef() {
-		// TODO Auto-generated method stub
+	public void addSequence(Sequence seq) throws Exception {
+		getActionRef().setSequence(seq);
+		getActionSave().setSequence(seq);
+		getActionNewVersion().setSequence(seq);
+		getActionCompetences().setSequence(seq);
+		getActionActivites().setSequence(seq);
+	}
+
+	private ActionActivite getActionActivites() {
+
+		return actionActivites;
+	}
+
+	private ActionCompetences getActionCompetences() {
+
+		return actionCompetences;
+	}
+
+	private ActionNewVersion getActionNewVersion() {
+		return actionNewVersion;
+	}
+
+	private void setActionActivites(ActionActivite actionActivite) {
+		this.actionActivites = actionActivite;
+
+	}
+
+	private void setActionCompetences(ActionCompetences actionCompetences) {
+		this.actionCompetences = actionCompetences;
+
+	}
+
+	private void setActionNewVersion(ActionNewVersion actionNewVersion) {
+		this.actionNewVersion = actionNewVersion;
+
+	}
+
+	private ActionRef getActionRef() {
+
 		return actionRef;
 	}
 
