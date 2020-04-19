@@ -2,9 +2,11 @@ package fr.paquet.ihm.action;
 
 import java.awt.event.ActionEvent;
 
+import fr.paquet.dataBase.Connect;
 import fr.paquet.sequence.Sequence;
+import main.MainFrame;
 
-public class ActionNewVersion extends ActionBDA {
+public class ActionVisible extends ActionBDA {
 
 	/**
 	 * 
@@ -12,7 +14,7 @@ public class ActionNewVersion extends ActionBDA {
 	private static final long serialVersionUID = 1L;
 	private Sequence sequence = null;
 
-	public ActionNewVersion() {
+	public ActionVisible() {
 		super();
 		putValue(NAME, getName());
 		if (sequence == null)
@@ -20,15 +22,18 @@ public class ActionNewVersion extends ActionBDA {
 	}
 
 	public void setSequence(Sequence sequence) {
-		if (sequence != null)
+		if (!sequence.isVisible() && Connect.getPConnexion().getUser().getAuteur() == sequence.getAuteur())
 			setEnabled(true);
 		this.sequence = sequence;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		sequence.setVisible(true);
 
-		// TODO
+		MainFrame.getUniqInstance().getMainOnglet().getOngletSequence().getSequencePanel().getsequencePanelVersion()
+				.affiche();
+		setEnabled(false);
 
 	}
 
@@ -41,7 +46,7 @@ public class ActionNewVersion extends ActionBDA {
 	@Override
 	public String getName() {
 
-		return "Créer une copie";
+		return "Rendre visible";
 	}
 
 }

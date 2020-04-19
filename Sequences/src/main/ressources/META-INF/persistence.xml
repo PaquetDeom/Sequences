@@ -39,7 +39,7 @@
 		<properties>
 			<!-- <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" 
 				/> <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/sequence" 
-				/> <property name="javax.persistence.jdbc.user" value="postgre" /> <property 
+				/> <property name="javax.persistence.jdbc.user" value="postgres" /> <property 
 				name="javax.persistence.jdbc.password" value="Login5340" /> <property name="eclipselink.ddl-generation" 
 				value="drop-and-create-tables" /> -->
 

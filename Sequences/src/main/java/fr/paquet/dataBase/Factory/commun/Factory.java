@@ -1,12 +1,15 @@
 package fr.paquet.dataBase.Factory.commun;
 
+import java.util.EnumSet;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
+import fr.paquet.activite.DemarchePedagogique;
 import fr.paquet.dataBase.Connect;
+import fr.paquet.dataBase.QueryFindAll;
 
 public abstract class Factory {
 
@@ -16,10 +19,16 @@ public abstract class Factory {
 
 	public List<? extends Object> findAll() throws Exception {
 
-		if (getClassObject() == null)
-			throw new Exception("Vous n'avez pas saisi de nom de class");
+		String queryString = null;
 
-		Query query = Connect.getEm().createQuery("SELECT obj FROM" + getClassObject() + "obj");
+		for (QueryFindAll qE : EnumSet.allOf(QueryFindAll.class)) {
+			if (qE.getClassObject() == getClassObject()) {
+				queryString = qE.getQuery();
+				break;
+			}
+		}
+
+		Query query = Connect.getEm().createQuery(queryString);
 
 		@SuppressWarnings("unchecked")
 		List<Object> objects = (List<Object>) query.getResultList();

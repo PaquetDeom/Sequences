@@ -17,7 +17,7 @@ public class SequencePanelButtomAct extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private SequencePanel sequencePanel = null;
 
-	public SequencePanelButtomAct(SequencePanel sequencePanel) throws Exception {
+	public SequencePanelButtomAct(SequencePanel sequencePanel) {
 		super();
 
 		// set des compposants
@@ -41,7 +41,7 @@ public class SequencePanelButtomAct extends JPanel {
 
 	private SequencePanelButtomActButton sequencePanelButtomActButton = null;
 
-	private SequencePanelButtomActButton getSequencePanelButtomActButton() throws Exception {
+	private SequencePanelButtomActButton getSequencePanelButtomActButton() {
 		if (sequencePanelButtomActButton == null)
 			sequencePanelButtomActButton = new SequencePanelButtomActButton("+ Activité", Title.ACTIVITES.getcolumn(),
 					this);
@@ -50,7 +50,7 @@ public class SequencePanelButtomAct extends JPanel {
 
 	private SequencePanelButtomActTitre sequencePanelButtomActTitre = null;
 
-	private SequencePanelButtomActTitre getSequencePanelButtomActTitre() throws Exception {
+	private SequencePanelButtomActTitre getSequencePanelButtomActTitre() {
 		if (sequencePanelButtomActTitre == null)
 			sequencePanelButtomActTitre = new SequencePanelButtomActTitre(Title.ACTIVITES, this);
 		return sequencePanelButtomActTitre;

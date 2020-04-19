@@ -17,7 +17,7 @@ public class ActivitePanelCompetencesSavoirs extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private ActivitePanel activitePanel = null;
 
-	public ActivitePanelCompetencesSavoirs(ActivitePanel activitePanel) throws Exception {
+	public ActivitePanelCompetencesSavoirs(ActivitePanel activitePanel)  {
 		super();
 
 		// set des composants
@@ -41,7 +41,7 @@ public class ActivitePanelCompetencesSavoirs extends JPanel {
 
 	private ActiviteCompButton activiteCompButton = null;
 
-	private ActiviteCompButton getActiviteCompButton() throws Exception {
+	private ActiviteCompButton getActiviteCompButton() {
 		if (activiteCompButton == null)
 			activiteCompButton = new ActiviteCompButton("+ Compétence", Title.COMPETENCES.getcolumn(), this);
 		return activiteCompButton;
@@ -57,7 +57,7 @@ public class ActivitePanelCompetencesSavoirs extends JPanel {
 
 	private ActiviteCompTitre activiteCompTitre = null;
 
-	private ActiviteCompTitre getActiviteCompTitre() throws Exception {
+	private ActiviteCompTitre getActiviteCompTitre()  {
 		if (activiteCompTitre == null)
 			activiteCompTitre = new ActiviteCompTitre(Title.COMPETENCES, this);
 		return activiteCompTitre;

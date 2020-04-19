@@ -46,7 +46,7 @@ public class JPanelNewSequence extends JPanel {
 
 	private JPanelNewSequenceClasse jPanelNewSequenceClasse = null;
 
-	private JPanelNewSequenceClasse getjPanelNewSequenceClasse() {
+	public JPanelNewSequenceClasse getjPanelNewSequenceClasse() {
 		if (jPanelNewSequenceClasse == null)
 			jPanelNewSequenceClasse = new JPanelNewSequenceClasse(this);
 		return jPanelNewSequenceClasse;
@@ -78,7 +78,7 @@ public class JPanelNewSequence extends JPanel {
 
 	private JPanelNewSequenceButton jPanelNewSequenceButton = null;
 
-	private JPanelNewSequenceButton getjPanelNewSequenceButton() {
+	public JPanelNewSequenceButton getjPanelNewSequenceButton() {
 		if (jPanelNewSequenceButton == null)
 			jPanelNewSequenceButton = new JPanelNewSequenceButton(this);
 		return jPanelNewSequenceButton;

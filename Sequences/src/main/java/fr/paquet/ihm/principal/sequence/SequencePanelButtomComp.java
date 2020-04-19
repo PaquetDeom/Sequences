@@ -17,7 +17,7 @@ public class SequencePanelButtomComp extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private SequencePanel sequencePanel = null;
 
-	public SequencePanelButtomComp(SequencePanel sequencePanel) throws Exception {
+	public SequencePanelButtomComp(SequencePanel sequencePanel) {
 		super();
 
 		// set des compposants
@@ -50,7 +50,7 @@ public class SequencePanelButtomComp extends JPanel {
 
 	private SequencePanelButtomCompTitre sequencePanelButtomCompTitre = null;
 
-	private SequencePanelButtomCompTitre getSequencePanelButtomCompTitre() throws Exception {
+	private SequencePanelButtomCompTitre getSequencePanelButtomCompTitre() {
 		if (sequencePanelButtomCompTitre == null)
 			sequencePanelButtomCompTitre = new SequencePanelButtomCompTitre(Title.COMPETENCES, this);
 		return sequencePanelButtomCompTitre;
@@ -58,7 +58,7 @@ public class SequencePanelButtomComp extends JPanel {
 
 	private SequencePanelButtomCompButton sequencePanelButtomCompButton = null;
 
-	private SequencePanelButtomCompButton getSequencePanelButtomCompButton() throws Exception {
+	private SequencePanelButtomCompButton getSequencePanelButtomCompButton() {
 		if (sequencePanelButtomCompButton == null)
 			sequencePanelButtomCompButton = new SequencePanelButtomCompButton("+ Compétence",
 					Title.COMPETENCES.getcolumn(), this);

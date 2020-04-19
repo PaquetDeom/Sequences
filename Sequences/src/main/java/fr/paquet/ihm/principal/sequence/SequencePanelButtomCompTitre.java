@@ -11,7 +11,7 @@ public class SequencePanelButtomCompTitre extends CommunTitle {
 	private static final long serialVersionUID = 1L;
 	private SequencePanelButtomComp sequencePanelButtomComp = null;
 
-	public SequencePanelButtomCompTitre(Title title, SequencePanelButtomComp sequencePanelButtomComp) throws Exception {
+	public SequencePanelButtomCompTitre(Title title, SequencePanelButtomComp sequencePanelButtomComp) {
 		super(title);
 
 		// ajout des objets

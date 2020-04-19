@@ -16,7 +16,7 @@ public class SequencePanelButtomCompButton extends CommunJPanelButton {
 	private SequencePanelButtomComp sequencePanelButtomComp = null;
 
 	public SequencePanelButtomCompButton(String titleButton, int column,
-			SequencePanelButtomComp sequencePanelButtomComp) throws Exception {
+			SequencePanelButtomComp sequencePanelButtomComp)  {
 		super(titleButton, column);
 
 		// setteur des objets

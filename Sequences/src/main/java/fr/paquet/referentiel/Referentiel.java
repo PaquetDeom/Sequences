@@ -159,7 +159,7 @@ public class Referentiel {
 	}
 
 	public String toString() {
-		return getDiplome().getDiplome() + " - " + getDiplome().getType();
+		return getDiplome().getType() + " - " + getDiplome().getDiplome();
 	}
 
 }

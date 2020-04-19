@@ -15,7 +15,7 @@ public abstract class CommunJPanelButton extends JPanel {
 	protected JButton button = null;
 	private int column = 0;
 
-	protected CommunJPanelButton(String titleButton, int column) throws Exception {
+	protected CommunJPanelButton(String titleButton, int column)  {
 		super();
 
 		// setteur des objet

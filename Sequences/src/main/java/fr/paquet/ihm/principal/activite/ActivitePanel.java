@@ -15,7 +15,7 @@ public class ActivitePanel extends JPanel {
 	private OngletActivite ongletActivite = null;
 	private String titre = null;
 
-	public ActivitePanel(OngletActivite ongletActivite) throws Exception {
+	public ActivitePanel(OngletActivite ongletActivite) {
 		super();
 
 		// set des composants
@@ -26,11 +26,9 @@ public class ActivitePanel extends JPanel {
 		setLayout(new GridBagLayout());
 
 		// ajout des composants
-		// add(new
-		// SequencePanelVersion(getOngletActivite().getMainOnglet().getOngletSequence().getSequencePanel()),
-		// new GridBagConstraints(0, 0, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
-		// GridBagConstraints.BOTH,
-		// new Insets(0, 0, 0, 0), 0, 0));
+		add(getOngletActivite().getMainOnglet().getOngletSequence().getSequencePanel().getsequencePanelVersion(),
+				new GridBagConstraints(0, 0, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+						new Insets(0, 0, 0, 0), 0, 0));
 		add(new ActivitePanelEntete(this), new GridBagConstraints(0, 1, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 		add(new ActivitePanelCorps(this), new GridBagConstraints(0, 2, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
@@ -45,7 +43,7 @@ public class ActivitePanel extends JPanel {
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 		add(new ActivitePanelStrategie(this), new GridBagConstraints(0, 7, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-		
+
 		// attribut du Panel
 	}
 

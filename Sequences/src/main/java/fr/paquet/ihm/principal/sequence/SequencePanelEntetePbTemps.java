@@ -14,7 +14,7 @@ public class SequencePanelEntetePbTemps extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private SequencePanelEntete sequencePanelEntete = null;
 
-	public SequencePanelEntetePbTemps(SequencePanelEntete sPE) throws Exception {
+	public SequencePanelEntetePbTemps(SequencePanelEntete sPE) {
 		super();
 
 		// set des objets

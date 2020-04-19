@@ -16,7 +16,7 @@ public class SequencePanelCenter extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private SequencePanel sequencePanel = null;
 
-	public SequencePanelCenter(SequencePanel sequencePanel) throws Exception {
+	public SequencePanelCenter(SequencePanel sequencePanel) {
 		super();
 
 		// set des éléments

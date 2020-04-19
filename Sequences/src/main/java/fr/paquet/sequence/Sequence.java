@@ -23,7 +23,7 @@ import fr.paquet.referentiel.SavoirAssocie;
 
 @Entity
 @Table(name = "SEQUENCENUM")
-public class Sequence extends SequenceVersio {
+public class Sequence {
 
 	@Id
 	@GeneratedValue
@@ -66,18 +66,32 @@ public class Sequence extends SequenceVersio {
 	@Column(name = "SESEVE")
 	private int nVersion = 0;
 
-	public Sequence(String titre, Referentiel referentiel, Auteur auteur, int nVersion) throws Exception {
+	@Column(name = "SESECL")
+	private String classe = null;
+
+	public Sequence(String titre, String classe, boolean visi, Referentiel referentiel, Auteur auteur, int nVersion)
+			throws Exception {
 		this();
 
 		setTitre(titre);
 		setReferentiel(referentiel);
 		setAuteur(auteur);
 		setnVersion(nVersion);
+		setClasse(classe);
+		setVisible(visi);
 
 	}
 
 	public Sequence() {
 		super();
+	}
+
+	private void setClasse(String classe) {
+		this.classe = classe;
+	}
+
+	public String getClasse() {
+		return classe;
 	}
 
 	/**
@@ -93,10 +107,9 @@ public class Sequence extends SequenceVersio {
 	}
 
 	public String getTitre() {
-		if (getTitreVers() == null)
-			return titre;
-		else
-			return getTitreVers();
+
+		return titre;
+
 	}
 
 	private void setTitre(String titre) {
@@ -110,10 +123,8 @@ public class Sequence extends SequenceVersio {
 
 	public Referentiel getReferentiel() {
 
-		if (getReferentielVers() == null)
-			return referentiel;
-		else
-			return getReferentielVers();
+		return referentiel;
+
 	}
 
 	@OneToMany(mappedBy = "sequence", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -121,12 +132,10 @@ public class Sequence extends SequenceVersio {
 
 	public List<Activite_1> getActivites() {
 
-		if (getActivitesVers() == null) {
-			if (activites == null)
-				activites = new ArrayList<Activite_1>();
-			return activites;
-		} else
-			return getActivitesVers();
+		if (activites == null)
+			activites = new ArrayList<Activite_1>();
+		return activites;
+
 	}
 
 	@Transient
@@ -134,12 +143,10 @@ public class Sequence extends SequenceVersio {
 
 	public List<CompetenceIntermediaire> getCompetenceIntermediaires() {
 
-		if (getCompetenceIntermediairesVers() == null) {
-			if (competenceIntermediaires == null)
-				competenceIntermediaires = new ArrayList<CompetenceIntermediaire>();
-			return competenceIntermediaires;
-		} else
-			return getCompetenceIntermediairesVers();
+		if (competenceIntermediaires == null)
+			competenceIntermediaires = new ArrayList<CompetenceIntermediaire>();
+		return competenceIntermediaires;
+
 	}
 
 	@Transient
@@ -147,19 +154,16 @@ public class Sequence extends SequenceVersio {
 
 	public List<SavoirAssocie> getSavoirAssocies() {
 
-		if (getSavoirAssociesVers() == null) {
-			if (savoirAssocies == null)
-				savoirAssocies = new ArrayList<SavoirAssocie>();
-			return savoirAssocies;
-		} else
-			return getSavoirAssociesVers();
+		if (savoirAssocies == null)
+			savoirAssocies = new ArrayList<SavoirAssocie>();
+		return savoirAssocies;
+
 	}
 
 	public Auteur getAuteur() {
-		if (getAuteurVers() == null)
-			return auteur;
-		else
-			return getAuteurVers();
+
+		return auteur;
+
 	}
 
 	private void setAuteur(Auteur auteur) {
@@ -167,10 +171,9 @@ public class Sequence extends SequenceVersio {
 	}
 
 	public String getProblematique() {
-		if (getProblematiqueVers() == null)
-			return problematique;
-		else
-			return getProblematiqueVers();
+
+		return problematique;
+
 	}
 
 	public void setProblematique(String problematique) {
@@ -178,10 +181,9 @@ public class Sequence extends SequenceVersio {
 	}
 
 	public String getPrerequis() {
-		if (getPrerequisVers() == null)
-			return prerequis;
-		else
-			return getPrerequisVers();
+
+		return prerequis;
+
 	}
 
 	public void setPrerequis(String prerequis) {
@@ -189,10 +191,9 @@ public class Sequence extends SequenceVersio {
 	}
 
 	public String getContexte() {
-		if (getContexteVers() == null)
-			return contexte;
-		else
-			return getContexteVers();
+
+		return contexte;
+
 	}
 
 	public void setContexte(String contexte) {
@@ -200,10 +201,9 @@ public class Sequence extends SequenceVersio {
 	}
 
 	public String getElementsARetenir() {
-		if (getElementsARetenirVers() == null)
-			return elementsARetenir;
-		else
-			return getElementsARetenirVers();
+
+		return elementsARetenir;
+
 	}
 
 	public void setElementsARetenir(String elementsARetenir) {
@@ -211,10 +211,9 @@ public class Sequence extends SequenceVersio {
 	}
 
 	public String getLien() {
-		if (getLienVers() == null)
-			return lien;
-		else
-			return getLienVers();
+
+		return lien;
+
 	}
 
 	public void setLien(String lien) {
@@ -222,10 +221,9 @@ public class Sequence extends SequenceVersio {
 	}
 
 	public String getEval() {
-		if (getEvalVers() == null)
-			return Eval;
-		else
-			return getEvalVers();
+
+		return Eval;
+
 	}
 
 	public void setEval(String eval) {
@@ -233,7 +231,7 @@ public class Sequence extends SequenceVersio {
 	}
 
 	public boolean isVisible() {
-		// TODO
+
 		return visible;
 	}
 
@@ -242,25 +240,22 @@ public class Sequence extends SequenceVersio {
 	}
 
 	public boolean isModifiable() {
-		// TODO
+
 		return modifiable;
 	}
 
-	private void setModifiable(boolean modifiable) {
+	public void setModifiable(boolean modifiable) {
 
-		// la sequence et modifiable uniquement par son auteur et si il n'y a pas de
-		// version supérieur.
-		if (getAuteur().equals(Connect.getPConnexion().getUser().getAuteur()) && getnVersionVers() == 0)
+		if (getAuteur().equals(Connect.getPConnexion().getUser().getAuteur()))
 			modifiable = true;
 
 		this.modifiable = modifiable;
 	}
 
 	public int getnVersion() {
-		if (getnVersionVers() == 0)
-			return nVersion;
-		else
-			return getnVersionVers();
+
+		return nVersion;
+
 	}
 
 	private void setnVersion(int nVersion) {

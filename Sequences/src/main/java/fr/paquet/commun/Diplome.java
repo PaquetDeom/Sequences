@@ -2,6 +2,8 @@ package fr.paquet.commun;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -15,17 +17,17 @@ public class Diplome {
 	 * 
 	 *         La classe represente un diplome de l'education nationale<br/>
 	 */
-	
+
 	@Id
 	@GeneratedValue
 	@Column(name = "ID")
 	private int id = 0;
 
+	@Enumerated(EnumType.STRING)
+	private TypeDiplome type = null;
+
 	@Column(name = "DIPLOME", length = 50)
 	private String diplome = null;
-
-	@Column(name = "TYPE", length = 10)
-	private String type = null;
 
 	/**
 	 * Constructeur vide pour la gestion de la DB<br/>
@@ -40,7 +42,7 @@ public class Diplome {
 	 * @param diplome
 	 * @param type
 	 */
-	public Diplome(String diplome, String type) throws Exception {
+	public Diplome(TypeDiplome type, String diplome) throws Exception {
 		this();
 		setDiplome(diplome);
 		setType(type);
@@ -51,8 +53,8 @@ public class Diplome {
 		this.diplome = diplome.trim().toUpperCase();
 	}
 
-	private void setType(String type) {
-		this.type = type.trim().toUpperCase();
+	private void setType(TypeDiplome type) {
+		this.type = type;
 	}
 
 	public void setId(int id) {
@@ -74,7 +76,7 @@ public class Diplome {
 	 *         majuscule<br/>
 	 *         exemple : "PRO", "STI"...<br/>
 	 */
-	public String getType() {
+	public TypeDiplome getType() {
 		return type;
 	}
 
@@ -107,6 +109,6 @@ public class Diplome {
 
 	@Override
 	public String toString() {
-		return getDiplome() + " - " + getType();
+		return getDiplome() + " - " + getType().getType();
 	}
 }

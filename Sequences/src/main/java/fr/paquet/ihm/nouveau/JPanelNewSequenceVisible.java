@@ -17,6 +17,7 @@ public class JPanelNewSequenceVisible extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanelNewSequence jPanelNewSequence = null;
+	private JComboBox<String> jComboVisible = null;
 
 	public JPanelNewSequenceVisible(JPanelNewSequence jPanelNewSequence) {
 		super();
@@ -26,6 +27,7 @@ public class JPanelNewSequenceVisible extends JPanel {
 
 		// ajout du layout
 		setLayout(new GridBagLayout());
+		setVisibleBox(new JComboBox<String>());
 
 		// Affichege des component
 		add(new JLabel("Visibilité :"), new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER,
@@ -34,11 +36,16 @@ public class JPanelNewSequenceVisible extends JPanel {
 				GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5, 5), 0, 0));
 	}
 
-	private JComboBox<String> getVisibleBox() {
-		JComboBox<String> visible = new JComboBox<String>();
-		visible.addItem("Que moi");
-		visible.addItem("Tout le monde");
-		return visible;
+	private void setVisibleBox(JComboBox<String> jC) {
+		jC.addItem("");
+		jC.addItem("Que moi");
+		jC.addItem("Tout le monde");
+		this.jComboVisible = jC;
+	}
+
+	public JComboBox<String> getVisibleBox() {
+
+		return jComboVisible;
 	}
 
 	public JPanelNewSequence getjPanelNewSequence() {

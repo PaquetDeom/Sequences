@@ -1,2 +1,2 @@
-postgre
+postgres
 Login5340

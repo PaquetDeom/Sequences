@@ -14,7 +14,7 @@ public class SequencePanelEntete extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private SequencePanel sequencePanel = null;
 
-	public SequencePanelEntete(SequencePanel sequencePanel) throws Exception {
+	public SequencePanelEntete(SequencePanel sequencePanel) {
 
 		super();
 
@@ -41,7 +41,7 @@ public class SequencePanelEntete extends JPanel {
 
 	private SequencePanelEnteteImg sequencePanelEntetImg = null;
 
-	private SequencePanelEnteteImg getSequencePanelEntetImg() throws Exception {
+	private SequencePanelEnteteImg getSequencePanelEntetImg() {
 		if (sequencePanelEntetImg == null)
 			sequencePanelEntetImg = new SequencePanelEnteteImg(null, this);
 		return sequencePanelEntetImg;
@@ -49,7 +49,7 @@ public class SequencePanelEntete extends JPanel {
 
 	private SequencePanelEntetePbTemps sequencePanelEntetePbTemps = null;
 
-	private SequencePanelEntetePbTemps getSequencePanelEntetePbTemps() throws Exception {
+	private SequencePanelEntetePbTemps getSequencePanelEntetePbTemps() {
 		if (sequencePanelEntetePbTemps == null)
 			sequencePanelEntetePbTemps = new SequencePanelEntetePbTemps(this);
 		return sequencePanelEntetePbTemps;

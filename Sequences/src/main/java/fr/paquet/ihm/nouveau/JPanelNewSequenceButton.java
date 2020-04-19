@@ -2,18 +2,11 @@ package fr.paquet.ihm.nouveau;
 
 import javax.swing.JPanel;
 
-import fr.paquet.dataBase.Connect;
-import fr.paquet.ihm.alert.AlertType;
-import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.ihm.commun.JPanelButtonAnnulOk;
-import fr.paquet.sequence.Sequence;
-import main.MainFrame;
 
 import java.awt.BorderLayout;
 import javax.swing.JButton;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class JPanelNewSequenceButton extends JPanelButtonAnnulOk {
 
@@ -46,42 +39,11 @@ public class JPanelNewSequenceButton extends JPanelButtonAnnulOk {
 	@Override
 	public void setBtnAnnul(JButton btnAnnul) {
 
-		btnAnnul.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-
-				JPanelNewSequence jp = (JPanelNewSequence) getJPanel();
-				jp.getjDialogNewSequence().dispose();
-
-			}
-		});
 		this.btnAnnul = btnAnnul;
 	}
 
 	@Override
 	public void setBtnOk(JButton btnOk) {
-
-		btnOk.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-
-				JPanelNewSequence jp = (JPanelNewSequence) getJPanel();
-				try {
-
-					Sequence seq = new Sequence(jp.getjPanelNewSequenceTitle().getTitre(), null,
-							Connect.getPConnexion().getUser().getAuteur(), 1);
-					MainFrame.getUniqInstance().addPanel(seq);
-					jp.getjDialogNewSequence().dispose();
-
-				} catch (Exception e) {
-					new AlertWindow(AlertType.ERREUR, e.getMessage());
-					e.printStackTrace();
-				}
-
-			}
-		});
 
 		this.btnOk = btnOk;
 	}

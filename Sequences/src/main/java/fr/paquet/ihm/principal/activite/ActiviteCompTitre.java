@@ -11,8 +11,7 @@ public class ActiviteCompTitre extends CommunTitle {
 	private static final long serialVersionUID = 1L;
 	private ActivitePanelCompetencesSavoirs activitePanelCompetencesSavoirs = null;
 
-	public ActiviteCompTitre(Title competences, ActivitePanelCompetencesSavoirs activitePanelCompetencesSavoirs)
-			throws Exception {
+	public ActiviteCompTitre(Title competences, ActivitePanelCompetencesSavoirs activitePanelCompetencesSavoirs) {
 		super(competences);
 
 		// set des composants

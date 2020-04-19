@@ -16,7 +16,7 @@ public class ActiviteCompButton extends CommunJPanelButton {
 	private ActivitePanelCompetencesSavoirs activitePanelCompetencesSavoirs = null;
 
 	public ActiviteCompButton(String titleButton, int column,
-			ActivitePanelCompetencesSavoirs activitePanelCompetencesSavoirs) throws Exception {
+			ActivitePanelCompetencesSavoirs activitePanelCompetencesSavoirs) {
 		super(titleButton, column);
 
 		// set des composants

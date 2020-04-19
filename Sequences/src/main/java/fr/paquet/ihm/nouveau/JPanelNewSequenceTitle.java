@@ -6,9 +6,15 @@ import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import javax.swing.JTextField;
 
+import fr.paquet.dataBase.Factory.sequence.SequenceFactory;
+import fr.paquet.ihm.alert.AlertType;
+import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.ihm.style.StyleFont;
+import fr.paquet.sequence.Sequence;
 
 import java.awt.Insets;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 public class JPanelNewSequenceTitle extends JPanel {
 
@@ -31,11 +37,11 @@ public class JPanelNewSequenceTitle extends JPanel {
 
 		// Attributs du panel
 
-		// Getion de l'affichage
+		// Gestion de l'affichage
 		add(new JLabel("Titre de la séquence :"), new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER,
 				GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5, 5), 0, 0));
-		add(getTextField(), new GridBagConstraints(1, 0, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-				new Insets(5, 5, 5, 5), 0, 0));
+		add(getTextField(), new GridBagConstraints(1, 0, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
+				GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5, 5), 0, 0));
 	}
 
 	public JPanelNewSequence getjPanelNewSequence() {
@@ -53,15 +59,43 @@ public class JPanelNewSequenceTitle extends JPanel {
 	private void setTextField(JTextField textField) {
 		textField.setFont(StyleFont.TEXTEAREASEQUENCE.getFont());
 
+		textField.addFocusListener(new FocusListener() {
+
+			@Override
+			public void focusLost(FocusEvent event) {
+
+				String title = getTextField().getText();
+
+				Sequence seq;
+				try {
+					seq = new SequenceFactory().findSequenceByTitle(title);
+
+					if (seq != null) {
+						new AlertWindow(AlertType.INFORMATION, "Le titre est déja utilisé dans la base");
+						getTextField().setText(null);
+					}
+
+				} catch (Exception e) {
+					e.printStackTrace();
+					new AlertWindow(AlertType.ERREUR, e.getMessage());
+
+				}
+
+			}
+
+			@Override
+			public void focusGained(FocusEvent event) {
+				// DO NOTHING
+			}
+		});
+
 		this.textField = textField;
 	}
 
-	public String getTitre() throws Exception {
+	public String getTitre() {
 
-		if (!getTextField().getText().equals(""))
-			return getTextField().getText();
-		else
-			throw new Exception("La séquence doit avoir un titre");
+		return getTextField().getText();
+
 	}
 
 }

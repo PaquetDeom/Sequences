@@ -16,8 +16,7 @@ public class SequencePanelButtomActButton extends CommunJPanelButton {
 	private static final long serialVersionUID = 1L;
 	private SequencePanelButtomAct sequencePanelButtomAct = null;
 
-	public SequencePanelButtomActButton(String titleButton, int column, SequencePanelButtomAct sequencePanelButtonAct)
-			throws Exception {
+	public SequencePanelButtomActButton(String titleButton, int column, SequencePanelButtomAct sequencePanelButtonAct) {
 		super(titleButton, column);
 
 		// setteur des objets

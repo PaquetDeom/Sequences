@@ -24,6 +24,7 @@ public class MainMenu extends JMenuBar {
 	private ActionActivite actionActivites = null;
 	private ActionCompetences actionCompetences = null;
 	private ActionNewVersion actionNewVersion = null;
+	private ActionVisible actionVisible = null;
 
 	/**
 	 * Constructeur de la class ajoute les Action a MainMenu<br/>
@@ -41,6 +42,8 @@ public class MainMenu extends JMenuBar {
 		addAction(getActionSave());
 		setActionNewVersion(new ActionNewVersion());
 		addAction(getActionNewVersion());
+		setActionVisible(new ActionVisible());
+		addAction(getActionVisible());
 		setActionCompetences(new ActionCompetences());
 		addAction(getActionCompetences());
 		setActionActivites(new ActionActivite());
@@ -55,6 +58,8 @@ public class MainMenu extends JMenuBar {
 		getActionNewVersion().setSequence(seq);
 		getActionCompetences().setSequence(seq);
 		getActionActivites().setSequence(seq);
+		getActionVisible().setSequence(seq);
+
 	}
 
 	private ActionActivite getActionActivites() {
@@ -129,12 +134,20 @@ public class MainMenu extends JMenuBar {
 		return action;
 	}
 
-	public ActionSave getActionSave() {
+	private ActionSave getActionSave() {
 		return actionSave;
 	}
 
-	public void setActionSave(ActionSave actionSave) {
+	private void setActionSave(ActionSave actionSave) {
 		this.actionSave = actionSave;
+	}
+
+	private ActionVisible getActionVisible() {
+		return actionVisible;
+	}
+
+	private void setActionVisible(ActionVisible actionVisible) {
+		this.actionVisible = actionVisible;
 	}
 
 }

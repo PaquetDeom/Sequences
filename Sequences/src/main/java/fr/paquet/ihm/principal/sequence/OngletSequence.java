@@ -21,7 +21,7 @@ public class OngletSequence extends JComponent {
 	 * 
 	 * @throws Exception
 	 */
-	public OngletSequence(MainOnglet mainOnglet) throws Exception {
+	public OngletSequence(MainOnglet mainOnglet) {
 
 		super();
 
@@ -40,7 +40,7 @@ public class OngletSequence extends JComponent {
 
 	private SequencePanel sequencePanel = null;
 
-	public SequencePanel getSequencePanel() throws Exception {
+	public SequencePanel getSequencePanel() {
 		if (sequencePanel == null)
 			sequencePanel = new SequencePanel(this);
 		return sequencePanel;
