@@ -15,7 +15,7 @@ public class ActivitePanelConceptionQuestion extends CommunJLabelJTextAreaVertic
 	private ActivitePanelConception activitePanelConception = null;
 
 	public ActivitePanelConceptionQuestion(ActivitePanelConception activitePanelConception) {
-		super("Questionnement");
+		super(null, "Questionnement");
 
 		// set des compposants
 		setActivitePanelConception(activitePanelConception);

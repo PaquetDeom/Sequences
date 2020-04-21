@@ -15,7 +15,7 @@ public class ActivitePanelConceptionTrace extends CommunJLabelJTextAreaVertical 
 	private ActivitePanelConception activitePanelConception = null;
 
 	public ActivitePanelConceptionTrace(ActivitePanelConception activitePanelConception) {
-		super("Trace écrite");
+		super(null, "Trace écrite");
 
 		// set des composants
 		setActivitePanelConception(activitePanelConception);

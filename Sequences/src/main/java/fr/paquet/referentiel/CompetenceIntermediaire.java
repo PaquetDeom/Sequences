@@ -50,24 +50,20 @@ public class CompetenceIntermediaire {
 	/**
 	 * Le constructeur de la classe :
 	 * 
-	 * @param comp
-	 *            comp est de type Competence<br/>
+	 * @param comp       comp est de type Competence<br/>
 	 * 
-	 * @param unCode
-	 *            Le code est un entier<br/>
-	 *            La competence renvoie le code de la capacite + entier exemple
-	 *            :<br/>
-	 *            "C1.1" "C2.1"...<br/>
+	 * @param unCode     Le code est un entier<br/>
+	 *                   La competence renvoie le code de la capacite + entier
+	 *                   exemple :<br/>
+	 *                   "C1.1" "C2.1"...<br/>
 	 * 
-	 * @param unIntitule
-	 *            L'intitule de la competence intermediaire commence par un
-	 *            verbe.<br/>
+	 * @param unIntitule L'intitule de la competence intermediaire commence par un
+	 *                   verbe.<br/>
 	 * 
 	 * 
-	 * @throws Exception
-	 *             si le code de la competence intermediaire n'est pas un entier
-	 *             positif.<br/>
-	 *             renvoie "Code invalide".
+	 * @throws Exception si le code de la competence intermediaire n'est pas un
+	 *                   entier positif.<br/>
+	 *                   renvoie "Code invalide".
 	 */
 
 	public CompetenceIntermediaire(Competence comp, int unCode, String unIntitule) throws Exception {
@@ -124,9 +120,13 @@ public class CompetenceIntermediaire {
 	}
 
 	public void addCondition(Condition cond) {
+		getConditionsInt().add(cond);
+	}
+
+	private List<Condition> getConditionsInt() {
 		if (conditions == null)
 			conditions = new ArrayList<Condition>();
-		getConditions().add(cond);
+		return conditions;
 	}
 
 	/**
@@ -166,19 +166,10 @@ public class CompetenceIntermediaire {
 	 * 
 	 */
 	public List<Condition> getConditions() {
-		if (isConditionsGenerale() && conditions == null)
+		if (getConditionsInt().isEmpty())
 			return getCompetence().getConditions();
 		else
-			return conditions;
-	}
-
-	/**
-	 * Si conditions est null ou vide<br/>
-	 * 
-	 * @return true<br/>
-	 */
-	public boolean isConditionsGenerale() {
-		return conditions == null || conditions.size() == 0;
+			return getConditionsInt();
 	}
 
 	public String getVerbe() {
@@ -224,4 +215,7 @@ public class CompetenceIntermediaire {
 		return id;
 	}
 
+	public String toString() {
+		return getCode() + " : " + getIntitule();
+	}
 }

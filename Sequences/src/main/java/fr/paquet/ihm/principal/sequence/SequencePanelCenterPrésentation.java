@@ -9,7 +9,6 @@ import javax.swing.JTextArea;
 import fr.paquet.ihm.commun.CommunJLabelJTextAreaVertical;
 import fr.paquet.ihm.style.StyleFont;
 
-
 public class SequencePanelCenterPrésentation extends CommunJLabelJTextAreaVertical {
 
 	/**
@@ -18,13 +17,13 @@ public class SequencePanelCenterPrésentation extends CommunJLabelJTextAreaVerti
 	private static final long serialVersionUID = 1L;
 
 	public SequencePanelCenterPrésentation(String title, SequencePanelCenter sequencePanelCenter) {
-		super(title);
+		super(null, title);
 
 	}
 
 	@Override
 	protected void setTextArea(JTextArea textArea) {
-		
+
 		textArea.setFont(StyleFont.TEXTEAREASEQUENCE.getFont());
 
 		textArea.addFocusListener(new FocusListener() {
@@ -50,6 +49,6 @@ public class SequencePanelCenterPrésentation extends CommunJLabelJTextAreaVerti
 	protected void setPanelJTextAreaTextSize(Dimension dimensionTextArea) {
 		this.dimensionTextArea = new Dimension(0, getPreferredSize().height * 8);
 
-		}
+	}
 
 }

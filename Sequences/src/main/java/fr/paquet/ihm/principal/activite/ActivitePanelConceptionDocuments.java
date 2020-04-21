@@ -15,7 +15,7 @@ public class ActivitePanelConceptionDocuments extends CommunJLabelJTextAreaVerti
 	private ActivitePanelConception activitePanelConception = null;
 
 	public ActivitePanelConceptionDocuments(ActivitePanelConception activitePanelConception) {
-		super("Documents");
+		super(null, "Documents");
 
 		// set des composants
 		setActivitePanelConception(activitePanelConception);

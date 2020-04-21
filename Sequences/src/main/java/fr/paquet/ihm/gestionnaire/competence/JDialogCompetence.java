@@ -7,41 +7,29 @@ import java.util.List;
 import javax.swing.*;
 
 import fr.paquet.ihm.commun.gestionnaire.JDialogGestion;
-import fr.paquet.ihm.commun.gestionnaire.SelectedEvent;
-import fr.paquet.ihm.commun.gestionnaire.SelectionListener;
 import fr.paquet.referentiel.Capacite;
 import fr.paquet.referentiel.Competence;
 import fr.paquet.referentiel.CompetenceIntermediaire;
 import fr.paquet.sequence.Sequence;
 
-public class JDialogCompetence extends JDialogGestion implements SelectionListener {
+public class JDialogCompetence extends JDialogGestion {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Sequence sequence = null;
 
 	public JDialogCompetence(Sequence sequence) throws Exception {
-		super("Gestionnaire de compétences");
-
-		// setteur des elements
-		setSequence(sequence);
-
-		// listener
-		getJtreeGestionnaireCompetence().addSelectionListeners(this);
+		super("Gestionnaire de compétences", sequence);
 
 	}
 
 	public Sequence getSequence() {
-		return sequence;
-	}
-
-	private void setSequence(Sequence sequence) {
-		this.sequence = sequence;
+		return (Sequence) getObject();
 	}
 
 	private List<Competence> getCompetences() {
+
 		List<Competence> comps = new ArrayList<Competence>();
 
 		for (Capacite cap : getSequence().getReferentiel().getCapacites()) {
@@ -52,34 +40,26 @@ public class JDialogCompetence extends JDialogGestion implements SelectionListen
 		return comps;
 	}
 
-	private List<CompetenceIntermediaire> getCompetencesSequence() {
+	public List<CompetenceIntermediaire> getCompetencesSequence() {
 		return getSequence().getCompetenceIntermediaires();
 	}
 
-	private JtreeGestionnaireCompetence jtreeGestionnaireCompetence = null;
+	@Override
+	protected void setJtreeGestionnaire() {
+		JtreeGestionnaireCompetence jtreeGestionnaire = new JtreeGestionnaireCompetence(getCompetences());
+		this.jtreeGestionnaire = jtreeGestionnaire;
+	}
 
-	private JtreeGestionnaireCompetence getJtreeGestionnaireCompetence() {
-		if (jtreeGestionnaireCompetence == null)
-			jtreeGestionnaireCompetence = new JtreeGestionnaireCompetence(getCompetences());
-		return jtreeGestionnaireCompetence;
+	@Override
+	protected void setJPanelGestionnaireRight() {
+		JPanelGestionnaireCompetenceRight panel = new JPanelGestionnaireCompetenceRight(this);
+		this.jPanelGestionnaireRight = panel;
+
 	}
 
 	@Override
 	protected void setJButtomPanel(JPanel jPanel) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	protected void setJSplitPaneLeft() {
-		if (getCompetences() != null && !getCompetences().isEmpty())
-			this.leftComponent = getJtreeGestionnaireCompetence();
-
-	}
-
-	@Override
-	protected void setJSplitPaneRight() {
-		// TODO Auto-generated method stub
+		this.buttomPanel = jPanel;
 
 	}
 
@@ -89,13 +69,6 @@ public class JDialogCompetence extends JDialogGestion implements SelectionListen
 
 		if (button.getText().equals("Annuler"))
 			this.dispose();
-
-	}
-
-	@Override
-	public void SelectionChange(SelectedEvent eventObject) {
-		String text = (String) eventObject.getSource();
-		System.out.println(text);
 
 	}
 

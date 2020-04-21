@@ -17,7 +17,7 @@ public class SequencePanelCenterElements extends CommunJLabelJTextAreaVertical {
 	private static final long serialVersionUID = 1L;
 
 	public SequencePanelCenterElements(String title, SequencePanelCenter sequencePanelCenter) {
-		super(title);
+		super(null, title);
 
 	}
 

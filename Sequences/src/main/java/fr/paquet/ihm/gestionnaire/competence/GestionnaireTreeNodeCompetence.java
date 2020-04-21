@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 
+import fr.paquet.ihm.commun.gestionnaire.UserObject;
 import fr.paquet.referentiel.Competence;
 import fr.paquet.referentiel.CompetenceIntermediaire;
 
@@ -17,17 +18,40 @@ public class GestionnaireTreeNodeCompetence extends DefaultMutableTreeNode {
 	public GestionnaireTreeNodeCompetence(List<Competence> competences) {
 		super();
 
-		for (Competence competence : competences) {
+		this.setUserObject(new UserObject(null, "Compétences"));
 
-			String text = competence.toString();
-			this.setUserObject(new UserObject(text));
+		for (Competence comp : competences) {
+			this.add(new TablesTreeNode(comp));
+		}
+	}
 
-			for (CompetenceIntermediaire compInt : competence.getCompetencesIntermediaires()) {
-				String textComp = compInt.toString();
-				this.add(new TableTreeNode(textComp));
+	public static class TablesTreeNode extends DefaultMutableTreeNode {
+
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		public TablesTreeNode(Competence comp) {
+			super();
+
+			this.setUserObject(new UserObject(comp, comp.toString()));
+			List<CompetenceIntermediaire> compInts = comp.getCompetencesIntermediaires();
+
+			if (compInts != null && !compInts.isEmpty()) {
+				for (CompetenceIntermediaire compInt : compInts) {
+					this.add(new TableTreeNode(compInt));
+
+				}
+
 			}
+
 		}
 
+		@Override
+		public boolean isLeaf() {
+			return false;
+		}
 	}
 
 	public static class TableTreeNode extends DefaultMutableTreeNode {
@@ -37,9 +61,10 @@ public class GestionnaireTreeNodeCompetence extends DefaultMutableTreeNode {
 		 */
 		private static final long serialVersionUID = 1L;
 
-		public TableTreeNode(String text) {
+		public TableTreeNode(CompetenceIntermediaire compInt) {
 			super();
-			this.setUserObject(new UserObject(text));
+
+			this.setUserObject(new UserObject(compInt, compInt.toString()));
 
 		}
 
@@ -49,17 +74,9 @@ public class GestionnaireTreeNodeCompetence extends DefaultMutableTreeNode {
 		}
 	}
 
-	public static class UserObject {
-		private String text = null;
-
-		public UserObject(String text) {
-			super();
-			this.text = text;
-		}
-
-		public String getText() {
-			return text;
-		}
+	@Override
+	public boolean isLeaf() {
+		return false;
 	}
 
 }

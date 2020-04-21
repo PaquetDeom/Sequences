@@ -18,7 +18,7 @@ public class SequencePanelCenterLienEvalEval extends CommunJLabelJTextAreaVertic
 	private SequencePanelCenterLienEval sequencePanelCenterLienEval = null;
 
 	protected SequencePanelCenterLienEvalEval(SequencePanelCenterLienEval sequencePanelCenterLienEval, String title) {
-		super(title);
+		super(null, title);
 
 		// setteur des components
 		setSequencePanelCenterLienEval(sequencePanelCenterLienEval);

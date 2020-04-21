@@ -15,7 +15,7 @@ public class ActivitePanelConceptionRessources extends CommunJLabelJTextAreaVert
 	private ActivitePanelConception activitePanelConception = null;
 
 	public ActivitePanelConceptionRessources(ActivitePanelConception activitePanelConception) {
-		super("Ressouces / Conditions");
+		super(null, "Ressouces / Conditions");
 
 		// set des composants
 		setActivitePanelConception(activitePanelConception);

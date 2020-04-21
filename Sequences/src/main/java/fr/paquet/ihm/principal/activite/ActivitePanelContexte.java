@@ -15,15 +15,15 @@ public class ActivitePanelContexte extends CommunJLabelJTextAreaVertical {
 	private ActivitePanel activitepanel = null;
 
 	public ActivitePanelContexte(ActivitePanel activitePanel) {
-		super("Contexte professionnel");
+		super(null, "Contexte professionnel");
 
-		//set des composants
+		// set des composants
 		setActivitepanel(activitePanel);
 	}
-	
+
 	public ActivitePanel getActivitepanel() {
 		return activitepanel;
-		
+
 	}
 
 	private void setActivitepanel(ActivitePanel activitepanel) {
@@ -42,7 +42,5 @@ public class ActivitePanelContexte extends CommunJLabelJTextAreaVertical {
 		this.dimensionTextArea = new Dimension(0, getPreferredSize().height * 10);
 
 	}
-
-	
 
 }

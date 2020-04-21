@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
 import fr.paquet.ihm.style.StyleBorder;
+import main.MainFrame;
 
 public abstract class JDialogGestion extends JDialog implements ActionListener {
 
@@ -21,22 +22,40 @@ public abstract class JDialogGestion extends JDialog implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	protected JButton buttonOk = new JButton("Valider");
 	protected JButton buttonAnnul = new JButton("Annuler");
+	protected Object object = null;
+	protected JTreeGestionnaire jtreeGestionnaire = null;
+	protected JPanelGestionnaireRight jPanelGestionnaireRight = null;
 
-	public JDialogGestion(String title) {
-		super();
+	protected abstract void setJtreeGestionnaire();
+
+	public JTreeGestionnaire getJtreGestionnaire() {
+		return jtreeGestionnaire;
+	}
+
+	protected abstract void setJPanelGestionnaireRight();
+
+	private JPanelGestionnaireRight getJPanelGestionnaireRight() {
+		return jPanelGestionnaireRight;
+	}
+
+	public JDialogGestion(String title, Object obj) {
+		super(MainFrame.getUniqInstance());
 
 		// construction de la fenetre
 		setTitle(title);
-		setSize(800, 600);
-		setResizable(false);
+		setSize(2000, 600);
+		setResizable(true);
 		setLocationRelativeTo(null);
-		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setAlwaysOnTop(false);
 		setVisible(true);
 
 		// ajout des composants
-		setJSplitPaneLeft();
-		setJSplitPaneRight();
+		setObject(obj);
+		setJtreeGestionnaire();
+		setJPanelGestionnaireRight();
+		setJSplitPaneLeft(getJtreGestionnaire());
+		setJSplitPaneRight(getJPanelGestionnaireRight());
 		setJButtomPanel(new JPanel());
 
 		// ajout du panel
@@ -45,6 +64,14 @@ public abstract class JDialogGestion extends JDialog implements ActionListener {
 		// listener
 		buttonOk.addActionListener(this);
 		buttonAnnul.addActionListener(this);
+	}
+
+	private void setObject(Object object) {
+		this.object = object;
+	}
+
+	protected Object getObject() {
+		return object;
 	}
 
 	private JPanel getMainPane() {
@@ -93,7 +120,9 @@ public abstract class JDialogGestion extends JDialog implements ActionListener {
 
 	protected Component leftComponent = null;
 
-	protected abstract void setJSplitPaneLeft();
+	private void setJSplitPaneLeft(Component component) {
+		this.leftComponent = component;
+	}
 
 	private Component getJSplitPaneLeft() {
 		return leftComponent;
@@ -105,7 +134,9 @@ public abstract class JDialogGestion extends JDialog implements ActionListener {
 		return rightComponent;
 	}
 
-	protected abstract void setJSplitPaneRight();
+	protected void setJSplitPaneRight(Component component) {
+		this.rightComponent = component;
+	}
 
 	private JPanel getJButtonPanel() {
 		JPanel panel = new JPanel(new GridBagLayout());

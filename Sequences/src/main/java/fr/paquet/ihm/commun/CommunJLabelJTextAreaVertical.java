@@ -25,13 +25,16 @@ public abstract class CommunJLabelJTextAreaVertical extends JPanel {
 	private JPanel panelTitre = null;
 	private JPanel panelJTextArea = null;
 
-	protected CommunJLabelJTextAreaVertical(String title) {
+	protected CommunJLabelJTextAreaVertical(String text, String title) {
 		super();
 
 		// set des éléments
 		setTitle(title);
 		setTitleLabel(new JLabel(getTitle()));
-		setTextArea(new JTextArea());
+		if (text != null)
+			setTextArea(new JTextArea(text));
+		else
+			setTextArea(new JTextArea());
 		setPanelTitre(new JPanel());
 		setPanelJTextAreaTextSize(getPreferredSize());
 		setPanelJTextArea(new JPanel());
@@ -40,10 +43,18 @@ public abstract class CommunJLabelJTextAreaVertical extends JPanel {
 		setLayout(new GridBagLayout());
 
 		// Ajout des Elements
+		affiche();
+	}
+
+	public void affiche() {
+		removeAll();
+
 		add(getPanelTitre(), new GridBagConstraints(0, 0, 1, 1, 1, 0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 1, 0));
 		add(getPanelJTextArea(), new GridBagConstraints(0, 1, 1, 1, 1, 1.0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+
+		revalidate();
 
 	}
 

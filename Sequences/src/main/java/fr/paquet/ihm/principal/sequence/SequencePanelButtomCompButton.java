@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import fr.paquet.ihm.commun.CommunJPanelButton;
+import fr.paquet.ihm.gestionnaire.competence.JDialogCompetence;
+import fr.paquet.sequence.Sequence;
 
 public class SequencePanelButtomCompButton extends CommunJPanelButton {
 
@@ -16,7 +18,7 @@ public class SequencePanelButtomCompButton extends CommunJPanelButton {
 	private SequencePanelButtomComp sequencePanelButtomComp = null;
 
 	public SequencePanelButtomCompButton(String titleButton, int column,
-			SequencePanelButtomComp sequencePanelButtomComp)  {
+			SequencePanelButtomComp sequencePanelButtomComp) {
 		super(titleButton, column);
 
 		// setteur des objets
@@ -40,12 +42,15 @@ public class SequencePanelButtomCompButton extends CommunJPanelButton {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					getSequencePanelButtomComp().addCompetence();
+					Sequence sequence = getSequencePanelButtomComp().getSequencePanel().getOngletSequence()
+							.getMainOnglet().getSequence();
+					new JDialogCompetence(sequence);
+					// getSequencePanelButtomComp().addCompetence();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 
-				getSequencePanelButtomComp().getSequencePanelButtomCompJPanelJlabel().affiche();
+				// getSequencePanelButtomComp().getSequencePanelButtomCompJPanelJlabel().affiche();
 			}
 		});
 		this.button = button;

@@ -19,7 +19,7 @@ public class SequencePanelEntetePbTempsProblématique extends CommunJLabelJTextA
 
 	public SequencePanelEntetePbTempsProblématique(SequencePanelEntetePbTemps sequencePanelEntetePbTemps,
 			String title) {
-		super(title);
+		super(null, title);
 
 		// setteur
 		setSequencePanelEntetePbTemps(sequencePanelEntetePbTemps);
