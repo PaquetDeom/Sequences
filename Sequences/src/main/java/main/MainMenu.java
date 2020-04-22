@@ -54,11 +54,11 @@ public class MainMenu extends JMenuBar {
 
 	public void addSequence(SequenceVersion seq) throws Exception {
 		getActionRef().setSequenceVersion(seq);
-		getActionSave().setSequence(seq);
-		getActionNewVersion().setSequence(seq);
-		getActionCompetences().setSequence(seq);
-		getActionActivites().setSequence(seq);
-		getActionVisible().setSequence(seq);
+		getActionSave().setSequenceVersion(seq);
+		getActionNewVersion().setSequenceVersion(seq);
+		getActionCompetences().setSequenceVersion(seq);
+		getActionActivites().setSequenceVersion(seq);
+		getActionVisible().setSequenceVersion(seq);
 
 	}
 

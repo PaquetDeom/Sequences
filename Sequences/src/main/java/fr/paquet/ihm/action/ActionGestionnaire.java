@@ -2,8 +2,6 @@ package fr.paquet.ihm.action;
 
 import java.awt.event.ActionEvent;
 
-import fr.paquet.ihm.ouvrir.Gestionnaire;
-
 public class ActionGestionnaire extends ActionBDA {
 
 	/**
@@ -18,7 +16,7 @@ public class ActionGestionnaire extends ActionBDA {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		new Gestionnaire();
+		// TODO
 
 	}
 

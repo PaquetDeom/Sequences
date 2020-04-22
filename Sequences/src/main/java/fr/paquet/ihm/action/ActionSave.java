@@ -5,8 +5,8 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.KeyStroke;
 
-import fr.paquet.dataBase.Factory.sequence.SequenceFactory;
-import fr.paquet.sequence.Sequence;
+import fr.paquet.dataBase.Factory.sequence.SequenceVersionFactory;
+import fr.paquet.sequence.SequenceVersion;
 
 public class ActionSave extends ActionBDA {
 
@@ -14,7 +14,7 @@ public class ActionSave extends ActionBDA {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Sequence sequence = null;
+	private SequenceVersion sequenceVersion = null;
 
 	public ActionSave() {
 		super();
@@ -30,8 +30,8 @@ public class ActionSave extends ActionBDA {
 	public void actionPerformed(ActionEvent arg0) {
 
 		try {
-			SequenceFactory pF = new SequenceFactory();
-			pF.persist(getSequence());
+			SequenceVersionFactory pF = new SequenceVersionFactory();
+			pF.persist(getSequenceVersion());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -44,16 +44,16 @@ public class ActionSave extends ActionBDA {
 		return "Fichier";
 	}
 
-	private Sequence getSequence() {
-		return sequence;
+	private SequenceVersion getSequenceVersion() {
+		return sequenceVersion;
 	}
 
-	public void setSequence(Sequence sequence) throws Exception {
-		if (sequence == null)
+	public void setSequenceVersion(SequenceVersion sequenceVersion) throws Exception {
+		if (sequenceVersion == null)
 			throw new Exception("Veuillez renseigner une séquence");
 		else {
 			setEnabled(true);
-			this.sequence = sequence;
+			this.sequenceVersion = sequenceVersion;
 		}
 	}
 

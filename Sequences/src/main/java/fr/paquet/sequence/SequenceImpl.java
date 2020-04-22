@@ -220,37 +220,37 @@ public class SequenceImpl implements Sequence {
 
 	@Override
 	public void addActivite(Activite_1 activite) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	@Override
 	public void addCompetenceIntermediaire(CompetenceIntermediaire competenceIntermediaire) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	@Override
 	public void addSavoirAssocies(SavoirAssocie savoirAssocie) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	@Override
 	public void removeActivite(Activite_1 activite) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	@Override
 	public void removeCompetenceIntermediaire(CompetenceIntermediaire competenceIntermediaire) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	@Override
 	public void removeSavoirAssocies(SavoirAssocie savoirAssocie) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 

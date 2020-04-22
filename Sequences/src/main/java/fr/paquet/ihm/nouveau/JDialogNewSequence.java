@@ -7,12 +7,10 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 
 import fr.paquet.dataBase.Connect;
-import fr.paquet.dataBase.Factory.sequence.SequenceFactory;
+import fr.paquet.dataBase.Factory.sequence.SequenceVersionFactory;
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.referentiel.Referentiel;
-import fr.paquet.sequence.Sequence;
-import fr.paquet.sequence.SequenceImpl;
 import fr.paquet.sequence.SequenceVersion;
 import main.MainFrame;
 
@@ -80,8 +78,7 @@ public class JDialogNewSequence extends JDialog implements ActionListener {
 
 			try {
 				SequenceVersion seq = createSequence();
-				//TODO Factory
-				new SequenceFactory().persist(seq);
+				new SequenceVersionFactory().persist(seq);
 				MainFrame.getUniqInstance().addPanel(seq);
 				this.dispose();
 			} catch (Exception e) {

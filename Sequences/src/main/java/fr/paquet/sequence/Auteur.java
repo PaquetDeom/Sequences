@@ -23,7 +23,7 @@ import fr.paquet.dataBase.User;
 public class Auteur extends personne {
 
 	@OneToMany(mappedBy = "auteur", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-	private List<Sequence> sequences = null;
+	private List<SequenceVersion> sequences = null;
 
 	public Auteur() {
 		super();
@@ -39,13 +39,13 @@ public class Auteur extends personne {
 
 	}
 
-	public List<Sequence> getSequences() {
+	public List<SequenceVersion> getSequences() {
 		if (sequences == null)
-			sequences = new ArrayList<Sequence>();
+			sequences = new ArrayList<SequenceVersion>();
 		return sequences;
 	}
 
-	public void addSequence(Sequence sequence) {
+	public void addSequence(SequenceVersion sequence) {
 		getSequences().add(sequence);
 	}
 

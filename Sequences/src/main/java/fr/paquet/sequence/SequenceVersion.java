@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.*;
 
 import fr.paquet.activite.Activite_1;
+import fr.paquet.dataBase.Factory.sequence.SequenceImplFactory;
 import fr.paquet.referentiel.Capacite;
 import fr.paquet.referentiel.CompetenceIntermediaire;
 import fr.paquet.referentiel.Referentiel;
@@ -26,10 +27,10 @@ public class SequenceVersion implements Sequence {
 	@Transient
 	private Sequence previousVersion;
 
-	@Column
+	@JoinColumn
 	private SequenceImpl firstSequence;
 
-	@Column
+	@JoinColumn
 	private SequenceVersion previous;
 
 	@Column(name = "SEVECO", length = 20)
@@ -62,7 +63,7 @@ public class SequenceVersion implements Sequence {
 	@Column(name = "SEVEVI")
 	private boolean visible = false;
 
-	@Column
+	@JoinColumn
 	private Capacite capacite = null;
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
@@ -101,20 +102,29 @@ public class SequenceVersion implements Sequence {
 	}
 
 	public SequenceVersion(String titre, String classe, Referentiel referentiel, Auteur auteur) throws Exception {
+		super();
 		firstSequence = new SequenceImpl(titre, referentiel);
 		previousVersion = firstSequence;
 		numVersion = 1;
 		setAuteur(auteur);
 		setClasse(classe);
 		setVisible(false);
+
+		new SequenceImplFactory().persist(firstSequence);
+
 	}
 
 	public SequenceVersion(SequenceVersion previousVersion) {
+		super();
 		this.previous = previousVersion;
 		this.previousVersion = previousVersion;
 		setNumVersion(previousVersion.getnVersion());
 		setVisible(false);
 		previousVersion.lock();
+	}
+
+	public SequenceVersion() {
+		super();
 	}
 
 	private void setNumVersion(int nLastVersion) {

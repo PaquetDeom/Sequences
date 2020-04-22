@@ -6,11 +6,11 @@ import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import javax.swing.JTextField;
 
-import fr.paquet.dataBase.Factory.sequence.SequenceFactory;
+import fr.paquet.dataBase.Factory.sequence.SequenceImplFactory;
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.ihm.style.StyleFont;
-import fr.paquet.sequence.Sequence;
+import fr.paquet.sequence.SequenceImpl;
 
 import java.awt.Insets;
 import java.awt.event.FocusEvent;
@@ -66,9 +66,9 @@ public class JPanelNewSequenceTitle extends JPanel {
 
 				String title = getTextField().getText();
 
-				Sequence seq;
+				SequenceImpl seq;
 				try {
-					seq = new SequenceFactory().findSequenceByTitle(title);
+					seq = new SequenceImplFactory().findSequenceImplByTitle(title);
 
 					if (seq != null) {
 						new AlertWindow(AlertType.INFORMATION, "Le titre est déja utilisé dans la base");

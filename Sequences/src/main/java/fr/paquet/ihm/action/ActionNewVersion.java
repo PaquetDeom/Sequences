@@ -19,7 +19,7 @@ public class ActionNewVersion extends ActionBDA {
 			setEnabled(false);
 	}
 
-	public void setSequence(SequenceVersion sequence) {
+	public void setSequenceVersion(SequenceVersion sequence) {
 		if (sequence != null)
 			setEnabled(true);
 		this.sequence = sequence;
