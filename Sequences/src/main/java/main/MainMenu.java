@@ -5,7 +5,7 @@ import java.util.Hashtable;
 import javax.swing.*;
 
 import fr.paquet.ihm.action.*;
-import fr.paquet.sequence.Sequence;
+import fr.paquet.sequence.SequenceVersion;
 
 public class MainMenu extends JMenuBar {
 
@@ -52,8 +52,8 @@ public class MainMenu extends JMenuBar {
 
 	}
 
-	public void addSequence(Sequence seq) throws Exception {
-		getActionRef().setSequence(seq);
+	public void addSequence(SequenceVersion seq) throws Exception {
+		getActionRef().setSequenceVersion(seq);
 		getActionSave().setSequence(seq);
 		getActionNewVersion().setSequence(seq);
 		getActionCompetences().setSequence(seq);

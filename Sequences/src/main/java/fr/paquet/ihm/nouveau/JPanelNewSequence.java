@@ -32,9 +32,7 @@ public class JPanelNewSequence extends JPanel {
 				GridBagConstraints.BOTH, new Insets(0, 5, 0, 5), 0, 0));
 		add(getjPanelNewSequenceClasse(), new GridBagConstraints(0, 2, 1, 1, 1.0, 0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 5, 0, 5), 0, 0));
-		add(getjPanelNewSequenceVisible(), new GridBagConstraints(0, 3, 1, 1, 1.0, 0, GridBagConstraints.CENTER,
-				GridBagConstraints.BOTH, new Insets(0, 5, 0, 5), 0, 0));
-		add(getjPanelNewSequenceButton(), new GridBagConstraints(0, 4, 1, 1, 1.0, 0, GridBagConstraints.CENTER,
+		add(getjPanelNewSequenceButton(), new GridBagConstraints(0, 3, 1, 1, 1.0, 0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 5, 5, 5), 0, 0));
 		add(new JPanel(), new GridBagConstraints(0, 4, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 5, 5, 5), 0, 0));
@@ -66,14 +64,6 @@ public class JPanelNewSequence extends JPanel {
 		if (jPanelNewSequenceReferentiel == null)
 			jPanelNewSequenceReferentiel = new JPanelNewSequenceReferentiel(this);
 		return jPanelNewSequenceReferentiel;
-	}
-
-	private JPanelNewSequenceVisible jPanelNewSequenceVisible = null;
-
-	public JPanelNewSequenceVisible getjPanelNewSequenceVisible() {
-		if (jPanelNewSequenceVisible == null)
-			jPanelNewSequenceVisible = new JPanelNewSequenceVisible(this);
-		return jPanelNewSequenceVisible;
 	}
 
 	private JPanelNewSequenceButton jPanelNewSequenceButton = null;

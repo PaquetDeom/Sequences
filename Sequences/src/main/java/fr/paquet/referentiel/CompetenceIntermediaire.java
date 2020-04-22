@@ -29,7 +29,7 @@ public class CompetenceIntermediaire {
 
 	@Id
 	@GeneratedValue
-	@Column(name = "ID")
+	@Column(name = "COINID")
 	private int id;
 
 	@ManyToOne()

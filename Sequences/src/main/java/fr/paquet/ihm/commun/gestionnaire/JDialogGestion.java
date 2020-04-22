@@ -56,7 +56,7 @@ public abstract class JDialogGestion extends JDialog implements ActionListener {
 		setJPanelGestionnaireRight();
 		setJSplitPaneLeft(getJtreGestionnaire());
 		setJSplitPaneRight(getJPanelGestionnaireRight());
-		setJButtomPanel(new JPanel());
+		//setJButtomPanel(new JPanel());
 
 		// ajout du panel
 		setContentPane(getMainPane());
@@ -92,19 +92,20 @@ public abstract class JDialogGestion extends JDialog implements ActionListener {
 			topPanel.setBorder(StyleBorder.BORDERPANEL.getBorder());
 			topPanel.add(getSplitPane(), new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER,
 					GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
-			topPanel.add(getJButtomPanel(), new GridBagConstraints(0, 1, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
-					GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
+			//topPanel.add(getJButtomPanel(), new GridBagConstraints(0, 1, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
+					//GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
 
 		}
 		return topPanel;
 	}
 
 	protected JPanel buttomPanel = null;
+	
+	protected abstract void setButtomPanel();
 
-	protected abstract void setJButtomPanel(JPanel jPanel);
-
-	private JPanel getJButtomPanel() {
-		return buttomPanel;
+	public ButtomPanel getJButtomPanel() {
+		
+		return (ButtomPanel) buttomPanel;
 	}
 
 	private JSplitPane jS = null;

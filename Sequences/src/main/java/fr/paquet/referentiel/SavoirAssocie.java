@@ -29,7 +29,7 @@ public class SavoirAssocie {
 
 	@Id
 	@GeneratedValue
-	@Column(name = "ID")
+	@Column(name = "SAASID")
 	@OneToMany()
 	private int id;
 

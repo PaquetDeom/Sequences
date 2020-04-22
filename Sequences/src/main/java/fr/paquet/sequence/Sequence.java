@@ -1,265 +1,80 @@
 package fr.paquet.sequence;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Transient;
-
 import fr.paquet.activite.Activite_1;
-import fr.paquet.dataBase.Connect;
 import fr.paquet.referentiel.Capacite;
 import fr.paquet.referentiel.CompetenceIntermediaire;
 import fr.paquet.referentiel.Referentiel;
 import fr.paquet.referentiel.SavoirAssocie;
 
-@Entity
-@Table(name = "SEQUENCENUM")
-public class Sequence {
+public interface Sequence {
 
-	@Id
-	@GeneratedValue
-	@Column(name = "SESEID")
-	private long id = 0;
+	public void setCapacite(Capacite cap);
 
-	@Column(name = "SESETI", length = 20)
-	private String titre = null;
+	public List<Activite_1> getActivites();
 
-	@Transient
-	private Referentiel referentiel = null;
+	public String getClasse();
 
-	@ManyToOne
-	private Auteur auteur = null;
+	public void setClasse(String classe);
 
-	@Column(name = "SESEPR", length = 20)
-	private String problematique = null;
+	public Capacite getCapacite();
 
-	@Column(name = "SESEPRE", length = 20)
-	private String prerequis = null;
+	public String getTitre();
 
-	@Column(name = "SESECO", length = 20)
-	private String contexte = null;
+	public Referentiel getReferentiel();
 
-	@Column(name = "SESEEL", length = 20)
-	private String elementsARetenir = null;
+	public List<CompetenceIntermediaire> getCompetenceIntermediaires();
 
-	@Column(name = "SESELI", length = 20)
-	private String lien = null;
+	public List<SavoirAssocie> getSavoirAssocies();
 
-	@Column(name = "SESEEV", length = 20)
-	private String Eval = null;
+	public Auteur getAuteur();
 
-	@Column(name = "SESEVI")
-	private boolean visible = false;
+	public String getProblematique();
 
-	@Column(name = "SESEMO")
-	private boolean modifiable = false;
+	public void setProblematique(String problematique);
 
-	@Column(name = "SESEVE")
-	private int nVersion = 0;
+	public String getPrerequis();
 
-	@Column(name = "SESECL")
-	private String classe = null;
+	public void setPrerequis(String prerequis);
 
-	public Sequence(String titre, String classe, boolean visi, Referentiel referentiel, Auteur auteur, int nVersion)
-			throws Exception {
-		this();
+	public String getContexte();
 
-		setTitre(titre);
-		setReferentiel(referentiel);
-		setAuteur(auteur);
-		setnVersion(nVersion);
-		setClasse(classe);
-		setVisible(visi);
+	public void setContexte(String contexte);
 
-	}
+	public String getElementsARetenir();
 
-	public Sequence() {
-		super();
-	}
+	public void setElementsARetenir(String elementsARetenir);
 
-	private void setClasse(String classe) {
-		this.classe = classe;
-	}
+	public String getLien();
 
-	public String getClasse() {
-		return classe;
-	}
+	public void setLien(String lien);
 
-	/**
-	 * 
-	 * @return la première capacite de la competence intermediaire, pout trier les
-	 *         sequences</br>
-	 */
-	public Capacite getCapacite() {
-		if (getCompetenceIntermediaires().isEmpty() || getCompetenceIntermediaires() == null)
-			return null;
-		else
-			return getCompetenceIntermediaires().get(0).getCompetence().getCapacite();
-	}
+	public String getEval();
 
-	public String getTitre() {
+	public void setEval(String eval);
 
-		return titre;
+	public boolean isVisible();
 
-	}
+	public void setVisible(boolean visible);
 
-	private void setTitre(String titre) {
-		this.titre = titre;
-	}
+	public boolean isModifiable(Auteur auteur);
 
-	private void setReferentiel(Referentiel referentiel) {
+	public int getnVersion();
 
-		this.referentiel = referentiel;
-	}
+	public void setAuteur(Auteur auteur);
 
-	public Referentiel getReferentiel() {
+	public void lock();
 
-		return referentiel;
+	public void addActivite(Activite_1 activite);
 
-	}
+	public void addCompetenceIntermediaire(CompetenceIntermediaire competenceIntermediaire);
 
-	@OneToMany(mappedBy = "sequence", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private List<Activite_1> activites = null;
+	public void addSavoirAssocies(SavoirAssocie savoirAssocie);
 
-	public List<Activite_1> getActivites() {
+	public void removeActivite(Activite_1 activite);
 
-		if (activites == null)
-			activites = new ArrayList<Activite_1>();
-		return activites;
+	public void removeCompetenceIntermediaire(CompetenceIntermediaire competenceIntermediaire);
 
-	}
-
-	@Transient
-	private List<CompetenceIntermediaire> competenceIntermediaires = null;
-
-	public List<CompetenceIntermediaire> getCompetenceIntermediaires() {
-
-		if (competenceIntermediaires == null)
-			competenceIntermediaires = new ArrayList<CompetenceIntermediaire>();
-		return competenceIntermediaires;
-
-	}
-
-	@Transient
-	private List<SavoirAssocie> savoirAssocies = null;
-
-	public List<SavoirAssocie> getSavoirAssocies() {
-
-		if (savoirAssocies == null)
-			savoirAssocies = new ArrayList<SavoirAssocie>();
-		return savoirAssocies;
-
-	}
-
-	public Auteur getAuteur() {
-
-		return auteur;
-
-	}
-
-	private void setAuteur(Auteur auteur) {
-		this.auteur = auteur;
-	}
-
-	public String getProblematique() {
-
-		return problematique;
-
-	}
-
-	public void setProblematique(String problematique) {
-		this.problematique = problematique;
-	}
-
-	public String getPrerequis() {
-
-		return prerequis;
-
-	}
-
-	public void setPrerequis(String prerequis) {
-		this.prerequis = prerequis;
-	}
-
-	public String getContexte() {
-
-		return contexte;
-
-	}
-
-	public void setContexte(String contexte) {
-		this.contexte = contexte;
-	}
-
-	public String getElementsARetenir() {
-
-		return elementsARetenir;
-
-	}
-
-	public void setElementsARetenir(String elementsARetenir) {
-		this.elementsARetenir = elementsARetenir;
-	}
-
-	public String getLien() {
-
-		return lien;
-
-	}
-
-	public void setLien(String lien) {
-		this.lien = lien;
-	}
-
-	public String getEval() {
-
-		return Eval;
-
-	}
-
-	public void setEval(String eval) {
-		Eval = eval;
-	}
-
-	public boolean isVisible() {
-
-		return visible;
-	}
-
-	public void setVisible(boolean visible) {
-		this.visible = visible;
-	}
-
-	public boolean isModifiable() {
-
-		return modifiable;
-	}
-
-	public void setModifiable(boolean modifiable) {
-
-		if (getAuteur().equals(Connect.getPConnexion().getUser().getAuteur()))
-			modifiable = true;
-
-		this.modifiable = modifiable;
-	}
-
-	public int getnVersion() {
-
-		return nVersion;
-
-	}
-
-	private void setnVersion(int nVersion) {
-		this.nVersion = nVersion;
-	}
-
+	public void removeSavoirAssocies(SavoirAssocie savoirAssocie);
 }

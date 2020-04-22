@@ -57,12 +57,7 @@ public class JDialogCompetence extends JDialogGestion {
 
 	}
 
-	@Override
-	protected void setJButtomPanel(JPanel jPanel) {
-		this.buttomPanel = jPanel;
-
-	}
-
+	
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		JButton button = (JButton) event.getSource();
@@ -70,6 +65,12 @@ public class JDialogCompetence extends JDialogGestion {
 		if (button.getText().equals("Annuler"))
 			this.dispose();
 
+	}
+
+	@Override
+	protected void setButtomPanel() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

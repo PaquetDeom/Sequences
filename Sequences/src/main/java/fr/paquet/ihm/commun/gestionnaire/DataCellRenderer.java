@@ -8,20 +8,16 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
 
-import fr.paquet.ihm.style.StyleColor;
-
-public class DataCellRenderer extends  DefaultTreeCellRenderer {
+public class DataCellRenderer extends DefaultTreeCellRenderer {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JLabel nodeLabel = new JLabel();
 
 	public DataCellRenderer(JTreeGestionnaire jTreeGestionnaire) {
 		super();
-
-		this.setBackgroundSelectionColor(StyleColor.PANELTITLESUPPORT.getColor());
+		
 	}
 
 	@Override
@@ -29,7 +25,10 @@ public class DataCellRenderer extends  DefaultTreeCellRenderer {
 			boolean leaf, int row, boolean hasFocus) {
 
 		UserObject data = (UserObject) ((DefaultMutableTreeNode) node).getUserObject();
+		JLabel nodeLabel=(JLabel)super.getTreeCellRendererComponent(tree, node, selected, expanded, leaf, row, hasFocus);
 		nodeLabel.setText(data.getText());
+		
+		
 		return nodeLabel;
 	}
 

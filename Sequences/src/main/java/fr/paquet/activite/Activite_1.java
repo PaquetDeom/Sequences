@@ -17,6 +17,7 @@ import javax.persistence.Table;
 import fr.paquet.referentiel.CompetenceIntermediaire;
 import fr.paquet.referentiel.SavoirAssocie;
 import fr.paquet.sequence.Sequence;
+import fr.paquet.sequence.SequenceVersion;
 
 @Entity
 @Table(name = "ACTIVITE_1")
@@ -31,7 +32,7 @@ public class Activite_1 {
 	private int nActivite = 0;
 
 	@ManyToOne
-	private Sequence sequence = null;
+	private SequenceVersion sequence = null;
 
 	@Column(name = "ACACCO", length = 400)
 	private String contexte = null;
@@ -52,7 +53,7 @@ public class Activite_1 {
 		super();
 	}
 
-	public Activite_1(Sequence sequence, int nActivite) throws Exception {
+	public Activite_1(SequenceVersion sequence, int nActivite) throws Exception {
 		super();
 
 		setnActivite(nActivite);
@@ -71,7 +72,7 @@ public class Activite_1 {
 		return sequence;
 	}
 
-	public void setSequence(Sequence sequence) throws Exception {
+	public void setSequence(SequenceVersion sequence) throws Exception {
 		if (sequence == null)
 			throw new Exception("Une activité doit provenir d'une séquence");
 		this.sequence = sequence;

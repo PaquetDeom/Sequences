@@ -8,8 +8,7 @@ import javax.swing.KeyStroke;
 
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
-
-import fr.paquet.sequence.Sequence;
+import fr.paquet.sequence.SequenceVersion;
 
 public class ActionRef extends ActionBDA {
 
@@ -18,11 +17,11 @@ public class ActionRef extends ActionBDA {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Sequence sequence = null;
+	private SequenceVersion sequenceVersion = null;
 
 	public ActionRef() {
 		super();
-		
+
 		putValue(NAME, getName());
 		putValue(ACCELERATOR_KEY,
 				KeyStroke.getKeyStroke('D', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
@@ -46,17 +45,17 @@ public class ActionRef extends ActionBDA {
 	}
 
 	private String getUrl() {
-		return "firefox " + getSequence().getReferentiel().getUrl();
+		return "firefox " + getSequenceVersion().getReferentiel().getUrl();
 	}
 
-	public void setSequence(Sequence sequence) throws Exception {
-		if(sequence == null)
+	public void setSequenceVersion(SequenceVersion SequenceVersion) throws Exception {
+		if (SequenceVersion == null)
 			throw new Exception("Veuillez renseigner une séquence");
-		this.sequence = sequence;
+		this.sequenceVersion = SequenceVersion;
 	}
-	
-	private Sequence getSequence() {
-		return sequence;
+
+	private SequenceVersion getSequenceVersion() {
+		return sequenceVersion;
 	}
 
 	@Override

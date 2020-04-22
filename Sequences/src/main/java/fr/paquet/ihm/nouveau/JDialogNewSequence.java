@@ -12,6 +12,8 @@ import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.referentiel.Referentiel;
 import fr.paquet.sequence.Sequence;
+import fr.paquet.sequence.SequenceImpl;
+import fr.paquet.sequence.SequenceVersion;
 import main.MainFrame;
 
 public class JDialogNewSequence extends JDialog implements ActionListener {
@@ -54,24 +56,17 @@ public class JDialogNewSequence extends JDialog implements ActionListener {
 		this.jPanelNewSequence = jPanelNewSequence;
 	}
 
-	private Sequence createSequence() throws Exception {
+	private SequenceVersion createSequence() throws Exception {
 
 		String titre = getjPanelNewSequence().getjPanelNewSequenceTitle().getTitre();
 		Referentiel ref = (Referentiel) getjPanelNewSequence().getjPanelNewSequenceReferentiel().getListReferentiels()
 				.getSelectedItem();
 		String classe = (String) getjPanelNewSequence().getjPanelNewSequenceClasse().getComboBox().getSelectedItem();
-		String visibilite = (String) getjPanelNewSequence().getjPanelNewSequenceVisible().getVisibleBox()
-				.getSelectedItem();
 
-		Boolean visi = true;
-		if (visibilite.equals("Que moi"))
-			visi = false;
-
-		if (titre == null || titre.equals("") || ref == null || classe == null || classe.equals("")
-				|| visibilite == null || visibilite.equals(""))
+		if (titre == null || titre.equals("") || ref == null || classe == null || classe.equals(""))
 			throw new Exception("Veuillez compléter votre saisi");
 
-		return new Sequence(titre, classe, visi, ref, Connect.getPConnexion().getUser().getAuteur(), 1);
+		return new SequenceVersion(titre, classe, ref, Connect.getPConnexion().getUser().getAuteur());
 	}
 
 	@Override
@@ -84,7 +79,8 @@ public class JDialogNewSequence extends JDialog implements ActionListener {
 		else {
 
 			try {
-				Sequence seq = createSequence();
+				SequenceVersion seq = createSequence();
+				//TODO Factory
 				new SequenceFactory().persist(seq);
 				MainFrame.getUniqInstance().addPanel(seq);
 				this.dispose();

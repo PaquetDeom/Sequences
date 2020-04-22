@@ -14,6 +14,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import fr.paquet.sequence.Sequence;
+import fr.paquet.sequence.SequenceVersion;
 
 public class MainFrame extends JFrame implements WindowListener {
 
@@ -102,9 +103,9 @@ public class MainFrame extends JFrame implements WindowListener {
 	 * @param panelAdd
 	 * @throws Exception
 	 */
-	public void addPanel(Sequence sequence) throws Exception {
+	public void addPanel(SequenceVersion sequenceVersion) throws Exception {
 		removePanel(getPanelOuverture());
-		setMainOnglet(new MainOnglet(sequence));
+		setMainOnglet(new MainOnglet(sequenceVersion));
 		add(getMainOnglet());
 		revalidate();
 	}

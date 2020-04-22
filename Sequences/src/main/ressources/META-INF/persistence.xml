@@ -25,7 +25,8 @@
 		<class>fr.paquet.dataBase.User</class>
 		<class>fr.paquet.sequence.Auteur</class>
 		<class>fr.paquet.commun.personne</class>
-		<class>fr.paquet.sequence.Sequence</class>
+		<class>fr.paquet.sequence.SequenceImpl</class>
+		<class>fr.paquet.sequence.SequenceVersion</class>
 		<class>fr.paquet.activite.Activite_1</class>
 		<class>fr.paquet.activite.Strategie</class>
 		<class>fr.paquet.activite.CorpsDEtat</class>

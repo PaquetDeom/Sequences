@@ -6,13 +6,13 @@ import javax.swing.*;
 
 import fr.paquet.ihm.principal.activite.OngletActivite;
 import fr.paquet.ihm.principal.sequence.OngletSequence;
-import fr.paquet.sequence.Sequence;
+import fr.paquet.sequence.SequenceVersion;
 
 @SuppressWarnings("serial")
 public class MainOnglet extends JTabbedPane {
 
 	private OngletSequence ongletSequence = null;
-	private Sequence sequence = null;
+	private SequenceVersion sequenceVersion = null;
 	private List<OngletActivite> ongletsActivites = null;
 
 	/**
@@ -22,7 +22,7 @@ public class MainOnglet extends JTabbedPane {
 	 * 
 	 * 
 	 */
-	public MainOnglet(Sequence sequence) throws Exception {
+	public MainOnglet(SequenceVersion sequence) throws Exception {
 		super(SwingConstants.TOP);
 
 		// setteur des component
@@ -55,12 +55,12 @@ public class MainOnglet extends JTabbedPane {
 		getOngletsActivites().add(ongletsActivite);
 	}
 
-	public Sequence getSequence() {
-		return sequence;
+	public SequenceVersion getSequence() {
+		return sequenceVersion;
 	}
 
-	private void setSequence(Sequence sequence) {
-		this.sequence = sequence;
+	private void setSequence(SequenceVersion sequenceVersion) {
+		this.sequenceVersion = sequenceVersion;
 	}
 
 }

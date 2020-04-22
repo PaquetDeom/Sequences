@@ -2,7 +2,7 @@ package fr.paquet.ihm.action;
 
 import java.awt.event.ActionEvent;
 
-import fr.paquet.sequence.Sequence;
+import fr.paquet.sequence.SequenceVersion;
 
 public class ActionNewVersion extends ActionBDA {
 
@@ -10,7 +10,7 @@ public class ActionNewVersion extends ActionBDA {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Sequence sequence = null;
+	private SequenceVersion sequence = null;
 
 	public ActionNewVersion() {
 		super();
@@ -19,7 +19,7 @@ public class ActionNewVersion extends ActionBDA {
 			setEnabled(false);
 	}
 
-	public void setSequence(Sequence sequence) {
+	public void setSequence(SequenceVersion sequence) {
 		if (sequence != null)
 			setEnabled(true);
 		this.sequence = sequence;
@@ -28,7 +28,7 @@ public class ActionNewVersion extends ActionBDA {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 
-		// TODO
+		new SequenceVersion(sequence);
 
 	}
 
@@ -41,7 +41,7 @@ public class ActionNewVersion extends ActionBDA {
 	@Override
 	public String getName() {
 
-		return "Créer une copie";
+		return "Créer une nouvelle version";
 	}
 
 }
