@@ -1,19 +1,25 @@
 package fr.paquet.dataBase.Factory.sequence;
 
+import java.util.List;
+
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import fr.paquet.dataBase.Connect;
 import fr.paquet.dataBase.Factory.commun.Factory;
+import fr.paquet.sequence.Auteur;
+import fr.paquet.sequence.SequenceImpl;
 import fr.paquet.sequence.SequenceVersion;
 
 public class SequenceVersionFactory extends Factory {
 
-	public SequenceVersion findSequenceVersionByTitle(String title) throws Exception {
+	public SequenceVersion findSequenceVersionBySequenceImplAndNVersion(SequenceImpl seqImpl, int NVersion)
+			throws Exception {
 
 		Query query = Connect.getEm().createQuery(
-				"SELECT sequenceVersion FROM SequenceVersion sequenceVersion WHERE sequenceVersion.titre=:title");
-		query.setParameter("title", title);
+				"SELECT sequenceVersion FROM SequenceVersion sequenceVersion WHERE sequenceVersion.seqImpl=:seqImpl AND sequenceVersion.NVersion=:NVersion");
+		query.setParameter("seqImpl", seqImpl);
+		query.setParameter("NVersion", NVersion);
 
 		try {
 			SequenceVersion sequenceVersion = (SequenceVersion) query.getSingleResult();
@@ -21,6 +27,26 @@ public class SequenceVersionFactory extends Factory {
 		} catch (NoResultException e) {
 			return null;
 		}
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<SequenceVersion> findSequenceVersionBySequenceImpl(SequenceImpl firstSequence) throws Exception {
+
+		Query query = Connect.getEm().createQuery(
+				"SELECT sequenceVersion FROM SequenceVersion sequenceVersion WHERE sequenceVersion.firstSequence=:firstSequence");
+		query.setParameter("firstSequence", firstSequence);
+
+		return (List<SequenceVersion>) query.getResultList();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<SequenceVersion> findSequenceVersionByAuteur(Auteur auteur) throws Exception {
+
+		Query query = Connect.getEm().createQuery(
+				"SELECT sequenceVersion FROM SequenceVersion sequenceVersion WHERE sequenceVersion.auteur=:auteur");
+		query.setParameter("auteur", auteur);
+
+		return (List<SequenceVersion>) query.getResultList();
 	}
 
 	@Override

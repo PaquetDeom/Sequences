@@ -7,7 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
-import fr.paquet.activite.DemarchePedagogique;
 import fr.paquet.dataBase.Connect;
 import fr.paquet.dataBase.QueryFindAll;
 

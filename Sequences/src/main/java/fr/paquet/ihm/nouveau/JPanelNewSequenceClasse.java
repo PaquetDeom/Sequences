@@ -4,7 +4,6 @@ import java.awt.GridBagLayout;
 
 import javax.swing.JPanel;
 
-import fr.paquet.commun.Diplome;
 import fr.paquet.commun.TypeDiplome;
 import fr.paquet.referentiel.Referentiel;
 
@@ -15,8 +14,6 @@ import javax.swing.JComboBox;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
 public class JPanelNewSequenceClasse extends JPanel implements ActionListener {
 
@@ -25,6 +22,7 @@ public class JPanelNewSequenceClasse extends JPanel implements ActionListener {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanelNewSequence jPanelNewSequence = null;
+	private JPanelNewVersion jPanelNewVersion = null;
 
 	public JPanelNewSequenceClasse(JPanelNewSequence jPanelNewSequence) {
 		super();
@@ -40,6 +38,22 @@ public class JPanelNewSequenceClasse extends JPanel implements ActionListener {
 
 		// listener
 		getjPanelNewSequence().getjPanelNewSequenceReferentiel().getListReferentiels().addActionListener(this);
+
+	}
+
+	public JPanelNewSequenceClasse(JPanelNewVersion jPanelNewVersion) {
+		super();
+
+		// set des composants
+		setjPanelNewVersion(jPanelNewVersion);
+		setComboBox(getjPanelNewVersion().getjDialogNewVersion().getSequenceVersionOld().getReferentiel().getDiplome()
+				.getType());
+
+		// ajout du Layout
+		setLayout(new GridBagLayout());
+
+		// ajout des éléments :
+		affiche();
 
 	}
 
@@ -63,7 +77,7 @@ public class JPanelNewSequenceClasse extends JPanel implements ActionListener {
 	public void affiche() {
 
 		removeAll();
-		
+
 		add(new JLabel("Classe concernée :"), new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
 
@@ -74,7 +88,7 @@ public class JPanelNewSequenceClasse extends JPanel implements ActionListener {
 			add(new JLabel("Attente de référentiel"), new GridBagConstraints(1, 0, 1, 1, 1, 0,
 					GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
 		}
-		
+
 		revalidate();
 
 	}
@@ -92,11 +106,18 @@ public class JPanelNewSequenceClasse extends JPanel implements ActionListener {
 		@SuppressWarnings("unchecked")
 		JComboBox<Referentiel> jC = (JComboBox<Referentiel>) event.getSource();
 		Referentiel ref = (Referentiel) jC.getSelectedItem();
-	
 
 		setComboBox(ref.getDiplome().getType());
 		affiche();
 
+	}
+
+	public JPanelNewVersion getjPanelNewVersion() {
+		return jPanelNewVersion;
+	}
+
+	public void setjPanelNewVersion(JPanelNewVersion jPanelNewVersion) {
+		this.jPanelNewVersion = jPanelNewVersion;
 	}
 
 }

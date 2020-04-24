@@ -22,17 +22,40 @@ public class MainOnglet extends JTabbedPane {
 	 * 
 	 * 
 	 */
-	public MainOnglet(SequenceVersion sequence) throws Exception {
+	private MainOnglet() {
 		super(SwingConstants.TOP);
 
+		// attributs de l'onglet
+
+	}
+
+	private static MainOnglet mainOnglet = null;
+
+	public static MainOnglet getUniqInstance() {
+		if (mainOnglet == null)
+			mainOnglet = new MainOnglet();
+		return mainOnglet;
+	}
+
+	public void afficheVersion() {
+		getOngletSequence().getSequencePanel().getsequencePanelVersion().affiche();
+
+		for (OngletActivite oA : getOngletsActivites()) {
+			oA.getActivitePanel().getsequencePanelVersion().affiche();
+		}
+	}
+
+	public void init(SequenceVersion sequence) throws Exception {
+
+		this.removeAll();
+
 		// setteur des component
+		this.ongletsActivites = null;
 		setSequence(sequence);
 		setOngletSequence(new OngletSequence(this));
 
 		// activé les commandes du menu
 		MainMenu.getUniqInstance().addSequence(sequence);
-
-		// attributs de l'onglet
 
 	}
 

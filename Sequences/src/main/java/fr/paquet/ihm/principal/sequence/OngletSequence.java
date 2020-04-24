@@ -1,13 +1,13 @@
 package fr.paquet.ihm.principal.sequence;
 
-import javax.swing.JComponent;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import javax.swing.ScrollPaneConstants;
 
 import main.MainOnglet;
 
-public class OngletSequence extends JComponent {
+public class OngletSequence extends JPanel {
 
 	/**
 	 * 

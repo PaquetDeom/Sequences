@@ -21,7 +21,7 @@ public abstract class JPanelButtonAnnulOk extends JPanel {
 
 		// setteur des éléments
 		setjPanel(panel);
-		setBtnAnnul(new JButton("Annul"));
+		setBtnAnnul(new JButton("Annuler"));
 		setBtnOk(new JButton("Ok"));
 
 		// ajout du layout

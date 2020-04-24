@@ -25,6 +25,7 @@ public class MainMenu extends JMenuBar {
 	private ActionCompetences actionCompetences = null;
 	private ActionNewVersion actionNewVersion = null;
 	private ActionVisible actionVisible = null;
+	private ActionNouveau actionNouveau = null;
 
 	/**
 	 * Constructeur de la class ajoute les Action a MainMenu<br/>
@@ -33,14 +34,15 @@ public class MainMenu extends JMenuBar {
 	 */
 	private MainMenu() {
 
-		addAction(new ActionNouveau());
+		setActionNouveau(new ActionNouveau());
+		addAction(getActionNouveau());
 		setActionGestionnaire(new ActionGestionnaire());
 		addAction(getActionGestionnaire());
 		setActionRef(new ActionRef());
 		addAction(getActionRef());
 		setActionSave(new ActionSave());
 		addAction(getActionSave());
-		setActionNewVersion(new ActionNewVersion());
+		setActionNewVersion(new ActionNewVersion(this));
 		addAction(getActionNewVersion());
 		setActionVisible(new ActionVisible());
 		addAction(getActionVisible());
@@ -53,6 +55,9 @@ public class MainMenu extends JMenuBar {
 	}
 
 	public void addSequence(SequenceVersion seq) throws Exception {
+
+		if (seq != null)
+			getActionNouveau().setEnabled(false);
 		getActionRef().setSequenceVersion(seq);
 		getActionSave().setSequenceVersion(seq);
 		getActionNewVersion().setSequenceVersion(seq);
@@ -148,6 +153,14 @@ public class MainMenu extends JMenuBar {
 
 	private void setActionVisible(ActionVisible actionVisible) {
 		this.actionVisible = actionVisible;
+	}
+
+	private ActionNouveau getActionNouveau() {
+		return actionNouveau;
+	}
+
+	private void setActionNouveau(ActionNouveau actionNouveau) {
+		this.actionNouveau = actionNouveau;
 	}
 
 }

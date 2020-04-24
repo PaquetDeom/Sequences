@@ -5,7 +5,10 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.KeyStroke;
 
+import fr.paquet.dataBase.Connect;
 import fr.paquet.dataBase.Factory.sequence.SequenceVersionFactory;
+import fr.paquet.ihm.alert.AlertType;
+import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.sequence.SequenceVersion;
 
 public class ActionSave extends ActionBDA {
@@ -30,8 +33,12 @@ public class ActionSave extends ActionBDA {
 	public void actionPerformed(ActionEvent arg0) {
 
 		try {
-			SequenceVersionFactory pF = new SequenceVersionFactory();
-			pF.persist(getSequenceVersion());
+			if (sequenceVersion.isModifiable(Connect.getPConnexion().getUser().getAuteur())) {
+				SequenceVersionFactory pF = new SequenceVersionFactory();
+				pF.persist(getSequenceVersion());
+			} else
+				new AlertWindow(AlertType.INFORMATION, "Vous n'êtes pas autorisé à modifier cette séquence");
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

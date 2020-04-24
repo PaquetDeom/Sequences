@@ -24,6 +24,7 @@ public class JPanelNewSequenceTitle extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JPanelNewSequence jPanelNewSequence = null;
 	private JTextField textField = null;
+	private JPanelNewVersion jPanelNewVersion = null;
 
 	public JPanelNewSequenceTitle(JPanelNewSequence jPanelNewSequence) {
 		super();
@@ -31,6 +32,26 @@ public class JPanelNewSequenceTitle extends JPanel {
 		// setteur des éléments
 		setjPanelNewSequence(jPanelNewSequence);
 		setTextField(new JTextField());
+
+		// Ajout du layout
+		setLayout(new GridBagLayout());
+
+		// Attributs du panel
+
+		// Gestion de l'affichage
+		add(new JLabel("Titre de la séquence :"), new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER,
+				GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5, 5), 0, 0));
+		add(getTextField(), new GridBagConstraints(1, 0, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
+				GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5, 5), 0, 0));
+	}
+
+	public JPanelNewSequenceTitle(JPanelNewVersion jPanelNewVersion) {
+		super();
+
+		// setteur des éléments
+		setjPanelNewVersion(jPanelNewVersion);
+		setTextField(new JTextField(getjPanelNewVersion().getjDialogNewVersion().getSequenceVersionOld().getTitre()));
+		getTextField().setEditable(false);
 
 		// Ajout du layout
 		setLayout(new GridBagLayout());
@@ -63,24 +84,24 @@ public class JPanelNewSequenceTitle extends JPanel {
 
 			@Override
 			public void focusLost(FocusEvent event) {
+				if (getjPanelNewSequence() != null) {
+					String title = getTextField().getText();
 
-				String title = getTextField().getText();
+					SequenceImpl seq;
+					try {
+						seq = new SequenceImplFactory().findSequenceImplByTitle(title);
 
-				SequenceImpl seq;
-				try {
-					seq = new SequenceImplFactory().findSequenceImplByTitle(title);
+						if (seq != null) {
+							new AlertWindow(AlertType.INFORMATION, "Le titre est déja utilisé dans la base");
+							getTextField().setText(null);
+						}
 
-					if (seq != null) {
-						new AlertWindow(AlertType.INFORMATION, "Le titre est déja utilisé dans la base");
-						getTextField().setText(null);
+					} catch (Exception e) {
+						e.printStackTrace();
+						new AlertWindow(AlertType.ERREUR, e.getMessage());
+
 					}
-
-				} catch (Exception e) {
-					e.printStackTrace();
-					new AlertWindow(AlertType.ERREUR, e.getMessage());
-
 				}
-
 			}
 
 			@Override
@@ -96,6 +117,14 @@ public class JPanelNewSequenceTitle extends JPanel {
 
 		return getTextField().getText();
 
+	}
+
+	public JPanelNewVersion getjPanelNewVersion() {
+		return jPanelNewVersion;
+	}
+
+	public void setjPanelNewVersion(JPanelNewVersion jPanelNewVersion) {
+		this.jPanelNewVersion = jPanelNewVersion;
 	}
 
 }

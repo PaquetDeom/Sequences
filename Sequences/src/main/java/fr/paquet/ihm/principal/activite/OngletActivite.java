@@ -33,7 +33,7 @@ public class OngletActivite extends JComponent {
 
 	private ActivitePanel activitePanel = null;
 
-	private ActivitePanel getActivitePanel() throws Exception {
+	public ActivitePanel getActivitePanel() {
 		if (activitePanel == null)
 			activitePanel = new ActivitePanel(this);
 		return activitePanel;

@@ -13,7 +13,6 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-import fr.paquet.sequence.Sequence;
 import fr.paquet.sequence.SequenceVersion;
 
 public class MainFrame extends JFrame implements WindowListener {
@@ -36,6 +35,7 @@ public class MainFrame extends JFrame implements WindowListener {
 
 		super("Logiciel d'écriture pédagogique");
 
+		setMainOnglet(MainOnglet.getUniqInstance());
 		setPanelOuverture();
 		addWindowListener(this);
 		setAlwaysOnTop(false);
@@ -105,7 +105,7 @@ public class MainFrame extends JFrame implements WindowListener {
 	 */
 	public void addPanel(SequenceVersion sequenceVersion) throws Exception {
 		removePanel(getPanelOuverture());
-		setMainOnglet(new MainOnglet(sequenceVersion));
+		getMainOnglet().init(sequenceVersion);
 		add(getMainOnglet());
 		revalidate();
 	}

@@ -31,7 +31,6 @@ public class ActionNouveau extends ActionBDA {
 		try {
 
 			new JDialogNewSequence();
-			this.setEnabled(false);
 
 		} catch (Exception e) {
 			new AlertWindow(AlertType.ERREUR, "Erreur lors du chargement de la fenêtre");
@@ -47,7 +46,7 @@ public class ActionNouveau extends ActionBDA {
 
 	@Override
 	public String getName() {
-		
+
 		return "Nouveau";
 	}
 

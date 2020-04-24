@@ -8,19 +8,19 @@ import javax.swing.JPanel;
 
 import fr.paquet.ihm.style.StyleBorder;
 
-public class JPanelNewSequence extends JPanel {
+public class JPanelNewVersion extends JPanel {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JDialogNewSequence jDialogNewSequence = null;
+	private JDialogNewVersion jDialogNewVersion = null;
 
-	public JPanelNewSequence(JDialogNewSequence jDialogNewSequence) {
+	public JPanelNewVersion(JDialogNewVersion jDialogNewVersion) {
 		super();
 
 		// setteur des éléments
-		setjDialogNewSequence(jDialogNewSequence);
+		setjDialogNewVersion(jDialogNewVersion);
 
 		// ajout du layout
 		setLayout(new GridBagLayout());
@@ -28,14 +28,12 @@ public class JPanelNewSequence extends JPanel {
 		// ajout des elements aux panel
 		add(getjPanelNewSequenceTitle(), new GridBagConstraints(0, 0, 1, 1, 1.0, 0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
-		add(getjPanelNewSequenceReferentiel(), new GridBagConstraints(0, 1, 1, 1, 1.0, 0, GridBagConstraints.CENTER,
+		add(getjPanelNewSequenceClasse(), new GridBagConstraints(0, 1, 1, 1, 1.0, 0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
-		add(getjPanelNewSequenceClasse(), new GridBagConstraints(0, 2, 1, 1, 1.0, 0, GridBagConstraints.CENTER,
+		add(getjPanelNewSequenceButton(), new GridBagConstraints(0, 2, 1, 1, 1.0, 0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
-		add(getjPanelNewSequenceButton(), new GridBagConstraints(0, 3, 1, 1, 1.0, 0, GridBagConstraints.CENTER,
-				GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
-		add(new JPanel(), new GridBagConstraints(0, 4, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER,
-				GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
+		add(new JPanel(), new GridBagConstraints(0, 3, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER,
+				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
 		// atributs du Panel
 		setBorder(StyleBorder.BORDERPANEL.getBorder());
@@ -58,14 +56,6 @@ public class JPanelNewSequence extends JPanel {
 		return jPanelNewSequenceTitle;
 	}
 
-	private JPanelNewSequenceReferentiel jPanelNewSequenceReferentiel = null;
-
-	public JPanelNewSequenceReferentiel getjPanelNewSequenceReferentiel() {
-		if (jPanelNewSequenceReferentiel == null)
-			jPanelNewSequenceReferentiel = new JPanelNewSequenceReferentiel(this);
-		return jPanelNewSequenceReferentiel;
-	}
-
 	private JPanelNewSequenceButton jPanelNewSequenceButton = null;
 
 	public JPanelNewSequenceButton getjPanelNewSequenceButton() {
@@ -74,12 +64,12 @@ public class JPanelNewSequence extends JPanel {
 		return jPanelNewSequenceButton;
 	}
 
-	public JDialogNewSequence getjDialogNewSequence() {
-		return jDialogNewSequence;
+	public JDialogNewVersion getjDialogNewVersion() {
+		return jDialogNewVersion;
 	}
 
-	public void setjDialogNewSequence(JDialogNewSequence jDialogNewSequence) {
-		this.jDialogNewSequence = jDialogNewSequence;
+	public void setjDialogNewVersion(JDialogNewVersion jDialogNewVersion) {
+		this.jDialogNewVersion = jDialogNewVersion;
 	}
 
 }

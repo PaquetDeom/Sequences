@@ -6,7 +6,9 @@ import java.util.List;
 import javax.persistence.*;
 
 import fr.paquet.activite.Activite_1;
+import fr.paquet.dataBase.Connect;
 import fr.paquet.dataBase.Factory.sequence.SequenceImplFactory;
+import fr.paquet.dataBase.Factory.sequence.SequenceVersionFactory;
 import fr.paquet.referentiel.Capacite;
 import fr.paquet.referentiel.CompetenceIntermediaire;
 import fr.paquet.referentiel.Referentiel;
@@ -114,12 +116,14 @@ public class SequenceVersion implements Sequence {
 
 	}
 
-	public SequenceVersion(SequenceVersion previousVersion) {
+	public SequenceVersion(SequenceVersion previousVersion) throws Exception {
 		super();
 		this.previous = previousVersion;
 		this.previousVersion = previousVersion;
-		setNumVersion(previousVersion.getnVersion());
+		this.firstSequence = previousVersion.firstSequence;
+		setNumVersion(previousVersion.firstSequence);
 		setVisible(false);
+		setAuteur(Connect.getPConnexion().getUser().getAuteur());
 		previousVersion.lock();
 	}
 
@@ -127,8 +131,10 @@ public class SequenceVersion implements Sequence {
 		super();
 	}
 
-	private void setNumVersion(int nLastVersion) {
-		this.numVersion = nLastVersion + 1;
+	private void setNumVersion(SequenceImpl firstSequence) throws Exception {
+		List<SequenceVersion> sV = new SequenceVersionFactory().findSequenceVersionBySequenceImpl(firstSequence);
+
+		this.numVersion = sV.size() + 1;
 	}
 
 	@Override
@@ -239,7 +245,7 @@ public class SequenceVersion implements Sequence {
 
 	@Override
 	public boolean isModifiable(Auteur auteur) {
-		return dernier && this.auteur.equals(auteur);
+		return dernier && this.auteur.equals(auteur) && !isVisible();
 	}
 
 	@Override

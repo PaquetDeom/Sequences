@@ -3,10 +3,13 @@ package fr.paquet.ihm.action;
 import java.awt.event.ActionEvent;
 
 import fr.paquet.dataBase.Connect;
+import fr.paquet.ihm.alert.AlertListener;
+import fr.paquet.ihm.alert.AlertType;
+import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.sequence.SequenceVersion;
-import main.MainFrame;
+import main.MainOnglet;
 
-public class ActionVisible extends ActionBDA {
+public class ActionVisible extends ActionBDA implements AlertListener {
 
 	/**
 	 * 
@@ -17,23 +20,28 @@ public class ActionVisible extends ActionBDA {
 	public ActionVisible() {
 		super();
 		putValue(NAME, getName());
-		if (sequenceVersion == null)
-			setEnabled(false);
+		Enable();
 	}
 
 	public void setSequenceVersion(SequenceVersion sequence) {
-		if (!sequence.isVisible() && Connect.getPConnexion().getUser().getAuteur() == sequence.getAuteur())
-			setEnabled(true);
 		this.sequenceVersion = sequence;
+		Enable();
+	}
+
+	public void Enable() {
+		if (sequenceVersion != null && !sequenceVersion.isVisible()
+				&& Connect.getPConnexion().getUser().getAuteur() == sequenceVersion.getAuteur())
+			setEnabled(true);
+		else
+			setEnabled(false);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		sequenceVersion.setVisible(true);
 
-		MainFrame.getUniqInstance().getMainOnglet().getOngletSequence().getSequencePanel().getsequencePanelVersion()
-				.affiche();
-		setEnabled(false);
+		new AlertWindow(AlertType.QUESTION, "Après cette opération vous ne pourrez plus modifier cette séquence", this);
+		MainOnglet.getUniqInstance().afficheVersion();
+		Enable();
 
 	}
 
@@ -47,6 +55,14 @@ public class ActionVisible extends ActionBDA {
 	public String getName() {
 
 		return "Rendre visible";
+	}
+
+	@Override
+	public void buttonClick(String button) {
+
+		if (button.equals("Oui")) {
+			sequenceVersion.setVisible(true);
+		}
 	}
 
 }

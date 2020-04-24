@@ -30,6 +30,22 @@ public class JPanelNewSequenceButton extends JPanelButtonAnnulOk {
 		panelbtn.add(getBtnOk());
 	}
 
+	public JPanelNewSequenceButton(JPanelNewVersion jPanelNewVersion) {
+		super(jPanelNewVersion);
+
+		// ajout du layout
+		setLayout(new BorderLayout());
+
+		// Affichage
+		JPanel panelbtn = new JPanel();
+		add(panelbtn, BorderLayout.SOUTH);
+		panelbtn.setLayout(new GridLayout(0, 3, 0, 0));
+		panelbtn.add(new JPanel());
+		panelbtn.add(getBtnAnnul());
+		panelbtn.add(getBtnOk());
+
+	}
+
 	@Override
 	public void setjPanel(JPanel panel) {
 		this.panel = panel;

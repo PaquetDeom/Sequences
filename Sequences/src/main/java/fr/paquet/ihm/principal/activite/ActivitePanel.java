@@ -6,6 +6,8 @@ import java.awt.Insets;
 
 import javax.swing.JPanel;
 
+import fr.paquet.ihm.principal.sequence.SequencePanelVersion;
+
 public class ActivitePanel extends JPanel {
 
 	/**
@@ -26,9 +28,8 @@ public class ActivitePanel extends JPanel {
 		setLayout(new GridBagLayout());
 
 		// ajout des composants
-		add(getOngletActivite().getMainOnglet().getOngletSequence().getSequencePanel().getsequencePanelVersion(),
-				new GridBagConstraints(0, 0, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-						new Insets(0, 0, 0, 0), 0, 0));
+		add(getsequencePanelVersion(), new GridBagConstraints(0, 0, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
+				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 		add(new ActivitePanelEntete(this), new GridBagConstraints(0, 1, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 		add(new ActivitePanelCorps(this), new GridBagConstraints(0, 2, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
@@ -45,6 +46,15 @@ public class ActivitePanel extends JPanel {
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
 		// attribut du Panel
+	}
+
+	private SequencePanelVersion sequencePanelVersion = null;
+
+	public SequencePanelVersion getsequencePanelVersion() {
+		if (sequencePanelVersion == null)
+			sequencePanelVersion = new SequencePanelVersion(
+					getOngletActivite().getMainOnglet().getOngletSequence().getSequencePanel());
+		return sequencePanelVersion;
 	}
 
 	private void setTitre(int size) {

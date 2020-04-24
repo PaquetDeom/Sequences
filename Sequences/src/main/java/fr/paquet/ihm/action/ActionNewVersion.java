@@ -2,7 +2,9 @@ package fr.paquet.ihm.action;
 
 import java.awt.event.ActionEvent;
 
+import fr.paquet.ihm.nouveau.JDialogNewVersion;
 import fr.paquet.sequence.SequenceVersion;
+import main.MainMenu;
 
 public class ActionNewVersion extends ActionBDA {
 
@@ -12,8 +14,9 @@ public class ActionNewVersion extends ActionBDA {
 	private static final long serialVersionUID = 1L;
 	private SequenceVersion sequence = null;
 
-	public ActionNewVersion() {
+	public ActionNewVersion(MainMenu mainMenu) {
 		super();
+
 		putValue(NAME, getName());
 		if (sequence == null)
 			setEnabled(false);
@@ -28,7 +31,7 @@ public class ActionNewVersion extends ActionBDA {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 
-		new SequenceVersion(sequence);
+		new JDialogNewVersion(sequence);
 
 	}
 
