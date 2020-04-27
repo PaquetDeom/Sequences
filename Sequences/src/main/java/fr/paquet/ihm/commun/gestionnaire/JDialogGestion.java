@@ -34,7 +34,7 @@ public abstract class JDialogGestion extends JDialog implements ActionListener {
 
 	protected abstract void setJPanelGestionnaireRight();
 
-	private JPanelGestionnaireRight getJPanelGestionnaireRight() {
+	protected JPanelGestionnaireRight getJPanelGestionnaireRight() {
 		return jPanelGestionnaireRight;
 	}
 
@@ -48,7 +48,6 @@ public abstract class JDialogGestion extends JDialog implements ActionListener {
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setAlwaysOnTop(false);
-		setVisible(true);
 
 		// ajout des composants
 		setObject(obj);
@@ -56,55 +55,68 @@ public abstract class JDialogGestion extends JDialog implements ActionListener {
 		setJPanelGestionnaireRight();
 		setJSplitPaneLeft(getJtreGestionnaire());
 		setJSplitPaneRight(getJPanelGestionnaireRight());
-		//setJButtomPanel(new JPanel());
 
 		// ajout du panel
-		setContentPane(getMainPane());
+		affiche();
 
 		// listener
 		buttonOk.addActionListener(this);
 		buttonAnnul.addActionListener(this);
+		getJPanelGestionnaireRight().getButtonAjouter().addActionListener(this);
+
+		// visible
+		setVisible(true);
+	}
+
+	protected void affiche() {
+		if (getContentPane().getComponents().length != 0)
+			getContentPane().remove(0);
+		setContentPane(getMainPane());
+		revalidate();
 	}
 
 	private void setObject(Object object) {
 		this.object = object;
 	}
 
-	protected Object getObject() {
+	public Object getObject() {
 		return object;
 	}
 
+	private JPanel mainPane = new JPanel();
+
 	private JPanel getMainPane() {
-		JPanel panel = new JPanel(new GridBagLayout());
-		panel.add(getTopPanel(), new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER,
+
+		mainPane.setLayout(new GridBagLayout());
+		mainPane.add(getTopPanel(), new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
-		panel.add(getJButtonPanel(), new GridBagConstraints(0, 1, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
+		mainPane.add(getJButtonPanel(), new GridBagConstraints(0, 1, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-		return panel;
+
+		return mainPane;
 	}
 
 	private JPanel topPanel = null;
 
 	protected JPanel getTopPanel() {
 
-		if (topPanel == null) {
-			topPanel = new JPanel(new GridBagLayout());
-			topPanel.setBorder(StyleBorder.BORDERPANEL.getBorder());
-			topPanel.add(getSplitPane(), new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER,
+		topPanel = new JPanel(new GridBagLayout());
+		topPanel.setBorder(StyleBorder.BORDERPANEL.getBorder());
+		topPanel.add(getSplitPane(), new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER,
+				GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
+		if (getJButtomPanel() != null)
+			topPanel.add(getJButtomPanel(), new GridBagConstraints(0, 1, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
 					GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
-			//topPanel.add(getJButtomPanel(), new GridBagConstraints(0, 1, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
-					//GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
 
-		}
 		return topPanel;
 	}
 
 	protected JPanel buttomPanel = null;
-	
+
 	protected abstract void setButtomPanel();
 
 	public ButtomPanel getJButtomPanel() {
-		
+
 		return (ButtomPanel) buttomPanel;
 	}
 

@@ -1,5 +1,6 @@
 package fr.paquet.ihm.commun.gestionnaire;
 
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -28,6 +29,7 @@ public abstract class JPanelGestionnaireRight extends JPanel implements Selectio
 		setPanelTitre(null);
 		setPanelLeft(null);
 		setPanelRight(null);
+		setMaximumSize(new Dimension(getjDialogGestion().getHeight(), getjDialogGestion().getWidth() / 2));
 
 		// Ajout du layout
 		setLayout(new GridBagLayout());
@@ -35,8 +37,18 @@ public abstract class JPanelGestionnaireRight extends JPanel implements Selectio
 		// Ajout des composants
 		affiche();
 
+		// listener
+		getButtonAjouter().addActionListener(getjDialogGestion().getJButtomPanel());
+
 		// attributs du Panel
 		setBorder(StyleBorder.BORDERPANEL.getBorder());
+
+	}
+
+	protected Object objectSelected = null;
+
+	public Object getObjectSelected() {
+		return objectSelected;
 	}
 
 	public void affiche() {
@@ -45,12 +57,12 @@ public abstract class JPanelGestionnaireRight extends JPanel implements Selectio
 		add(getPanelTitre(), new GridBagConstraints(0, 0, 2, 1, 1.0, 0.0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 		if (getPanelRight() != null) {
-			add(getPanelLeft(), new GridBagConstraints(0, 1, 1, 1, 0.5, 1.0, GridBagConstraints.CENTER,
+			add(getPanelLeft(), new GridBagConstraints(0, 1, 1, 1, 0.25, 1, GridBagConstraints.CENTER,
 					GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-			add(getPanelRight(), new GridBagConstraints(1, 1, 1, 1, 0.5, 0.0, GridBagConstraints.CENTER,
+			add(getPanelRight(), new GridBagConstraints(1, 1, 1, 1, 0.25, 0, GridBagConstraints.CENTER,
 					GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 		} else
-			add(getPanelLeft(), new GridBagConstraints(0, 1, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER,
+			add(getPanelLeft(), new GridBagConstraints(0, 1, 1, 1, 1, 1, GridBagConstraints.CENTER,
 					GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 		add(getPanelButton(), new GridBagConstraints(0, 2, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));

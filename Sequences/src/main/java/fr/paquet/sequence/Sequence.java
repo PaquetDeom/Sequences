@@ -70,7 +70,7 @@ public interface Sequence {
 
 	public void addCompetenceIntermediaire(CompetenceIntermediaire competenceIntermediaire);
 
-	public void addSavoirAssocies(SavoirAssocie savoirAssocie);
+	public void addSavoirAssocies(SavoirAssocie savoirAssocie) throws Exception;
 
 	public void removeActivite(Activite_1 activite);
 

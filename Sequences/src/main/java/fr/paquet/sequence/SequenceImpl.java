@@ -108,12 +108,6 @@ public class SequenceImpl implements Sequence {
 	}
 
 	@Override
-	public List<SavoirAssocie> getSavoirAssocies() {
-
-		return new ArrayList<SavoirAssocie>();
-	}
-
-	@Override
 	public Auteur getAuteur() {
 
 		return null;
@@ -220,38 +214,38 @@ public class SequenceImpl implements Sequence {
 
 	@Override
 	public void addActivite(Activite_1 activite) {
-		
-		
-	}
 
-	@Override
-	public void addCompetenceIntermediaire(CompetenceIntermediaire competenceIntermediaire) {
-		
-		
-	}
-
-	@Override
-	public void addSavoirAssocies(SavoirAssocie savoirAssocie) {
-		
-		
 	}
 
 	@Override
 	public void removeActivite(Activite_1 activite) {
-		
-		
+
 	}
 
 	@Override
 	public void removeCompetenceIntermediaire(CompetenceIntermediaire competenceIntermediaire) {
-		
-		
+
+	}
+
+	@Override
+	public void addCompetenceIntermediaire(CompetenceIntermediaire competenceIntermediaire) {
+
+	}
+
+	@Override
+	public List<SavoirAssocie> getSavoirAssocies() {
+
+		return new ArrayList<SavoirAssocie>();
+	}
+
+	@Override
+	public void addSavoirAssocies(SavoirAssocie savoirAssocie) throws Exception {
+
 	}
 
 	@Override
 	public void removeSavoirAssocies(SavoirAssocie savoirAssocie) {
-		
-		
+
 	}
 
 }

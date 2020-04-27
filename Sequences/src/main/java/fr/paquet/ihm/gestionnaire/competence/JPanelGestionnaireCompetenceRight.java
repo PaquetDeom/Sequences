@@ -33,14 +33,8 @@ public class JPanelGestionnaireCompetenceRight extends JPanelGestionnaireRight {
 		jD.getJtreGestionnaire().addSelectionListeners(this);
 	}
 
-	private CompetenceIntermediaire compInt = null;
-
 	private void setCompetenIntermediaire(CompetenceIntermediaire compInt) {
-		this.compInt = compInt;
-	}
-
-	private CompetenceIntermediaire getCompetenceIntermediaire() {
-		return compInt;
+		this.objectSelected = compInt;
 	}
 
 	@Override
@@ -52,11 +46,10 @@ public class JPanelGestionnaireCompetenceRight extends JPanelGestionnaireRight {
 		label.setFont(StyleFont.TITLECORPS.getFont());
 
 		if (Titre != null)
-			Titre = getCompetenceIntermediaire().toString();
+			label.setText(Titre);
 		else
-			Titre = "attente de sélection";
+			label.setText("attente de sélection");
 
-		label.setText(Titre);
 		panel.add(label, BorderLayout.CENTER);
 		panel.setBackground(StyleColor.PANELTITLE.getColor());
 		panel.setBorder(StyleBorder.BORDERTITLEAREA.getBorder());
@@ -117,7 +110,7 @@ public class JPanelGestionnaireCompetenceRight extends JPanelGestionnaireRight {
 		UserObject userObject = (UserObject) eventObject.getObject();
 		CompetenceIntermediaire compInt = (CompetenceIntermediaire) userObject.getObject();
 		setCompetenIntermediaire(compInt);
-		setPanelTitre(compInt.getIntitule());
+		setPanelTitre(compInt.toString());
 		setPanelLeft(compInt);
 		setPanelRight(compInt);
 

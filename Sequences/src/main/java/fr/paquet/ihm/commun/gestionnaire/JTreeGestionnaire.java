@@ -42,6 +42,7 @@ public abstract class JTreeGestionnaire extends JScrollPane {
 
 		// attributs du JScrollPane
 		this.setPreferredSize(new Dimension(600, 400));
+		this.setMinimumSize(new Dimension(600, 400));
 		this.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		this.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 

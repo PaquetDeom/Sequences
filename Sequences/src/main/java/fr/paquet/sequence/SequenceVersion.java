@@ -73,6 +73,7 @@ public class SequenceVersion implements Sequence {
 	private List<SavoirAssocie> savoirAssocies = null;
 
 	@SuppressWarnings("unchecked")
+	@Override
 	public List<SavoirAssocie> getSavoirAssocies() {
 		if (savoirAssocies == null)
 			savoirAssocies = (ArrayList<SavoirAssocie>) ((ArrayList<SavoirAssocie>) previousVersion.getSavoirAssocies())
@@ -284,13 +285,8 @@ public class SequenceVersion implements Sequence {
 
 	@Override
 	public void addCompetenceIntermediaire(CompetenceIntermediaire competenceIntermediaire) {
+
 		getCompetenceIntermediaires().add(competenceIntermediaire);
-
-	}
-
-	@Override
-	public void addSavoirAssocies(SavoirAssocie savoirAssocie) {
-		getSavoirAssocies().add(savoirAssocie);
 
 	}
 
@@ -303,6 +299,15 @@ public class SequenceVersion implements Sequence {
 	@Override
 	public void removeCompetenceIntermediaire(CompetenceIntermediaire competenceIntermediaire) {
 		getCompetenceIntermediaires().remove(competenceIntermediaire);
+
+	}
+
+	@Override
+	public void addSavoirAssocies(SavoirAssocie savoirAssocie) throws Exception {
+		if (!getSavoirAssocies().contains(savoirAssocie))
+			getSavoirAssocies().add(savoirAssocie);
+		else
+			throw new Exception("Le savoir est déja dans la liste");
 
 	}
 
