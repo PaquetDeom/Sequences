@@ -108,7 +108,7 @@ public class SavoirAssocie {
 	 * 
 	 * @return Le savoir auquel appartient savoir associe<br/>
 	 */
-	private Savoir getSavoir() {
+	public Savoir getSavoir() {
 
 		return sav;
 	}

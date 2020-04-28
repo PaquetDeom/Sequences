@@ -1,4 +1,4 @@
-package fr.paquet.ihm.gestionnaire.savoir;
+package fr.paquet.ihm.gestionnaire.activite.competence;
 
 import java.util.List;
 
@@ -11,27 +11,17 @@ import fr.paquet.ihm.commun.gestionnaire.JTreeGestionnaire;
 import fr.paquet.ihm.commun.gestionnaire.SelectedEvent;
 import fr.paquet.ihm.commun.gestionnaire.SelectionListener;
 import fr.paquet.ihm.commun.gestionnaire.UserObject;
-import fr.paquet.referentiel.Savoir;
+import fr.paquet.referentiel.CompetenceIntermediaire;
 
-public class JTreeGestionnaireSavoir extends JTreeGestionnaire {
+public class JtreeGestionnaireCompetenceActivite extends JTreeGestionnaire {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public JTreeGestionnaireSavoir(List<Savoir> savoirs) {
-		super(savoirs);
-
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	protected DefaultMutableTreeNode getRootNode() {
-
-		if (rootNode == null)
-			rootNode = new GestionnaireTreeNodeSavoir((List<Savoir>) getObjects());
-		return rootNode;
+	public JtreeGestionnaireCompetenceActivite(List<CompetenceIntermediaire> competenceIntermediaires) {
+		super(competenceIntermediaires);
 
 	}
 
@@ -53,11 +43,21 @@ public class JTreeGestionnaireSavoir extends JTreeGestionnaire {
 
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	protected DefaultMutableTreeNode getRootNode() {
+
+		if (rootNode == null)
+			rootNode = new GestionnaireTreeNodeCompetenceActivite((List<CompetenceIntermediaire>) getObjects());
+		return rootNode;
+
+	}
+
 	@Override
 	protected void fireSeclectionChanged(TreePath selectionPath) {
 		Object[] data = selectionPath.getPath();
 		DefaultMutableTreeNode node = (DefaultMutableTreeNode) data[data.length - 1];
-		if (node instanceof GestionnaireTreeNodeSavoir.TableTreeNode == false)
+		if (node instanceof GestionnaireTreeNodeCompetenceActivite.TablesTreeNode == false)
 			return;
 
 		UserObject object = (UserObject) node.getUserObject();

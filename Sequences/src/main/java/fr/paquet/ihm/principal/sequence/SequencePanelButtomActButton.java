@@ -5,8 +5,12 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import fr.paquet.activite.Activite_1;
+import fr.paquet.ihm.alert.AlertType;
+import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.ihm.commun.CommunJPanelButton;
 import fr.paquet.ihm.principal.activite.OngletActivite;
+import main.MainOnglet;
 
 public class SequencePanelButtomActButton extends CommunJPanelButton {
 
@@ -38,20 +42,13 @@ public class SequencePanelButtomActButton extends CommunJPanelButton {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				try {
-					getSequencePanelButtomAct().addActivite();
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-				getSequencePanelButtomAct().getSequencePanelButtomActJPanelJLabel().affiche();
 
 				try {
-					new OngletActivite(
-							getSequencePanelButtomAct().getSequencePanel().getOngletSequence().getMainOnglet());
+					Activite_1 act = new Activite_1(
+							MainOnglet.getUniqInstance().getOngletSequence().getSequenceVersion());
+					new OngletActivite(act);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
+					new AlertWindow(AlertType.ERREUR, "L'activité n'a pas été crée");
 					e.printStackTrace();
 				}
 

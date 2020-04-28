@@ -73,8 +73,6 @@ public class SequencePanelButtomAct extends JPanel {
 		return sequencePanelButtomActJPanelJLabel;
 	}
 
-	public void addActivite() throws Exception {
-		getSequencePanelButtomActJPanelJLabel().addActivite();
-	}
+	
 
 }

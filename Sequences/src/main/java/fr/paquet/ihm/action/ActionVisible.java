@@ -7,6 +7,7 @@ import fr.paquet.ihm.alert.AlertListener;
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.sequence.SequenceVersion;
+import main.MainMenu;
 import main.MainOnglet;
 
 public class ActionVisible extends ActionBDA implements AlertListener {
@@ -20,7 +21,7 @@ public class ActionVisible extends ActionBDA implements AlertListener {
 	public ActionVisible() {
 		super();
 		putValue(NAME, getName());
-		Enable();
+		setEnabled(false);
 	}
 
 	public void setSequenceVersion(SequenceVersion sequence) {
@@ -41,6 +42,11 @@ public class ActionVisible extends ActionBDA implements AlertListener {
 
 		new AlertWindow(AlertType.QUESTION, "Après cette opération vous ne pourrez plus modifier cette séquence", this);
 		MainOnglet.getUniqInstance().afficheVersion();
+
+		MainMenu.getUniqInstance().getActionSave().Enable();
+		MainMenu.getUniqInstance().getActionCompetences().Enable();
+		MainMenu.getUniqInstance().getActionActivites().Enable();
+		
 		Enable();
 
 	}

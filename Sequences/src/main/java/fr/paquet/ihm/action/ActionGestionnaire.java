@@ -32,4 +32,10 @@ public class ActionGestionnaire extends ActionBDA {
 		return "Gestionnaire de sequences";
 	}
 
+	@Override
+	protected void Enable() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

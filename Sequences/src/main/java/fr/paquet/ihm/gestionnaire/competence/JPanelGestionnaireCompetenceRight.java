@@ -11,6 +11,7 @@ import fr.paquet.ihm.commun.gestionnaire.PanelLeftRight;
 import fr.paquet.ihm.commun.gestionnaire.SelectedEvent;
 
 import fr.paquet.ihm.commun.gestionnaire.UserObject;
+import fr.paquet.ihm.gestionnaire.activite.competence.JDialogCompetenceActivite;
 import fr.paquet.ihm.style.StyleBorder;
 import fr.paquet.ihm.style.StyleColor;
 import fr.paquet.ihm.style.StyleFont;
@@ -30,6 +31,14 @@ public class JPanelGestionnaireCompetenceRight extends JPanelGestionnaireRight {
 
 		// listener
 		JDialogCompetence jD = (JDialogCompetence) getjDialogGestion();
+		jD.getJtreGestionnaire().addSelectionListeners(this);
+	}
+	
+	public JPanelGestionnaireCompetenceRight(JDialogCompetenceActivite jDialogCompetenceactivite) {
+		super(jDialogCompetenceactivite, "Ajouter");
+
+		// listener
+		JDialogCompetenceActivite jD = (JDialogCompetenceActivite) getjDialogGestion();
 		jD.getJtreGestionnaire().addSelectionListeners(this);
 	}
 

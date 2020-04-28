@@ -16,7 +16,6 @@ import javax.persistence.Table;
 
 import fr.paquet.referentiel.CompetenceIntermediaire;
 import fr.paquet.referentiel.SavoirAssocie;
-import fr.paquet.sequence.Sequence;
 import fr.paquet.sequence.SequenceVersion;
 
 @Entity
@@ -53,10 +52,11 @@ public class Activite_1 {
 		super();
 	}
 
-	public Activite_1(SequenceVersion sequence, int nActivite) throws Exception {
+	public Activite_1(SequenceVersion sequence) throws Exception {
 		super();
 
-		setnActivite(nActivite);
+		sequence.addActivite(this);
+		this.nActivite = sequence.getActivites().size();
 		setSequence(sequence);
 	}
 
@@ -64,11 +64,7 @@ public class Activite_1 {
 		return nActivite;
 	}
 
-	private void setnActivite(int nActivite) {
-		this.nActivite = nActivite;
-	}
-
-	public Sequence getSequence() {
+	public SequenceVersion getSequenceVersion() {
 		return sequence;
 	}
 
@@ -115,14 +111,14 @@ public class Activite_1 {
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
 	private List<CompetenceIntermediaire> competencesIntermédiaires = null;
 
-	public List<CompetenceIntermediaire> getCompetencesIntermédiaires() {
+	public List<CompetenceIntermediaire> getCompetencesIntermediaires() {
 		if (competencesIntermédiaires == null)
 			competencesIntermédiaires = new ArrayList<CompetenceIntermediaire>();
 		return competencesIntermédiaires;
 	}
 
 	public void addCompetenceIntermediaire(CompetenceIntermediaire compInt) {
-		getCompetencesIntermédiaires().add(compInt);
+		getCompetencesIntermediaires().add(compInt);
 	}
 
 	public void setCompetencesIntermédiaires(List<CompetenceIntermediaire> competencesIntermédiaires) {

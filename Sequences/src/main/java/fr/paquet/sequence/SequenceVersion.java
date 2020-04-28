@@ -81,6 +81,12 @@ public class SequenceVersion implements Sequence {
 		return savoirAssocies;
 	}
 
+	@Override
+	public void setSavoirAssocies(List<SavoirAssocie> savoirAssocies) {
+		this.savoirAssocies = savoirAssocies;
+
+	}
+
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
 	@JoinTable(name = "SEQUENCEVERSION_COMPETENCE_INTERMEDIAIRE", joinColumns = @JoinColumn(name = "SEVEID"), inverseJoinColumns = @JoinColumn(name = "COINID"))
 	private List<CompetenceIntermediaire> competenceIntermediaires = null;
@@ -92,6 +98,12 @@ public class SequenceVersion implements Sequence {
 			competenceIntermediaires = (ArrayList<CompetenceIntermediaire>) ((ArrayList<CompetenceIntermediaire>) previousVersion
 					.getCompetenceIntermediaires()).clone();
 		return competenceIntermediaires;
+	}
+
+	@Override
+	public void setCompetenceIntermediaires(List<CompetenceIntermediaire> competenceIntermediaires) {
+		this.competenceIntermediaires = competenceIntermediaires;
+
 	}
 
 	@OneToMany(mappedBy = "sequence", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -126,6 +138,10 @@ public class SequenceVersion implements Sequence {
 		setVisible(false);
 		setAuteur(Connect.getPConnexion().getUser().getAuteur());
 		previousVersion.lock();
+	}
+
+	public SequenceImpl getFirstSequence() {
+		return firstSequence;
 	}
 
 	public SequenceVersion() {

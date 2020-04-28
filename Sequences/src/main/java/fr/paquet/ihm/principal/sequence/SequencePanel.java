@@ -28,7 +28,7 @@ public class SequencePanel extends JPanel {
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 		add(new SequencePanelEntete(this), new GridBagConstraints(0, 1, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-		add(new SequencePanelButtomComp(this), new GridBagConstraints(0, 2, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
+		add(getSequencePanelButtomComp(), new GridBagConstraints(0, 2, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 		add(new SequencePanelCenter(this), new GridBagConstraints(0, 3, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
@@ -39,6 +39,14 @@ public class SequencePanel extends JPanel {
 
 		// attributs du panel
 
+	}
+
+	private SequencePanelButtomComp sequencePanelButtomComp = null;
+
+	public SequencePanelButtomComp getSequencePanelButtomComp() {
+		if (sequencePanelButtomComp == null)
+			sequencePanelButtomComp = new SequencePanelButtomComp(this);
+		return sequencePanelButtomComp;
 	}
 
 	private SequencePanelVersion sequencePanelVersion = null;

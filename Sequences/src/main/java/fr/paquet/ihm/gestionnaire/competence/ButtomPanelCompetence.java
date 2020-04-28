@@ -1,17 +1,24 @@
 package fr.paquet.ihm.gestionnaire.competence;
 
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.DefaultListSelectionModel;
 import javax.swing.JButton;
 import javax.swing.event.ListSelectionEvent;
 
+import fr.paquet.activite.Activite_1;
+import fr.paquet.ihm.alert.AlertListener;
+import fr.paquet.ihm.alert.AlertType;
+import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.ihm.commun.gestionnaire.ButtomPanel;
 import fr.paquet.ihm.gestionnaire.savoir.JDialogSavoir;
 import fr.paquet.referentiel.CompetenceIntermediaire;
+import fr.paquet.referentiel.Savoir;
+import fr.paquet.referentiel.SavoirAssocie;
 
-public class ButtomPanelCompetence extends ButtomPanel {
+public class ButtomPanelCompetence extends ButtomPanel implements AlertListener {
 
 	/**
 	 * 
@@ -60,13 +67,60 @@ public class ButtomPanelCompetence extends ButtomPanel {
 	public void actionPerformed(ActionEvent event) {
 		JButton button = (JButton) event.getSource();
 
-		if (button.getText().equals("Supprimer")) {
-			getJDialogCompetence().getCompIntsSelect().remove(getCompIntSelected());
-			affiche();
+		if (getCompIntSelected() == null)
+			new AlertWindow(AlertType.ATTENTION, "Veuillez sélectionner une compétence");
+		else {
+
+			if (button.getText().equals("Supprimer")) {
+
+				if (!getJDialogCompetence().getSequenceVersion().getActivites().isEmpty()) {
+					new AlertWindow(AlertType.QUESTION, "La compétence va être supprimée de toute les activités", this);
+				} else {
+					supprSequence();
+					affiche();
+				}
+
+			}
+
+			if (button.getText().equals("Savoir")) {
+
+				new JDialogSavoir(getCompIntSelected(), getJDialogCompetence().getSequenceVersion(),
+						getJDialogCompetence());
+			}
 		}
 
-		if (button.getText().equals("Savoir")) {
-			new JDialogSavoir(getCompIntSelected());
+	}
+
+	private void supprSequence() {
+
+		getJDialogCompetence().getCompIntsSelect().remove(getCompIntSelected());
+
+		List<Savoir> savoirsAut = new ArrayList<Savoir>();
+
+		for (CompetenceIntermediaire compInt : getJDialogCompetence().getCompIntsSelect()) {
+			for (Savoir savoir : compInt.getCompetence().getSavoirs()) {
+				savoirsAut.add(savoir);
+			}
+		}
+
+		for (SavoirAssocie savAss : getJDialogCompetence().getSavoirAssocieSelected()) {
+			if (savoirsAut.isEmpty())
+				getJDialogCompetence().setSavoirAssocieSelected(new ArrayList<SavoirAssocie>());
+			else {
+				if (!savoirsAut.contains(savAss.getSavoir()))
+					getJDialogCompetence().getSavoirAssocieSelected().remove(savAss);
+			}
+		}
+	}
+
+	private void supprActivite(CompetenceIntermediaire compInt) {
+
+		for (Activite_1 act : getJDialogCompetence().getSequenceVersion().getActivites()) {
+			if (!act.getCompetencesIntermediaires().isEmpty()) {
+				if (act.getCompetencesIntermediaires().contains(compInt))
+
+					act.getCompetencesIntermediaires().remove(compInt);
+			}
 		}
 
 	}
@@ -90,6 +144,16 @@ public class ButtomPanelCompetence extends ButtomPanel {
 		DefaultListSelectionModel dLSM = (DefaultListSelectionModel) event.getSource();
 		int i = dLSM.getMinSelectionIndex();
 		this.compIntSelected = getJDialogCompetence().getCompIntsSelect().get(i);
+
+	}
+
+	@Override
+	public void buttonClick(String button) {
+		if (button.equals("Oui")) {
+			supprActivite(getCompIntSelected());
+			supprSequence();
+			affiche();
+		}
 
 	}
 }

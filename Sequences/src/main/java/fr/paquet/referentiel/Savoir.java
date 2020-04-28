@@ -53,18 +53,14 @@ public class Savoir {
 	/**
 	 * Contructeur de la classe Savoirs<br/>
 	 * 
-	 * @param ref
-	 *            Un savoir est attache a un referentiel de l'education national
-	 *            <br/>
-	 * @param UnCode
-	 *            code du savoir est compose de "S" et d'un Chiffre<br/>
-	 *            exemple : "S1", "S2", etc...
-	 * @param UnIntitule
-	 *            le libelle du savoir : <br/>
-	 *            exemple : "L'ENTREPRISE ET SON ENVIRONNEMENT" <br/>
+	 * @param ref        Un savoir est attache a un referentiel de l'education
+	 *                   national <br/>
+	 * @param UnCode     code du savoir est compose de "S" et d'un Chiffre<br/>
+	 *                   exemple : "S1", "S2", etc...
+	 * @param UnIntitule le libelle du savoir : <br/>
+	 *                   exemple : "L'ENTREPRISE ET SON ENVIRONNEMENT" <br/>
 	 * 
-	 * @exception Code
-	 *                Si le code est null ou ne commence pas par un "S"
+	 * @exception Code Si le code est null ou ne commence pas par un "S"
 	 */
 
 	public Savoir(Referentiel ref, String unCode, String unIntitule) throws Exception {
@@ -173,6 +169,10 @@ public class Savoir {
 	 */
 	public int getId() {
 		return id;
+	}
+
+	public String toString() {
+		return getCode() + " " + getIntitule();
 	}
 
 }

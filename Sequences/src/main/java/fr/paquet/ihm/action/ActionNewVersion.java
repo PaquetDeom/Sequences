@@ -18,14 +18,13 @@ public class ActionNewVersion extends ActionBDA {
 		super();
 
 		putValue(NAME, getName());
-		if (sequence == null)
-			setEnabled(false);
+		setEnabled(false);
 	}
 
 	public void setSequenceVersion(SequenceVersion sequence) {
-		if (sequence != null)
-			setEnabled(true);
+
 		this.sequence = sequence;
+		Enable();
 	}
 
 	@Override
@@ -45,6 +44,15 @@ public class ActionNewVersion extends ActionBDA {
 	public String getName() {
 
 		return "Créer une nouvelle version";
+	}
+
+	@Override
+	protected void Enable() {
+		if (sequence != null)
+			setEnabled(true);
+		else
+			setEnabled(false);
+
 	}
 
 }

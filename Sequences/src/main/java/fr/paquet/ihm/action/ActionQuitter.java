@@ -32,4 +32,10 @@ public class ActionQuitter extends ActionBDA {
 		return "Quitter";
 	}
 
+	@Override
+	protected void Enable() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

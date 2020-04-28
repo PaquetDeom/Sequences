@@ -70,7 +70,7 @@ public class SequencePanelVersion extends JPanel {
 	}
 
 	private JLabel getLabelVisible() {
-		boolean a = getSequencePanel().getOngletSequence().getMainOnglet().getSequence().isVisible();
+		boolean a = getSequencePanel().getOngletSequence().getSequenceVersion().isVisible();
 
 		if (a == true)
 			return new JLabel("Tout le monde |");
@@ -81,34 +81,34 @@ public class SequencePanelVersion extends JPanel {
 	private JLabel getLabelReferentiel() {
 
 		return new JLabel(
-				getSequencePanel().getOngletSequence().getMainOnglet().getSequence().getReferentiel().toString()
+				getSequencePanel().getOngletSequence().getSequenceVersion().getReferentiel().toString()
 						+ " | ");
 	}
 
 	private JLabel getLabelClasse() {
 
-		return new JLabel(getSequencePanel().getOngletSequence().getMainOnglet().getSequence().getClasse() + " | ");
+		return new JLabel(getSequencePanel().getOngletSequence().getSequenceVersion().getClasse() + " | ");
 	}
 
 	private JLabel getLabelAuteur() {
 
-		return new JLabel(getSequencePanel().getOngletSequence().getMainOnglet().getSequence().getAuteur() + " | ");
+		return new JLabel(getSequencePanel().getOngletSequence().getSequenceVersion().getAuteur() + " | ");
 
 	}
 
 	private JLabel getLabelVersion() {
 
 		return new JLabel(
-				"N°" + getSequencePanel().getOngletSequence().getMainOnglet().getSequence().getnVersion() + " | ");
+				"N°" + getSequencePanel().getOngletSequence().getSequenceVersion().getnVersion() + " | ");
 
 	}
 
 	private JLabel getLabelNom() {
 
-		if (getSequencePanel().getOngletSequence().getMainOnglet().getSequence() == null)
+		if (getSequencePanel().getOngletSequence().getSequenceVersion() == null)
 			return new JLabel(" | ");
 		else
-			return new JLabel(getSequencePanel().getOngletSequence().getMainOnglet().getSequence().getTitre() + " | ");
+			return new JLabel(getSequencePanel().getOngletSequence().getSequenceVersion().getTitre() + " | ");
 
 	}
 

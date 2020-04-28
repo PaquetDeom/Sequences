@@ -9,10 +9,11 @@ import javax.swing.*;
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.ihm.commun.gestionnaire.JDialogGestion;
+import fr.paquet.ihm.principal.sequence.SequencePanel;
 import fr.paquet.referentiel.Capacite;
 import fr.paquet.referentiel.Competence;
 import fr.paquet.referentiel.CompetenceIntermediaire;
-import fr.paquet.sequence.Sequence;
+import fr.paquet.referentiel.SavoirAssocie;
 import fr.paquet.sequence.SequenceVersion;
 
 public class JDialogCompetence extends JDialogGestion {
@@ -21,17 +22,35 @@ public class JDialogCompetence extends JDialogGestion {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private SequencePanel sequencePanel = null;
 
 	@SuppressWarnings("unchecked")
-	public JDialogCompetence(Sequence sequence) {
+	public JDialogCompetence(SequenceVersion sequence, SequencePanel sequencePanel) {
 		super("Gestionnaire de compétences", sequence);
 
+		setSequencePanel(sequencePanel);
+
 		if (!getSequenceVersion().getCompetenceIntermediaires().isEmpty()) {
-			setButtomPanel();
-			affiche();
 			compIntsSelect = (ArrayList<CompetenceIntermediaire>) ((ArrayList<CompetenceIntermediaire>) getSequenceVersion()
 					.getCompetenceIntermediaires()).clone();
+			setButtomPanel();
+			affiche();
+			if (!getSequenceVersion().getSavoirAssocies().isEmpty())
+				setSavoirAssocieSelected(
+						(ArrayList<SavoirAssocie>) ((ArrayList<SavoirAssocie>) getSequenceVersion().getSavoirAssocies())
+								.clone());
+
 		}
+	}
+
+	private List<SavoirAssocie> savAssSelect = new ArrayList<SavoirAssocie>();
+
+	public List<SavoirAssocie> getSavoirAssocieSelected() {
+		return savAssSelect;
+	}
+
+	public void setSavoirAssocieSelected(List<SavoirAssocie> savoirAssocies) {
+		this.savAssSelect = savoirAssocies;
 	}
 
 	public SequenceVersion getSequenceVersion() {
@@ -104,11 +123,19 @@ public class JDialogCompetence extends JDialogGestion {
 
 		}
 
-		if (button.getText().equals("Valider"))
-			// TODO
+		if (button.getText().equals("Valider")) {
+			// set les listes
+			getSequenceVersion().setCompetenceIntermediaires(getCompIntsSelect());
+			getSequenceVersion().setSavoirAssocies(getSavoirAssocieSelected());
 
-			if (button.getText().equals("Annuler"))
-				this.dispose();
+			// affiche les composants
+			getSequencePanel().getSequencePanelButtomComp().getSequencePanelButtomCompJPanelJlabel().affiche();
+
+			this.dispose();
+		}
+
+		if (button.getText().equals("Annuler"))
+			this.dispose();
 
 	}
 
@@ -116,6 +143,14 @@ public class JDialogCompetence extends JDialogGestion {
 	protected void setButtomPanel() {
 		this.buttomPanel = new ButtomPanelCompetence(this);
 
+	}
+
+	private SequencePanel getSequencePanel() {
+		return sequencePanel;
+	}
+
+	private void setSequencePanel(SequencePanel sequencePanel) {
+		this.sequencePanel = sequencePanel;
 	}
 
 }

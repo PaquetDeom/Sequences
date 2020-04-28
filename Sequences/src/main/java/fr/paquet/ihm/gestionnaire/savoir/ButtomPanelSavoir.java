@@ -7,6 +7,8 @@ import javax.swing.DefaultListSelectionModel;
 import javax.swing.JButton;
 import javax.swing.event.ListSelectionEvent;
 
+import fr.paquet.ihm.alert.AlertType;
+import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.ihm.commun.gestionnaire.ButtomPanel;
 import fr.paquet.referentiel.SavoirAssocie;
 
@@ -41,9 +43,13 @@ public class ButtomPanelSavoir extends ButtomPanel {
 	public void actionPerformed(ActionEvent event) {
 		JButton button = (JButton) event.getSource();
 
-		if (button.getText().equals("Supprimer")) {
-			getJDialogSavoir().getSavAssSelect().remove(getSavoirAssSelected());
-			affiche();
+		if (getSavoirAssSelected() == null)
+			new AlertWindow(AlertType.ATTENTION, "Veuillez selectionner un savoir");
+		else {
+			if (button.getText().equals("Supprimer")) {
+				getJDialogSavoir().getSavAssSelect().remove(getSavoirAssSelected());
+				affiche();
+			}
 		}
 	}
 

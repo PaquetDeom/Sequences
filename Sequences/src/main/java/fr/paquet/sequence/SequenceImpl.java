@@ -248,4 +248,14 @@ public class SequenceImpl implements Sequence {
 
 	}
 
+	@Override
+	public void setCompetenceIntermediaires(List<CompetenceIntermediaire> competenceIntermediaires) {
+	
+	}
+
+	@Override
+	public void setSavoirAssocies(List<SavoirAssocie> savoirAssocies) {
+	
+	}
+
 }

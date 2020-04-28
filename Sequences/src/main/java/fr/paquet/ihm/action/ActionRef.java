@@ -25,6 +25,7 @@ public class ActionRef extends ActionBDA {
 		putValue(NAME, getName());
 		putValue(ACCELERATOR_KEY,
 				KeyStroke.getKeyStroke('D', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
+		setEnabled(false);
 	}
 
 	@Override
@@ -49,8 +50,10 @@ public class ActionRef extends ActionBDA {
 	}
 
 	public void setSequenceVersion(SequenceVersion SequenceVersion) throws Exception {
-		if (SequenceVersion == null)
+		if (SequenceVersion == null) {
 			throw new Exception("Veuillez renseigner une séquence");
+		}
+		setEnabled(true);
 		this.sequenceVersion = SequenceVersion;
 	}
 
@@ -62,6 +65,11 @@ public class ActionRef extends ActionBDA {
 	public String getName() {
 
 		return "Referentiel";
+	}
+
+	@Override
+	protected void Enable() {
+
 	}
 
 }

@@ -33,14 +33,13 @@ public class ActionSave extends ActionBDA {
 	public void actionPerformed(ActionEvent arg0) {
 
 		try {
-			if (sequenceVersion.isModifiable(Connect.getPConnexion().getUser().getAuteur())) {
-				SequenceVersionFactory pF = new SequenceVersionFactory();
-				pF.persist(getSequenceVersion());
-			} else
-				new AlertWindow(AlertType.INFORMATION, "Vous n'êtes pas autorisé à modifier cette séquence");
+
+			SequenceVersionFactory pF = new SequenceVersionFactory();
+			pF.persist(getSequenceVersion());
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			new AlertWindow(AlertType.ERREUR, e.getMessage());
 		}
 
 	}
@@ -56,18 +55,24 @@ public class ActionSave extends ActionBDA {
 	}
 
 	public void setSequenceVersion(SequenceVersion sequenceVersion) throws Exception {
-		if (sequenceVersion == null)
-			throw new Exception("Veuillez renseigner une séquence");
-		else {
-			setEnabled(true);
-			this.sequenceVersion = sequenceVersion;
-		}
+
+		this.sequenceVersion = sequenceVersion;
+		Enable();
+
 	}
 
 	@Override
 	public String getName() {
 		// TODO Auto-generated method stub
 		return "Sauver";
+	}
+
+	@Override
+	protected void Enable() {
+		if (sequenceVersion != null && sequenceVersion.isModifiable(Connect.getPConnexion().getUser().getAuteur()))
+			setEnabled(true);
+		else
+			setEnabled(false);
 	}
 
 }

@@ -33,6 +33,7 @@ public class MainMenu extends JMenuBar {
 	 * @throws Exception
 	 */
 	private MainMenu() {
+		super();
 
 		setActionNouveau(new ActionNouveau());
 		addAction(getActionNouveau());
@@ -56,8 +57,7 @@ public class MainMenu extends JMenuBar {
 
 	public void addSequence(SequenceVersion seq) throws Exception {
 
-		if (seq != null)
-			getActionNouveau().setEnabled(false);
+		getActionNouveau().setSequenceVersion(seq);
 		getActionRef().setSequenceVersion(seq);
 		getActionSave().setSequenceVersion(seq);
 		getActionNewVersion().setSequenceVersion(seq);
@@ -67,12 +67,12 @@ public class MainMenu extends JMenuBar {
 
 	}
 
-	private ActionActivite getActionActivites() {
+	public ActionActivite getActionActivites() {
 
 		return actionActivites;
 	}
 
-	private ActionCompetences getActionCompetences() {
+	public ActionCompetences getActionCompetences() {
 
 		return actionCompetences;
 	}
@@ -139,7 +139,7 @@ public class MainMenu extends JMenuBar {
 		return action;
 	}
 
-	private ActionSave getActionSave() {
+	public ActionSave getActionSave() {
 		return actionSave;
 	}
 

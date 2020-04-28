@@ -5,7 +5,14 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import fr.paquet.activite.Activite_1;
+import fr.paquet.dataBase.Connect;
+import fr.paquet.ihm.alert.AlertType;
+import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.ihm.commun.CommunJPanelButton;
+import fr.paquet.ihm.gestionnaire.activite.competence.JDialogCompetenceActivite;
+import fr.paquet.sequence.SequenceVersion;
+import main.MainOnglet;
 
 public class ActiviteCompButton extends CommunJPanelButton {
 
@@ -33,12 +40,22 @@ public class ActiviteCompButton extends CommunJPanelButton {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 
-					getActivitePanelCompetencesSavoirs().addCompetence();
+					SequenceVersion sequence = MainOnglet.getUniqInstance().getOngletSequence().getSequenceVersion();
+					Activite_1 activite = getActivitePanelCompetencesSavoirs().getActivitePanel().getOngletActivite()
+							.getActivite();
+
+					if (sequence.isModifiable(Connect.getPConnexion().getUser().getAuteur())) {
+						new JDialogCompetenceActivite(activite,
+								getActivitePanelCompetencesSavoirs().getActivitePanel());
+
+					} else {
+						new AlertWindow(AlertType.INFORMATION, "La séquence n'est pas modifiable");
+					}
 
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				getActivitePanelCompetencesSavoirs().getActiviteJPanelJlabel().affiche();
+
 			}
 		});
 		this.button = button;

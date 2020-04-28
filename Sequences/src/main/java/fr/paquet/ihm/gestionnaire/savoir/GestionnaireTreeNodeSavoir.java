@@ -39,7 +39,7 @@ public class GestionnaireTreeNodeSavoir extends DefaultMutableTreeNode {
 			this.setUserObject(new UserObject(savoir, savoir.toString()));
 			List<SavoirAssocie> savoirAssocies = savoir.getSavoirsAssocies();
 
-			if (savoirAssocies != null && savoirAssocies.isEmpty()) {
+			if (savoirAssocies != null && !savoirAssocies.isEmpty()) {
 				for (SavoirAssocie savAs : savoirAssocies) {
 					this.add(new TableTreeNode(savAs));
 				}

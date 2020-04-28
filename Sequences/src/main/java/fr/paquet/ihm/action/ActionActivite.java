@@ -2,6 +2,7 @@ package fr.paquet.ihm.action;
 
 import java.awt.event.ActionEvent;
 
+import fr.paquet.dataBase.Connect;
 import fr.paquet.sequence.SequenceVersion;
 
 public class ActionActivite extends ActionBDA {
@@ -21,9 +22,8 @@ public class ActionActivite extends ActionBDA {
 	}
 
 	public void setSequenceVersion(SequenceVersion sequenceVersion) {
-		if (sequenceVersion != null)
-			setEnabled(true);
 		this.sequenceVersion = sequenceVersion;
+		Enable();
 	}
 
 	@Override
@@ -34,14 +34,22 @@ public class ActionActivite extends ActionBDA {
 
 	@Override
 	public String getParentMenuName() {
-		
+
 		return "Outils";
 	}
 
 	@Override
 	public String getName() {
-		
+
 		return "Gestion ativites";
+	}
+
+	@Override
+	protected void Enable() {
+		if (sequenceVersion != null && sequenceVersion.isModifiable(Connect.getPConnexion().getUser().getAuteur()))
+			setEnabled(true);
+		else
+			setEnabled(false);
 	}
 
 }

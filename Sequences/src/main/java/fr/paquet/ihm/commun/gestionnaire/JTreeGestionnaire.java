@@ -10,7 +10,6 @@ import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
 
-import fr.paquet.ihm.gestionnaire.competence.GestionnaireTreeNodeCompetence;
 
 public abstract class JTreeGestionnaire extends JScrollPane {
 
@@ -81,17 +80,6 @@ public abstract class JTreeGestionnaire extends JScrollPane {
 		getSelectionListeners().remove(selectionListener);
 	}
 
-	private void fireSeclectionChanged(TreePath selectionPath) {
-		Object[] data = selectionPath.getPath();
-		DefaultMutableTreeNode node = (DefaultMutableTreeNode) data[data.length - 1];
-		if (node instanceof GestionnaireTreeNodeCompetence.TableTreeNode == false)
-			return;
-
-		UserObject object = (UserObject) node.getUserObject();
-		SelectedEvent event = new SelectedEvent(this, object);
-		for (SelectionListener listener : getSelectionListeners()) {
-			listener.SelectionChange(event);
-		}
-	}
+	protected abstract void fireSeclectionChanged(TreePath selectionPath);
 
 }

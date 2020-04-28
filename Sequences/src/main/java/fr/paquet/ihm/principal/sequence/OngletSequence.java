@@ -5,6 +5,7 @@ import javax.swing.JScrollPane;
 
 import javax.swing.ScrollPaneConstants;
 
+import fr.paquet.sequence.SequenceVersion;
 import main.MainOnglet;
 
 public class OngletSequence extends JPanel {
@@ -14,25 +15,25 @@ public class OngletSequence extends JPanel {
 	 */
 	private static final long serialVersionUID = -2555340311930007466L;
 
-	private MainOnglet mainOnglet = null;
+	private SequenceVersion sequenceVersion = null;
 
 	/**
 	 * Cree un nouvel onglet<br/>
 	 * 
 	 * @throws Exception
 	 */
-	public OngletSequence(MainOnglet mainOnglet) {
+	public OngletSequence(SequenceVersion sequenceVersion) {
 
 		super();
 
 		// setteur des components
-		setMainOnglet(mainOnglet);
+		setSequenceVersion(sequenceVersion);
 
 		// Ajout de l'onglet
 		JScrollPane js = new JScrollPane(getSequencePanel());
 		js.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		js.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		getMainOnglet().addTab("Séquence " + getMainOnglet().getSequence().getTitre(), js);
+		MainOnglet.getUniqInstance().addTab("Séquence " + getSequenceVersion().getTitre(), js);
 
 		// attribut de l'onglet
 
@@ -46,12 +47,12 @@ public class OngletSequence extends JPanel {
 		return sequencePanel;
 	}
 
-	public MainOnglet getMainOnglet() {
-		return mainOnglet;
+	public SequenceVersion getSequenceVersion() {
+		return sequenceVersion;
 	}
 
-	private void setMainOnglet(MainOnglet mainOnglet) {
-		this.mainOnglet = mainOnglet;
+	public void setSequenceVersion(SequenceVersion sequenceVersion) {
+		this.sequenceVersion = sequenceVersion;
 	}
 
 }

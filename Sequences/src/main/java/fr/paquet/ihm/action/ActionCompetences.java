@@ -3,10 +3,10 @@ package fr.paquet.ihm.action;
 import java.awt.event.ActionEvent;
 
 import fr.paquet.dataBase.Connect;
-import fr.paquet.ihm.alert.AlertType;
-import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.ihm.gestionnaire.competence.JDialogCompetence;
+import fr.paquet.ihm.principal.sequence.SequencePanel;
 import fr.paquet.sequence.SequenceVersion;
+import main.MainFrame;
 
 public class ActionCompetences extends ActionBDA {
 
@@ -19,23 +19,23 @@ public class ActionCompetences extends ActionBDA {
 	public ActionCompetences() {
 		super();
 		putValue(NAME, getName());
-		if (sequenceVersion == null)
-			setEnabled(false);
+		setEnabled(false);
 	}
 
 	public void setSequenceVersion(SequenceVersion sequence) {
-		if (sequence != null)
-			setEnabled(true);
+
 		this.sequenceVersion = sequence;
+		Enable();
+	}
+
+	private SequencePanel getSequencePanel() {
+		return MainFrame.getUniqInstance().getMainOnglet().getOngletSequence().getSequencePanel();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		if (sequenceVersion.isModifiable(Connect.getPConnexion().getUser().getAuteur())) {
-			new JDialogCompetence(sequenceVersion);
-			
-		} else
-			new AlertWindow(AlertType.INFORMATION, "Vous ne pouvez pas modifier cette séquence");
+
+		new JDialogCompetence(sequenceVersion, getSequencePanel());
 
 	}
 
@@ -49,6 +49,15 @@ public class ActionCompetences extends ActionBDA {
 	public String getName() {
 
 		return "Gestion compétences";
+	}
+
+	@Override
+	protected void Enable() {
+		if (getSequencePanel() != null && sequenceVersion != null
+				&& sequenceVersion.isModifiable(Connect.getPConnexion().getUser().getAuteur()))
+			setEnabled(true);
+		else
+			setEnabled(false);
 	}
 
 }

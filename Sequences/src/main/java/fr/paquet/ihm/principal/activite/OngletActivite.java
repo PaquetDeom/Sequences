@@ -4,6 +4,7 @@ import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
+import fr.paquet.activite.Activite_1;
 import main.MainOnglet;
 
 public class OngletActivite extends JComponent {
@@ -12,14 +13,15 @@ public class OngletActivite extends JComponent {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private MainOnglet mainOnglet = null;
 
-	public OngletActivite(MainOnglet mainOnglet) throws Exception {
+	private Activite_1 activite = null;
+
+	public OngletActivite(Activite_1 activite) throws Exception {
 
 		super();
 
 		// setteur des components
-		setMainOnglet(mainOnglet);
+		setActivite(activite);
 
 		// rempli la liste des onglets dans MainOnglet
 		JScrollPane js = new JScrollPane(getActivitePanel());
@@ -27,8 +29,8 @@ public class OngletActivite extends JComponent {
 		js.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
 		// TODO revoir la position du titre
-		getMainOnglet().addOngletsActivites(this);
-		getMainOnglet().addTab(getActivitePanel().getTitre(), js);
+		MainOnglet.getUniqInstance().addOngletsActivites(this);
+		MainOnglet.getUniqInstance().addTab(getActivitePanel().getTitre(), js);
 	}
 
 	private ActivitePanel activitePanel = null;
@@ -39,12 +41,12 @@ public class OngletActivite extends JComponent {
 		return activitePanel;
 	}
 
-	public MainOnglet getMainOnglet() {
-		return mainOnglet;
+	public Activite_1 getActivite() {
+		return activite;
 	}
 
-	private void setMainOnglet(MainOnglet mainOnglet) {
-		this.mainOnglet = mainOnglet;
+	private void setActivite(Activite_1 activite) {
+		this.activite = activite;
 	}
 
 }

@@ -47,10 +47,10 @@ public class SequencePanelButtomCompButton extends CommunJPanelButton {
 				try {
 
 					SequenceVersion sequence = getSequencePanelButtomComp().getSequencePanel().getOngletSequence()
-							.getMainOnglet().getSequence();
+							.getSequenceVersion();
 
 					if (sequence.isModifiable(Connect.getPConnexion().getUser().getAuteur())) {
-						new JDialogCompetence(sequence);
+						new JDialogCompetence(sequence, getSequencePanelButtomComp().getSequencePanel());
 
 					} else
 						new AlertWindow(AlertType.INFORMATION, "Vous ne pouvez pas modifier cette séquence");

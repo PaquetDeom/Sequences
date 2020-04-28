@@ -10,6 +10,10 @@ import fr.paquet.referentiel.SavoirAssocie;
 
 public interface Sequence {
 
+	public void setCompetenceIntermediaires(List<CompetenceIntermediaire> competenceIntermediaires);
+
+	public void setSavoirAssocies(List<SavoirAssocie> savoirAssocies);
+
 	public void setCapacite(Capacite cap);
 
 	public List<Activite_1> getActivites();

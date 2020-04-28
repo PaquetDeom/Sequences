@@ -7,6 +7,7 @@ import java.awt.Insets;
 import javax.swing.JPanel;
 
 import fr.paquet.ihm.principal.sequence.SequencePanelVersion;
+import main.MainOnglet;
 
 public class ActivitePanel extends JPanel {
 
@@ -22,7 +23,7 @@ public class ActivitePanel extends JPanel {
 
 		// set des composants
 		setOngletActivite(ongletActivite);
-		setTitre(getOngletActivite().getMainOnglet().getOngletsActivites().size() + 1);
+		setTitre(getOngletActivite().getActivite().getnActivite());
 
 		// ajout du Layout
 		setLayout(new GridBagLayout());
@@ -34,7 +35,7 @@ public class ActivitePanel extends JPanel {
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 		add(new ActivitePanelCorps(this), new GridBagConstraints(0, 2, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-		add(new ActivitePanelCompetencesSavoirs(this), new GridBagConstraints(0, 3, 1, 1, 1.0, 0.0,
+		add(getActivitePanelCompetencesSavoirs(), new GridBagConstraints(0, 3, 1, 1, 1.0, 0.0,
 				GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 		add(new ActivitePanelActivite(this), new GridBagConstraints(0, 4, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
@@ -48,12 +49,20 @@ public class ActivitePanel extends JPanel {
 		// attribut du Panel
 	}
 
+	private ActivitePanelCompetencesSavoirs activitePanelCompetencesSavoirs = null;
+
+	public ActivitePanelCompetencesSavoirs getActivitePanelCompetencesSavoirs() {
+		if (activitePanelCompetencesSavoirs == null)
+			activitePanelCompetencesSavoirs = new ActivitePanelCompetencesSavoirs(this);
+		return activitePanelCompetencesSavoirs;
+	}
+
 	private SequencePanelVersion sequencePanelVersion = null;
 
 	public SequencePanelVersion getsequencePanelVersion() {
 		if (sequencePanelVersion == null)
 			sequencePanelVersion = new SequencePanelVersion(
-					getOngletActivite().getMainOnglet().getOngletSequence().getSequencePanel());
+					MainOnglet.getUniqInstance().getOngletSequence().getSequencePanel());
 		return sequencePanelVersion;
 	}
 

@@ -13,13 +13,13 @@ import fr.paquet.sequence.SequenceVersion;
 
 public class SequenceVersionFactory extends Factory {
 
-	public SequenceVersion findSequenceVersionBySequenceImplAndNVersion(SequenceImpl seqImpl, int NVersion)
+	public SequenceVersion findSequenceVersionBySequenceImplAndNVersion(SequenceImpl firstSequence, int numVersion)
 			throws Exception {
 
 		Query query = Connect.getEm().createQuery(
-				"SELECT sequenceVersion FROM SequenceVersion sequenceVersion WHERE sequenceVersion.seqImpl=:seqImpl AND sequenceVersion.NVersion=:NVersion");
-		query.setParameter("seqImpl", seqImpl);
-		query.setParameter("NVersion", NVersion);
+				"SELECT sequenceVersion FROM SequenceVersion sequenceVersion WHERE sequenceVersion.firstSequence=:firstSequence AND sequenceVersion.numVersion=:numVersion");
+		query.setParameter("firstSequence", firstSequence);
+		query.setParameter("numVersion", numVersion);
 
 		try {
 			SequenceVersion sequenceVersion = (SequenceVersion) query.getSingleResult();

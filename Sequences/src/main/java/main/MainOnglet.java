@@ -12,8 +12,9 @@ import fr.paquet.sequence.SequenceVersion;
 public class MainOnglet extends JTabbedPane {
 
 	private OngletSequence ongletSequence = null;
-	private SequenceVersion sequenceVersion = null;
 	private List<OngletActivite> ongletsActivites = null;
+	
+	
 
 	/**
 	 * Constructeur de la class private car ne doit etre instanciee qu une fois<br/>
@@ -51,8 +52,7 @@ public class MainOnglet extends JTabbedPane {
 
 		// setteur des component
 		this.ongletsActivites = null;
-		setSequence(sequence);
-		setOngletSequence(new OngletSequence(this));
+		setOngletSequence(new OngletSequence(sequence));
 
 		// activé les commandes du menu
 		MainMenu.getUniqInstance().addSequence(sequence);
@@ -78,12 +78,5 @@ public class MainOnglet extends JTabbedPane {
 		getOngletsActivites().add(ongletsActivite);
 	}
 
-	public SequenceVersion getSequence() {
-		return sequenceVersion;
-	}
-
-	private void setSequence(SequenceVersion sequenceVersion) {
-		this.sequenceVersion = sequenceVersion;
-	}
-
+	
 }
