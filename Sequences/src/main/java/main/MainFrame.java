@@ -7,6 +7,8 @@ import java.awt.Image;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.awt.image.BufferedImage;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.io.File;
 import java.io.IOException;
 
@@ -41,7 +43,6 @@ public class MainFrame extends JFrame implements WindowListener {
 		setAlwaysOnTop(false);
 		setMinimumSize(new Dimension(900, 600));
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
-		setJMenuBar(MainMenu.getUniqInstance());
 		add(getPanelOuverture());
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 	}
@@ -80,8 +81,10 @@ public class MainFrame extends JFrame implements WindowListener {
 	 * @throws s
 	 */
 	public static MainFrame getUniqInstance() {
-		if (mainFrame == null)
+		if (mainFrame == null) {
 			mainFrame = new MainFrame();
+			mainFrame.setJMenuBar(MainMenu.getUniqInstance());
+		}
 		mainFrame.repaint();
 
 		return mainFrame;
@@ -105,9 +108,32 @@ public class MainFrame extends JFrame implements WindowListener {
 	 */
 	public void addPanel(SequenceVersion sequenceVersion) throws Exception {
 		removePanel(getPanelOuverture());
-		getMainOnglet().init(sequenceVersion);
+		setSequenceVersion(sequenceVersion);
+		getMainOnglet().init(getSequenceVersion());
 		add(getMainOnglet());
 		revalidate();
+	}
+
+	private SequenceVersion sequenceVersion = null;
+
+	public synchronized SequenceVersion getSequenceVersion() {
+		return this.sequenceVersion;
+	}
+
+	public synchronized void setSequenceVersion(SequenceVersion sequenceVersion) {
+		SequenceVersion oldValue = this.sequenceVersion;
+		this.sequenceVersion = sequenceVersion;
+		this.pcs.firePropertyChange("sequenceVersion", oldValue, sequenceVersion);
+	}
+
+	private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+
+	public void addPropertyChangeListener(PropertyChangeListener listener) {
+		this.pcs.addPropertyChangeListener(listener);
+	}
+
+	public void removePropertyChangeListener(PropertyChangeListener listener) {
+		this.pcs.removePropertyChangeListener(listener);
 	}
 
 	public MainOnglet getMainOnglet() {
@@ -120,13 +146,13 @@ public class MainFrame extends JFrame implements WindowListener {
 
 	@Override
 	public void windowActivated(WindowEvent arg0) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
 	@Override
 	public void windowClosed(WindowEvent arg0) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
@@ -138,25 +164,25 @@ public class MainFrame extends JFrame implements WindowListener {
 
 	@Override
 	public void windowDeactivated(WindowEvent arg0) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
 	@Override
 	public void windowDeiconified(WindowEvent arg0) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
 	@Override
 	public void windowIconified(WindowEvent arg0) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
 	@Override
 	public void windowOpened(WindowEvent arg0) {
-		// TODO Auto-generated method stub
+		
 
 	}
 

@@ -1,36 +1,39 @@
 package fr.paquet.ihm.action;
 
 import java.awt.event.ActionEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 import fr.paquet.ihm.nouveau.JDialogNewVersion;
 import fr.paquet.sequence.SequenceVersion;
+import main.MainFrame;
 import main.MainMenu;
 
-public class ActionNewVersion extends ActionBDA {
+public class ActionNewVersion extends ActionBDA implements PropertyChangeListener {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private SequenceVersion sequence = null;
 
 	public ActionNewVersion(MainMenu mainMenu) {
 		super();
 
 		putValue(NAME, getName());
-		setEnabled(false);
+		MainFrame.getUniqInstance().addPropertyChangeListener(this);
+		Enable();
 	}
 
-	public void setSequenceVersion(SequenceVersion sequence) {
+	private SequenceVersion getSequenceVersion() {
 
-		this.sequence = sequence;
-		Enable();
+		return MainFrame.getUniqInstance().getSequenceVersion();
+
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 
-		new JDialogNewVersion(sequence);
+		new JDialogNewVersion(getSequenceVersion());
 
 	}
 
@@ -48,10 +51,16 @@ public class ActionNewVersion extends ActionBDA {
 
 	@Override
 	protected void Enable() {
-		if (sequence != null)
+		if (getSequenceVersion() != null)
 			setEnabled(true);
 		else
 			setEnabled(false);
+
+	}
+
+	@Override
+	public void propertyChange(PropertyChangeEvent arg0) {
+		Enable();
 
 	}
 

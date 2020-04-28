@@ -12,7 +12,7 @@ import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.ihm.commun.CommunJPanelButton;
 import fr.paquet.ihm.gestionnaire.activite.competence.JDialogCompetenceActivite;
 import fr.paquet.sequence.SequenceVersion;
-import main.MainOnglet;
+import main.MainFrame;
 
 public class ActiviteCompButton extends CommunJPanelButton {
 
@@ -40,7 +40,7 @@ public class ActiviteCompButton extends CommunJPanelButton {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 
-					SequenceVersion sequence = MainOnglet.getUniqInstance().getOngletSequence().getSequenceVersion();
+					SequenceVersion sequence = MainFrame.getUniqInstance().getSequenceVersion();
 					Activite_1 activite = getActivitePanelCompetencesSavoirs().getActivitePanel().getOngletActivite()
 							.getActivite();
 

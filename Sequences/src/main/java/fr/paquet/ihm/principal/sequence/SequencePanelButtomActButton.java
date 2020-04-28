@@ -10,7 +10,7 @@ import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.ihm.commun.CommunJPanelButton;
 import fr.paquet.ihm.principal.activite.OngletActivite;
-import main.MainOnglet;
+import main.MainFrame;
 
 public class SequencePanelButtomActButton extends CommunJPanelButton {
 
@@ -44,8 +44,7 @@ public class SequencePanelButtomActButton extends CommunJPanelButton {
 			public void actionPerformed(ActionEvent arg0) {
 
 				try {
-					Activite_1 act = new Activite_1(
-							MainOnglet.getUniqInstance().getOngletSequence().getSequenceVersion());
+					Activite_1 act = new Activite_1(MainFrame.getUniqInstance().getSequenceVersion());
 					new OngletActivite(act);
 				} catch (Exception e) {
 					new AlertWindow(AlertType.ERREUR, "L'activité n'a pas été crée");

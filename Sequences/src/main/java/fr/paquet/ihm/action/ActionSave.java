@@ -2,6 +2,8 @@ package fr.paquet.ihm.action;
 
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 import javax.swing.KeyStroke;
 
@@ -10,14 +12,14 @@ import fr.paquet.dataBase.Factory.sequence.SequenceVersionFactory;
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.sequence.SequenceVersion;
+import main.MainFrame;
 
-public class ActionSave extends ActionBDA {
+public class ActionSave extends ActionBDA implements PropertyChangeListener {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private SequenceVersion sequenceVersion = null;
 
 	public ActionSave() {
 		super();
@@ -25,8 +27,8 @@ public class ActionSave extends ActionBDA {
 		putValue(NAME, getName());
 		putValue(ACCELERATOR_KEY,
 				KeyStroke.getKeyStroke('S', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
-
-		setEnabled(false);
+		MainFrame.getUniqInstance().addPropertyChangeListener(this);
+		Enable();
 	}
 
 	@Override
@@ -51,28 +53,31 @@ public class ActionSave extends ActionBDA {
 	}
 
 	private SequenceVersion getSequenceVersion() {
-		return sequenceVersion;
-	}
 
-	public void setSequenceVersion(SequenceVersion sequenceVersion) throws Exception {
-
-		this.sequenceVersion = sequenceVersion;
-		Enable();
+		return MainFrame.getUniqInstance().getSequenceVersion();
 
 	}
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
 		return "Sauver";
 	}
 
 	@Override
 	protected void Enable() {
-		if (sequenceVersion != null && sequenceVersion.isModifiable(Connect.getPConnexion().getUser().getAuteur()))
-			setEnabled(true);
-		else
+		if (getSequenceVersion() != null) {
+			if (getSequenceVersion().isModifiable(Connect.getPConnexion().getUser().getAuteur()))
+				setEnabled(true);
+			else
+				setEnabled(false);
+		} else
 			setEnabled(false);
+	}
+
+	@Override
+	public void propertyChange(PropertyChangeEvent arg0) {
+		Enable();
+
 	}
 
 }

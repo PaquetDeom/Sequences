@@ -13,8 +13,6 @@ public class MainOnglet extends JTabbedPane {
 
 	private OngletSequence ongletSequence = null;
 	private List<OngletActivite> ongletsActivites = null;
-	
-	
 
 	/**
 	 * Constructeur de la class private car ne doit etre instanciee qu une fois<br/>
@@ -54,9 +52,6 @@ public class MainOnglet extends JTabbedPane {
 		this.ongletsActivites = null;
 		setOngletSequence(new OngletSequence(sequence));
 
-		// activé les commandes du menu
-		MainMenu.getUniqInstance().addSequence(sequence);
-
 	}
 
 	public OngletSequence getOngletSequence() {
@@ -78,5 +73,4 @@ public class MainOnglet extends JTabbedPane {
 		getOngletsActivites().add(ongletsActivite);
 	}
 
-	
 }

@@ -7,6 +7,7 @@ import java.awt.Insets;
 import javax.swing.*;
 
 import fr.paquet.ihm.style.StyleBorder;
+import main.MainFrame;
 
 public class SequencePanelVersion extends JPanel {
 
@@ -70,7 +71,7 @@ public class SequencePanelVersion extends JPanel {
 	}
 
 	private JLabel getLabelVisible() {
-		boolean a = getSequencePanel().getOngletSequence().getSequenceVersion().isVisible();
+		boolean a = MainFrame.getUniqInstance().getSequenceVersion().isVisible();
 
 		if (a == true)
 			return new JLabel("Tout le monde |");
@@ -81,34 +82,34 @@ public class SequencePanelVersion extends JPanel {
 	private JLabel getLabelReferentiel() {
 
 		return new JLabel(
-				getSequencePanel().getOngletSequence().getSequenceVersion().getReferentiel().toString()
+				MainFrame.getUniqInstance().getSequenceVersion().getReferentiel().toString()
 						+ " | ");
 	}
 
 	private JLabel getLabelClasse() {
 
-		return new JLabel(getSequencePanel().getOngletSequence().getSequenceVersion().getClasse() + " | ");
+		return new JLabel(MainFrame.getUniqInstance().getSequenceVersion().getClasse() + " | ");
 	}
 
 	private JLabel getLabelAuteur() {
 
-		return new JLabel(getSequencePanel().getOngletSequence().getSequenceVersion().getAuteur() + " | ");
+		return new JLabel(MainFrame.getUniqInstance().getSequenceVersion().getAuteur() + " | ");
 
 	}
 
 	private JLabel getLabelVersion() {
 
 		return new JLabel(
-				"N°" + getSequencePanel().getOngletSequence().getSequenceVersion().getnVersion() + " | ");
+				"N°" + MainFrame.getUniqInstance().getSequenceVersion().getnVersion() + " | ");
 
 	}
 
 	private JLabel getLabelNom() {
 
-		if (getSequencePanel().getOngletSequence().getSequenceVersion() == null)
+		if (MainFrame.getUniqInstance().getSequenceVersion() == null)
 			return new JLabel(" | ");
 		else
-			return new JLabel(getSequencePanel().getOngletSequence().getSequenceVersion().getTitre() + " | ");
+			return new JLabel(MainFrame.getUniqInstance().getSequenceVersion().getTitre() + " | ");
 
 	}
 

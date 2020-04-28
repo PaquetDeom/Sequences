@@ -2,6 +2,8 @@ package fr.paquet.ihm.action;
 
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.IOException;
 
 import javax.swing.KeyStroke;
@@ -9,15 +11,16 @@ import javax.swing.KeyStroke;
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.sequence.SequenceVersion;
+import main.MainFrame;
+import main.MainOnglet;
 
-public class ActionRef extends ActionBDA {
+public class ActionRef extends ActionBDA implements PropertyChangeListener {
 
 	/**
 	 * @author paquet
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private SequenceVersion sequenceVersion = null;
 
 	public ActionRef() {
 		super();
@@ -25,7 +28,8 @@ public class ActionRef extends ActionBDA {
 		putValue(NAME, getName());
 		putValue(ACCELERATOR_KEY,
 				KeyStroke.getKeyStroke('D', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
-		setEnabled(false);
+		MainFrame.getUniqInstance().addPropertyChangeListener(this);
+		Enable();
 	}
 
 	@Override
@@ -49,16 +53,10 @@ public class ActionRef extends ActionBDA {
 		return "firefox " + getSequenceVersion().getReferentiel().getUrl();
 	}
 
-	public void setSequenceVersion(SequenceVersion SequenceVersion) throws Exception {
-		if (SequenceVersion == null) {
-			throw new Exception("Veuillez renseigner une séquence");
-		}
-		setEnabled(true);
-		this.sequenceVersion = SequenceVersion;
-	}
-
 	private SequenceVersion getSequenceVersion() {
-		return sequenceVersion;
+
+		return MainFrame.getUniqInstance().getSequenceVersion();
+
 	}
 
 	@Override
@@ -69,6 +67,18 @@ public class ActionRef extends ActionBDA {
 
 	@Override
 	protected void Enable() {
+		if (getSequenceVersion() != null) {
+			if (getSequenceVersion().getReferentiel().getUrl() != null)
+				setEnabled(true);
+			else
+				setEnabled(false);
+		} else
+			setEnabled(false);
+	}
+
+	@Override
+	public void propertyChange(PropertyChangeEvent arg0) {
+		Enable();
 
 	}
 

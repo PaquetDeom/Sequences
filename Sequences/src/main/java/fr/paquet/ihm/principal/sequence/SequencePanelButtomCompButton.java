@@ -11,6 +11,7 @@ import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.ihm.commun.CommunJPanelButton;
 import fr.paquet.ihm.gestionnaire.competence.JDialogCompetence;
 import fr.paquet.sequence.SequenceVersion;
+import main.MainFrame;
 
 public class SequencePanelButtomCompButton extends CommunJPanelButton {
 
@@ -46,8 +47,7 @@ public class SequencePanelButtomCompButton extends CommunJPanelButton {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 
-					SequenceVersion sequence = getSequencePanelButtomComp().getSequencePanel().getOngletSequence()
-							.getSequenceVersion();
+					SequenceVersion sequence = MainFrame.getUniqInstance().getSequenceVersion();
 
 					if (sequence.isModifiable(Connect.getPConnexion().getUser().getAuteur())) {
 						new JDialogCompetence(sequence, getSequencePanelButtomComp().getSequencePanel());

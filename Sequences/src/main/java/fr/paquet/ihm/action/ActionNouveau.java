@@ -2,6 +2,8 @@ package fr.paquet.ihm.action;
 
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 import javax.swing.KeyStroke;
 
@@ -12,8 +14,9 @@ import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.ihm.nouveau.JDialogNewSequence;
 import fr.paquet.sequence.SequenceVersion;
+import main.MainFrame;
 
-public class ActionNouveau extends ActionBDA implements AlertListener {
+public class ActionNouveau extends ActionBDA implements AlertListener, PropertyChangeListener {
 
 	/**
 	 * 
@@ -26,18 +29,19 @@ public class ActionNouveau extends ActionBDA implements AlertListener {
 		putValue(NAME, getName());
 		putValue(ACCELERATOR_KEY,
 				KeyStroke.getKeyStroke('N', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
-
+		MainFrame.getUniqInstance().addPropertyChangeListener(this);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 
 		try {
-			if (sequenceVersion == null)
+			if (getSequenceVersion() == null)
 				new JDialogNewSequence();
 			else {
-				CompareSequenceWithDB compare = new CompareSequenceWithDB(sequenceVersion);
-				if (!compare.isSame() && sequenceVersion.isModifiable(Connect.getPConnexion().getUser().getAuteur()))
+				CompareSequenceWithDB compare = new CompareSequenceWithDB(getSequenceVersion());
+				if (!compare.isSame()
+						&& getSequenceVersion().isModifiable(Connect.getPConnexion().getUser().getAuteur()))
 					new AlertWindow(AlertType.QUESTION, "Voulez vous enregistrer la séquence", this);
 				else
 					new JDialogNewSequence();
@@ -66,17 +70,17 @@ public class ActionNouveau extends ActionBDA implements AlertListener {
 
 	}
 
-	private SequenceVersion sequenceVersion = null;
+	private SequenceVersion getSequenceVersion() {
 
-	public void setSequenceVersion(SequenceVersion sequenceVersion) {
-		this.sequenceVersion = sequenceVersion;
+		return MainFrame.getUniqInstance().getSequenceVersion();
+
 	}
 
 	@Override
 	public void buttonClick(String button) {
 		if (button.equals("Oui"))
 			try {
-				new SequenceVersionFactory().persist(sequenceVersion);
+				new SequenceVersionFactory().persist(getSequenceVersion());
 			} catch (Exception e) {
 				new AlertWindow(AlertType.ERREUR, "La séquence n'a pas été sauvegardée");
 				e.printStackTrace();
@@ -87,6 +91,12 @@ public class ActionNouveau extends ActionBDA implements AlertListener {
 			new AlertWindow(AlertType.ERREUR, "La séquence n'a pas été crée");
 			e.printStackTrace();
 		}
+
+	}
+
+	@Override
+	public void propertyChange(PropertyChangeEvent arg0) {
+		Enable();
 
 	}
 

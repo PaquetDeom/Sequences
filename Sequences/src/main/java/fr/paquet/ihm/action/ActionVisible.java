@@ -1,39 +1,46 @@
 package fr.paquet.ihm.action;
 
 import java.awt.event.ActionEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 import fr.paquet.dataBase.Connect;
 import fr.paquet.ihm.alert.AlertListener;
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.sequence.SequenceVersion;
+import main.MainFrame;
 import main.MainMenu;
 import main.MainOnglet;
 
-public class ActionVisible extends ActionBDA implements AlertListener {
+public class ActionVisible extends ActionBDA implements AlertListener, PropertyChangeListener {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private SequenceVersion sequenceVersion = null;
 
 	public ActionVisible() {
 		super();
 		putValue(NAME, getName());
-		setEnabled(false);
-	}
-
-	public void setSequenceVersion(SequenceVersion sequence) {
-		this.sequenceVersion = sequence;
+		MainFrame.getUniqInstance().addPropertyChangeListener(this);
 		Enable();
 	}
 
+	private SequenceVersion getSequenceVersion() {
+
+		return MainFrame.getUniqInstance().getSequenceVersion();
+
+	}
+
 	public void Enable() {
-		if (sequenceVersion != null && !sequenceVersion.isVisible()
-				&& Connect.getPConnexion().getUser().getAuteur() == sequenceVersion.getAuteur())
-			setEnabled(true);
-		else
+		if (getSequenceVersion() != null) {
+			if (!getSequenceVersion().isVisible()
+					&& Connect.getPConnexion().getUser().getAuteur() == getSequenceVersion().getAuteur())
+				setEnabled(true);
+			else
+				setEnabled(false);
+		} else
 			setEnabled(false);
 	}
 
@@ -46,7 +53,7 @@ public class ActionVisible extends ActionBDA implements AlertListener {
 		MainMenu.getUniqInstance().getActionSave().Enable();
 		MainMenu.getUniqInstance().getActionCompetences().Enable();
 		MainMenu.getUniqInstance().getActionActivites().Enable();
-		
+
 		Enable();
 
 	}
@@ -67,8 +74,14 @@ public class ActionVisible extends ActionBDA implements AlertListener {
 	public void buttonClick(String button) {
 
 		if (button.equals("Oui")) {
-			sequenceVersion.setVisible(true);
+			getSequenceVersion().setVisible(true);
 		}
+	}
+
+	@Override
+	public void propertyChange(PropertyChangeEvent arg0) {
+		Enable();
+
 	}
 
 }

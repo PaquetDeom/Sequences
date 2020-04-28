@@ -1,6 +1,8 @@
 package fr.paquet.ihm.action;
 
 import java.awt.event.ActionEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 import fr.paquet.dataBase.Connect;
 import fr.paquet.ihm.gestionnaire.competence.JDialogCompetence;
@@ -8,24 +10,24 @@ import fr.paquet.ihm.principal.sequence.SequencePanel;
 import fr.paquet.sequence.SequenceVersion;
 import main.MainFrame;
 
-public class ActionCompetences extends ActionBDA {
+public class ActionCompetences extends ActionBDA implements PropertyChangeListener {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private SequenceVersion sequenceVersion = null;
 
 	public ActionCompetences() {
 		super();
 		putValue(NAME, getName());
-		setEnabled(false);
+		MainFrame.getUniqInstance().addPropertyChangeListener(this);
+		Enable();
 	}
 
-	public void setSequenceVersion(SequenceVersion sequence) {
+	private SequenceVersion getSequenceVersion() {
 
-		this.sequenceVersion = sequence;
-		Enable();
+		return MainFrame.getUniqInstance().getSequenceVersion();
+
 	}
 
 	private SequencePanel getSequencePanel() {
@@ -35,7 +37,7 @@ public class ActionCompetences extends ActionBDA {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 
-		new JDialogCompetence(sequenceVersion, getSequencePanel());
+		new JDialogCompetence(getSequenceVersion(), getSequencePanel());
 
 	}
 
@@ -53,11 +55,19 @@ public class ActionCompetences extends ActionBDA {
 
 	@Override
 	protected void Enable() {
-		if (getSequencePanel() != null && sequenceVersion != null
-				&& sequenceVersion.isModifiable(Connect.getPConnexion().getUser().getAuteur()))
-			setEnabled(true);
-		else
+		if (getSequenceVersion() != null) {
+			if (getSequenceVersion().isModifiable(Connect.getPConnexion().getUser().getAuteur()))
+				setEnabled(true);
+			else
+				setEnabled(false);
+		} else
 			setEnabled(false);
+	}
+
+	@Override
+	public void propertyChange(PropertyChangeEvent arg0) {
+		Enable();
+
 	}
 
 }

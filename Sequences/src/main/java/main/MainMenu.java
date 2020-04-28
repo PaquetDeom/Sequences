@@ -55,18 +55,6 @@ public class MainMenu extends JMenuBar {
 
 	}
 
-	public void addSequence(SequenceVersion seq) throws Exception {
-
-		getActionNouveau().setSequenceVersion(seq);
-		getActionRef().setSequenceVersion(seq);
-		getActionSave().setSequenceVersion(seq);
-		getActionNewVersion().setSequenceVersion(seq);
-		getActionCompetences().setSequenceVersion(seq);
-		getActionActivites().setSequenceVersion(seq);
-		getActionVisible().setSequenceVersion(seq);
-
-	}
-
 	public ActionActivite getActionActivites() {
 
 		return actionActivites;
