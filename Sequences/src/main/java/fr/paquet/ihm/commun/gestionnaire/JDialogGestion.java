@@ -133,7 +133,7 @@ public abstract class JDialogGestion extends JDialog implements ActionListener {
 
 	protected Component leftComponent = null;
 
-	private void setJSplitPaneLeft(Component component) {
+	protected void setJSplitPaneLeft(Component component) {
 		this.leftComponent = component;
 	}
 

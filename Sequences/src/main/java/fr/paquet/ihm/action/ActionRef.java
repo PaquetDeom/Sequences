@@ -4,15 +4,12 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.io.IOException;
 
 import javax.swing.KeyStroke;
 
-import fr.paquet.ihm.alert.AlertType;
-import fr.paquet.ihm.alert.AlertWindow;
+import fr.paquet.ihm.commun.explorerInternet.SwingBrowserJavaFxWeb;
 import fr.paquet.sequence.SequenceVersion;
 import main.MainFrame;
-import main.MainOnglet;
 
 public class ActionRef extends ActionBDA implements PropertyChangeListener {
 
@@ -34,12 +31,15 @@ public class ActionRef extends ActionBDA implements PropertyChangeListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		try {
-			Runtime.getRuntime().exec(getUrl());
-		} catch (IOException e) {
-			new AlertWindow(AlertType.ERREUR, "Firefox n'est pas installé sur l'ordinateur");
-			e.printStackTrace(System.out);
-		}
+
+		new SwingBrowserJavaFxWeb(getUrl());
+
+		/**
+		 * try { Runtime.getRuntime().exec(getUrl());
+		 * 
+		 * } catch (IOException e) { new AlertWindow(AlertType.ERREUR, "Firefox n'est
+		 * pas installé sur l'ordinateur"); e.printStackTrace(System.out); }
+		 */
 
 	}
 
@@ -50,7 +50,7 @@ public class ActionRef extends ActionBDA implements PropertyChangeListener {
 	}
 
 	private String getUrl() {
-		return "firefox " + getSequenceVersion().getReferentiel().getUrl();
+		return getSequenceVersion().getReferentiel().getUrl();
 	}
 
 	private SequenceVersion getSequenceVersion() {

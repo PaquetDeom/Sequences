@@ -6,11 +6,13 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import fr.paquet.activite.Activite_1;
+import fr.paquet.dataBase.Connect;
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.ihm.commun.CommunJPanelButton;
 import fr.paquet.ihm.principal.activite.OngletActivite;
 import main.MainFrame;
+import main.MainOnglet;
 
 public class SequencePanelButtomActButton extends CommunJPanelButton {
 
@@ -44,8 +46,15 @@ public class SequencePanelButtomActButton extends CommunJPanelButton {
 			public void actionPerformed(ActionEvent arg0) {
 
 				try {
-					Activite_1 act = new Activite_1(MainFrame.getUniqInstance().getSequenceVersion());
-					new OngletActivite(act);
+					Activite_1 act = null;
+					if (MainFrame.getUniqInstance().getSequenceVersion()
+							.isModifiable(Connect.getPConnexion().getUser().getAuteur())) {
+
+						act = new Activite_1(MainFrame.getUniqInstance().getSequenceVersion());
+						new OngletActivite(act);
+						MainOnglet.getUniqInstance().affiche();
+					} else
+						new AlertWindow(AlertType.ATTENTION, "La séquence n'est pas modifiable");
 				} catch (Exception e) {
 					new AlertWindow(AlertType.ERREUR, "L'activité n'a pas été crée");
 					e.printStackTrace();

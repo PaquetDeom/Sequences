@@ -61,7 +61,7 @@ public class JtreeGestionnaireCompetence extends JTreeGestionnaire {
 			return;
 
 		UserObject object = (UserObject) node.getUserObject();
-		SelectedEvent event = new SelectedEvent(this, object);
+		SelectedEvent event = new SelectedEvent(this, object, node);
 		for (SelectionListener listener : getSelectionListeners()) {
 			listener.SelectionChange(event);
 		}

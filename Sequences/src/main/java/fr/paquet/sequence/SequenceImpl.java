@@ -60,7 +60,7 @@ public class SequenceImpl implements Sequence {
 	@Override
 	public List<Activite_1> getActivites() {
 
-		return null;
+		return new ArrayList<Activite_1>();
 	}
 
 	@Override
@@ -250,12 +250,17 @@ public class SequenceImpl implements Sequence {
 
 	@Override
 	public void setCompetenceIntermediaires(List<CompetenceIntermediaire> competenceIntermediaires) {
-	
+
 	}
 
 	@Override
 	public void setSavoirAssocies(List<SavoirAssocie> savoirAssocies) {
-	
+
+	}
+
+	@Override
+	public void setActivites(List<Activite_1> activites) {
+				
 	}
 
 }

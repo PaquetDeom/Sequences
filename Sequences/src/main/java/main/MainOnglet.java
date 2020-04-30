@@ -44,6 +44,25 @@ public class MainOnglet extends JTabbedPane {
 		}
 	}
 
+	public void removeAllOngletActivites() {
+		ongletsActivites = null;
+	}
+
+	public void affiche() {
+
+		removeAll();
+
+		addTab("Séquence " + MainFrame.getUniqInstance().getSequenceVersion().getTitre(), getOngletSequence());
+
+		if (!getOngletsActivites().isEmpty()) {
+			for (OngletActivite Oa : getOngletsActivites()) {
+				addTab(Oa.getActivitePanel().getTitre(), Oa);
+			}
+		}
+
+		revalidate();
+	}
+
 	public void init(SequenceVersion sequence) throws Exception {
 
 		this.removeAll();
@@ -51,6 +70,7 @@ public class MainOnglet extends JTabbedPane {
 		// setteur des component
 		this.ongletsActivites = null;
 		setOngletSequence(new OngletSequence(sequence));
+		affiche();
 
 	}
 

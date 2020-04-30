@@ -197,4 +197,7 @@ public class Activite_1 {
 		return duree;
 	}
 
+	public String toString() {
+		return "Activite " + getnActivite();
+	}
 }

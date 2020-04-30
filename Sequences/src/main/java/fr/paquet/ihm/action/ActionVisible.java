@@ -10,7 +10,6 @@ import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.sequence.SequenceVersion;
 import main.MainFrame;
-import main.MainMenu;
 import main.MainOnglet;
 
 public class ActionVisible extends ActionBDA implements AlertListener, PropertyChangeListener {
@@ -49,11 +48,6 @@ public class ActionVisible extends ActionBDA implements AlertListener, PropertyC
 
 		new AlertWindow(AlertType.QUESTION, "Après cette opération vous ne pourrez plus modifier cette séquence", this);
 		MainOnglet.getUniqInstance().afficheVersion();
-
-		MainMenu.getUniqInstance().getActionSave().Enable();
-		MainMenu.getUniqInstance().getActionCompetences().Enable();
-		MainMenu.getUniqInstance().getActionActivites().Enable();
-
 		Enable();
 
 	}

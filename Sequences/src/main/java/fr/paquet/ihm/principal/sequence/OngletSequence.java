@@ -1,12 +1,13 @@
 package fr.paquet.ihm.principal.sequence;
 
+import java.awt.BorderLayout;
+
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import javax.swing.ScrollPaneConstants;
 
 import fr.paquet.sequence.SequenceVersion;
-import main.MainFrame;
 import main.MainOnglet;
 
 public class OngletSequence extends JPanel {
@@ -25,12 +26,15 @@ public class OngletSequence extends JPanel {
 
 		super();
 
-		// Ajout de l'onglet
+		// Layout
+		setLayout(new BorderLayout());
+		// Scroll
 		JScrollPane js = new JScrollPane(getSequencePanel());
+		add(js, BorderLayout.CENTER);
 		js.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		js.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		MainOnglet.getUniqInstance().addTab("Séquence " + MainFrame.getUniqInstance().getSequenceVersion().getTitre(),
-				js);
+
+		MainOnglet.getUniqInstance().setOngletSequence(this);
 
 		// attribut de l'onglet
 

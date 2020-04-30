@@ -1,5 +1,7 @@
 package fr.paquet.sequence;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -109,10 +111,11 @@ public class SequenceVersion implements Sequence {
 	@OneToMany(mappedBy = "sequence", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Activite_1> activites = null;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Activite_1> getActivites() {
 		if (activites == null)
-			activites = new ArrayList<Activite_1>();
+			activites = (ArrayList<Activite_1>) ((ArrayList<Activite_1>) previousVersion.getActivites()).clone();
 		return activites;
 	}
 
@@ -255,9 +258,22 @@ public class SequenceVersion implements Sequence {
 		return visible;
 	}
 
+	@Transient
+	private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+
+	public void addPropertyChangeListener(PropertyChangeListener listener) {
+		this.pcs.addPropertyChangeListener(listener);
+	}
+
+	public void removePropertyChangeListener(PropertyChangeListener listener) {
+		this.pcs.removePropertyChangeListener(listener);
+	}
+
 	@Override
 	public void setVisible(boolean visible) {
+		boolean oldVisible = this.visible;
 		this.visible = visible;
+		this.pcs.firePropertyChange("visible", oldVisible, visible);
 	}
 
 	@Override
@@ -330,6 +346,12 @@ public class SequenceVersion implements Sequence {
 	@Override
 	public void removeSavoirAssocies(SavoirAssocie savoirAssocie) {
 		getSavoirAssocies().remove(savoirAssocie);
+
+	}
+
+	@Override
+	public void setActivites(List<Activite_1> activites) {
+		this.activites = activites;
 
 	}
 

@@ -24,5 +24,7 @@
 			<attribute name="owner.project.facets" value="jpt.jpa"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaFX14"/>
+	<classpathentry kind="lib" path="/home/paquet/eclipse/jee-2019-12/eclipse/javafx-swt.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

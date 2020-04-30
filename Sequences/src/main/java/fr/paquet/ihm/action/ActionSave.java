@@ -77,6 +77,14 @@ public class ActionSave extends ActionBDA implements PropertyChangeListener {
 	@Override
 	public void propertyChange(PropertyChangeEvent arg0) {
 		Enable();
+		getSequenceVersion().addPropertyChangeListener(new PropertyChangeListener() {
+
+			@Override
+			public void propertyChange(PropertyChangeEvent arg0) {
+				Enable();
+
+			}
+		});
 
 	}
 

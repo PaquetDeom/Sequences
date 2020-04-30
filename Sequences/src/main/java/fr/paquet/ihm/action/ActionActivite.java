@@ -5,6 +5,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 import fr.paquet.dataBase.Connect;
+import fr.paquet.ihm.gestionnaire.activite.JDialogActivte;
 import fr.paquet.sequence.SequenceVersion;
 import main.MainFrame;
 
@@ -31,7 +32,8 @@ public class ActionActivite extends ActionBDA implements PropertyChangeListener 
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
+
+		new JDialogActivte(getSequenceVersion());
 
 	}
 
@@ -62,6 +64,14 @@ public class ActionActivite extends ActionBDA implements PropertyChangeListener 
 	@Override
 	public void propertyChange(PropertyChangeEvent arg0) {
 		Enable();
+		getSequenceVersion().addPropertyChangeListener(new PropertyChangeListener() {
+
+			@Override
+			public void propertyChange(PropertyChangeEvent arg0) {
+				Enable();
+
+			}
+		});
 
 	}
 

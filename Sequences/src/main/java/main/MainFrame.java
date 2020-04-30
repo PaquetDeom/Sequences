@@ -116,11 +116,11 @@ public class MainFrame extends JFrame implements WindowListener {
 
 	private SequenceVersion sequenceVersion = null;
 
-	public synchronized SequenceVersion getSequenceVersion() {
+	public SequenceVersion getSequenceVersion() {
 		return this.sequenceVersion;
 	}
 
-	public synchronized void setSequenceVersion(SequenceVersion sequenceVersion) {
+	public void setSequenceVersion(SequenceVersion sequenceVersion) {
 		SequenceVersion oldValue = this.sequenceVersion;
 		this.sequenceVersion = sequenceVersion;
 		this.pcs.firePropertyChange("sequenceVersion", oldValue, sequenceVersion);
@@ -146,13 +146,11 @@ public class MainFrame extends JFrame implements WindowListener {
 
 	@Override
 	public void windowActivated(WindowEvent arg0) {
-		
 
 	}
 
 	@Override
 	public void windowClosed(WindowEvent arg0) {
-		
 
 	}
 
@@ -164,25 +162,21 @@ public class MainFrame extends JFrame implements WindowListener {
 
 	@Override
 	public void windowDeactivated(WindowEvent arg0) {
-		
 
 	}
 
 	@Override
 	public void windowDeiconified(WindowEvent arg0) {
-		
 
 	}
 
 	@Override
 	public void windowIconified(WindowEvent arg0) {
-		
 
 	}
 
 	@Override
 	public void windowOpened(WindowEvent arg0) {
-		
 
 	}
 

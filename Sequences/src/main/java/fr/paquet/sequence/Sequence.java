@@ -18,6 +18,8 @@ public interface Sequence {
 
 	public List<Activite_1> getActivites();
 
+	public void setActivites(List<Activite_1> activites);
+
 	public String getClasse();
 
 	public void setClasse(String classe);

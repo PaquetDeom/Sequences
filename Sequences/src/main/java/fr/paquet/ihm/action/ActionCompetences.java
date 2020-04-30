@@ -67,6 +67,14 @@ public class ActionCompetences extends ActionBDA implements PropertyChangeListen
 	@Override
 	public void propertyChange(PropertyChangeEvent arg0) {
 		Enable();
+		getSequenceVersion().addPropertyChangeListener(new PropertyChangeListener() {
+
+			@Override
+			public void propertyChange(PropertyChangeEvent arg0) {
+				Enable();
+
+			}
+		});
 
 	}
 
