@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import fr.paquet.dataBase.Factory.referentiel.ReferentielFactory;
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
+import fr.paquet.ihm.ouvrir.JPanelOpenSequence;
 import fr.paquet.referentiel.Referentiel;
 
 import java.awt.GridBagLayout;
@@ -22,12 +23,33 @@ public class JPanelNewSequenceReferentiel extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanelNewSequence jPanelNewSequence = null;
+	private JPanelOpenSequence jPanelOpenSequence = null;
 
 	public JPanelNewSequenceReferentiel(JPanelNewSequence jPanelNewSequence) {
 		super();
 
 		// setteur des éléments
 		setjPanelNewSequence(jPanelNewSequence);
+		addReferentiels(prepareData());
+
+		// ajout du Layout
+		setLayout(new GridBagLayout());
+
+		// Attribut du panel
+
+		// affichage des components
+		add(new JLabel("Référentiel :"), new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER,
+				GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5, 5), 0, 0));
+		add(getListReferentiels(), new GridBagConstraints(1, 0, 1, 1, 1, 0, GridBagConstraints.CENTER,
+				GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5, 5), 0, 0));
+
+	}
+
+	public JPanelNewSequenceReferentiel(JPanelOpenSequence jPanelOpenSequence) {
+		super();
+
+		// setteur des éléments
+		setjPanelOpenSequence(jPanelOpenSequence);
 		addReferentiels(prepareData());
 
 		// ajout du Layout
@@ -79,6 +101,14 @@ public class JPanelNewSequenceReferentiel extends JPanel {
 			getListReferentiels().addItem(ref);
 		}
 
+	}
+
+	public JPanelOpenSequence getjPanelOpenSequence() {
+		return jPanelOpenSequence;
+	}
+
+	public void setjPanelOpenSequence(JPanelOpenSequence jPanelOpenSequence) {
+		this.jPanelOpenSequence = jPanelOpenSequence;
 	}
 
 }

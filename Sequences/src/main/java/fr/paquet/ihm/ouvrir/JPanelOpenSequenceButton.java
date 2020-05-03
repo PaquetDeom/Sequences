@@ -1,26 +1,19 @@
-package fr.paquet.ihm.nouveau;
+package fr.paquet.ihm.ouvrir;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import fr.paquet.ihm.commun.JPanelButtonAnnulOk;
 
-import javax.swing.JButton;
-
-public class JPanelNewSequenceButton extends JPanelButtonAnnulOk {
+public class JPanelOpenSequenceButton extends JPanelButtonAnnulOk {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public JPanelNewSequenceButton(JPanelNewSequence jPanelNewSequence) {
-		super(jPanelNewSequence);
-
-	}
-
-	public JPanelNewSequenceButton(JPanelNewVersion jPanelNewVersion) {
-		super(jPanelNewVersion);
-
+	public JPanelOpenSequenceButton(JPanelOpenSequence jPanelOpenSequence) {
+		super(jPanelOpenSequence);
 	}
 
 	@Override
@@ -31,14 +24,14 @@ public class JPanelNewSequenceButton extends JPanelButtonAnnulOk {
 
 	@Override
 	public void setBtnAnnul(JButton btnAnnul) {
-
 		this.btnAnnul = btnAnnul;
+
 	}
 
 	@Override
 	public void setBtnOk(JButton btnOk) {
-
 		this.btnOk = btnOk;
+
 	}
 
 }

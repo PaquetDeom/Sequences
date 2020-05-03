@@ -3,11 +3,10 @@ package fr.paquet.ihm.commun.explorerInternet;
 import java.awt.BorderLayout;
 import java.awt.Cursor;
 import java.awt.Dimension;
-import java.awt.Toolkit;
+
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -22,7 +21,7 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import main.MainFrame;
 
-public class SwingBrowserJavaFxWeb extends JDialog implements WindowListener, PropertyChangeListener {
+public class SwingBrowserJavaFxWeb extends JDialog implements WindowListener {
 
 	/**
 	 * 
@@ -44,28 +43,11 @@ public class SwingBrowserJavaFxWeb extends JDialog implements WindowListener, Pr
 		initComponents();
 	}
 
-	private Task task = null;
-	private boolean done = true;
-
-	public void done() {
-		// Tell progress listener to stop updating progress bar.
-		done = true;
-		Toolkit.getDefaultToolkit().beep();
-
-		setCursor(null); // turn off the wait cursor
-		progressBar.setValue(progressBar.getMinimum());
-
-	}
-
 	private void initComponents() {
 
 		progressBar.setPreferredSize(new Dimension(150, 18));
 		progressBar.setStringPainted(true);
 		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-		done = false;
-		task = new Task();
-		task.addPropertyChangeListener(this);
-		task.execute();
 
 		initFx();
 
@@ -77,9 +59,10 @@ public class SwingBrowserJavaFxWeb extends JDialog implements WindowListener, Pr
 		panel.add(jfxPanel, BorderLayout.CENTER);
 		panel.add(statusBar, BorderLayout.SOUTH);
 
+		setTitle("Internet NathExplorer");
 		getContentPane().add(panel);
-		wight = 1880;
-		height = 980;
+		wight = 1850;
+		height = 1000;
 		setPreferredSize(new Dimension(wight, height));
 		setResizable(false);
 
@@ -115,7 +98,7 @@ public class SwingBrowserJavaFxWeb extends JDialog implements WindowListener, Pr
 		scene = new Scene(root, Color.ALICEBLUE);
 
 		WebView web = new WebView();
-		web.setPrefSize(wight, height);
+		web.setPrefSize(wight, height - 20);
 		engine = web.getEngine();
 
 		String tmp = toURL(url);
@@ -175,21 +158,6 @@ public class SwingBrowserJavaFxWeb extends JDialog implements WindowListener, Pr
 	@Override
 	public void windowOpened(WindowEvent arg0) {
 
-	}
-
-	@Override
-	public void propertyChange(PropertyChangeEvent arg0) {
-		if (!done) {
-			int progress = task.getProgress();
-			if (progress == 0) {
-				progressBar.setIndeterminate(true);
-
-			} else {
-				progressBar.setIndeterminate(false);
-				progressBar.setString(null);
-				progressBar.setValue(progress);
-			}
-		}
 	}
 
 }
