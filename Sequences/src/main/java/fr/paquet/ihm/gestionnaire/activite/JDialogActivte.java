@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.MutableTreeNode;
 
 import fr.paquet.activite.Activite_1;
 import fr.paquet.ihm.alert.AlertListener;
@@ -41,7 +43,7 @@ public class JDialogActivte extends JDialogGestion implements AlertListener {
 
 		}
 
-		if (button.getText().equals("Valider")) {
+		if (button.getText().equals("Fermer")) {
 			getSequenceVersion().setActivites(getActivites());
 			MainOnglet.getUniqInstance().removeAllOngletActivites();
 			for (Activite_1 act : getSequenceVersion().getActivites()) {
@@ -51,10 +53,6 @@ public class JDialogActivte extends JDialogGestion implements AlertListener {
 			this.dispose();
 		}
 
-		if (button.getText().equals("Annuler")) {
-
-			this.dispose();
-		}
 	}
 
 	@Override
@@ -92,14 +90,16 @@ public class JDialogActivte extends JDialogGestion implements AlertListener {
 			Activite_1 activite = (Activite_1) getJPanelGestionnaireRight().getObjectSelected();
 			getActivites().remove(activite);
 
+			// supprimer le noeud du Jtree
+			((DefaultTreeModel) getJtreGestionnaire().getJTreeValue().getModel()).removeNodeFromParent(
+					(MutableTreeNode) getJtreGestionnaire().getJTreeValue().getSelectionPath().getLastPathComponent());
+
 			getSequenceVersion().setActivites(getActivites());
 			MainOnglet.getUniqInstance().removeAllOngletActivites();
 			for (Activite_1 act : getSequenceVersion().getActivites()) {
 				MainOnglet.getUniqInstance().addOngletsActivites(new OngletActivite(act));
 			}
 
-			MainOnglet.getUniqInstance().affiche();
-			dispose();
 		}
 
 	}
@@ -107,14 +107,12 @@ public class JDialogActivte extends JDialogGestion implements AlertListener {
 	@Override
 	protected void addButton() {
 
-		JButton buttonOui = new JButton("Oui");
+		JButton buttonOui = new JButton("Fermer");
 		buttonOui.addActionListener(this);
 
-		JButton buttonAnnuler = new JButton("Annuler");
-		buttonAnnuler.addActionListener(this);
 
 		getButtons().add(buttonOui);
-		getButtons().add(buttonAnnuler);
+		
 
 	}
 

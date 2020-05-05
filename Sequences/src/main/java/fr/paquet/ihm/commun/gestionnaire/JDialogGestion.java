@@ -12,11 +12,12 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
+import javax.swing.tree.DefaultMutableTreeNode;
 
 import fr.paquet.ihm.style.StyleBorder;
 import main.MainFrame;
 
-public abstract class JDialogGestion extends JDialog implements ActionListener {
+public abstract class JDialogGestion extends JDialog implements ActionListener, SelectionListener {
 
 	/**
 	 * 
@@ -57,11 +58,12 @@ public abstract class JDialogGestion extends JDialog implements ActionListener {
 		setJSplitPaneLeft(getJtreGestionnaire());
 		setJSplitPaneRight(getJPanelGestionnaireRight());
 
+		// listener
 		if (!getJPanelGestionnaireRight().getButtons().isEmpty())
 			for (JButton button : getJPanelGestionnaireRight().getButtons()) {
 				button.addActionListener(this);
 			}
-
+		getJtreGestionnaire().addSelectionListeners(this);
 		// visible
 		setVisible(true);
 	}
@@ -172,6 +174,22 @@ public abstract class JDialogGestion extends JDialog implements ActionListener {
 			}
 
 		return panel;
+	}
+	
+	private DefaultMutableTreeNode node = null;
+
+	protected DefaultMutableTreeNode getNode() {
+		return node;
+	}
+
+	private void setNode(DefaultMutableTreeNode node) {
+		this.node = node;
+	}
+
+	@Override
+	public void SelectionChange(SelectedEvent eventObject) {
+		setNode(eventObject.getNode());
+
 	}
 
 }

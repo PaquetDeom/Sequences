@@ -12,14 +12,17 @@ import javax.swing.tree.TreePath;
 
 import fr.paquet.referentiel.Referentiel;
 
-
 public abstract class JTreeGestionnaire extends JScrollPane {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	protected JTree jtreeValues = new JTree();
+	private JTree jtreeValues = new JTree();
+
+	public JTree getJTreeValue() {
+		return jtreeValues;
+	}
 
 	private List<? extends Object> objects = null;
 
@@ -30,7 +33,7 @@ public abstract class JTreeGestionnaire extends JScrollPane {
 	protected List<? extends Object> getObjects() {
 		return objects;
 	}
-	
+
 	private Referentiel referentiel = null;
 
 	public JTreeGestionnaire(List<? extends Object> objects, Referentiel ref) {

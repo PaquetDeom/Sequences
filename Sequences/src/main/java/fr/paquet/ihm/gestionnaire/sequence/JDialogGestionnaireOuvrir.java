@@ -12,6 +12,8 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.MutableTreeNode;
 
 import fr.paquet.dataBase.Factory.sequence.SequenceVersionFactory;
 import fr.paquet.ihm.alert.AlertListener;
@@ -188,9 +190,13 @@ public class JDialogGestionnaireOuvrir extends JDialog implements ActionListener
 		JButton button = (JButton) event.getSource();
 		String buttonString = button.getText();
 
+		if (buttonString.equals("Annuler") || buttonString.equals("Fermer"))
+			this.dispose();
+
 		if (buttonString.equals("Ouvrir")) {
 			try {
 				MainFrame.getUniqInstance().addPanel(getSequence());
+				dispose();
 			} catch (Exception e) {
 				e.printStackTrace();
 				new AlertWindow(AlertType.ERREUR, "La séquence n'a pas pu s'ouvrir");
@@ -198,14 +204,14 @@ public class JDialogGestionnaireOuvrir extends JDialog implements ActionListener
 		}
 
 		if (buttonString.equals("Nouveau")) {
+
 			new JDialogNewSequence();
+			dispose();
 		}
 
 		if (buttonString.equals("Supprimer")) {
 			new AlertWindow(AlertType.QUESTION, "Voulez-vous vraiment supprimer ?", this);
 		}
-
-		dispose();
 
 	}
 
@@ -216,6 +222,14 @@ public class JDialogGestionnaireOuvrir extends JDialog implements ActionListener
 
 			try {
 				new SequenceVersionFactory().removeObject(getSequence());
+
+				// supprimer le noeud du Jtree
+				((DefaultTreeModel) getJTreeGestionnaireGestionnaire().getJTreeValue().getModel())
+						.removeNodeFromParent((MutableTreeNode) getJTreeGestionnaireGestionnaire().getJTreeValue()
+								.getSelectionPath().getLastPathComponent());
+
+				this.dispose();
+
 			} catch (Exception e) {
 				e.printStackTrace();
 				new AlertWindow(AlertType.ERREUR, "La séquence n'a pas été supprimer");

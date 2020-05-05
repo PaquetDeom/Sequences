@@ -90,7 +90,7 @@ public class JPanelGestionnaireActiviteRight extends JPanelGestionnaireRight {
 
 	@Override
 	protected void setButtons(List<JButton> buttons) {
-		buttons.add(new JButton("Ajouter"));
+		buttons.add(new JButton("Supprimer"));
 		this.buttons = buttons;
 
 	}

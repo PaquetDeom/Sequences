@@ -5,7 +5,7 @@ import java.util.Hashtable;
 import javax.swing.*;
 
 import fr.paquet.ihm.action.*;
-import fr.paquet.sequence.SequenceVersion;
+
 
 public class MainMenu extends JMenuBar {
 

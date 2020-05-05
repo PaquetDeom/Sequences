@@ -81,7 +81,8 @@ public class SequenceVersionFactory extends Factory {
 		SequenceVersion seq = (SequenceVersion) object;
 
 		try {
-			if (MainFrame.getUniqInstance().getSequenceVersion().equals(seq)) {
+			if (MainFrame.getUniqInstance().getSequenceVersion() != null
+					&& MainFrame.getUniqInstance().getSequenceVersion().equals(seq)) {
 				MainFrame.getUniqInstance().initPanelOuverture();
 			}
 

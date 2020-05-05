@@ -47,17 +47,17 @@ public class JTreeGestionnaireGestionnaire extends JTreeGestionnaire {
 	protected void setNodes(List<? extends Object> objects) {
 
 		if (objects == null) {
-			jtreeValues.setModel(null);
+			getJTreeValue().setModel(null);
 			return;
 		}
 
 		try {
-			jtreeValues.setModel(new DefaultTreeModel(getRootNode()));
-			jtreeValues.setCellRenderer(new DataCellRenderer(this));
+			getJTreeValue().setModel(new DefaultTreeModel(getRootNode()));
+			getJTreeValue().setCellRenderer(new DataCellRenderer(this));
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			jtreeValues.setModel(null);
+			getJTreeValue().setModel(null);
 		}
 
 	}
