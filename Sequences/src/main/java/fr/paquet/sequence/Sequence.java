@@ -72,6 +72,8 @@ public interface Sequence {
 
 	public void lock();
 
+	public void unlock();
+
 	public void addActivite(Activite_1 activite);
 
 	public void addCompetenceIntermediaire(CompetenceIntermediaire competenceIntermediaire);

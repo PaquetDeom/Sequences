@@ -95,6 +95,13 @@ public class JPanelNewSequenceReferentiel extends JPanel {
 		return listReferentiels;
 	}
 
+	public Referentiel getReferentiel() {
+		if (getListReferentiels().getSelectedItem() instanceof Referentiel == true)
+			return (Referentiel) getListReferentiels().getSelectedItem();
+		else
+			return null;
+	}
+
 	public void addReferentiels(List<Referentiel> listReferentiels) {
 		getListReferentiels().addItem(null);
 		for (Referentiel ref : listReferentiels) {

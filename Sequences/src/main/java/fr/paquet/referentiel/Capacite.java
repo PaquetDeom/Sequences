@@ -49,18 +49,14 @@ public class Capacite {
 	/**
 	 * Contructeur de la classe Capacite<br/>
 	 * 
-	 * @param ref
-	 *            Referentiel au quel est attach� la capacite<br/>
+	 * @param ref        Referentiel au quel est attach� la capacite<br/>
 	 * 
-	 * @param UnCode
-	 *            code de la capacite compose de "C" et d'un Chiffre<br/>
-	 *            exemple : C1, C3, etc...
-	 * @param UnIntitule
-	 *            le libelle de la capacite : <br/>
-	 *            exemple : "INFORMER S'INFORMER" <br/>
+	 * @param UnCode     code de la capacite compose de "C" et d'un Chiffre<br/>
+	 *                   exemple : C1, C3, etc...
+	 * @param UnIntitule le libelle de la capacite : <br/>
+	 *                   exemple : "INFORMER S'INFORMER" <br/>
 	 * 
-	 * @exception Code
-	 *                Si le code est null ou ne commence pas par un C
+	 * @exception Code Si le code est null ou ne commence pas par un C
 	 */
 
 	public Capacite(Referentiel ref, String unCode, String unIntitule) throws Exception {
@@ -140,6 +136,10 @@ public class Capacite {
 	 */
 	public int getId() {
 		return id;
+	}
+
+	public String toString() {
+		return getCode() + " : " + getIntitule();
 	}
 
 }

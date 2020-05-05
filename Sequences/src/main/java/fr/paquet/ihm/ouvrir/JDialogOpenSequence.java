@@ -9,6 +9,9 @@ import javax.swing.JRadioButton;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import fr.paquet.ihm.alert.AlertType;
+import fr.paquet.ihm.alert.AlertWindow;
+import fr.paquet.ihm.gestionnaire.sequence.JDialogGestionnaireOuvrir;
 import main.MainFrame;
 
 public class JDialogOpenSequence extends JDialog implements ActionListener, ChangeListener {
@@ -57,8 +60,16 @@ public class JDialogOpenSequence extends JDialog implements ActionListener, Chan
 
 		if (button.getText().equals("Annuler"))
 			this.dispose();
-		
-		//TODO button Oui
+
+		if (button.getText().equals("Ok")) {
+
+			if (getJPanelOpenSequence().getjPanelNewSequenceReferentiel().getReferentiel() != null)
+				new JDialogGestionnaireOuvrir(
+						getJPanelOpenSequence().getjPanelNewSequenceReferentiel().getReferentiel(), isQueMoi());
+			else
+				new AlertWindow(AlertType.INFORMATION, "Veuillez sélectionner un référentiel");
+		}
+		this.dispose();
 
 	}
 

@@ -21,7 +21,7 @@ public class JtreeGestionnaireCompetenceActivite extends JTreeGestionnaire {
 	private static final long serialVersionUID = 1L;
 
 	public JtreeGestionnaireCompetenceActivite(List<CompetenceIntermediaire> competenceIntermediaires) {
-		super(competenceIntermediaires);
+		super(competenceIntermediaires, null);
 
 	}
 

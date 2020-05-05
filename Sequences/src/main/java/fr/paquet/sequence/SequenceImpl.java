@@ -8,12 +8,13 @@ import javax.persistence.Entity;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import fr.paquet.activite.Activite_1;
-
+import fr.paquet.dataBase.Factory.sequence.SequenceImplFactory;
+import fr.paquet.ihm.alert.AlertType;
+import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.referentiel.Capacite;
 import fr.paquet.referentiel.CompetenceIntermediaire;
 import fr.paquet.referentiel.Referentiel;
@@ -31,7 +32,7 @@ public class SequenceImpl implements Sequence {
 	@Column(name = "SESETI", length = 20)
 	private String titre = null;
 
-	@Transient
+	@JoinColumn
 	private Referentiel referentiel = null;
 
 	@Column(name = "SESEMO")
@@ -39,6 +40,9 @@ public class SequenceImpl implements Sequence {
 
 	@Column(name = "SESEVE")
 	private int nVersion = 1;
+
+	@JoinColumn
+	private Capacite capacite = null;
 
 	public SequenceImpl(String titre, Referentiel referentiel) throws Exception {
 		this();
@@ -54,7 +58,13 @@ public class SequenceImpl implements Sequence {
 
 	@Override
 	public void setCapacite(Capacite cap) {
-
+		this.capacite = cap;
+		try {
+			new SequenceImplFactory().persist(this);
+		} catch (Exception e) {
+			new AlertWindow(AlertType.ERREUR, e.getMessage());
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -77,7 +87,7 @@ public class SequenceImpl implements Sequence {
 	@Override
 	public Capacite getCapacite() {
 
-		return null;
+		return capacite;
 	}
 
 	@Override
@@ -213,6 +223,11 @@ public class SequenceImpl implements Sequence {
 	}
 
 	@Override
+	public void unlock() {
+
+	}
+
+	@Override
 	public void addActivite(Activite_1 activite) {
 
 	}
@@ -260,7 +275,11 @@ public class SequenceImpl implements Sequence {
 
 	@Override
 	public void setActivites(List<Activite_1> activites) {
-				
+
+	}
+
+	public String toString() {
+		return "Séquence : " + getTitre();
 	}
 
 }

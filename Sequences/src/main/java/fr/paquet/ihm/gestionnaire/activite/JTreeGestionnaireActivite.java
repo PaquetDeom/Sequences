@@ -21,7 +21,7 @@ public class JTreeGestionnaireActivite extends JTreeGestionnaire {
 	private static final long serialVersionUID = 1L;
 
 	public JTreeGestionnaireActivite(List<Activite_1> activites) {
-		super(activites);
+		super(activites, null);
 
 	}
 

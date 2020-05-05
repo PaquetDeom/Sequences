@@ -41,6 +41,8 @@ public class JDialogCompetence extends JDialogGestion {
 								.clone());
 
 		}
+
+		affiche();
 	}
 
 	private List<SavoirAssocie> savAssSelect = new ArrayList<SavoirAssocie>();
@@ -151,6 +153,20 @@ public class JDialogCompetence extends JDialogGestion {
 
 	private void setSequencePanel(SequencePanel sequencePanel) {
 		this.sequencePanel = sequencePanel;
+	}
+
+	@Override
+	protected void addButton() {
+
+		JButton buttonOui = new JButton("Valider");
+		buttonOui.addActionListener(this);
+
+		JButton buttonAnnuler = new JButton("Annuler");
+		buttonAnnuler.addActionListener(this);
+
+		getButtons().add(buttonOui);
+		getButtons().add(buttonAnnuler);
+
 	}
 
 }

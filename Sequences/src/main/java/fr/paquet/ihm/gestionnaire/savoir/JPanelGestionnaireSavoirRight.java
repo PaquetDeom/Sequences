@@ -3,6 +3,7 @@ package fr.paquet.ihm.gestionnaire.savoir;
 import java.awt.BorderLayout;
 import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -24,7 +25,7 @@ public class JPanelGestionnaireSavoirRight extends JPanelGestionnaireRight {
 	private static final long serialVersionUID = 1L;
 
 	public JPanelGestionnaireSavoirRight(JDialogSavoir jdialogSavoir) {
-		super(jdialogSavoir, "Ajouter");
+		super(jdialogSavoir);
 
 		// listener
 		JDialogSavoir jD = (JDialogSavoir) getjDialogGestion();
@@ -97,6 +98,13 @@ public class JPanelGestionnaireSavoirRight extends JPanelGestionnaireRight {
 		panel.setBorder(StyleBorder.BORDERTITLEAREA.getBorder());
 
 		this.panelTitre = panel;
+	}
+
+	@Override
+	protected void setButtons(List<JButton> buttons) {
+		buttons.add(new JButton("Ajouter"));
+		this.buttons = buttons;
+
 	}
 
 }

@@ -25,6 +25,7 @@ public class JDialogActivte extends JDialogGestion implements AlertListener {
 	public JDialogActivte(SequenceVersion sequenceVersion) {
 		super("Gestionnaire des activtés", sequenceVersion);
 
+		affiche();
 	}
 
 	private SequenceVersion getSequenceVersion() {
@@ -100,6 +101,20 @@ public class JDialogActivte extends JDialogGestion implements AlertListener {
 			MainOnglet.getUniqInstance().affiche();
 			dispose();
 		}
+
+	}
+
+	@Override
+	protected void addButton() {
+
+		JButton buttonOui = new JButton("Oui");
+		buttonOui.addActionListener(this);
+
+		JButton buttonAnnuler = new JButton("Annuler");
+		buttonAnnuler.addActionListener(this);
+
+		getButtons().add(buttonOui);
+		getButtons().add(buttonAnnuler);
 
 	}
 

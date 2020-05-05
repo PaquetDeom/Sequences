@@ -67,9 +67,6 @@ public class SequenceVersion implements Sequence {
 	@Column(name = "SEVEVI")
 	private boolean visible = false;
 
-	@JoinColumn
-	private Capacite capacite = null;
-
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
 	@JoinTable(name = "SEQUENCEVERSION_SAVOIR_ASSOCIE", joinColumns = @JoinColumn(name = "SEVEID"), inverseJoinColumns = @JoinColumn(name = "SAASID"))
 	private List<SavoirAssocie> savoirAssocies = null;
@@ -104,6 +101,9 @@ public class SequenceVersion implements Sequence {
 
 	@Override
 	public void setCompetenceIntermediaires(List<CompetenceIntermediaire> competenceIntermediaires) {
+		if (getCompetenceIntermediaires().isEmpty()) {
+			firstSequence.setCapacite(competenceIntermediaires.get(0).getCompetence().getCapacite());
+		}
 		this.competenceIntermediaires = competenceIntermediaires;
 
 	}
@@ -143,6 +143,10 @@ public class SequenceVersion implements Sequence {
 		previousVersion.lock();
 	}
 
+	public SequenceVersion getParent() {
+		return previous;
+	}
+
 	public SequenceImpl getFirstSequence() {
 		return firstSequence;
 	}
@@ -169,13 +173,13 @@ public class SequenceVersion implements Sequence {
 
 	@Override
 	public String getTitre() {
-		return previousVersion.getTitre();
+		return firstSequence.getTitre();
 	}
 
 	@Override
 	public Referentiel getReferentiel() {
 
-		return previousVersion.getReferentiel();
+		return firstSequence.getReferentiel();
 	}
 
 	@Override
@@ -219,8 +223,9 @@ public class SequenceVersion implements Sequence {
 
 	@Override
 	public String getElementsARetenir() {
-
-		return (elementsARetenir != null) ? elementsARetenir : previousVersion.getElementsARetenir();
+		String element = (elementsARetenir != null) ? elementsARetenir
+				: (previousVersion != null) ? previousVersion.getElementsARetenir() : null;
+		return element;
 	}
 
 	@Override
@@ -297,6 +302,12 @@ public class SequenceVersion implements Sequence {
 	}
 
 	@Override
+	public void unlock() {
+		dernier = true;
+
+	}
+
+	@Override
 	public void setClasse(String classe) {
 		this.classe = classe;
 
@@ -304,8 +315,6 @@ public class SequenceVersion implements Sequence {
 
 	@Override
 	public void setCapacite(Capacite cap) {
-		if (numVersion == 1)
-			this.capacite = cap;
 
 	}
 
@@ -318,6 +327,8 @@ public class SequenceVersion implements Sequence {
 	@Override
 	public void addCompetenceIntermediaire(CompetenceIntermediaire competenceIntermediaire) {
 
+		if (getCompetenceIntermediaires().isEmpty())
+			firstSequence.setCapacite(competenceIntermediaire.getCompetence().getCapacite());
 		getCompetenceIntermediaires().add(competenceIntermediaire);
 
 	}
@@ -353,6 +364,10 @@ public class SequenceVersion implements Sequence {
 	public void setActivites(List<Activite_1> activites) {
 		this.activites = activites;
 
+	}
+
+	public String toString() {
+		return "Version N°" + getnVersion() + " Classe : " + getClasse() + " Auteur : " + getAuteur().toString();
 	}
 
 }

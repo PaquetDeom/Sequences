@@ -1,5 +1,6 @@
 package main;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
@@ -70,8 +71,14 @@ public class MainFrame extends JFrame implements WindowListener {
 		this.panelOuverture = p;
 	}
 
-	public JPanel getPanelOuverture() {
+	private JPanel getPanelOuverture() {
 		return panelOuverture;
+	}
+
+	public void affichePanelOuverture() throws Exception {
+		removePanel(getMainOnglet());
+		add(getPanelOuverture());
+		revalidate();
 	}
 
 	/**
@@ -95,8 +102,8 @@ public class MainFrame extends JFrame implements WindowListener {
 	 * @param panel supprime le panel de la fenêtre
 	 * @throws Exception
 	 */
-	private void removePanel(JPanel panel) throws Exception {
-		MainFrame.getUniqInstance().remove(panel);
+	private void removePanel(Component component) throws Exception {
+		MainFrame.getUniqInstance().remove(component);
 	}
 
 	/**
@@ -177,6 +184,12 @@ public class MainFrame extends JFrame implements WindowListener {
 
 	@Override
 	public void windowOpened(WindowEvent arg0) {
+
+	}
+
+	public void initPanelOuverture() throws Exception {
+		affichePanelOuverture();
+		setSequenceVersion(null);
 
 	}
 

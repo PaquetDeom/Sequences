@@ -22,7 +22,7 @@ public class JDialogNewSequence extends JDialog implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	private JPanelNewSequence jPanelNewSequence = null;
 
-	public JDialogNewSequence() throws Exception {
+	public JDialogNewSequence() {
 		super(MainFrame.getUniqInstance());
 
 		// construction de la fenêtre
@@ -57,8 +57,7 @@ public class JDialogNewSequence extends JDialog implements ActionListener {
 	private SequenceVersion createSequence() throws Exception {
 
 		String titre = getjPanelNewSequence().getjPanelNewSequenceTitle().getTitre();
-		Referentiel ref = (Referentiel) getjPanelNewSequence().getjPanelNewSequenceReferentiel().getListReferentiels()
-				.getSelectedItem();
+		Referentiel ref = getjPanelNewSequence().getjPanelNewSequenceReferentiel().getReferentiel();
 		String classe = (String) getjPanelNewSequence().getjPanelNewSequenceClasse().getComboBox().getSelectedItem();
 
 		if (titre == null || titre.equals("") || ref == null || classe == null || classe.equals(""))

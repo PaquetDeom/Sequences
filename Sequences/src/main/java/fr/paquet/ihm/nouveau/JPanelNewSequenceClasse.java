@@ -5,7 +5,6 @@ import java.awt.GridBagLayout;
 import javax.swing.JPanel;
 
 import fr.paquet.commun.TypeDiplome;
-import fr.paquet.referentiel.Referentiel;
 
 import javax.swing.JLabel;
 
@@ -103,11 +102,10 @@ public class JPanelNewSequenceClasse extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent event) {
-		@SuppressWarnings("unchecked")
-		JComboBox<Referentiel> jC = (JComboBox<Referentiel>) event.getSource();
-		Referentiel ref = (Referentiel) jC.getSelectedItem();
 
-		setComboBox(ref.getDiplome().getType());
+		if (getjPanelNewSequence().getjPanelNewSequenceReferentiel().getReferentiel() != null)
+			setComboBox(
+					getjPanelNewSequence().getjPanelNewSequenceReferentiel().getReferentiel().getDiplome().getType());
 		affiche();
 
 	}

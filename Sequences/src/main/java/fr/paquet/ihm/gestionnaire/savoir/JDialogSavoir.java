@@ -36,8 +36,10 @@ public class JDialogSavoir extends JDialogGestion {
 					.getSavoirAssocieSelected()).clone();
 
 			setButtomPanel();
-			affiche();
+
 		}
+
+		affiche();
 	}
 
 	@Override
@@ -126,6 +128,20 @@ public class JDialogSavoir extends JDialogGestion {
 
 	private void setjDialogCompetence(JDialogCompetence jDialogCompetence) {
 		this.jDialogCompetence = jDialogCompetence;
+	}
+
+	@Override
+	protected void addButton() {
+
+		JButton buttonOui = new JButton("Oui");
+		buttonOui.addActionListener(this);
+
+		JButton buttonAnnuler = new JButton("Annuler");
+		buttonAnnuler.addActionListener(this);
+
+		getButtons().add(buttonOui);
+		getButtons().add(buttonAnnuler);
+
 	}
 
 }

@@ -4,6 +4,9 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.beans.PropertyChangeSupport;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -18,18 +21,19 @@ public abstract class JPanelGestionnaireRight extends JPanel implements Selectio
 	 */
 	private static final long serialVersionUID = 1L;
 	private JDialogGestion jDialogGestion = null;
-	private String titleButton = null;
+	protected final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
-	public JPanelGestionnaireRight(JDialogGestion jdialog, String titleButton) {
+	public JPanelGestionnaireRight(JDialogGestion jdialogGestion) {
 		super();
 
 		// set des composants
-		setTitleButton(titleButton);
-		setjDialogGestion(jdialog);
+		setButtons(new ArrayList<JButton>());
+		setjDialogGestion(jdialogGestion);
 		setPanelTitre(null);
 		setPanelLeft(null);
 		setPanelRight(null);
-		setMaximumSize(new Dimension(getjDialogGestion().getHeight(), getjDialogGestion().getWidth() / 2));
+		if (getjDialogGestion() != null)
+			setMaximumSize(new Dimension(getjDialogGestion().getHeight(), getjDialogGestion().getWidth() / 2));
 
 		// Ajout du layout
 		setLayout(new GridBagLayout());
@@ -38,7 +42,10 @@ public abstract class JPanelGestionnaireRight extends JPanel implements Selectio
 		affiche();
 
 		// listener
-		getButtonAjouter().addActionListener(getjDialogGestion().getJButtomPanel());
+		if (getjDialogGestion() != null)
+			for (JButton button : getButtons()) {
+				button.addActionListener(getjDialogGestion().getJButtomPanel());
+			}
 
 		// attributs du Panel
 		setBorder(StyleBorder.BORDERPANEL.getBorder());
@@ -64,8 +71,9 @@ public abstract class JPanelGestionnaireRight extends JPanel implements Selectio
 		} else
 			add(getPanelLeft(), new GridBagConstraints(0, 1, 1, 1, 1, 1, GridBagConstraints.CENTER,
 					GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-		add(getPanelButton(), new GridBagConstraints(0, 2, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER,
-				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+		if (!getButtons().isEmpty())
+			add(getPanelButton(), new GridBagConstraints(0, 2, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER,
+					GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
 		revalidate();
 	}
@@ -96,38 +104,36 @@ public abstract class JPanelGestionnaireRight extends JPanel implements Selectio
 		return panelTitre;
 	}
 
-	private JButton button = null;
-
-	public JButton getButtonAjouter() {
-		if (button == null)
-			button = new JButton(getTitleButton());
-		return button;
-	}
-
 	private JPanel getPanelButton() {
 		JPanel panel = new JPanel(new GridBagLayout());
 
 		panel.add(new JLabel(" "), new GridBagConstraints(0, 0, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-		panel.add(getButtonAjouter(), new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER,
-				GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
+
+		for (int i = 0; i < getButtons().size(); i++) {
+			panel.add(getButtons().get(i), new GridBagConstraints(i + 1, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER,
+					GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
+		}
 
 		return panel;
 	}
 
 	protected JDialogGestion getjDialogGestion() {
-		return jDialogGestion;
+		return (JDialogGestion) jDialogGestion;
 	}
 
 	private void setjDialogGestion(JDialogGestion jDialogGestion) {
 		this.jDialogGestion = jDialogGestion;
 	}
 
-	private String getTitleButton() {
-		return titleButton;
+	protected List<JButton> buttons = null;
+
+	public List<JButton> getButtons() {
+		if (buttons == null)
+			buttons = new ArrayList<JButton>();
+		return buttons;
 	}
 
-	private void setTitleButton(String titleButton) {
-		this.titleButton = titleButton;
-	}
+	protected abstract void setButtons(List<JButton> buttons);
+
 }

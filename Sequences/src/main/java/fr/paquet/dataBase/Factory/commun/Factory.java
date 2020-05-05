@@ -61,7 +61,9 @@ public abstract class Factory {
 
 	}
 
-	public void remove(Object object) throws Exception {
+	public abstract void removeObject(Object object);
+
+	protected void remove(Object object) throws Exception {
 
 		test(object);
 

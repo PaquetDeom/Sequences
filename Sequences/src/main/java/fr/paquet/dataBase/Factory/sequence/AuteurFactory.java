@@ -7,6 +7,8 @@ import javax.persistence.Query;
 import fr.paquet.dataBase.Connect;
 import fr.paquet.dataBase.User;
 import fr.paquet.dataBase.Factory.commun.Factory;
+import fr.paquet.ihm.alert.AlertType;
+import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.sequence.Auteur;
 
 
@@ -35,6 +37,17 @@ public class AuteurFactory extends Factory {
 	public Class<?> getClassObject() {
 
 		return Auteur.class;
+	}
+
+	@Override
+	public void removeObject(Object object) {
+		try {
+			remove(object);
+		} catch (Exception e) {
+			new AlertWindow(AlertType.ERREUR, "Connexion à la base Impossible");
+			e.printStackTrace();
+		}
+
 	}
 
 }

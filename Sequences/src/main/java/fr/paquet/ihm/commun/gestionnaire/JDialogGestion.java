@@ -5,6 +5,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -20,8 +22,6 @@ public abstract class JDialogGestion extends JDialog implements ActionListener {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	protected JButton buttonOk = new JButton("Valider");
-	protected JButton buttonAnnul = new JButton("Annuler");
 	protected Object object = null;
 	protected JTreeGestionnaire jtreeGestionnaire = null;
 	protected JPanelGestionnaireRight jPanelGestionnaireRight = null;
@@ -50,19 +50,17 @@ public abstract class JDialogGestion extends JDialog implements ActionListener {
 		setAlwaysOnTop(false);
 
 		// ajout des composants
+		addButton();
 		setObject(obj);
 		setJtreeGestionnaire();
 		setJPanelGestionnaireRight();
 		setJSplitPaneLeft(getJtreGestionnaire());
 		setJSplitPaneRight(getJPanelGestionnaireRight());
 
-		// ajout du panel
-		affiche();
-
-		// listener
-		buttonOk.addActionListener(this);
-		buttonAnnul.addActionListener(this);
-		getJPanelGestionnaireRight().getButtonAjouter().addActionListener(this);
+		if (!getJPanelGestionnaireRight().getButtons().isEmpty())
+			for (JButton button : getJPanelGestionnaireRight().getButtons()) {
+				button.addActionListener(this);
+			}
 
 		// visible
 		setVisible(true);
@@ -151,15 +149,27 @@ public abstract class JDialogGestion extends JDialog implements ActionListener {
 		this.rightComponent = component;
 	}
 
+	private List<JButton> buttons = null;
+
+	protected List<JButton> getButtons() {
+		if (buttons == null)
+			buttons = new ArrayList<JButton>();
+		return buttons;
+	}
+
+	protected abstract void addButton();
+
 	private JPanel getJButtonPanel() {
 		JPanel panel = new JPanel(new GridBagLayout());
 
 		panel.add(new JPanel(), new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-		panel.add(buttonOk, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER,
-				GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
-		panel.add(buttonAnnul, new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER,
-				GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
+
+		if (!getButtons().isEmpty())
+			for (int i = 0; i < getButtons().size(); i++) {
+				panel.add(getButtons().get(i), new GridBagConstraints(i + 1, 0, 1, 1, 0.0, 0.0,
+						GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
+			}
 
 		return panel;
 	}

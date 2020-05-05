@@ -3,6 +3,7 @@ package fr.paquet.ihm.gestionnaire.competence;
 import java.awt.BorderLayout;
 import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -27,19 +28,17 @@ public class JPanelGestionnaireCompetenceRight extends JPanelGestionnaireRight {
 	private static final long serialVersionUID = 1L;
 
 	public JPanelGestionnaireCompetenceRight(JDialogCompetence jDialogCompetence) {
-		super(jDialogCompetence, "Ajouter");
+		super(jDialogCompetence);
 
 		// listener
-		JDialogCompetence jD = (JDialogCompetence) getjDialogGestion();
-		jD.getJtreGestionnaire().addSelectionListeners(this);
+		jDialogCompetence.getJtreGestionnaire().addSelectionListeners(this);
 	}
-	
+
 	public JPanelGestionnaireCompetenceRight(JDialogCompetenceActivite jDialogCompetenceactivite) {
-		super(jDialogCompetenceactivite, "Ajouter");
+		super(jDialogCompetenceactivite);
 
 		// listener
-		JDialogCompetenceActivite jD = (JDialogCompetenceActivite) getjDialogGestion();
-		jD.getJtreGestionnaire().addSelectionListeners(this);
+		jDialogCompetenceactivite.getJtreGestionnaire().addSelectionListeners(this);
 	}
 
 	private void setCompetenIntermediaire(CompetenceIntermediaire compInt) {
@@ -124,6 +123,13 @@ public class JPanelGestionnaireCompetenceRight extends JPanelGestionnaireRight {
 		setPanelRight(compInt);
 
 		affiche();
+
+	}
+
+	@Override
+	protected void setButtons(List<JButton> buttons) {
+		buttons.add(new JButton("Ajouter"));
+		this.buttons = buttons;
 
 	}
 

@@ -1,6 +1,9 @@
 package fr.paquet.ihm.action;
 
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+
+import javax.swing.KeyStroke;
 
 import fr.paquet.dataBase.Connect;
 import fr.paquet.dataBase.Factory.sequence.SequenceVersionFactory;
@@ -21,6 +24,8 @@ public class ActionGestionnaire extends ActionBDA implements AlertListener {
 	public ActionGestionnaire() {
 		super();
 		putValue(NAME, getName());
+		putValue(ACCELERATOR_KEY,
+				KeyStroke.getKeyStroke('O', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
 	}
 
 	@Override

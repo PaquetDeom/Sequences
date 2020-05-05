@@ -1,4 +1,4 @@
-package fr.paquet.ihm.gestionnaire.savoir;
+package fr.paquet.ihm.gestionnaire.sequence;
 
 import java.util.List;
 
@@ -6,22 +6,25 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
 
+import fr.paquet.ihm.alert.AlertType;
+import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.ihm.commun.gestionnaire.DataCellRenderer;
 import fr.paquet.ihm.commun.gestionnaire.JTreeGestionnaire;
 import fr.paquet.ihm.commun.gestionnaire.SelectedEvent;
 import fr.paquet.ihm.commun.gestionnaire.SelectionListener;
 import fr.paquet.ihm.commun.gestionnaire.UserObject;
-import fr.paquet.referentiel.Savoir;
+import fr.paquet.referentiel.Referentiel;
+import fr.paquet.sequence.SequenceVersion;
 
-public class JTreeGestionnaireSavoir extends JTreeGestionnaire {
+public class JTreeGestionnaireGestionnaire extends JTreeGestionnaire {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public JTreeGestionnaireSavoir(List<Savoir> savoirs) {
-		super(savoirs, null);
+	public JTreeGestionnaireGestionnaire(List<SequenceVersion> sequenceVersions, Referentiel ref) {
+		super(sequenceVersions, ref);
 
 	}
 
@@ -30,7 +33,12 @@ public class JTreeGestionnaireSavoir extends JTreeGestionnaire {
 	protected DefaultMutableTreeNode getRootNode() {
 
 		if (rootNode == null)
-			rootNode = new GestionnaireTreeNodeSavoir((List<Savoir>) getObjects());
+			try {
+				rootNode = new GestionnaireTreeNodeGestionnaire((List<SequenceVersion>) getObjects(), getReferentiel());
+			} catch (Exception e) {
+				e.printStackTrace();
+				new AlertWindow(AlertType.ERREUR, e.getMessage());
+			}
 		return rootNode;
 
 	}
@@ -46,6 +54,7 @@ public class JTreeGestionnaireSavoir extends JTreeGestionnaire {
 		try {
 			jtreeValues.setModel(new DefaultTreeModel(getRootNode()));
 			jtreeValues.setCellRenderer(new DataCellRenderer(this));
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			jtreeValues.setModel(null);
@@ -57,7 +66,7 @@ public class JTreeGestionnaireSavoir extends JTreeGestionnaire {
 	protected void fireSeclectionChanged(TreePath selectionPath) {
 		Object[] data = selectionPath.getPath();
 		DefaultMutableTreeNode node = (DefaultMutableTreeNode) data[data.length - 1];
-		if (node instanceof GestionnaireTreeNodeSavoir.TableTreeNode == false)
+		if (node instanceof GestionnaireTreeNodeGestionnaire.TableTreeNode == false)
 			return;
 
 		UserObject object = (UserObject) node.getUserObject();

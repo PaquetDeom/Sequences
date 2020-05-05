@@ -10,6 +10,8 @@ import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
 
+import fr.paquet.referentiel.Referentiel;
+
 
 public abstract class JTreeGestionnaire extends JScrollPane {
 
@@ -28,12 +30,16 @@ public abstract class JTreeGestionnaire extends JScrollPane {
 	protected List<? extends Object> getObjects() {
 		return objects;
 	}
+	
+	private Referentiel referentiel = null;
 
-	public JTreeGestionnaire(List<? extends Object> objects) {
+	public JTreeGestionnaire(List<? extends Object> objects, Referentiel ref) {
 		super();
 
 		// set des composants
 		setObjects(objects);
+		if (ref != null)
+			setReferentiel(ref);
 		setNodes(getObjects());
 
 		// ajout du JTree au scrollPane
@@ -81,5 +87,13 @@ public abstract class JTreeGestionnaire extends JScrollPane {
 	}
 
 	protected abstract void fireSeclectionChanged(TreePath selectionPath);
+
+	protected Referentiel getReferentiel() {
+		return referentiel;
+	}
+
+	private void setReferentiel(Referentiel referentiel) {
+		this.referentiel = referentiel;
+	}
 
 }

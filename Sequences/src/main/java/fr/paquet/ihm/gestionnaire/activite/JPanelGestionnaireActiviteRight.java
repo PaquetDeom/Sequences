@@ -1,7 +1,9 @@
 package fr.paquet.ihm.gestionnaire.activite;
 
 import java.awt.BorderLayout;
+import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -22,7 +24,7 @@ public class JPanelGestionnaireActiviteRight extends JPanelGestionnaireRight {
 	private static final long serialVersionUID = 1L;
 
 	public JPanelGestionnaireActiviteRight(JDialogActivte jdialogActivite) {
-		super(jdialogActivite, "Supprimer");
+		super(jdialogActivite);
 
 		// listener
 		JDialogActivte jD = (JDialogActivte) getjDialogGestion();
@@ -84,6 +86,13 @@ public class JPanelGestionnaireActiviteRight extends JPanelGestionnaireRight {
 		panel.setBorder(StyleBorder.BORDERTITLEAREA.getBorder());
 
 		this.panelTitre = panel;
+	}
+
+	@Override
+	protected void setButtons(List<JButton> buttons) {
+		buttons.add(new JButton("Ajouter"));
+		this.buttons = buttons;
+
 	}
 
 }

@@ -47,7 +47,7 @@ public class JPanelOpenSequence extends JPanel {
 
 	private JPanelNewSequenceReferentiel jPanelNewSequenceReferentiel = null;
 
-	private JPanelNewSequenceReferentiel getjPanelNewSequenceReferentiel() {
+	public JPanelNewSequenceReferentiel getjPanelNewSequenceReferentiel() {
 		if (jPanelNewSequenceReferentiel == null)
 			jPanelNewSequenceReferentiel = new JPanelNewSequenceReferentiel(this);
 		return jPanelNewSequenceReferentiel;
