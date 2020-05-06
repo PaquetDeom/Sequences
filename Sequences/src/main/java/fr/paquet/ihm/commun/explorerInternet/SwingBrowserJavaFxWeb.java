@@ -59,7 +59,7 @@ public class SwingBrowserJavaFxWeb extends JDialog implements WindowListener {
 		panel.add(jfxPanel, BorderLayout.CENTER);
 		panel.add(statusBar, BorderLayout.SOUTH);
 
-		setTitle("Internet NathExplorer");
+		setTitle("Séquence Internet Explorer");
 		getContentPane().add(panel);
 		wight = 1850;
 		height = 1000;

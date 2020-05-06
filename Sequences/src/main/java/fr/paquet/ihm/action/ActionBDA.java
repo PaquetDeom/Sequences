@@ -1,6 +1,7 @@
 package fr.paquet.ihm.action;
 
 import javax.swing.AbstractAction;
+import javax.swing.JMenuItem;
 
 public abstract class ActionBDA extends AbstractAction {
 
@@ -14,4 +15,7 @@ public abstract class ActionBDA extends AbstractAction {
 	public abstract String getName();
 
 	protected abstract void Enable();
+	
+	public abstract JMenuItem getJMenuItem();
+
 }

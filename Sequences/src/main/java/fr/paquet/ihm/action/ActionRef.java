@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+import javax.swing.ImageIcon;
+import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
 import fr.paquet.ihm.commun.explorerInternet.SwingBrowserJavaFxWeb;
@@ -80,6 +82,14 @@ public class ActionRef extends ActionBDA implements PropertyChangeListener {
 	public void propertyChange(PropertyChangeEvent arg0) {
 		Enable();
 
+	}
+
+	@Override
+	public JMenuItem getJMenuItem() {
+		JMenuItem mItem = new JMenuItem(this);
+
+		
+		return mItem;
 	}
 
 }

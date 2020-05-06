@@ -6,7 +6,6 @@ import javax.swing.*;
 
 import fr.paquet.ihm.action.*;
 
-
 public class MainMenu extends JMenuBar {
 
 	/**
@@ -17,15 +16,7 @@ public class MainMenu extends JMenuBar {
 	 * @author Nathanaël
 	 */
 
-	private ActionSave actionSave = null;
-	private ActionRef actionRef = null;
 	private static MainMenu mainMenu = null;
-	private ActionGestionnaire actionGestionnaire = null;
-	private ActionActivite actionActivites = null;
-	private ActionCompetences actionCompetences = null;
-	private ActionNewVersion actionNewVersion = null;
-	private ActionVisible actionVisible = null;
-	private ActionNouveau actionNouveau = null;
 
 	/**
 	 * Constructeur de la class ajoute les Action a MainMenu<br/>
@@ -35,70 +26,88 @@ public class MainMenu extends JMenuBar {
 	private MainMenu() {
 		super();
 
-		setActionNouveau(new ActionNouveau());
-		addAction(getActionNouveau());
-		setActionGestionnaire(new ActionGestionnaire());
-		addAction(getActionGestionnaire());
-		setActionRef(new ActionRef());
-		addAction(getActionRef());
-		setActionSave(new ActionSave());
-		addAction(getActionSave());
-		setActionNewVersion(new ActionNewVersion(this));
-		addAction(getActionNewVersion());
-		setActionVisible(new ActionVisible());
-		addAction(getActionVisible());
-		setActionCompetences(new ActionCompetences());
-		addAction(getActionCompetences());
-		setActionActivites(new ActionActivite());
-		addAction(getActionActivites());
-		addAction(new ActionQuitter());
+		getJMenu(getActionNouveau().getParentMenuName()).add(getActionNouveau().getJMenuItem());
+		getJMenu(getActionGestionnaire().getParentMenuName()).add(getActionGestionnaire().getJMenuItem());
+		getJMenu(getActionRef().getParentMenuName()).add(getActionRef().getJMenuItem());
+		getJMenu(getActionSave().getParentMenuName()).add(getActionSave().getJMenuItem());
+		getJMenu(getActionNewVersion().getParentMenuName()).add(getActionNewVersion().getJMenuItem());
+		getJMenu(getActionVisible().getParentMenuName()).add(getActionVisible().getJMenuItem());
+		getJMenu(getActionCompetences().getParentMenuName()).add(getActionCompetences().getJMenuItem());
+		getJMenu(getActionActivites().getParentMenuName()).add(getActionActivites().getJMenuItem());
+		getJMenu(getActionQuitter().getParentMenuName()).add(getActionQuitter().getJMenuItem());
 
 	}
 
-	public ActionActivite getActionActivites() {
+	private ActionQuitter actionQuitter = null;
 
+	private ActionBDA getActionQuitter() {
+		if (actionQuitter == null)
+			actionQuitter = new ActionQuitter();
+		return actionQuitter;
+	}
+
+	private ActionActivite actionActivites = null;
+
+	private ActionBDA getActionActivites() {
+		if (actionActivites == null)
+			actionActivites = new ActionActivite();
 		return actionActivites;
 	}
 
-	public ActionCompetences getActionCompetences() {
+	private ActionCompetences actionCompetences = null;
 
+	private ActionBDA getActionCompetences() {
+		if (actionCompetences == null)
+			actionCompetences = new ActionCompetences();
 		return actionCompetences;
 	}
 
-	private ActionNewVersion getActionNewVersion() {
+	private ActionVisible actionVisible = null;
+
+	private ActionBDA getActionVisible() {
+		if (actionVisible == null)
+			actionVisible = new ActionVisible();
+		return actionVisible;
+	}
+
+	private ActionNewVersion actionNewVersion = null;
+
+	private ActionBDA getActionNewVersion() {
+		if (actionNewVersion == null)
+			actionNewVersion = new ActionNewVersion();
 		return actionNewVersion;
 	}
 
-	private void setActionActivites(ActionActivite actionActivite) {
-		this.actionActivites = actionActivite;
+	private ActionSave actionSave = null;
 
+	private ActionBDA getActionSave() {
+		if (actionSave == null)
+			actionSave = new ActionSave();
+		return actionSave;
 	}
 
-	private void setActionCompetences(ActionCompetences actionCompetences) {
-		this.actionCompetences = actionCompetences;
+	private ActionRef actionRef = null;
 
-	}
-
-	private void setActionNewVersion(ActionNewVersion actionNewVersion) {
-		this.actionNewVersion = actionNewVersion;
-
-	}
-
-	private ActionRef getActionRef() {
-
+	private ActionBDA getActionRef() {
+		if (actionRef == null)
+			actionRef = new ActionRef();
 		return actionRef;
 	}
 
-	private void setActionRef(ActionRef actionRef) {
-		this.actionRef = actionRef;
-	}
+	private ActionGestionnaire actionGestionnaire = null;
 
-	private void setActionGestionnaire(ActionGestionnaire actionGestionnaire) {
-		this.actionGestionnaire = actionGestionnaire;
-	}
-
-	private ActionGestionnaire getActionGestionnaire() {
+	private ActionBDA getActionGestionnaire() {
+		if (actionGestionnaire == null)
+			actionGestionnaire = new ActionGestionnaire();
 		return actionGestionnaire;
+	}
+
+	private ActionNouveau actionNouveau = null;
+
+	private ActionBDA getActionNouveau() {
+		if (actionNouveau == null)
+			actionNouveau = new ActionNouveau();
+		return actionNouveau;
 	}
 
 	public static MainMenu getUniqInstance() {
@@ -116,39 +125,6 @@ public class MainMenu extends JMenuBar {
 			super.add(menu);
 		}
 		return menu;
-	}
-
-	public ActionBDA addAction(ActionBDA action) {
-
-		// créé un nouveau JMenu
-		JMenuItem jMenuAction = new JMenuItem(action);
-
-		getJMenu(action.getParentMenuName()).add(jMenuAction);
-		return action;
-	}
-
-	public ActionSave getActionSave() {
-		return actionSave;
-	}
-
-	private void setActionSave(ActionSave actionSave) {
-		this.actionSave = actionSave;
-	}
-
-	private ActionVisible getActionVisible() {
-		return actionVisible;
-	}
-
-	private void setActionVisible(ActionVisible actionVisible) {
-		this.actionVisible = actionVisible;
-	}
-
-	private ActionNouveau getActionNouveau() {
-		return actionNouveau;
-	}
-
-	private void setActionNouveau(ActionNouveau actionNouveau) {
-		this.actionNouveau = actionNouveau;
 	}
 
 }

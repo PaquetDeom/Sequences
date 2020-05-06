@@ -3,6 +3,8 @@ package fr.paquet.ihm.action;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 
+import javax.swing.ImageIcon;
+import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
 import fr.paquet.dataBase.Connect;
@@ -91,6 +93,14 @@ public class ActionGestionnaire extends ActionBDA implements AlertListener {
 			e.printStackTrace();
 		}
 
+	}
+
+	@Override
+	public JMenuItem getJMenuItem() {
+		JMenuItem mItem = new JMenuItem(this);
+
+		mItem.setIcon(new ImageIcon("./target/classes/images/icons/open.png"));
+		return mItem;
 	}
 
 }

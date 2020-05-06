@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+import javax.swing.ImageIcon;
+import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
 import fr.paquet.dataBase.Connect;
@@ -98,6 +100,14 @@ public class ActionNouveau extends ActionBDA implements AlertListener, PropertyC
 	public void propertyChange(PropertyChangeEvent arg0) {
 		Enable();
 
+	}
+
+	@Override
+	public JMenuItem getJMenuItem() {
+		JMenuItem mItem = new JMenuItem(this);
+
+		mItem.setIcon(new ImageIcon("./target/classes/images/icons/new.png"));
+		return mItem;
 	}
 
 }

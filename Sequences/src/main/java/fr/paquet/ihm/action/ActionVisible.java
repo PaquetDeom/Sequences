@@ -4,6 +4,9 @@ import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+import javax.swing.ImageIcon;
+import javax.swing.JMenuItem;
+
 import fr.paquet.dataBase.Connect;
 import fr.paquet.ihm.alert.AlertListener;
 import fr.paquet.ihm.alert.AlertType;
@@ -76,6 +79,13 @@ public class ActionVisible extends ActionBDA implements AlertListener, PropertyC
 	public void propertyChange(PropertyChangeEvent arg0) {
 		Enable();
 
+	}
+
+	@Override
+	public JMenuItem getJMenuItem() {
+		JMenuItem mItem = new JMenuItem(this);
+
+		return mItem;
 	}
 
 }

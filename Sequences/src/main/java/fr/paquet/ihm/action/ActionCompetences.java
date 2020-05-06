@@ -4,6 +4,9 @@ import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+import javax.swing.ImageIcon;
+import javax.swing.JMenuItem;
+
 import fr.paquet.dataBase.Connect;
 import fr.paquet.ihm.gestionnaire.competence.JDialogCompetence;
 import fr.paquet.ihm.principal.sequence.SequencePanel;
@@ -78,6 +81,14 @@ public class ActionCompetences extends ActionBDA implements PropertyChangeListen
 				}
 			});
 
+	}
+
+	@Override
+	public JMenuItem getJMenuItem() {
+		JMenuItem mItem = new JMenuItem(this);
+
+		
+		return mItem;
 	}
 
 }
