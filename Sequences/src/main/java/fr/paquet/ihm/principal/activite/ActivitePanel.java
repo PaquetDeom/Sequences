@@ -5,6 +5,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import javax.swing.JPanel;
+import javax.swing.text.BadLocationException;
 
 import fr.paquet.ihm.principal.sequence.SequencePanelVersion;
 import main.MainOnglet;
@@ -18,7 +19,7 @@ public class ActivitePanel extends JPanel {
 	private OngletActivite ongletActivite = null;
 	private String titre = null;
 
-	public ActivitePanel(OngletActivite ongletActivite) {
+	public ActivitePanel(OngletActivite ongletActivite) throws BadLocationException {
 		super();
 
 		// set des composants
@@ -59,7 +60,7 @@ public class ActivitePanel extends JPanel {
 
 	private SequencePanelVersion sequencePanelVersion = null;
 
-	public SequencePanelVersion getsequencePanelVersion() {
+	public SequencePanelVersion getsequencePanelVersion() throws BadLocationException {
 		if (sequencePanelVersion == null)
 			sequencePanelVersion = new SequencePanelVersion(
 					MainOnglet.getUniqInstance().getOngletSequence().getSequencePanel());

@@ -3,6 +3,7 @@ package fr.paquet.ihm.principal.sequence;
 import java.awt.GridLayout;
 
 import javax.swing.*;
+import javax.swing.text.BadLocationException;
 
 import fr.paquet.ihm.style.StyleBorder;
 
@@ -14,7 +15,7 @@ public class SequencePanelEntetePbTemps extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private SequencePanelEntete sequencePanelEntete = null;
 
-	public SequencePanelEntetePbTemps(SequencePanelEntete sPE) {
+	public SequencePanelEntetePbTemps(SequencePanelEntete sPE) throws BadLocationException {
 		super();
 
 		// set des objets
@@ -42,7 +43,7 @@ public class SequencePanelEntetePbTemps extends JPanel {
 
 	private SequencePanelEntetePbTempsProblématique sequencePanelEntetePbTempsProblematique = null;
 
-	private SequencePanelEntetePbTempsProblématique getSequencePanelEntetePbTempsProblematique() {
+	private SequencePanelEntetePbTempsProblématique getSequencePanelEntetePbTempsProblematique() throws BadLocationException {
 		if (sequencePanelEntetePbTempsProblematique == null)
 			sequencePanelEntetePbTempsProblematique = new SequencePanelEntetePbTempsProblématique(this,
 					"Problématique");

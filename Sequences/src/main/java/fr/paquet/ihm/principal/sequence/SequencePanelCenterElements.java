@@ -1,53 +1,35 @@
 package fr.paquet.ihm.principal.sequence;
 
 import java.awt.Dimension;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 
-import javax.swing.JTextArea;
+import javax.swing.JTextPane;
+import javax.swing.text.BadLocationException;
 
-import fr.paquet.ihm.commun.CommunJLabelJTextAreaVertical;
-import fr.paquet.ihm.style.StyleFont;
+import fr.paquet.ihm.commun.CommunJLabelJTextPaneVertical;
 
-public class SequencePanelCenterElements extends CommunJLabelJTextAreaVertical {
+public class SequencePanelCenterElements extends CommunJLabelJTextPaneVertical {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public SequencePanelCenterElements(String title, SequencePanelCenter sequencePanelCenter) {
-		super(null, title);
+	public SequencePanelCenterElements(String title, SequencePanelCenter sequencePanelCenter) throws BadLocationException {
+		super(null, title, null);
 
-	}
-
-	@Override
-	protected void setTextArea(JTextArea textArea) {
-
-		textArea.setFont(StyleFont.TEXTEAREASEQUENCE.getFont());
-
-		textArea.addFocusListener(new FocusListener() {
-
-			@Override
-			public void focusLost(FocusEvent arg0) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void focusGained(FocusEvent arg0) {
-				// TODO Auto-generated method stub
-
-			}
-		});
-		this.textArea = textArea;
-		textArea.setLineWrap(true);
 	}
 
 	@Override
 	protected void setPanelJTextAreaTextSize(Dimension dimensionTextArea) {
 		this.dimensionTextArea = new Dimension(0, getPreferredSize().height * 8);
 
+	}
+
+	
+	@Override
+	protected void setJTextPane(JTextPane jTextPane) {
+		this.textPane=jTextPane;
+		
 	}
 
 }

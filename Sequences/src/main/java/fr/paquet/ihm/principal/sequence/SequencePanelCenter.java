@@ -5,6 +5,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import javax.swing.JPanel;
+import javax.swing.text.BadLocationException;
 
 import fr.paquet.ihm.style.StyleBorder;
 
@@ -16,7 +17,7 @@ public class SequencePanelCenter extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private SequencePanel sequencePanel = null;
 
-	public SequencePanelCenter(SequencePanel sequencePanel) {
+	public SequencePanelCenter(SequencePanel sequencePanel) throws BadLocationException{
 		super();
 
 		// set des éléments
@@ -50,7 +51,7 @@ public class SequencePanelCenter extends JPanel {
 
 	private SequencePanelCenterPrérequis sequencePanelCenterPrérequis = null;
 
-	private SequencePanelCenterPrérequis getSequencePanelCenterPrérequis() {
+	private SequencePanelCenterPrérequis getSequencePanelCenterPrérequis() throws BadLocationException {
 		if (sequencePanelCenterPrérequis == null)
 			sequencePanelCenterPrérequis = new SequencePanelCenterPrérequis("Prérequis Elèves", this);
 		return sequencePanelCenterPrérequis;
@@ -58,7 +59,7 @@ public class SequencePanelCenter extends JPanel {
 
 	private SequencePanelCenterPrésentation sequencePanelCenterPresentation = null;
 
-	private SequencePanelCenterPrésentation getSequencePanelCenterPresentation() {
+	private SequencePanelCenterPrésentation getSequencePanelCenterPresentation() throws BadLocationException {
 		if (sequencePanelCenterPresentation == null)
 			sequencePanelCenterPresentation = new SequencePanelCenterPrésentation(
 					"Présentation du contexte professionnel", this);
@@ -67,7 +68,7 @@ public class SequencePanelCenter extends JPanel {
 
 	private SequencePanelCenterElements sequencePanelCenterElements = null;
 
-	private SequencePanelCenterElements getSequencePanelCenterElements() {
+	private SequencePanelCenterElements getSequencePanelCenterElements() throws BadLocationException {
 		if (sequencePanelCenterElements == null)
 			sequencePanelCenterElements = new SequencePanelCenterElements("Eléments à retenir", this);
 		return sequencePanelCenterElements;
@@ -75,7 +76,7 @@ public class SequencePanelCenter extends JPanel {
 
 	private SequencePanelCenterLienEval sequencePanelCenterLienEval = null;
 
-	private SequencePanelCenterLienEval getSequencePanelCenterLienEval() {
+	private SequencePanelCenterLienEval getSequencePanelCenterLienEval() throws BadLocationException {
 		if (sequencePanelCenterLienEval == null)
 			sequencePanelCenterLienEval = new SequencePanelCenterLienEval(this);
 		return sequencePanelCenterLienEval;

@@ -5,7 +5,9 @@ import java.awt.GridBagLayout;
 
 import java.awt.Insets;
 
+
 import javax.swing.JPanel;
+import javax.swing.text.BadLocationException;
 
 public class SequencePanelCenterLienEval extends JPanel {
 
@@ -15,7 +17,7 @@ public class SequencePanelCenterLienEval extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private SequencePanelCenter sequencePanelCenter = null;
 
-	public SequencePanelCenterLienEval(SequencePanelCenter sequencePanelCenter) {
+	public SequencePanelCenterLienEval(SequencePanelCenter sequencePanelCenter) throws BadLocationException {
 		super();
 
 		// set des Elements
@@ -41,7 +43,7 @@ public class SequencePanelCenterLienEval extends JPanel {
 
 	private SequencePanelCenterLienEvalLien sequencePanelCenterLienEvalLien = null;
 
-	private SequencePanelCenterLienEvalLien getSequencePanelCenterLienEvalLien() {
+	private SequencePanelCenterLienEvalLien getSequencePanelCenterLienEvalLien() throws BadLocationException {
 		if (sequencePanelCenterLienEvalLien == null)
 			sequencePanelCenterLienEvalLien = new SequencePanelCenterLienEvalLien(this,
 					"Liens avec les autres disciplines");
@@ -50,7 +52,7 @@ public class SequencePanelCenterLienEval extends JPanel {
 
 	private SequencePanelCenterLienEvalEval sequencePanelCenterLienEvalEval = null;
 
-	private SequencePanelCenterLienEvalEval getSequencePanelCenterLienEvalEval() {
+	private SequencePanelCenterLienEvalEval getSequencePanelCenterLienEvalEval() throws BadLocationException {
 		if (sequencePanelCenterLienEvalEval == null)
 			sequencePanelCenterLienEvalEval = new SequencePanelCenterLienEvalEval(this, "Modalités d'évaluation");
 		return sequencePanelCenterLienEvalEval;

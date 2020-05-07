@@ -63,13 +63,13 @@ public class JDialogOpenSequence extends JDialog implements ActionListener, Chan
 
 		if (button.getText().equals("Ok")) {
 
-			if (getJPanelOpenSequence().getjPanelNewSequenceReferentiel().getReferentiel() != null)
+			if (getJPanelOpenSequence().getjPanelNewSequenceReferentiel().getReferentiel() != null) {
 				new JDialogGestionnaireOuvrir(
 						getJPanelOpenSequence().getjPanelNewSequenceReferentiel().getReferentiel(), isQueMoi());
-			else
+				this.dispose();
+			} else
 				new AlertWindow(AlertType.INFORMATION, "Veuillez sélectionner un référentiel");
 		}
-		this.dispose();
 
 	}
 

@@ -5,6 +5,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import javax.swing.JPanel;
+import javax.swing.text.BadLocationException;
 
 public class SequencePanel extends JPanel {
 
@@ -14,7 +15,7 @@ public class SequencePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private OngletSequence ongletSequence = null;
 
-	public SequencePanel(OngletSequence ongletSequence) {
+	public SequencePanel(OngletSequence ongletSequence) throws BadLocationException {
 		super();
 
 		// set des composants

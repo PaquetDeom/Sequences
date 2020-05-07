@@ -2,9 +2,11 @@ package fr.paquet.ihm.principal.activite;
 
 import java.awt.BorderLayout;
 
+
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.text.BadLocationException;
 
 import fr.paquet.activite.Activite_1;
 import main.MainOnglet;
@@ -18,7 +20,7 @@ public class OngletActivite extends JPanel {
 
 	private Activite_1 activite = null;
 
-	public OngletActivite(Activite_1 activite) {
+	public OngletActivite(Activite_1 activite) throws BadLocationException {
 
 		super();
 
@@ -39,7 +41,7 @@ public class OngletActivite extends JPanel {
 
 	private ActivitePanel activitePanel = null;
 
-	public ActivitePanel getActivitePanel() {
+	public ActivitePanel getActivitePanel() throws BadLocationException {
 		if (activitePanel == null)
 			activitePanel = new ActivitePanel(this);
 		return activitePanel;

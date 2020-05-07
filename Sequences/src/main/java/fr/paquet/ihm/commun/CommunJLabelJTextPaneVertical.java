@@ -8,12 +8,16 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 
 import javax.swing.*;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.SimpleAttributeSet;
 
+import fr.paquet.ihm.ToolBar.SequenceToolBar;
 import fr.paquet.ihm.style.StyleBorder;
 import fr.paquet.ihm.style.StyleColor;
 import fr.paquet.ihm.style.StyleFont;
+import fr.paquet.ihm.style.StyleTextDocument;
 
-public abstract class CommunJLabelJTextAreaVertical extends JPanel {
+public abstract class CommunJLabelJTextPaneVertical extends JPanel {
 
 	/**
 	 * 
@@ -21,23 +25,42 @@ public abstract class CommunJLabelJTextAreaVertical extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private String Title = null;
 	private JLabel titleLabel = null;
-	protected JTextArea textArea = null;
+	protected JTextPane textPane = null;
 	private JPanel panelTitre = null;
 	private JPanel panelJTextArea = null;
+	private SimpleAttributeSet simpleAttributeSet = null;
 
-	protected CommunJLabelJTextAreaVertical(String text, String title) {
+	protected CommunJLabelJTextPaneVertical(String text, String title, SimpleAttributeSet simpleAttributesSet)
+			throws BadLocationException {
 		super();
 
 		// set des éléments
 		setTitle(title);
 		setTitleLabel(new JLabel(getTitle()));
-		if (text != null)
-			setTextArea(new JTextArea(text));
-		else
-			setTextArea(new JTextArea());
+		setJTextPane(new JTextPane());
+
+		if (simpleAttributesSet != null) {
+			setSimpleAttributeSet(simpleAttributesSet);
+			if (text != null) {
+				getTextPane().getStyledDocument().insertString(getTextPane().getStyledDocument().getLength(), text,
+						getSimpleAttributeSet());
+			}
+		} else {
+			setSimpleAttributeSet(StyleTextDocument.SAISI.getStyleText());
+
+			getTextPane().getStyledDocument().setCharacterAttributes(0, getTextPane().getStyledDocument().getLength(),
+					getSimpleAttributeSet(), false);
+
+			getTextPane().getStyledDocument().setParagraphAttributes(getTextPane().getStyledDocument().getLength(),
+					getTextPane().getStyledDocument().getLength(), getSimpleAttributeSet(), false);
+		}
+
 		setPanelTitre(new JPanel());
 		setPanelJTextAreaTextSize(getPreferredSize());
 		setPanelJTextArea(new JPanel());
+
+		//listener
+		getTextPane().addFocusListener(SequenceToolBar.getUniqintance());
 
 		// Ajout du Layout
 		setLayout(new GridBagLayout());
@@ -78,12 +101,12 @@ public abstract class CommunJLabelJTextAreaVertical extends JPanel {
 		this.titleLabel = titleLabel;
 	}
 
-	private JTextArea getTextArea() {
+	private JTextPane getTextPane() {
 
-		return textArea;
+		return textPane;
 	}
 
-	protected abstract void setTextArea(JTextArea textArea);
+	protected abstract void setJTextPane(JTextPane jTextPane);
 
 	private JPanel getPanelTitre() {
 		return panelTitre;
@@ -122,13 +145,20 @@ public abstract class CommunJLabelJTextAreaVertical extends JPanel {
 		panelJTextArea.setLayout(new GridLayout(1, 0, 0, 0));
 
 		// ajout des component
-		getTextArea().setLineWrap(true);
-		panelJTextArea.add(getTextArea());
+		panelJTextArea.add(getTextPane());
 
 		// Attribut du panel
 		panelJTextArea.setBorder(StyleBorder.BORDERTITLEAREA.getBorder());
 		setPreferredSize(getDimensionTextArea());
 		this.panelJTextArea = panelJTextArea;
+	}
+
+	public SimpleAttributeSet getSimpleAttributeSet() {
+		return simpleAttributeSet;
+	}
+
+	private void setSimpleAttributeSet(SimpleAttributeSet simpleAttributeSet) {
+		this.simpleAttributeSet = simpleAttributeSet;
 	}
 
 }

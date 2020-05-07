@@ -6,6 +6,7 @@ import java.awt.Insets;
 
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
+import javax.swing.text.BadLocationException;
 
 public class ActivitePanelConception extends JPanel {
 
@@ -15,7 +16,7 @@ public class ActivitePanelConception extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private ActivitePanel activitepanel = null;
 
-	public ActivitePanelConception(ActivitePanel activitePanel) {
+	public ActivitePanelConception(ActivitePanel activitePanel) throws BadLocationException {
 		super();
 
 		// set des composants
@@ -32,7 +33,7 @@ public class ActivitePanelConception extends JPanel {
 
 	}
 
-	private JSplitPane getMainSplitPane() {
+	private JSplitPane getMainSplitPane() throws BadLocationException {
 		JSplitPane mainSplitPane = new JSplitPane();
 
 		mainSplitPane.setOrientation(JSplitPane.HORIZONTAL_SPLIT);
@@ -45,7 +46,7 @@ public class ActivitePanelConception extends JPanel {
 		return mainSplitPane;
 	}
 
-	private JSplitPane getRightMainSplitPane() {
+	private JSplitPane getRightMainSplitPane() throws BadLocationException {
 		JSplitPane mainRightSplitPane = new JSplitPane();
 
 		mainRightSplitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
@@ -58,7 +59,7 @@ public class ActivitePanelConception extends JPanel {
 		return mainRightSplitPane;
 	}
 
-	private JSplitPane getSecondRightSplitPane() {
+	private JSplitPane getSecondRightSplitPane() throws BadLocationException {
 		JSplitPane secondRightSplitPane = new JSplitPane();
 
 		secondRightSplitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
@@ -73,7 +74,7 @@ public class ActivitePanelConception extends JPanel {
 
 	private ActivitePanelConceptionTrace activitePanelConceptionTrace = null;
 
-	private ActivitePanelConceptionTrace getActivitePanelConceptionTrace() {
+	private ActivitePanelConceptionTrace getActivitePanelConceptionTrace() throws BadLocationException {
 		if (activitePanelConceptionTrace == null)
 			activitePanelConceptionTrace = new ActivitePanelConceptionTrace(this);
 		return activitePanelConceptionTrace;
@@ -81,7 +82,7 @@ public class ActivitePanelConception extends JPanel {
 
 	private ActivitePanelConceptionRessources activitePanelConceptionRessources = null;
 
-	private ActivitePanelConceptionRessources getActivitePanelConceptionRessources() {
+	private ActivitePanelConceptionRessources getActivitePanelConceptionRessources() throws BadLocationException {
 		if (activitePanelConceptionRessources == null)
 			activitePanelConceptionRessources = new ActivitePanelConceptionRessources(this);
 		return activitePanelConceptionRessources;
@@ -89,7 +90,7 @@ public class ActivitePanelConception extends JPanel {
 
 	private ActivitePanelConceptionDocuments activitePanelConceptionDocuments = null;
 
-	private ActivitePanelConceptionDocuments getActivitePanelConceptionDocuments() {
+	private ActivitePanelConceptionDocuments getActivitePanelConceptionDocuments() throws BadLocationException {
 		if (activitePanelConceptionDocuments == null)
 			activitePanelConceptionDocuments = new ActivitePanelConceptionDocuments(this);
 		return activitePanelConceptionDocuments;
@@ -97,7 +98,7 @@ public class ActivitePanelConception extends JPanel {
 
 	private ActivitePanelConceptionQuestion activitePanelConceptionQuestion = null;
 
-	private ActivitePanelConceptionQuestion getActivitePanelConceptionQuestion() {
+	private ActivitePanelConceptionQuestion getActivitePanelConceptionQuestion() throws BadLocationException {
 		if (activitePanelConceptionQuestion == null)
 			activitePanelConceptionQuestion = new ActivitePanelConceptionQuestion(this);
 		return activitePanelConceptionQuestion;

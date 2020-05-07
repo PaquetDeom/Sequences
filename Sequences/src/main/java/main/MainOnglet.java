@@ -3,6 +3,7 @@ package main;
 import java.util.*;
 
 import javax.swing.*;
+import javax.swing.text.BadLocationException;
 
 import fr.paquet.ihm.principal.activite.OngletActivite;
 import fr.paquet.ihm.principal.sequence.OngletSequence;
@@ -36,7 +37,7 @@ public class MainOnglet extends JTabbedPane {
 		return mainOnglet;
 	}
 
-	public void afficheVersion() {
+	public void afficheVersion() throws BadLocationException {
 		getOngletSequence().getSequencePanel().getsequencePanelVersion().affiche();
 
 		for (OngletActivite oA : getOngletsActivites()) {
@@ -48,7 +49,7 @@ public class MainOnglet extends JTabbedPane {
 		ongletsActivites = null;
 	}
 
-	public void affiche() {
+	public void affiche() throws BadLocationException {
 
 		removeAll();
 

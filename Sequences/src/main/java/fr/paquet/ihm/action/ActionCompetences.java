@@ -4,10 +4,12 @@ import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
+import javax.swing.text.BadLocationException;
 
 import fr.paquet.dataBase.Connect;
+import fr.paquet.ihm.alert.AlertType;
+import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.ihm.gestionnaire.competence.JDialogCompetence;
 import fr.paquet.ihm.principal.sequence.SequencePanel;
 import fr.paquet.sequence.SequenceVersion;
@@ -33,14 +35,19 @@ public class ActionCompetences extends ActionBDA implements PropertyChangeListen
 
 	}
 
-	private SequencePanel getSequencePanel() {
+	private SequencePanel getSequencePanel() throws BadLocationException {
 		return MainFrame.getUniqInstance().getMainOnglet().getOngletSequence().getSequencePanel();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 
-		new JDialogCompetence(getSequenceVersion(), getSequencePanel());
+		try {
+			new JDialogCompetence(getSequenceVersion(), getSequencePanel());
+		} catch (BadLocationException e) {
+			new AlertWindow(AlertType.ERREUR, e.getMessage());
+			e.printStackTrace();
+		}
 
 	}
 
@@ -87,7 +94,6 @@ public class ActionCompetences extends ActionBDA implements PropertyChangeListen
 	public JMenuItem getJMenuItem() {
 		JMenuItem mItem = new JMenuItem(this);
 
-		
 		return mItem;
 	}
 

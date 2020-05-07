@@ -2,35 +2,35 @@ package fr.paquet.ihm.commun.gestionnaire;
 
 import java.awt.Dimension;
 
-import javax.swing.JTextArea;
+import javax.swing.JTextPane;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.SimpleAttributeSet;
 
-import fr.paquet.ihm.commun.CommunJLabelJTextAreaVertical;
+import fr.paquet.ihm.commun.CommunJLabelJTextPaneVertical;
 import fr.paquet.ihm.style.StyleFont;
 
-public class PanelLeftRight extends CommunJLabelJTextAreaVertical {
+public class PanelLeftRight extends CommunJLabelJTextPaneVertical {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public PanelLeftRight(String text, String title) {
-		super(text, title);
+	public PanelLeftRight(String text, String title, SimpleAttributeSet simpleAttribiteSet) throws BadLocationException {
+		super(text, title, simpleAttribiteSet);
 	}
 
 	@Override
-	protected void setTextArea(JTextArea textArea) {
+	protected void setJTextPane(JTextPane jTextPane) {
 
-		textArea.setLineWrap(true);
-		textArea.setFont(StyleFont.TITLECORPS.getFont());
-		textArea.setEditable(false);
+		jTextPane.setFont(StyleFont.TITLECORPS.getFont());
+		jTextPane.setEditable(false);
 
-		this.textArea = textArea;
+		this.textPane = jTextPane;
 	}
 
 	@Override
 	protected void setPanelJTextAreaTextSize(Dimension dimensionTextArea) {
-		// TODO Auto-generated method stub
 
 	}
 

@@ -1,15 +1,14 @@
 package fr.paquet.ihm.principal.sequence;
 
 import java.awt.Dimension;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 
-import javax.swing.JTextArea;
 
-import fr.paquet.ihm.commun.CommunJLabelJTextAreaVertical;
-import fr.paquet.ihm.style.StyleFont;
+import javax.swing.JTextPane;
+import javax.swing.text.BadLocationException;
 
-public class SequencePanelCenterLienEvalEval extends CommunJLabelJTextAreaVertical {
+import fr.paquet.ihm.commun.CommunJLabelJTextPaneVertical;
+
+public class SequencePanelCenterLienEvalEval extends CommunJLabelJTextPaneVertical {
 
 	/**
 	 * 
@@ -17,36 +16,12 @@ public class SequencePanelCenterLienEvalEval extends CommunJLabelJTextAreaVertic
 	private static final long serialVersionUID = 1L;
 	private SequencePanelCenterLienEval sequencePanelCenterLienEval = null;
 
-	protected SequencePanelCenterLienEvalEval(SequencePanelCenterLienEval sequencePanelCenterLienEval, String title) {
-		super(null, title);
+	protected SequencePanelCenterLienEvalEval(SequencePanelCenterLienEval sequencePanelCenterLienEval, String title)
+			throws BadLocationException {
+		super(null, title, null);
 
 		// setteur des components
 		setSequencePanelCenterLienEval(sequencePanelCenterLienEval);
-
-	}
-
-	@Override
-	protected void setTextArea(JTextArea textArea) {
-
-		textArea.setFont(StyleFont.TEXTEAREASEQUENCE.getFont());
-
-		textArea.addFocusListener(new FocusListener() {
-
-			@Override
-			public void focusLost(FocusEvent arg0) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void focusGained(FocusEvent arg0) {
-				// TODO Auto-generated method stub
-
-			}
-		});
-
-		this.textArea = textArea;
-		textArea.setLineWrap(true);
 
 	}
 
@@ -62,6 +37,14 @@ public class SequencePanelCenterLienEvalEval extends CommunJLabelJTextAreaVertic
 	protected void setPanelJTextAreaTextSize(Dimension dimensionTextArea) {
 		this.dimensionTextArea = new Dimension(0, getPreferredSize().height * 8);
 
+	}
+
+	
+
+	@Override
+	protected void setJTextPane(JTextPane jTextPane) {
+		this.textPane = jTextPane;
+		
 	}
 
 }

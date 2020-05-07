@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import javax.swing.ScrollPaneConstants;
+import javax.swing.text.BadLocationException;
 
 import fr.paquet.sequence.SequenceVersion;
 import main.MainOnglet;
@@ -19,10 +20,11 @@ public class OngletSequence extends JPanel {
 
 	/**
 	 * Cree un nouvel onglet<br/>
+	 * @throws BadLocationException 
 	 * 
 	 * @throws Exception
 	 */
-	public OngletSequence(SequenceVersion sequenceVersion) {
+	public OngletSequence(SequenceVersion sequenceVersion) throws BadLocationException {
 
 		super();
 
@@ -42,7 +44,7 @@ public class OngletSequence extends JPanel {
 
 	private SequencePanel sequencePanel = null;
 
-	public SequencePanel getSequencePanel() {
+	public SequencePanel getSequencePanel() throws BadLocationException {
 		if (sequencePanel == null)
 			sequencePanel = new SequencePanel(this);
 		return sequencePanel;

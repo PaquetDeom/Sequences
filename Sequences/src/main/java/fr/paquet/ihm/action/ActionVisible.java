@@ -4,8 +4,8 @@ import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
+import javax.swing.text.BadLocationException;
 
 import fr.paquet.dataBase.Connect;
 import fr.paquet.ihm.alert.AlertListener;
@@ -50,7 +50,13 @@ public class ActionVisible extends ActionBDA implements AlertListener, PropertyC
 	public void actionPerformed(ActionEvent arg0) {
 
 		new AlertWindow(AlertType.QUESTION, "Après cette opération vous ne pourrez plus modifier cette séquence", this);
-		MainOnglet.getUniqInstance().afficheVersion();
+		try {
+			MainOnglet.getUniqInstance().afficheVersion();
+		} catch (BadLocationException e) {
+
+			e.printStackTrace();
+			new AlertWindow(AlertType.ERREUR, e.getMessage());
+		}
 		Enable();
 
 	}

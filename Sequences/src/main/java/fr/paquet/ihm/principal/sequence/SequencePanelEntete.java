@@ -5,6 +5,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import javax.swing.*;
+import javax.swing.text.BadLocationException;
 
 public class SequencePanelEntete extends JPanel {
 
@@ -14,7 +15,7 @@ public class SequencePanelEntete extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private SequencePanel sequencePanel = null;
 
-	public SequencePanelEntete(SequencePanel sequencePanel) {
+	public SequencePanelEntete(SequencePanel sequencePanel) throws BadLocationException {
 
 		super();
 
@@ -49,7 +50,7 @@ public class SequencePanelEntete extends JPanel {
 
 	private SequencePanelEntetePbTemps sequencePanelEntetePbTemps = null;
 
-	private SequencePanelEntetePbTemps getSequencePanelEntetePbTemps() {
+	private SequencePanelEntetePbTemps getSequencePanelEntetePbTemps() throws BadLocationException {
 		if (sequencePanelEntetePbTemps == null)
 			sequencePanelEntetePbTemps = new SequencePanelEntetePbTemps(this);
 		return sequencePanelEntetePbTemps;

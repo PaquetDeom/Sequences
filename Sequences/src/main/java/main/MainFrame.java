@@ -1,5 +1,6 @@
 package main;
 
+import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -16,6 +17,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import fr.paquet.ihm.ToolBar.SequenceToolBar;
 import fr.paquet.sequence.SequenceVersion;
 
 public class MainFrame extends JFrame implements WindowListener {
@@ -117,6 +119,7 @@ public class MainFrame extends JFrame implements WindowListener {
 		removePanel(getPanelOuverture());
 		setSequenceVersion(sequenceVersion);
 		getMainOnglet().init(getSequenceVersion());
+		add(SequenceToolBar.getUniqintance(), BorderLayout.NORTH);
 		add(getMainOnglet());
 		revalidate();
 	}

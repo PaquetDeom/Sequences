@@ -2,11 +2,12 @@ package fr.paquet.ihm.principal.activite;
 
 import java.awt.Dimension;
 
-import javax.swing.JTextArea;
+import javax.swing.JTextPane;
+import javax.swing.text.BadLocationException;
 
-import fr.paquet.ihm.commun.CommunJLabelJTextAreaVertical;
+import fr.paquet.ihm.commun.CommunJLabelJTextPaneVertical;
 
-public class ActivitePanelContexte extends CommunJLabelJTextAreaVertical {
+public class ActivitePanelContexte extends CommunJLabelJTextPaneVertical {
 
 	/**
 	 * 
@@ -14,8 +15,8 @@ public class ActivitePanelContexte extends CommunJLabelJTextAreaVertical {
 	private static final long serialVersionUID = 1L;
 	private ActivitePanel activitepanel = null;
 
-	public ActivitePanelContexte(ActivitePanel activitePanel) {
-		super(null, "Contexte professionnel");
+	public ActivitePanelContexte(ActivitePanel activitePanel) throws BadLocationException {
+		super(null, "Contexte professionnel", null);
 
 		// set des composants
 		setActivitepanel(activitePanel);
@@ -31,15 +32,14 @@ public class ActivitePanelContexte extends CommunJLabelJTextAreaVertical {
 	}
 
 	@Override
-	protected void setTextArea(JTextArea textArea) {
-		this.textArea = textArea;
-		textArea.setLineWrap(true);
+	protected void setPanelJTextAreaTextSize(Dimension dimensionTextArea) {
+		this.dimensionTextArea = new Dimension(0, getPreferredSize().height * 10);
 
 	}
 
 	@Override
-	protected void setPanelJTextAreaTextSize(Dimension dimensionTextArea) {
-		this.dimensionTextArea = new Dimension(0, getPreferredSize().height * 10);
+	protected void setJTextPane(JTextPane jTextPane) {
+		this.textPane = jTextPane;
 
 	}
 

@@ -6,7 +6,10 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.text.BadLocationException;
 
+import fr.paquet.ihm.alert.AlertType;
+import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.ihm.commun.gestionnaire.JPanelGestionnaireRight;
 import fr.paquet.ihm.commun.gestionnaire.PanelLeftRight;
 import fr.paquet.ihm.commun.gestionnaire.SelectedEvent;
@@ -14,6 +17,7 @@ import fr.paquet.ihm.commun.gestionnaire.UserObject;
 import fr.paquet.ihm.style.StyleBorder;
 import fr.paquet.ihm.style.StyleColor;
 import fr.paquet.ihm.style.StyleFont;
+import fr.paquet.ihm.style.StyleTextDocument;
 import fr.paquet.referentiel.SavoirAssocie;
 import fr.paquet.referentiel.SousSavoirAssocie;
 
@@ -69,8 +73,14 @@ public class JPanelGestionnaireSavoirRight extends JPanelGestionnaireRight {
 
 		}
 
-		PanelLeftRight panel = new PanelLeftRight(text, title);
-		this.panelLeft = panel;
+		PanelLeftRight panel;
+		try {
+			panel = new PanelLeftRight(text, title, StyleTextDocument.COMPETENCE.getStyleText());
+			this.panelLeft = panel;
+		} catch (BadLocationException e) {
+			e.printStackTrace();
+			new AlertWindow(AlertType.ERREUR, e.getMessage());
+		}
 
 	}
 

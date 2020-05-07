@@ -2,11 +2,12 @@ package fr.paquet.ihm.principal.activite;
 
 import java.awt.Dimension;
 
-import javax.swing.JTextArea;
+import javax.swing.JTextPane;
+import javax.swing.text.BadLocationException;
 
-import fr.paquet.ihm.commun.CommunJLabelJTextAreaVertical;
+import fr.paquet.ihm.commun.CommunJLabelJTextPaneVertical;
 
-public class ActivitePanelConceptionQuestion extends CommunJLabelJTextAreaVertical {
+public class ActivitePanelConceptionQuestion extends CommunJLabelJTextPaneVertical {
 
 	/**
 	 * 
@@ -14,18 +15,12 @@ public class ActivitePanelConceptionQuestion extends CommunJLabelJTextAreaVertic
 	private static final long serialVersionUID = 1L;
 	private ActivitePanelConception activitePanelConception = null;
 
-	public ActivitePanelConceptionQuestion(ActivitePanelConception activitePanelConception) {
-		super(null, "Questionnement");
+	public ActivitePanelConceptionQuestion(ActivitePanelConception activitePanelConception)
+			throws BadLocationException {
+		super(null, "Questionnement", null);
 
 		// set des compposants
 		setActivitePanelConception(activitePanelConception);
-
-	}
-
-	@Override
-	protected void setTextArea(JTextArea textArea) {
-		this.textArea = textArea;
-		textArea.setLineWrap(true);
 
 	}
 
@@ -41,6 +36,12 @@ public class ActivitePanelConceptionQuestion extends CommunJLabelJTextAreaVertic
 
 	private void setActivitePanelConception(ActivitePanelConception activitePanelConception) {
 		this.activitePanelConception = activitePanelConception;
+	}
+
+	@Override
+	protected void setJTextPane(JTextPane jTextPane) {
+		this.textPane = jTextPane;
+
 	}
 
 }

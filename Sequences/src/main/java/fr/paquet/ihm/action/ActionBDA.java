@@ -15,7 +15,7 @@ public abstract class ActionBDA extends AbstractAction {
 	public abstract String getName();
 
 	protected abstract void Enable();
-	
+
 	public abstract JMenuItem getJMenuItem();
 
 }

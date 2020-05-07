@@ -43,14 +43,20 @@ public class JDialogActivte extends JDialogGestion implements AlertListener {
 
 		}
 
-		if (button.getText().equals("Fermer")) {
-			getSequenceVersion().setActivites(getActivites());
-			MainOnglet.getUniqInstance().removeAllOngletActivites();
-			for (Activite_1 act : getSequenceVersion().getActivites()) {
-				MainOnglet.getUniqInstance().addOngletsActivites(new OngletActivite(act));
+		try {
+			if (button.getText().equals("Fermer")) {
+				getSequenceVersion().setActivites(getActivites());
+				MainOnglet.getUniqInstance().removeAllOngletActivites();
+				for (Activite_1 act : getSequenceVersion().getActivites()) {
+					MainOnglet.getUniqInstance().addOngletsActivites(new OngletActivite(act));
+				}
+				MainOnglet.getUniqInstance().affiche();
+				this.dispose();
 			}
-			MainOnglet.getUniqInstance().affiche();
-			this.dispose();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			new AlertWindow(AlertType.ERREUR, e.getMessage());
 		}
 
 	}
@@ -84,22 +90,28 @@ public class JDialogActivte extends JDialogGestion implements AlertListener {
 
 	@Override
 	public void buttonClick(String button) {
+		try {
+			if (button.equals("Oui")) {
 
-		if (button.equals("Oui")) {
+				Activite_1 activite = (Activite_1) getJPanelGestionnaireRight().getObjectSelected();
+				getActivites().remove(activite);
 
-			Activite_1 activite = (Activite_1) getJPanelGestionnaireRight().getObjectSelected();
-			getActivites().remove(activite);
+				// supprimer le noeud du Jtree
+				((DefaultTreeModel) getJtreGestionnaire().getJTreeValue().getModel())
+						.removeNodeFromParent((MutableTreeNode) getJtreGestionnaire().getJTreeValue().getSelectionPath()
+								.getLastPathComponent());
 
-			// supprimer le noeud du Jtree
-			((DefaultTreeModel) getJtreGestionnaire().getJTreeValue().getModel()).removeNodeFromParent(
-					(MutableTreeNode) getJtreGestionnaire().getJTreeValue().getSelectionPath().getLastPathComponent());
+				getSequenceVersion().setActivites(getActivites());
+				MainOnglet.getUniqInstance().removeAllOngletActivites();
+				for (Activite_1 act : getSequenceVersion().getActivites()) {
+					MainOnglet.getUniqInstance().addOngletsActivites(new OngletActivite(act));
+				}
 
-			getSequenceVersion().setActivites(getActivites());
-			MainOnglet.getUniqInstance().removeAllOngletActivites();
-			for (Activite_1 act : getSequenceVersion().getActivites()) {
-				MainOnglet.getUniqInstance().addOngletsActivites(new OngletActivite(act));
 			}
 
+		} catch (Exception e) {
+			e.printStackTrace();
+			new AlertWindow(AlertType.ERREUR, e.getMessage());
 		}
 
 	}
@@ -110,9 +122,7 @@ public class JDialogActivte extends JDialogGestion implements AlertListener {
 		JButton buttonOui = new JButton("Fermer");
 		buttonOui.addActionListener(this);
 
-
 		getButtons().add(buttonOui);
-		
 
 	}
 
