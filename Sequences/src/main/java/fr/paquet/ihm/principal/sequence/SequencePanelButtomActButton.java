@@ -10,7 +10,6 @@ import fr.paquet.dataBase.Connect;
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.ihm.commun.CommunJPanelButton;
-import fr.paquet.ihm.principal.activite.OngletActivite;
 import main.MainFrame;
 import main.MainOnglet;
 
@@ -29,7 +28,7 @@ public class SequencePanelButtomActButton extends CommunJPanelButton {
 		setSequencePanelButtomAct(sequencePanelButtonAct);
 	}
 
-	private SequencePanelButtomAct getSequencePanelButtomAct() {
+	public SequencePanelButtomAct getSequencePanelButtomAct() {
 		return sequencePanelButtomAct;
 	}
 
@@ -46,12 +45,12 @@ public class SequencePanelButtomActButton extends CommunJPanelButton {
 			public void actionPerformed(ActionEvent arg0) {
 
 				try {
-					Activite_1 act = null;
+
 					if (MainFrame.getUniqInstance().getSequenceVersion()
 							.isModifiable(Connect.getPConnexion().getUser().getAuteur())) {
 
-						act = new Activite_1(MainFrame.getUniqInstance().getSequenceVersion());
-						new OngletActivite(act);
+						new Activite_1(MainFrame.getUniqInstance().getSequenceVersion());
+
 						MainOnglet.getUniqInstance().affiche();
 					} else
 						new AlertWindow(AlertType.ATTENTION, "La séquence n'est pas modifiable");

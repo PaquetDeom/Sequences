@@ -33,6 +33,10 @@
 		<class>fr.paquet.activite.ActiviteStrategie</class>
 		<class>fr.paquet.activite.ActiviteEleve</class>
 		<class>fr.paquet.activite.ActiviteProf</class>
+		<class>fr.paquet.activite.Ressource</class>
+		<class>fr.paquet.activite.RessourceTrace</class>
+		<class>fr.paquet.activite.RessourceDocument</class>
+		<class>fr.paquet.activite.RessourceRessouces</class>
 
 
 

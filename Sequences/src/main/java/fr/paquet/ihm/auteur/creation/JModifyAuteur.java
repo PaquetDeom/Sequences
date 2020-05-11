@@ -60,7 +60,7 @@ public class JModifyAuteur extends JModifyDialog {
 
 	private JPanelAuteurNom getJtfNom() {
 		if (jtfNom == null)
-			jtfNom = new JPanelAuteurNom(new JLabel("Nom :"), new JTextField());
+			jtfNom = new JPanelAuteurNom("Nom");
 		return jtfNom;
 	}
 
@@ -68,7 +68,7 @@ public class JModifyAuteur extends JModifyDialog {
 
 	private JPanelAuteurPrenom getJtfPrenom() {
 		if (jtfPrenom == null)
-			jtfPrenom = new JPanelAuteurPrenom(new JLabel("Prenom :"), new JTextField());
+			jtfPrenom = new JPanelAuteurPrenom("Prenom");
 		return jtfPrenom;
 	}
 

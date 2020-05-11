@@ -4,8 +4,6 @@ import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeEvent;
 import java.lang.reflect.Constructor;
 
-import javax.swing.JLabel;
-import javax.swing.JTextField;
 
 import fr.paquet.ihm.commun.CommunJPanelHorizontalJLabelJTexField;
 import fr.paquet.ihm.commun.JSearchDialog;
@@ -17,25 +15,14 @@ public class JPanelAuteurNom extends CommunJPanelHorizontalJLabelJTexField {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public JPanelAuteurNom(JLabel jLabel, JTextField jTextField) {
-		super(jLabel, jTextField);
+	public JPanelAuteurNom(String textLabel) {
+		super(textLabel, null);
 	}
 
-	public JPanelAuteurNom(JLabel jLabel, JTextField jTextField, @SuppressWarnings("rawtypes") Class dialogClass) {
-		super(jLabel, jTextField, dialogClass);
+	public JPanelAuteurNom(String textLabel, @SuppressWarnings("rawtypes") Class dialogClass) {
+		super(textLabel, null, dialogClass);
 	}
 
-	@Override
-	protected void setJLabel(JLabel jLabel) {
-		this.jlabel = jLabel;
-
-	}
-
-	@Override
-	protected void setJTextField(JTextField jTextField) {
-		this.jTextField = jTextField;
-
-	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {

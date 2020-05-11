@@ -1,5 +1,6 @@
 package fr.paquet.ihm.commun;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
@@ -59,7 +60,7 @@ public abstract class CommunJLabelJTextPaneVertical extends JPanel {
 		setPanelJTextAreaTextSize(getPreferredSize());
 		setPanelJTextArea(new JPanel());
 
-		//listener
+		// listener
 		getTextPane().addFocusListener(SequenceToolBar.getUniqintance());
 
 		// Ajout du Layout
@@ -144,8 +145,13 @@ public abstract class CommunJLabelJTextPaneVertical extends JPanel {
 		// ajout du Layout
 		panelJTextArea.setLayout(new GridLayout(1, 0, 0, 0));
 
+		// Scrollpane
+		JScrollPane sc = new JScrollPane(getTextPane());
+		sc.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+		sc.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
 		// ajout des component
-		panelJTextArea.add(getTextPane());
+		panelJTextArea.add(sc, BorderLayout.CENTER);
 
 		// Attribut du panel
 		panelJTextArea.setBorder(StyleBorder.BORDERTITLEAREA.getBorder());

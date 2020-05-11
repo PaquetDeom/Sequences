@@ -133,7 +133,7 @@ public class JDialogSavoir extends JDialogGestion {
 	@Override
 	protected void addButton() {
 
-		JButton buttonOui = new JButton("Oui");
+		JButton buttonOui = new JButton("Valider");
 		buttonOui.addActionListener(this);
 
 		JButton buttonAnnuler = new JButton("Annuler");

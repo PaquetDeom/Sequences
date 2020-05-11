@@ -14,6 +14,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import fr.paquet.dataBase.Factory.Activite.Activite_1Factory;
+import fr.paquet.dataBase.Factory.Activite.RessourceDocumentFactory;
+import fr.paquet.dataBase.Factory.Activite.RessourceRessourcesFactory;
+import fr.paquet.dataBase.Factory.Activite.RessourceTraceFactory;
 import fr.paquet.referentiel.CompetenceIntermediaire;
 import fr.paquet.referentiel.SavoirAssocie;
 import fr.paquet.sequence.SequenceVersion;
@@ -36,15 +40,6 @@ public class Activite_1 {
 	@Column(name = "ACACCO", length = 400)
 	private String contexte = null;
 
-	@Column(name = "ACACDO", length = 400)
-	private String document = null;
-
-	@Column(name = "ACACRE", length = 400)
-	private String ressources = null;
-
-	@Column(name = "ACACTR", length = 400)
-	private String trace = null;
-
 	@Column(name = "ACACQU", length = 400)
 	private String questionnement = null;
 
@@ -55,9 +50,11 @@ public class Activite_1 {
 	public Activite_1(SequenceVersion sequence) throws Exception {
 		super();
 
-		sequence.addActivite(this);
-		this.nActivite = sequence.getActivites().size();
 		setSequence(sequence);
+		this.nActivite = getSequenceVersion().getActivites().size() + 1;
+		getSequenceVersion().addActivite(this);
+		new Activite_1Factory().persist(this);
+
 	}
 
 	public int getnActivite() {
@@ -143,31 +140,82 @@ public class Activite_1 {
 		this.contexte = contexte;
 	}
 
-	public String getDocument() {
-		return document;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<RessourceDocument> documents = null;
+
+	public List<RessourceDocument> getDocument() {
+		if (documents == null)
+			documents = new ArrayList<RessourceDocument>();
+		return documents;
 	}
 
-	public void setDocument(String document) {
-		document.trim();
-		this.document = document;
+	public void setDocument(List<RessourceDocument> documents) {
+
+		this.documents = documents;
 	}
 
-	public String getRessources() {
+	public void AddDocument(RessourceDocument ressource) throws Exception {
+
+		if (!getDocument().isEmpty())
+			for (RessourceDocument res1 : getDocument()) {
+				if (res1.getText().equals(ressource.getText()))
+					throw new Exception("Veuillez changer le titre de ce lien");
+			}
+
+		getDocument().add(ressource);
+		new RessourceDocumentFactory().persist(ressource);
+	}
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<RessourceRessouces> ressources = null;
+
+	public List<RessourceRessouces> getRessources() {
+		if (ressources == null)
+			ressources = new ArrayList<RessourceRessouces>();
 		return ressources;
 	}
 
-	public void setRessources(String ressources) {
-		ressources.trim();
+	public void setRessources(List<RessourceRessouces> ressources) {
+
 		this.ressources = ressources;
 	}
 
-	public String getTrace() {
-		return trace;
+	public void AddRessource(RessourceRessouces ressource) throws Exception {
+
+		if (!getRessources().isEmpty())
+			for (RessourceRessouces res1 : getRessources()) {
+				if (res1.getText().equals(ressource.getText()))
+					throw new Exception("Veuillez changer le titre de ce lien");
+			}
+
+		getRessources().add(ressource);
+		new RessourceRessourcesFactory().persist(ressource);
 	}
 
-	public void setTrace(String trace) {
-		trace.trim();
-		this.trace = trace;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<RessourceTrace> traces = null;
+
+	public List<RessourceTrace> getTrace() {
+		if (traces == null)
+			traces = new ArrayList<RessourceTrace>();
+		return traces;
+	}
+
+	public void setTrace(List<RessourceTrace> traces) {
+
+		this.traces = traces;
+	}
+
+	public void AddTrace(RessourceTrace ressource) throws Exception {
+
+		if (!getTrace().isEmpty())
+			for (RessourceTrace res1 : getTrace()) {
+				if (res1.getText().equals(ressource.getText()))
+					throw new Exception("Veuillez changer le titre de ce lien");
+			}
+
+		getTrace().add(ressource);
+		new RessourceTraceFactory().persist(ressource);
 	}
 
 	public String getQuestionnement() {
@@ -200,4 +248,54 @@ public class Activite_1 {
 	public String toString() {
 		return "Activite " + getnActivite();
 	}
+
+	public void RemoveDocument(Ressource ressource) {
+
+		Ressource res1 = null;
+
+		for (Ressource res : getDocument()) {
+			if (res.getText().equals(ressource.getText())) {
+				res1 = res;
+				break;
+			}
+		}
+
+		getDocument().remove(res1);
+		new RessourceDocumentFactory().removeObject(res1);
+
+	}
+
+	public void RemoveRessource(Ressource ressource) {
+
+		Ressource res = null;
+
+		for (Ressource res1 : getRessources()) {
+			if (res1.getText().equals(ressource.getText())) {
+				res = res1;
+				break;
+			}
+		}
+
+		getRessources().remove(res);
+		new RessourceRessourcesFactory().removeObject(res);
+
+	}
+
+	public void RemoveTrace(Ressource ressource) {
+
+		Ressource res1 = null;
+
+		for (Ressource res : getTrace()) {
+			if (res.getText().equals(ressource.getText())) {
+				res1 = res;
+				break;
+			}
+
+		}
+
+		getTrace().remove(res1);
+		new RessourceTraceFactory().removeObject(res1);
+
+	}
+
 }

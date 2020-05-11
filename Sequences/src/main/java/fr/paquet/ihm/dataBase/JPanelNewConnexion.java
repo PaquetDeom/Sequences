@@ -4,9 +4,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 public class JPanelNewConnexion extends JPanel {
 
@@ -55,7 +53,7 @@ public class JPanelNewConnexion extends JPanel {
 
 	public JPanelNewUser getjPanelNewUser() {
 		if (jPanelNewUser == null)
-			jPanelNewUser = new JPanelNewUser(new JLabel("Utilisateur :"), new JTextField(30));
+			jPanelNewUser = new JPanelNewUser("Utilisateur");
 		return jPanelNewUser;
 	}
 
@@ -63,7 +61,7 @@ public class JPanelNewConnexion extends JPanel {
 
 	public JPanelNewPass getjPanelNewPass() {
 		if (jPanelNewPass == null)
-			jPanelNewPass = new JPanelNewPass(new JLabel("Mot de passe :"), new JTextField(30));
+			jPanelNewPass = new JPanelNewPass("Mot de pass");
 		return jPanelNewPass;
 	}
 

@@ -67,9 +67,9 @@ public class ActivitePanel extends JPanel {
 		return sequencePanelVersion;
 	}
 
-	private void setTitre(int size) {
+	private void setTitre(int nActivite) {
 
-		this.titre = "Activité N°" + size;
+		this.titre = "Activité N°" + nActivite;
 	}
 
 	public String getTitre() {

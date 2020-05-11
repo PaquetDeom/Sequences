@@ -1,45 +1,55 @@
 package fr.paquet.ihm.principal.activite;
 
-import java.awt.Dimension;
+import java.util.List;
 
-import javax.swing.JTextPane;
-import javax.swing.text.BadLocationException;
+import fr.paquet.activite.Ressource;
+import fr.paquet.activite.RessourceTrace;
+import fr.paquet.ihm.alert.AlertType;
+import fr.paquet.ihm.alert.AlertWindow;
+import fr.paquet.ihm.commun.JPanelListJLabelButton;
 
-import fr.paquet.ihm.commun.CommunJLabelJTextPaneVertical;
-
-public class ActivitePanelConceptionTrace extends CommunJLabelJTextPaneVertical {
+public class ActivitePanelConceptionTrace extends JPanelListJLabelButton {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private ActivitePanelConception activitePanelConception = null;
 
-	public ActivitePanelConceptionTrace(ActivitePanelConception activitePanelConception) throws BadLocationException {
-		super(null, "Trace écrite", null);
+	public ActivitePanelConceptionTrace(ActivitePanelConception activitePanelConception) {
+		super("Trace écrite", activitePanelConception);
 
-		// set des composants
-		setActivitePanelConception(activitePanelConception);
 	}
 
 	@Override
-	protected void setPanelJTextAreaTextSize(Dimension dimensionTextArea) {
-		this.dimensionTextArea = new Dimension(0, getPreferredSize().height * 10);
+	protected List<? extends Ressource> getRessources() {
 
-	}
-
-	public ActivitePanelConception getActivitePanelConception() {
-		return activitePanelConception;
-	}
-
-	private void setActivitePanelConception(ActivitePanelConception activitePanelConception) {
-		this.activitePanelConception = activitePanelConception;
+		return getActivite().getTrace();
 	}
 
 	@Override
-	protected void setJTextPane(JTextPane jTextPane) {
-		this.textPane = jTextPane;
-		
+	public void addRessouce(String text, String url) {
+		try {
+			if (url != null)
+				text = "<html><u>" + text + "</u></html>";
+			getActivite().AddTrace(new RessourceTrace(text, url, getActivite()));
+			affiche();
+		} catch (Exception e) {
+
+			new AlertWindow(AlertType.ATTENTION, e.getMessage());
+		}
+
+	}
+
+	@Override
+	public void removeRessouce(String text, String url) {
+		try {
+			getActivite().RemoveTrace(new RessourceTrace(text, url, getActivite()));
+
+			affiche();
+		} catch (Exception e) {
+			e.printStackTrace();
+			new AlertWindow(AlertType.ERREUR, e.getMessage());
+		}
 	}
 
 }

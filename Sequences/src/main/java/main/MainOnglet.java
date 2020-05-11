@@ -5,6 +5,7 @@ import java.util.*;
 import javax.swing.*;
 import javax.swing.text.BadLocationException;
 
+import fr.paquet.activite.Activite_1;
 import fr.paquet.ihm.principal.activite.OngletActivite;
 import fr.paquet.ihm.principal.sequence.OngletSequence;
 import fr.paquet.sequence.SequenceVersion;
@@ -55,8 +56,10 @@ public class MainOnglet extends JTabbedPane {
 
 		addTab("Séquence " + MainFrame.getUniqInstance().getSequenceVersion().getTitre(), getOngletSequence());
 
-		if (!getOngletsActivites().isEmpty()) {
-			for (OngletActivite Oa : getOngletsActivites()) {
+		if (!MainFrame.getUniqInstance().getSequenceVersion().getActivites().isEmpty()) {
+			for (Activite_1 act : MainFrame.getUniqInstance().getSequenceVersion().getActivites()) {
+				OngletActivite Oa = new OngletActivite(act);
+				getOngletsActivites().add(Oa);
 				addTab(Oa.getActivitePanel().getTitre(), Oa);
 			}
 		}

@@ -18,17 +18,18 @@ public abstract class CommunJPanelHorizontalJLabelJTexField extends JPanel imple
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	protected JLabel jlabel = null;
-	protected JTextField jTextField = null;
+	private String textLabel = null;
+	private JPanel panel = null;
 	protected Class<JSearchDialog> dialogClass = null;
 
 	@SuppressWarnings("unchecked")
-	public CommunJPanelHorizontalJLabelJTexField(JLabel jLabel, JTextField jTextField, @SuppressWarnings("rawtypes") Class dialogClass) {
+	public CommunJPanelHorizontalJLabelJTexField(String textLabel, JPanel panel,
+			@SuppressWarnings("rawtypes") Class dialogClass) {
 		super();
 
 		// setteur des éléments
-		setJLabel(jLabel);
-		setJTextField(jTextField);
+		setTextLabel(textLabel);
+		setPanel(panel);
 
 		// Ajout du layout
 		setLayout(new GridBagLayout());
@@ -44,13 +45,13 @@ public abstract class CommunJPanelHorizontalJLabelJTexField extends JPanel imple
 
 		if (dialogClass != null) {
 			this.dialogClass = dialogClass;
-			add(getButtonPanel(), new GridBagConstraints(2, 0, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
+			add(getButtonPanel(), new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER,
 					GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5, 5), 0, 0));
 		}
 	}
 
-	public CommunJPanelHorizontalJLabelJTexField(JLabel jLabel, JTextField jTextField) {
-		this(jLabel, jTextField, (Class<JSearchDialog>) null);
+	public CommunJPanelHorizontalJLabelJTexField(String textLabel, JPanel panel) {
+		this(textLabel, panel, (Class<JSearchDialog>) null);
 	}
 
 	private Component getButtonPanel() {
@@ -71,15 +72,19 @@ public abstract class CommunJPanelHorizontalJLabelJTexField extends JPanel imple
 		return dialog;
 	}
 
-	protected abstract void setJLabel(JLabel jLabel);
-
-	protected abstract void setJTextField(JTextField jTextField);
+	protected JLabel jlabel = null;
 
 	public JLabel getJlabel() {
+		if (jlabel == null)
+			jlabel = new JLabel(getTextLabel() + " : ");
 		return jlabel;
 	}
 
+	private JTextField jTextField = null;
+
 	public JTextField getjTextField() {
+		if (jTextField == null)
+			jTextField = new JTextField();
 		return jTextField;
 	}
 
@@ -100,6 +105,22 @@ public abstract class CommunJPanelHorizontalJLabelJTexField extends JPanel imple
 
 	public Object getObjet() {
 		return objet;
+	}
+
+	private String getTextLabel() {
+		return textLabel;
+	}
+
+	private void setTextLabel(String textLabel) {
+		this.textLabel = textLabel;
+	}
+
+	public JPanel getPanel() {
+		return panel;
+	}
+
+	private void setPanel(JPanel panel) {
+		this.panel = panel;
 	}
 
 }

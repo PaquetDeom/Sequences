@@ -26,6 +26,7 @@ public class ActivitePanelConception extends JPanel {
 		setLayout(new GridBagLayout());
 
 		// attribut du panel
+		
 
 		// ajout des Composants
 		add(getMainSplitPane(), new GridBagConstraints(0, 0, 1, 1, 1, 0.0, GridBagConstraints.CENTER,
@@ -40,7 +41,7 @@ public class ActivitePanelConception extends JPanel {
 		mainSplitPane.setLeftComponent(getActivitePanelConceptionQuestion());
 		mainSplitPane.setRightComponent(getRightMainSplitPane());
 
-		mainSplitPane.setResizeWeight(0.25);
+		mainSplitPane.setResizeWeight(0.5);
 		mainSplitPane.setContinuousLayout(true);
 
 		return mainSplitPane;

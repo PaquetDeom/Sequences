@@ -195,8 +195,11 @@ public class JDialogGestionnaireOuvrir extends JDialog implements ActionListener
 
 		if (buttonString.equals("Ouvrir")) {
 			try {
-				MainFrame.getUniqInstance().addPanel(getSequence());
-				dispose();
+				if (getSequence() != null) {
+					MainFrame.getUniqInstance().addPanel(getSequence());
+					dispose();
+				} else
+					new AlertWindow(AlertType.ATTENTION, "Veuillez saisir une version de séquence");
 			} catch (Exception e) {
 				e.printStackTrace();
 				new AlertWindow(AlertType.ERREUR, "La séquence n'a pas pu s'ouvrir");

@@ -5,9 +5,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import fr.paquet.ihm.auteur.creation.JSearchAuteur;
 
@@ -31,7 +29,7 @@ public class JPanelAuteur extends JPanel {
 		// ajout des elements aux panel
 		add(getJPanelAuteurNom(), new GridBagConstraints(0, 0, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
-		add(getJPanelAuteurButton(), new GridBagConstraints(0, 1, 1, 1, 1, 0.0, GridBagConstraints.CENTER,
+		add(getJPanelAuteurButton(), new GridBagConstraints(0, 1, 1, 1, 0, 0.0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
 
 	}
@@ -72,7 +70,7 @@ public class JPanelAuteur extends JPanel {
 
 	public JPanelAuteurNom getJPanelAuteurNom() {
 		if (jPanelAuteurNom == null)
-			jPanelAuteurNom = new JPanelAuteurNom(new JLabel("Nom :"), new JTextField(30), JSearchAuteur.class);
+			jPanelAuteurNom = new JPanelAuteurNom("Nom", JSearchAuteur.class);
 		return jPanelAuteurNom;
 	}
 

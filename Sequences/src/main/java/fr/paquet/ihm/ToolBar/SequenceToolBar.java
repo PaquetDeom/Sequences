@@ -26,6 +26,7 @@ public class SequenceToolBar extends JToolBar implements FocusListener {
 
 		add(new ToolBarGras(this));
 		add(new ToolBarSoul(this));
+		add(new ToolBarItalique(this));
 
 		addSeparator();
 

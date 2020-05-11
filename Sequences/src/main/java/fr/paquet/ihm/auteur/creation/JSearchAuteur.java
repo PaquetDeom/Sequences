@@ -3,9 +3,6 @@ package fr.paquet.ihm.auteur.creation;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-
 import fr.paquet.dataBase.Factory.sequence.AuteurFactory;
 import fr.paquet.ihm.auteur.JPanelAuteurNom;
 import fr.paquet.ihm.commun.JSearchDialog;
@@ -37,7 +34,7 @@ public class JSearchAuteur extends JSearchDialog {
 	}
 
 	private static JPanelAuteurNom getJPanelAuteurNom(String nom) {
-		JPanelAuteurNom jPanelAuteurNom = new JPanelAuteurNom(new JLabel("Nom :"), new JTextField());
+		JPanelAuteurNom jPanelAuteurNom = new JPanelAuteurNom("Nom");
 		jPanelAuteurNom.getjTextField().setText(nom);
 		return jPanelAuteurNom;
 	}
