@@ -10,7 +10,7 @@ import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
 import fr.paquet.dataBase.Connect;
-import fr.paquet.dataBase.Factory.sequence.SequenceVersionFactory;
+
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.sequence.SequenceVersion;
@@ -37,9 +37,8 @@ public class ActionSave extends ActionBDA implements PropertyChangeListener {
 	public void actionPerformed(ActionEvent arg0) {
 
 		try {
-
-			SequenceVersionFactory pF = new SequenceVersionFactory();
-			pF.persist(getSequenceVersion());
+			if (isEnabled())
+				new Save();
 
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -10,7 +10,6 @@ import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
 import fr.paquet.dataBase.Connect;
-import fr.paquet.dataBase.Factory.sequence.SequenceVersionFactory;
 import fr.paquet.ihm.alert.AlertListener;
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
@@ -38,16 +37,11 @@ public class ActionNouveau extends ActionBDA implements AlertListener, PropertyC
 	public void actionPerformed(ActionEvent arg0) {
 
 		try {
-			if (getSequenceVersion() == null)
+			if (getSequenceVersion() == null
+					|| !getSequenceVersion().isModifiable(Connect.getPConnexion().getUser().getAuteur()))
 				new JDialogNewSequence();
-			else {
-				CompareSequenceWithDB compare = new CompareSequenceWithDB(getSequenceVersion());
-				if (!compare.isSame()
-						&& getSequenceVersion().isModifiable(Connect.getPConnexion().getUser().getAuteur()))
-					new AlertWindow(AlertType.QUESTION, "Voulez vous enregistrer la séquence", this);
-				else
-					new JDialogNewSequence();
-			}
+			else
+				new AlertWindow(AlertType.QUESTION, "Voulez vous enregistrer la séquence", this);
 
 		} catch (Exception e) {
 			new AlertWindow(AlertType.ERREUR, "Erreur lors du chargement de la fenêtre");
@@ -82,7 +76,8 @@ public class ActionNouveau extends ActionBDA implements AlertListener, PropertyC
 	public void buttonClick(String button) {
 		if (button.equals("Oui"))
 			try {
-				new SequenceVersionFactory().persist(getSequenceVersion());
+				new Save();
+				
 			} catch (Exception e) {
 				new AlertWindow(AlertType.ERREUR, "La séquence n'a pas été sauvegardée");
 				e.printStackTrace();
@@ -90,7 +85,7 @@ public class ActionNouveau extends ActionBDA implements AlertListener, PropertyC
 		try {
 			new JDialogNewSequence();
 		} catch (Exception e) {
-			new AlertWindow(AlertType.ERREUR, "La séquence n'a pas été crée");
+			new AlertWindow(AlertType.ERREUR, "Erreur lors du chargement de la fenêtre");
 			e.printStackTrace();
 		}
 

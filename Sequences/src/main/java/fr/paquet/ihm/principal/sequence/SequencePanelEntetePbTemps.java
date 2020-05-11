@@ -45,8 +45,7 @@ public class SequencePanelEntetePbTemps extends JPanel {
 
 	private SequencePanelEntetePbTempsProblématique getSequencePanelEntetePbTempsProblematique() throws BadLocationException {
 		if (sequencePanelEntetePbTempsProblematique == null)
-			sequencePanelEntetePbTempsProblematique = new SequencePanelEntetePbTempsProblématique(this,
-					"Problématique");
+			sequencePanelEntetePbTempsProblematique = new SequencePanelEntetePbTempsProblématique(this);
 		return sequencePanelEntetePbTempsProblematique;
 	}
 

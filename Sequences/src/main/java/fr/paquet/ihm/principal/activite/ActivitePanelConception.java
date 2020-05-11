@@ -26,7 +26,6 @@ public class ActivitePanelConception extends JPanel {
 		setLayout(new GridBagLayout());
 
 		// attribut du panel
-		
 
 		// ajout des Composants
 		add(getMainSplitPane(), new GridBagConstraints(0, 0, 1, 1, 1, 0.0, GridBagConstraints.CENTER,
@@ -100,8 +99,13 @@ public class ActivitePanelConception extends JPanel {
 	private ActivitePanelConceptionQuestion activitePanelConceptionQuestion = null;
 
 	private ActivitePanelConceptionQuestion getActivitePanelConceptionQuestion() throws BadLocationException {
-		if (activitePanelConceptionQuestion == null)
-			activitePanelConceptionQuestion = new ActivitePanelConceptionQuestion(this);
+		if (activitePanelConceptionQuestion == null) {
+			if (getActivitepanel().getOngletActivite().getActivite().getQuestionnement() == null)
+				activitePanelConceptionQuestion = new ActivitePanelConceptionQuestion(this);
+			else
+				activitePanelConceptionQuestion = new ActivitePanelConceptionQuestion(
+						getActivitepanel().getOngletActivite().getActivite().getQuestionnement(), this);
+		}
 		return activitePanelConceptionQuestion;
 	}
 

@@ -1,10 +1,14 @@
 package fr.paquet.ihm.principal.sequence;
 
 import java.awt.Dimension;
-import javax.swing.JTextPane;
+import java.awt.event.FocusEvent;
+import java.beans.PropertyChangeEvent;
+
 import javax.swing.text.BadLocationException;
 
+import fr.paquet.dataBase.Connect;
 import fr.paquet.ihm.commun.CommunJLabelJTextPaneVertical;
+import main.MainFrame;
 
 public class SequencePanelCenterPrésentation extends CommunJLabelJTextPaneVertical {
 
@@ -13,22 +17,46 @@ public class SequencePanelCenterPrésentation extends CommunJLabelJTextPaneVerti
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public SequencePanelCenterPrésentation(String title, SequencePanelCenter sequencePanelCenter)
+	public SequencePanelCenterPrésentation(SequencePanelCenter sequencePanelCenter)
 			throws BadLocationException {
-		super(null, title, null);
+		super(null, "Présentation du contexte professionnel", null);
 
 	}
 
 	@Override
-	protected void setPanelJTextAreaTextSize(Dimension dimensionTextArea) {
-		this.dimensionTextArea = new Dimension(0, getPreferredSize().height * 8);
+	public void propertyChange(PropertyChangeEvent arg0) {
+		Editable();
 
 	}
 
-	
 	@Override
-	protected void setJTextPane(JTextPane jTextPane) {
-		this.textPane = jTextPane;
+	protected void Editable() {
+		if (MainFrame.getUniqInstance().getSequenceVersion()
+				.isModifiable(Connect.getPConnexion().getUser().getAuteur()))
+			getTextPane().setEditable(true);
+		else
+			getTextPane().setEditable(false);
+	}
+
+	@Override
+	protected void setJTextPaneSize(Dimension dimensionTextPane) {
+		this.dimensionTextPane = new Dimension(0, getPreferredSize().height * 12);
+
+	}
+
+	@Override
+	public void focusGained(FocusEvent arg0) {
+		
+		
+	}
+
+	@Override
+	public void focusLost(FocusEvent arg0) {
+
+		if (MainFrame.getUniqInstance().getSequenceVersion()
+				.isModifiable(Connect.getPConnexion().getUser().getAuteur()))
+			if (getTextPane().getText() != null && !getTextPane().getText().equals(""))
+				MainFrame.getUniqInstance().getSequenceVersion().setContexte(getTextPane().getText());
 
 	}
 

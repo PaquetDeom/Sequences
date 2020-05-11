@@ -2,7 +2,6 @@ package fr.paquet.ihm.principal.activite;
 
 import java.awt.BorderLayout;
 
-
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
@@ -37,6 +36,7 @@ public class OngletActivite extends JPanel {
 		jS.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
 		MainOnglet.getUniqInstance().addOngletsActivites(this);
+
 	}
 
 	private ActivitePanel activitePanel = null;

@@ -17,10 +17,15 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import fr.paquet.dataBase.Connect;
 import fr.paquet.ihm.ToolBar.SequenceToolBar;
+import fr.paquet.ihm.action.Save;
+import fr.paquet.ihm.alert.AlertListener;
+import fr.paquet.ihm.alert.AlertType;
+import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.sequence.SequenceVersion;
 
-public class MainFrame extends JFrame implements WindowListener {
+public class MainFrame extends JFrame implements WindowListener, AlertListener {
 
 	/*
 	 * @author Nathanael
@@ -166,7 +171,11 @@ public class MainFrame extends JFrame implements WindowListener {
 
 	@Override
 	public void windowClosing(WindowEvent arg0) {
-		Main.Fermeture();
+		if (getSequenceVersion() != null
+				&& getSequenceVersion().isModifiable(Connect.getPConnexion().getUser().getAuteur()))
+			new AlertWindow(AlertType.QUESTION, "Voulez-vous enregistrer avant de quitter", this);
+		else
+			Main.Fermeture();
 
 	}
 
@@ -193,6 +202,21 @@ public class MainFrame extends JFrame implements WindowListener {
 	public void initPanelOuverture() throws Exception {
 		affichePanelOuverture();
 		setSequenceVersion(null);
+
+	}
+
+	@Override
+	public void buttonClick(String button) {
+		if (button.equals("Oui")) {
+			try {
+				new Save();
+				Main.FermetureSansErreur();
+			} catch (Exception e) {
+				new AlertWindow(AlertType.ERREUR, "Sauvegarde de la sequence impossible");
+				e.printStackTrace();
+				Main.FermetureAvecErreur();
+			}
+		}
 
 	}
 

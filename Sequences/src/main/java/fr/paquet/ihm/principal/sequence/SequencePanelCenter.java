@@ -61,8 +61,7 @@ public class SequencePanelCenter extends JPanel {
 
 	private SequencePanelCenterPrésentation getSequencePanelCenterPresentation() throws BadLocationException {
 		if (sequencePanelCenterPresentation == null)
-			sequencePanelCenterPresentation = new SequencePanelCenterPrésentation(
-					"Présentation du contexte professionnel", this);
+			sequencePanelCenterPresentation = new SequencePanelCenterPrésentation( this);
 		return sequencePanelCenterPresentation;
 	}
 

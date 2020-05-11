@@ -7,6 +7,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.event.FocusListener;
+import java.beans.PropertyChangeListener;
 
 import javax.swing.*;
 import javax.swing.text.BadLocationException;
@@ -17,8 +19,9 @@ import fr.paquet.ihm.style.StyleBorder;
 import fr.paquet.ihm.style.StyleColor;
 import fr.paquet.ihm.style.StyleFont;
 import fr.paquet.ihm.style.StyleTextDocument;
+import main.MainFrame;
 
-public abstract class CommunJLabelJTextPaneVertical extends JPanel {
+public abstract class CommunJLabelJTextPaneVertical extends JPanel implements PropertyChangeListener, FocusListener {
 
 	/**
 	 * 
@@ -26,7 +29,7 @@ public abstract class CommunJLabelJTextPaneVertical extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private String Title = null;
 	private JLabel titleLabel = null;
-	protected JTextPane textPane = null;
+
 	private JPanel panelTitre = null;
 	private JPanel panelJTextArea = null;
 	private SimpleAttributeSet simpleAttributeSet = null;
@@ -38,7 +41,6 @@ public abstract class CommunJLabelJTextPaneVertical extends JPanel {
 		// set des éléments
 		setTitle(title);
 		setTitleLabel(new JLabel(getTitle()));
-		setJTextPane(new JTextPane());
 
 		if (simpleAttributesSet != null) {
 			setSimpleAttributeSet(simpleAttributesSet);
@@ -57,11 +59,17 @@ public abstract class CommunJLabelJTextPaneVertical extends JPanel {
 		}
 
 		setPanelTitre(new JPanel());
-		setPanelJTextAreaTextSize(getPreferredSize());
+		setJTextPaneSize(getPreferredSize());
 		setPanelJTextArea(new JPanel());
+		Editable();
 
 		// listener
 		getTextPane().addFocusListener(SequenceToolBar.getUniqintance());
+
+		if (MainFrame.getUniqInstance().getSequenceVersion() != null) {
+			MainFrame.getUniqInstance().getSequenceVersion().addPropertyChangeListener(this);
+			getTextPane().addFocusListener(this);
+		}
 
 		// Ajout du Layout
 		setLayout(new GridBagLayout());
@@ -69,6 +77,8 @@ public abstract class CommunJLabelJTextPaneVertical extends JPanel {
 		// Ajout des Elements
 		affiche();
 	}
+
+	protected abstract void Editable();
 
 	public void affiche() {
 		removeAll();
@@ -102,12 +112,13 @@ public abstract class CommunJLabelJTextPaneVertical extends JPanel {
 		this.titleLabel = titleLabel;
 	}
 
-	private JTextPane getTextPane() {
+	private JTextPane textPane = null;
 
+	protected JTextPane getTextPane() {
+		if (textPane == null)
+			textPane = new JTextPane();
 		return textPane;
 	}
-
-	protected abstract void setJTextPane(JTextPane jTextPane);
 
 	private JPanel getPanelTitre() {
 		return panelTitre;
@@ -132,12 +143,12 @@ public abstract class CommunJLabelJTextPaneVertical extends JPanel {
 		return panelJTextArea;
 	}
 
-	protected Dimension dimensionTextArea = null;
+	protected Dimension dimensionTextPane = null;
 
-	protected abstract void setPanelJTextAreaTextSize(Dimension dimensionTextArea);
+	protected abstract void setJTextPaneSize(Dimension dimensionTextPane);
 
 	private Dimension getDimensionTextArea() {
-		return dimensionTextArea;
+		return dimensionTextPane;
 	}
 
 	private void setPanelJTextArea(JPanel panelJTextArea) {

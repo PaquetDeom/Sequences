@@ -85,7 +85,9 @@ public class Activite_1 {
 	}
 
 	public void setCorpsDetatsConcernes(List<CorpsDEtat> corpsDetatsConcernes) {
+
 		this.corpsDetatsConcernes = corpsDetatsConcernes;
+
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
@@ -102,7 +104,9 @@ public class Activite_1 {
 	}
 
 	public void setSavoirAssocies(List<SavoirAssocie> savoirAssocies) {
+
 		this.savoirAssocies = savoirAssocies;
+
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
@@ -119,7 +123,9 @@ public class Activite_1 {
 	}
 
 	public void setCompetencesIntermédiaires(List<CompetenceIntermediaire> competencesIntermédiaires) {
+
 		this.competencesIntermédiaires = competencesIntermédiaires;
+
 	}
 
 	@OneToOne
@@ -137,7 +143,9 @@ public class Activite_1 {
 
 	public void setContexte(String contexte) {
 		contexte.trim();
+
 		this.contexte = contexte;
+
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -152,6 +160,7 @@ public class Activite_1 {
 	public void setDocument(List<RessourceDocument> documents) {
 
 		this.documents = documents;
+
 	}
 
 	public void AddDocument(RessourceDocument ressource) throws Exception {
@@ -160,10 +169,12 @@ public class Activite_1 {
 			for (RessourceDocument res1 : getDocument()) {
 				if (res1.getText().equals(ressource.getText()))
 					throw new Exception("Veuillez changer le titre de ce lien");
+
 			}
 
 		getDocument().add(ressource);
 		new RessourceDocumentFactory().persist(ressource);
+
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -178,6 +189,7 @@ public class Activite_1 {
 	public void setRessources(List<RessourceRessouces> ressources) {
 
 		this.ressources = ressources;
+
 	}
 
 	public void AddRessource(RessourceRessouces ressource) throws Exception {

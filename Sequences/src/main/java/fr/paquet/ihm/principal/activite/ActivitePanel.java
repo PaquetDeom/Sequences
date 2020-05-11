@@ -40,7 +40,7 @@ public class ActivitePanel extends JPanel {
 				GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 		add(new ActivitePanelActivite(this), new GridBagConstraints(0, 4, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-		add(new ActivitePanelContexte(this), new GridBagConstraints(0, 5, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
+		add(getActivitePanelContexte(), new GridBagConstraints(0, 5, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 		add(new ActivitePanelConception(this), new GridBagConstraints(0, 6, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
@@ -48,6 +48,19 @@ public class ActivitePanel extends JPanel {
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
 		// attribut du Panel
+	}
+
+	private ActivitePanelContexte activitePanelContexte = null;
+
+	private ActivitePanelContexte getActivitePanelContexte() throws BadLocationException {
+		if (activitePanelContexte == null) {
+			if (getOngletActivite().getActivite().getContexte() == null)
+				activitePanelContexte = new ActivitePanelContexte(this);
+			else
+				activitePanelContexte = new ActivitePanelContexte(getOngletActivite().getActivite().getContexte(),
+						this);
+		}
+		return activitePanelContexte;
 	}
 
 	private ActivitePanelCompetencesSavoirs activitePanelCompetencesSavoirs = null;

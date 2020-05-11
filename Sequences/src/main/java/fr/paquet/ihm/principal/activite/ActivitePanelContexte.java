@@ -1,11 +1,15 @@
 package fr.paquet.ihm.principal.activite;
 
 import java.awt.Dimension;
+import java.awt.event.FocusEvent;
+import java.beans.PropertyChangeEvent;
 
-import javax.swing.JTextPane;
 import javax.swing.text.BadLocationException;
 
+import fr.paquet.dataBase.Connect;
 import fr.paquet.ihm.commun.CommunJLabelJTextPaneVertical;
+import fr.paquet.ihm.style.StyleTextDocument;
+import main.MainFrame;
 
 public class ActivitePanelContexte extends CommunJLabelJTextPaneVertical {
 
@@ -16,7 +20,12 @@ public class ActivitePanelContexte extends CommunJLabelJTextPaneVertical {
 	private ActivitePanel activitepanel = null;
 
 	public ActivitePanelContexte(ActivitePanel activitePanel) throws BadLocationException {
-		super(null, "Contexte professionnel", null);
+		this(null, activitePanel);
+
+	}
+
+	public ActivitePanelContexte(String text, ActivitePanel activitePanel) throws BadLocationException {
+		super(text, "Contexte professionnel", StyleTextDocument.SAISI.getStyleText());
 
 		// set des composants
 		setActivitepanel(activitePanel);
@@ -32,14 +41,38 @@ public class ActivitePanelContexte extends CommunJLabelJTextPaneVertical {
 	}
 
 	@Override
-	protected void setPanelJTextAreaTextSize(Dimension dimensionTextArea) {
-		this.dimensionTextArea = new Dimension(0, getPreferredSize().height * 10);
+	protected void Editable() {
+		if (MainFrame.getUniqInstance().getSequenceVersion()
+				.isModifiable(Connect.getPConnexion().getUser().getAuteur()))
+			getTextPane().setEditable(true);
+		else
+			getTextPane().setEditable(false);
+	}
+
+	@Override
+	protected void setJTextPaneSize(Dimension dimensionTextPane) {
+		this.dimensionTextPane = new Dimension(0, getPreferredSize().height * 12);
 
 	}
 
 	@Override
-	protected void setJTextPane(JTextPane jTextPane) {
-		this.textPane = jTextPane;
+	public void propertyChange(PropertyChangeEvent arg0) {
+		Editable();
+
+	}
+
+	@Override
+	public void focusLost(FocusEvent arg0) {
+
+		if (MainFrame.getUniqInstance().getSequenceVersion()
+				.isModifiable(Connect.getPConnexion().getUser().getAuteur()))
+			if (getTextPane().getText() != null && !getTextPane().getText().equals(""))
+				getActivitepanel().getOngletActivite().getActivite().setContexte(getTextPane().getText());
+
+	}
+
+	@Override
+	public void focusGained(FocusEvent arg0) {
 
 	}
 

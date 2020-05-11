@@ -8,11 +8,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
 
 import fr.paquet.dataBase.Connect;
-import fr.paquet.dataBase.Factory.sequence.SequenceVersionFactory;
 import fr.paquet.ihm.alert.AlertListener;
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
-import fr.paquet.sequence.SequenceVersion;
 import main.Main;
 import main.MainFrame;
 import main.MainOnglet;
@@ -34,14 +32,13 @@ public class ActionQuitter extends ActionBDA implements AlertListener, PropertyC
 
 		if (MainOnglet.getUniqInstance().getOngletSequence() != null) {
 
-			SequenceVersion sequenceVersion = MainFrame.getUniqInstance().getSequenceVersion();
-			CompareSequenceWithDB compare;
 			try {
-				compare = new CompareSequenceWithDB(sequenceVersion);
-				if (!compare.isSame() && sequenceVersion.isModifiable(Connect.getPConnexion().getUser().getAuteur()))
-					new AlertWindow(AlertType.QUESTION, "Voulez vous enregistrer la séquence", this);
-				else
+				if (MainFrame.getUniqInstance().getSequenceVersion() == null || !MainFrame.getUniqInstance()
+						.getSequenceVersion().isModifiable(Connect.getPConnexion().getUser().getAuteur()))
 					Main.Fermeture();
+				else
+					new AlertWindow(AlertType.QUESTION, "Voulez vous enregistrer la séquence", this);
+
 			} catch (Exception e1) {
 				new AlertWindow(AlertType.ERREUR, "Comparaison impossible");
 				Main.FermetureAvecErreur();
@@ -73,7 +70,7 @@ public class ActionQuitter extends ActionBDA implements AlertListener, PropertyC
 	public void buttonClick(String button) {
 		if (button.equals("Oui")) {
 			try {
-				new SequenceVersionFactory().persist(MainFrame.getUniqInstance().getSequenceVersion());
+				new Save();
 				Main.FermetureSansErreur();
 			} catch (Exception e) {
 				new AlertWindow(AlertType.ERREUR, "Sauvegarde de la sequence impossible");
