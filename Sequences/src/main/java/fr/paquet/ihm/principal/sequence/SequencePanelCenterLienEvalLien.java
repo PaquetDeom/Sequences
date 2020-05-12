@@ -8,6 +8,7 @@ import javax.swing.text.BadLocationException;
 
 import fr.paquet.dataBase.Connect;
 import fr.paquet.ihm.commun.CommunJLabelJTextPaneVertical;
+import fr.paquet.ihm.style.StyleTextDocument;
 import main.MainFrame;
 
 public class SequencePanelCenterLienEvalLien extends CommunJLabelJTextPaneVertical {
@@ -18,9 +19,15 @@ public class SequencePanelCenterLienEvalLien extends CommunJLabelJTextPaneVertic
 	private static final long serialVersionUID = 1L;
 	private SequencePanelCenterLienEval sequencePanelCenterLienEval = null;
 
-	public SequencePanelCenterLienEvalLien(SequencePanelCenterLienEval sequencePanelCenterLieneval, String title)
+	public SequencePanelCenterLienEvalLien(SequencePanelCenterLienEval sequencePanelCenterLieneval)
 			throws BadLocationException {
-		super(null, title, null);
+		this(null, sequencePanelCenterLieneval);
+
+	}
+
+	public SequencePanelCenterLienEvalLien(String text, SequencePanelCenterLienEval sequencePanelCenterLieneval)
+			throws BadLocationException {
+		super(text, "Liens avec les autres disciplines", StyleTextDocument.SAISI.getStyleText());
 
 		// setteur des componenent
 		setSequencePanelCenterLienEval(sequencePanelCenterLieneval);

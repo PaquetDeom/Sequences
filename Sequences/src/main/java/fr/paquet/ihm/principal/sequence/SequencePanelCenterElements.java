@@ -8,6 +8,7 @@ import javax.swing.text.BadLocationException;
 
 import fr.paquet.dataBase.Connect;
 import fr.paquet.ihm.commun.CommunJLabelJTextPaneVertical;
+import fr.paquet.ihm.style.StyleTextDocument;
 import main.MainFrame;
 
 public class SequencePanelCenterElements extends CommunJLabelJTextPaneVertical {
@@ -16,10 +17,20 @@ public class SequencePanelCenterElements extends CommunJLabelJTextPaneVertical {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private SequencePanelCenter sequencePanelCenter =null;
 
-	public SequencePanelCenterElements(String title, SequencePanelCenter sequencePanelCenter)
+	public SequencePanelCenterElements(SequencePanelCenter sequencePanelCenter)
 			throws BadLocationException {
-		super(null, title, null);
+		this(null, sequencePanelCenter);
+
+	}
+	
+	public SequencePanelCenterElements(String text, SequencePanelCenter sequencePanelCenter)
+			throws BadLocationException {
+		super(text, "Eléments à retenir", StyleTextDocument.SAISI.getStyleText());
+		
+		//set des composants
+		setSequencePanelCenter(sequencePanelCenter);
 
 	}
 
@@ -56,6 +67,14 @@ public class SequencePanelCenterElements extends CommunJLabelJTextPaneVertical {
 			if (getTextPane().getText() != null && !getTextPane().getText().equals(""))
 				MainFrame.getUniqInstance().getSequenceVersion().setElementsARetenir(getTextPane().getText());
 
+	}
+
+	public SequencePanelCenter getSequencePanelCenter() {
+		return sequencePanelCenter;
+	}
+
+	private void setSequencePanelCenter(SequencePanelCenter sequencePanelCenter) {
+		this.sequencePanelCenter = sequencePanelCenter;
 	}
 
 }

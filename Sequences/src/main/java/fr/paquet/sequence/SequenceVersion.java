@@ -28,14 +28,11 @@ public class SequenceVersion implements Sequence {
 	@Column
 	private int numVersion = 0;
 
-	@Transient
-	private Sequence previousVersion;
-
 	@JoinColumn
 	private SequenceImpl firstSequence;
 
 	@JoinColumn
-	private SequenceVersion previous;
+	private SequenceVersion previousParent;
 
 	@Column(name = "SEVECO", length = 20)
 	private String contexte = null;
@@ -75,7 +72,7 @@ public class SequenceVersion implements Sequence {
 	@Override
 	public List<SavoirAssocie> getSavoirAssocies() {
 		if (savoirAssocies == null)
-			savoirAssocies = (ArrayList<SavoirAssocie>) ((ArrayList<SavoirAssocie>) previousVersion.getSavoirAssocies())
+			savoirAssocies = (ArrayList<SavoirAssocie>) ((ArrayList<SavoirAssocie>) getParent().getSavoirAssocies())
 					.clone();
 		return savoirAssocies;
 	}
@@ -94,7 +91,7 @@ public class SequenceVersion implements Sequence {
 	public List<CompetenceIntermediaire> getCompetenceIntermediaires() {
 
 		if (competenceIntermediaires == null)
-			competenceIntermediaires = (ArrayList<CompetenceIntermediaire>) ((ArrayList<CompetenceIntermediaire>) previousVersion
+			competenceIntermediaires = (ArrayList<CompetenceIntermediaire>) ((ArrayList<CompetenceIntermediaire>) getParent()
 					.getCompetenceIntermediaires()).clone();
 		return competenceIntermediaires;
 	}
@@ -115,15 +112,14 @@ public class SequenceVersion implements Sequence {
 	@Override
 	public List<Activite_1> getActivites() {
 		if (activites == null)
-			activites = (ArrayList<Activite_1>) ((ArrayList<Activite_1>) previousVersion.getActivites()).clone();
+			activites = (ArrayList<Activite_1>) ((ArrayList<Activite_1>) getParent().getActivites()).clone();
 		return activites;
 	}
 
 	public SequenceVersion(String titre, String classe, Referentiel referentiel, Auteur auteur) throws Exception {
 		super();
-		firstSequence = new SequenceImpl(titre, referentiel);
-		previousVersion = firstSequence;
-		numVersion = 1;
+		this.firstSequence = new SequenceImpl(titre, referentiel);
+		this.numVersion = 1;
 		setAuteur(auteur);
 		setClasse(classe);
 		setVisible(false);
@@ -134,8 +130,7 @@ public class SequenceVersion implements Sequence {
 
 	public SequenceVersion(SequenceVersion previousVersion) throws Exception {
 		super();
-		this.previous = previousVersion;
-		this.previousVersion = previousVersion;
+		this.previousParent = previousVersion;
 		this.firstSequence = previousVersion.firstSequence;
 		setNumVersion(previousVersion.firstSequence);
 		setVisible(false);
@@ -143,8 +138,11 @@ public class SequenceVersion implements Sequence {
 		previousVersion.lock();
 	}
 
-	public SequenceVersion getParent() {
-		return previous;
+	public Sequence getParent() {
+		if (previousParent != null)
+			return previousParent;
+		else
+			return getFirstSequence();
 	}
 
 	public SequenceImpl getFirstSequence() {
@@ -163,7 +161,7 @@ public class SequenceVersion implements Sequence {
 
 	@Override
 	public String getClasse() {
-		return (classe != null) ? classe : previousVersion.getClasse();
+		return (classe != null) ? classe : getParent().getClasse();
 	}
 
 	@Override
@@ -184,13 +182,26 @@ public class SequenceVersion implements Sequence {
 
 	@Override
 	public Auteur getAuteur() {
-		return (auteur != null) ? auteur : previousVersion.getAuteur();
+
+		if (this.auteur != null)
+			return this.auteur;
+		else if (getParent() != null)
+			return getParent().getAuteur();
+		else
+			return null;
+
 	}
 
 	@Override
 	public String getProblematique() {
 
-		return (problematique != null) ? problematique : previousVersion.getProblematique();
+		if (this.problematique != null)
+			return this.problematique;
+		else if (getParent() != null)
+			return getParent().getProblematique();
+		else
+			return null;
+
 	}
 
 	@Override
@@ -201,8 +212,12 @@ public class SequenceVersion implements Sequence {
 
 	@Override
 	public String getPrerequis() {
-
-		return (prerequis != null) ? prerequis : previousVersion.getPrerequis();
+		if (this.prerequis != null)
+			return this.prerequis;
+		else if (getParent() != null)
+			return getParent().getPrerequis();
+		else
+			return null;
 	}
 
 	@Override
@@ -213,7 +228,12 @@ public class SequenceVersion implements Sequence {
 
 	@Override
 	public String getContexte() {
-		return (this.contexte != null) ? this.contexte : previousVersion.getContexte();
+		if (this.contexte != null)
+			return this.contexte;
+		else if (getParent() != null)
+			return getParent().getContexte();
+		else
+			return null;
 	}
 
 	@Override
@@ -223,9 +243,12 @@ public class SequenceVersion implements Sequence {
 
 	@Override
 	public String getElementsARetenir() {
-		String element = (elementsARetenir != null) ? elementsARetenir
-				: (previousVersion != null) ? previousVersion.getElementsARetenir() : null;
-		return element;
+		if (this.elementsARetenir != null)
+			return this.elementsARetenir;
+		else if (getParent() != null)
+			return getParent().getElementsARetenir();
+		else
+			return null;
 	}
 
 	@Override
@@ -236,8 +259,12 @@ public class SequenceVersion implements Sequence {
 
 	@Override
 	public String getLien() {
-
-		return (lien != null) ? lien : previousVersion.getLien();
+		if (this.lien != null)
+			return this.lien;
+		else if (getParent() != null)
+			return getParent().getLien();
+		else
+			return null;
 	}
 
 	@Override
@@ -248,8 +275,12 @@ public class SequenceVersion implements Sequence {
 
 	@Override
 	public String getEval() {
-
-		return (Eval != null) ? Eval : previousVersion.getEval();
+		if (this.Eval != null)
+			return this.Eval;
+		else if (getParent() != null)
+			return getParent().getEval();
+		else
+			return null;
 	}
 
 	@Override
@@ -321,8 +352,6 @@ public class SequenceVersion implements Sequence {
 	@Override
 	public void addActivite(Activite_1 activite) {
 		getActivites().add(activite);
-		
-
 	}
 
 	@Override

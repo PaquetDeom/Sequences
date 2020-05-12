@@ -1,5 +1,6 @@
 package fr.paquet.ihm.ToolBar;
 
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 
 import javax.swing.ImageIcon;
@@ -33,7 +34,10 @@ public class ToolBarAlCenter extends JButtonToolBar {
 
 	@Override
 	public ImageIcon getIcon() {
-		return new ImageIcon("./target/classes/images/icons/icons8-centré-50.png");
+
+		ImageIcon icon = new ImageIcon("./target/classes/images/icons/icons8-centré-50.png");
+		return new ImageIcon(icon.getImage().getScaledInstance(taille(), taille(), Image.SCALE_DEFAULT));
+
 	}
 
 }

@@ -6,6 +6,7 @@ import javax.swing.*;
 import javax.swing.text.BadLocationException;
 
 import fr.paquet.ihm.style.StyleBorder;
+import main.MainFrame;
 
 public class SequencePanelEntetePbTemps extends JPanel {
 
@@ -41,11 +42,18 @@ public class SequencePanelEntetePbTemps extends JPanel {
 		this.sequencePanelEntete = sequencePanelEntete;
 	}
 
-	private SequencePanelEntetePbTempsProblématique sequencePanelEntetePbTempsProblematique = null;
+	private SequencePanelEntetePbTempsProblematique sequencePanelEntetePbTempsProblematique = null;
 
-	private SequencePanelEntetePbTempsProblématique getSequencePanelEntetePbTempsProblematique() throws BadLocationException {
-		if (sequencePanelEntetePbTempsProblematique == null)
-			sequencePanelEntetePbTempsProblematique = new SequencePanelEntetePbTempsProblématique(this);
+	private SequencePanelEntetePbTempsProblematique getSequencePanelEntetePbTempsProblematique()
+			throws BadLocationException {
+		if (sequencePanelEntetePbTempsProblematique == null) {
+			if (MainFrame.getUniqInstance().getSequenceVersion().getProblematique() == null)
+				sequencePanelEntetePbTempsProblematique = new SequencePanelEntetePbTempsProblematique(this);
+			else
+				sequencePanelEntetePbTempsProblematique = new SequencePanelEntetePbTempsProblematique(
+						MainFrame.getUniqInstance().getSequenceVersion().getProblematique(), this);
+		}
+
 		return sequencePanelEntetePbTempsProblematique;
 	}
 

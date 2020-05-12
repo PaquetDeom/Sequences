@@ -8,6 +8,7 @@ import javax.swing.text.BadLocationException;
 
 import fr.paquet.dataBase.Connect;
 import fr.paquet.ihm.commun.CommunJLabelJTextPaneVertical;
+import fr.paquet.ihm.style.StyleTextDocument;
 import main.MainFrame;
 
 public class SequencePanelCenterPrésentation extends CommunJLabelJTextPaneVertical {
@@ -16,11 +17,19 @@ public class SequencePanelCenterPrésentation extends CommunJLabelJTextPaneVerti
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private SequencePanelCenter sequencePanelCenter = null;
 
-	public SequencePanelCenterPrésentation(SequencePanelCenter sequencePanelCenter)
+	public SequencePanelCenterPrésentation(SequencePanelCenter sequencePanelCenter) throws BadLocationException {
+		this(null, sequencePanelCenter);
+
+	}
+
+	public SequencePanelCenterPrésentation(String text, SequencePanelCenter sequencePanelCenter)
 			throws BadLocationException {
-		super(null, "Présentation du contexte professionnel", null);
+		super(text, "Présentation du contexte professionnel", StyleTextDocument.SAISI.getStyleText());
 
+		//set des composants
+		setSequencePanelCenter(sequencePanelCenter);
 	}
 
 	@Override
@@ -46,8 +55,7 @@ public class SequencePanelCenterPrésentation extends CommunJLabelJTextPaneVerti
 
 	@Override
 	public void focusGained(FocusEvent arg0) {
-		
-		
+
 	}
 
 	@Override
@@ -58,6 +66,14 @@ public class SequencePanelCenterPrésentation extends CommunJLabelJTextPaneVerti
 			if (getTextPane().getText() != null && !getTextPane().getText().equals(""))
 				MainFrame.getUniqInstance().getSequenceVersion().setContexte(getTextPane().getText());
 
+	}
+
+	public SequencePanelCenter getSequencePanelCenter() {
+		return sequencePanelCenter;
+	}
+
+	private void setSequencePanelCenter(SequencePanelCenter sequencePanelCenter) {
+		this.sequencePanelCenter = sequencePanelCenter;
 	}
 
 }

@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.text.BadLocationException;
 
 import fr.paquet.ihm.style.StyleBorder;
+import main.MainFrame;
 
 public class SequencePanelCenter extends JPanel {
 
@@ -17,7 +18,7 @@ public class SequencePanelCenter extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private SequencePanel sequencePanel = null;
 
-	public SequencePanelCenter(SequencePanel sequencePanel) throws BadLocationException{
+	public SequencePanelCenter(SequencePanel sequencePanel) throws BadLocationException {
 		super();
 
 		// set des éléments
@@ -52,24 +53,41 @@ public class SequencePanelCenter extends JPanel {
 	private SequencePanelCenterPrérequis sequencePanelCenterPrérequis = null;
 
 	private SequencePanelCenterPrérequis getSequencePanelCenterPrérequis() throws BadLocationException {
-		if (sequencePanelCenterPrérequis == null)
-			sequencePanelCenterPrérequis = new SequencePanelCenterPrérequis("Prérequis Elèves", this);
+		if (sequencePanelCenterPrérequis == null) {
+			if (MainFrame.getUniqInstance().getSequenceVersion().getPrerequis() == null)
+				sequencePanelCenterPrérequis = new SequencePanelCenterPrérequis(this);
+			else
+				sequencePanelCenterPrérequis = new SequencePanelCenterPrérequis(
+						MainFrame.getUniqInstance().getSequenceVersion().getPrerequis(), this);
+		}
+
 		return sequencePanelCenterPrérequis;
 	}
 
 	private SequencePanelCenterPrésentation sequencePanelCenterPresentation = null;
 
 	private SequencePanelCenterPrésentation getSequencePanelCenterPresentation() throws BadLocationException {
-		if (sequencePanelCenterPresentation == null)
-			sequencePanelCenterPresentation = new SequencePanelCenterPrésentation( this);
+		if (sequencePanelCenterPresentation == null) {
+			if (MainFrame.getUniqInstance().getSequenceVersion().getContexte() == null)
+				sequencePanelCenterPresentation = new SequencePanelCenterPrésentation(this);
+			else
+				sequencePanelCenterPresentation = new SequencePanelCenterPrésentation(
+						MainFrame.getUniqInstance().getSequenceVersion().getContexte(), this);
+		}
+
 		return sequencePanelCenterPresentation;
 	}
 
 	private SequencePanelCenterElements sequencePanelCenterElements = null;
 
 	private SequencePanelCenterElements getSequencePanelCenterElements() throws BadLocationException {
-		if (sequencePanelCenterElements == null)
-			sequencePanelCenterElements = new SequencePanelCenterElements("Eléments à retenir", this);
+		if (sequencePanelCenterElements == null) {
+			if (MainFrame.getUniqInstance().getSequenceVersion().getElementsARetenir() == null)
+				sequencePanelCenterElements = new SequencePanelCenterElements(this);
+			else
+				sequencePanelCenterElements = new SequencePanelCenterElements(
+						MainFrame.getUniqInstance().getSequenceVersion().getElementsARetenir(), this);
+		}
 		return sequencePanelCenterElements;
 	}
 

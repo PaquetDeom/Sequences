@@ -5,9 +5,10 @@ import java.awt.GridBagLayout;
 
 import java.awt.Insets;
 
-
 import javax.swing.JPanel;
 import javax.swing.text.BadLocationException;
+
+import main.MainFrame;
 
 public class SequencePanelCenterLienEval extends JPanel {
 
@@ -44,17 +45,27 @@ public class SequencePanelCenterLienEval extends JPanel {
 	private SequencePanelCenterLienEvalLien sequencePanelCenterLienEvalLien = null;
 
 	private SequencePanelCenterLienEvalLien getSequencePanelCenterLienEvalLien() throws BadLocationException {
-		if (sequencePanelCenterLienEvalLien == null)
-			sequencePanelCenterLienEvalLien = new SequencePanelCenterLienEvalLien(this,
-					"Liens avec les autres disciplines");
+		if (sequencePanelCenterLienEvalLien == null) {
+			if (MainFrame.getUniqInstance().getSequenceVersion().getLien() == null)
+				sequencePanelCenterLienEvalLien = new SequencePanelCenterLienEvalLien(this);
+			else
+				sequencePanelCenterLienEvalLien = new SequencePanelCenterLienEvalLien(
+						MainFrame.getUniqInstance().getSequenceVersion().getLien(), this);
+		}
+
 		return sequencePanelCenterLienEvalLien;
 	}
 
 	private SequencePanelCenterLienEvalEval sequencePanelCenterLienEvalEval = null;
 
 	private SequencePanelCenterLienEvalEval getSequencePanelCenterLienEvalEval() throws BadLocationException {
-		if (sequencePanelCenterLienEvalEval == null)
-			sequencePanelCenterLienEvalEval = new SequencePanelCenterLienEvalEval(this, "Modalités d'évaluation");
+		if (sequencePanelCenterLienEvalEval == null) {
+			if (MainFrame.getUniqInstance().getSequenceVersion().getEval() == null)
+				sequencePanelCenterLienEvalEval = new SequencePanelCenterLienEvalEval(this);
+			else
+				sequencePanelCenterLienEvalEval = new SequencePanelCenterLienEvalEval(
+						MainFrame.getUniqInstance().getSequenceVersion().getEval(), this);
+		}
 		return sequencePanelCenterLienEvalEval;
 	}
 

@@ -1,5 +1,6 @@
 package fr.paquet.ihm.ToolBar;
 
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 
 import javax.swing.ImageIcon;
@@ -13,7 +14,7 @@ public class ToolBarCopy extends JButtonToolBar {
 
 	public ToolBarCopy(SequenceToolBar sequenceToolBar) {
 		super(null, sequenceToolBar);
-		
+
 	}
 
 	@Override
@@ -26,7 +27,9 @@ public class ToolBarCopy extends JButtonToolBar {
 	@Override
 	public ImageIcon getIcon() {
 
-		return new ImageIcon("./target/classes/images/icons/copy.png");
+		ImageIcon icon = new ImageIcon("./target/classes/images/icons/copy.png");
+		return new ImageIcon(icon.getImage().getScaledInstance(taille(), taille(), Image.SCALE_DEFAULT));
+
 	}
 
 }

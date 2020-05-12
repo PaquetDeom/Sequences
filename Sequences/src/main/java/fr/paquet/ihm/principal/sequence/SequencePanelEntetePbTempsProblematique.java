@@ -8,9 +8,10 @@ import javax.swing.text.BadLocationException;
 
 import fr.paquet.dataBase.Connect;
 import fr.paquet.ihm.commun.CommunJLabelJTextPaneVertical;
+import fr.paquet.ihm.style.StyleTextDocument;
 import main.MainFrame;
 
-public class SequencePanelEntetePbTempsProblématique extends CommunJLabelJTextPaneVertical {
+public class SequencePanelEntetePbTempsProblematique extends CommunJLabelJTextPaneVertical {
 
 	/**
 	 * 
@@ -18,13 +19,18 @@ public class SequencePanelEntetePbTempsProblématique extends CommunJLabelJTextP
 	private static final long serialVersionUID = 1L;
 	private SequencePanelEntetePbTemps sequencePanelEntetePbTemps = null;
 
-	public SequencePanelEntetePbTempsProblématique(SequencePanelEntetePbTemps sequencePanelEntetePbTemps)
+	public SequencePanelEntetePbTempsProblematique(SequencePanelEntetePbTemps sequencePanelEntetePbTemps)
 			throws BadLocationException {
-		super(null, "Problématique", null);
+		this(null, sequencePanelEntetePbTemps);
+
+	}
+
+	public SequencePanelEntetePbTempsProblematique(String text, SequencePanelEntetePbTemps sequencePanelEntetePbTemps)
+			throws BadLocationException {
+		super(text, "Problématique", StyleTextDocument.SAISI.getStyleText());
 
 		// setteur
 		setSequencePanelEntetePbTemps(sequencePanelEntetePbTemps);
-
 	}
 
 	public SequencePanelEntetePbTemps getSequencePanelEntetePbTemps() {
