@@ -5,9 +5,11 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import javax.swing.JPanel;
+import javax.swing.text.BadLocationException;
 
 import fr.paquet.ihm.commun.Title;
 import fr.paquet.ihm.style.StyleBorder;
+import main.MainFrame;
 
 public class SequencePanelButtomComp extends JPanel {
 
@@ -17,7 +19,7 @@ public class SequencePanelButtomComp extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private SequencePanel sequencePanel = null;
 
-	public SequencePanelButtomComp(SequencePanel sequencePanel) {
+	public SequencePanelButtomComp(SequencePanel sequencePanel) throws BadLocationException {
 		super();
 
 		// set des compposants
@@ -28,11 +30,9 @@ public class SequencePanelButtomComp extends JPanel {
 
 		// Gestion de l'affichage
 
-		add(getSequencePanelButtomCompTitre(), new GridBagConstraints(0, 0, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
-				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-		add(getSequencePanelButtomCompJPanelJlabel(), new GridBagConstraints(0, 1, 1, 1, 1.0, 0,
+		add(getSequencePanelButtomCompCompSavoir(), new GridBagConstraints(0, 0, 1, 1, 1.0, 0.0,
 				GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-		add(getSequencePanelButtomCompButton(), new GridBagConstraints(0, 2, 1, 1, 1, 0, GridBagConstraints.CENTER,
+		add(getSequencePanelButtomCompButton(), new GridBagConstraints(0, 1, 1, 1, 1, 0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
 		// Attribut du panel
@@ -40,20 +40,21 @@ public class SequencePanelButtomComp extends JPanel {
 
 	}
 
-	private SequencePanelButtomCompJPanelJlabel sequencePanelButtomCompJPanelJlabel = null;
+	private SequencePanelButtomCompCompSavoir sequencePanelButtomCompCompSavoir = null;
 
-	public SequencePanelButtomCompJPanelJlabel getSequencePanelButtomCompJPanelJlabel() {
-		if (sequencePanelButtomCompJPanelJlabel == null)
-			sequencePanelButtomCompJPanelJlabel = new SequencePanelButtomCompJPanelJlabel(this);
-		return sequencePanelButtomCompJPanelJlabel;
-	}
-
-	private SequencePanelButtomCompTitre sequencePanelButtomCompTitre = null;
-
-	private SequencePanelButtomCompTitre getSequencePanelButtomCompTitre() {
-		if (sequencePanelButtomCompTitre == null)
-			sequencePanelButtomCompTitre = new SequencePanelButtomCompTitre(Title.COMPETENCES, this);
-		return sequencePanelButtomCompTitre;
+	public SequencePanelButtomCompCompSavoir getSequencePanelButtomCompCompSavoir() throws BadLocationException {
+		if (sequencePanelButtomCompCompSavoir == null) {
+			if (MainFrame.getUniqInstance().getSequenceVersion().getCompetenceIntermediaires().isEmpty())
+				sequencePanelButtomCompCompSavoir = new SequencePanelButtomCompCompSavoir(this);
+			else if (MainFrame.getUniqInstance().getSequenceVersion().getSavoirAssocies().isEmpty())
+				sequencePanelButtomCompCompSavoir = new SequencePanelButtomCompCompSavoir(
+						MainFrame.getUniqInstance().getSequenceVersion().getCompetenceIntermediaires(), null, this);
+			else
+				sequencePanelButtomCompCompSavoir = new SequencePanelButtomCompCompSavoir(
+						MainFrame.getUniqInstance().getSequenceVersion().getCompetenceIntermediaires(),
+						MainFrame.getUniqInstance().getSequenceVersion().getSavoirAssocies(), this);
+		}
+		return sequencePanelButtomCompCompSavoir;
 	}
 
 	private SequencePanelButtomCompButton sequencePanelButtomCompButton = null;
@@ -72,10 +73,5 @@ public class SequencePanelButtomComp extends JPanel {
 	private void setSequencePanel(SequencePanel sequencePanel) {
 		this.sequencePanel = sequencePanel;
 	}
-
-	public void addCompetence() throws Exception {
-		getSequencePanelButtomCompJPanelJlabel().addCompetence();
-
-	}
-
+	
 }

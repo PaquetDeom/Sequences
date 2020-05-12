@@ -33,9 +33,10 @@ public class SequencePanel extends JPanel {
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 		add(new SequencePanelCenter(this), new GridBagConstraints(0, 3, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-		add(new SequencePanelButtomAct(this), new GridBagConstraints(0, 4, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
-				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-		add(new JPanel(), new GridBagConstraints(0, 5, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER,
+		// add(new SequencePanelButtomAct(this), new GridBagConstraints(0, 4, 1, 1, 1.0,
+		// 0.0, GridBagConstraints.CENTER,
+		// GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+		add(new JPanel(), new GridBagConstraints(0, 4, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
 		// attributs du panel
@@ -44,7 +45,7 @@ public class SequencePanel extends JPanel {
 
 	private SequencePanelButtomComp sequencePanelButtomComp = null;
 
-	public SequencePanelButtomComp getSequencePanelButtomComp() {
+	public SequencePanelButtomComp getSequencePanelButtomComp() throws BadLocationException {
 		if (sequencePanelButtomComp == null)
 			sequencePanelButtomComp = new SequencePanelButtomComp(this);
 		return sequencePanelButtomComp;

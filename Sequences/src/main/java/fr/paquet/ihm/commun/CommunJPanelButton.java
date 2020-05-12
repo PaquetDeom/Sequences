@@ -1,10 +1,11 @@
 package fr.paquet.ihm.commun;
 
-import java.awt.GridLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+
+import java.awt.Insets;
 
 import javax.swing.*;
-
-
 
 public abstract class CommunJPanelButton extends JPanel {
 
@@ -13,20 +14,21 @@ public abstract class CommunJPanelButton extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	protected JButton button = null;
-	private int column = 0;
 
-	protected CommunJPanelButton(String titleButton, int column)  {
+	protected CommunJPanelButton(String titleButton) {
 		super();
 
 		// setteur des objet
 		setButton(new JButton(titleButton));
-		setColumn(column);
 
 		// ajout du layout
-		setLayout(new GridLayout(0, column, 0, 0));
+		setLayout(new GridBagLayout());
 
 		// gestion des contrainte d'affichage
-		add(getButton());
+		add(new JPanel(), new GridBagConstraints(0, 0, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
+				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+		add(getButton(), new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER,
+				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
 		// attribut du panel
 	}
@@ -36,13 +38,5 @@ public abstract class CommunJPanelButton extends JPanel {
 	}
 
 	protected abstract void setButton(JButton button);
-
-	protected int getColumn() {
-		return column;
-	}
-
-	private void setColumn(int column) {
-		this.column = column;
-	}
 
 }

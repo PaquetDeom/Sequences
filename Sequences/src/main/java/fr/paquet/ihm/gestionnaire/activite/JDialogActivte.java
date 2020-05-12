@@ -9,12 +9,14 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.MutableTreeNode;
 
 import fr.paquet.activite.Activite_1;
+import fr.paquet.dataBase.Connect;
 import fr.paquet.ihm.alert.AlertListener;
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.ihm.commun.gestionnaire.JDialogGestion;
 import fr.paquet.ihm.principal.activite.OngletActivite;
 import fr.paquet.sequence.SequenceVersion;
+import main.MainFrame;
 import main.MainOnglet;
 
 public class JDialogActivte extends JDialogGestion implements AlertListener {
@@ -57,6 +59,25 @@ public class JDialogActivte extends JDialogGestion implements AlertListener {
 		} catch (Exception e) {
 			e.printStackTrace();
 			new AlertWindow(AlertType.ERREUR, e.getMessage());
+		}
+
+		if (button.getText().equals("Ajouter une activite")) {
+			try {
+
+				if (MainFrame.getUniqInstance().getSequenceVersion()
+						.isModifiable(Connect.getPConnexion().getUser().getAuteur())) {
+
+					new Activite_1(MainFrame.getUniqInstance().getSequenceVersion());
+
+					MainOnglet.getUniqInstance().affiche();
+
+					this.dispose();
+				} else
+					new AlertWindow(AlertType.ATTENTION, "La séquence n'est pas modifiable");
+			} catch (Exception e) {
+				new AlertWindow(AlertType.ERREUR, "L'activité n'a pas été crée");
+				e.printStackTrace();
+			}
 		}
 
 	}
@@ -122,6 +143,10 @@ public class JDialogActivte extends JDialogGestion implements AlertListener {
 		JButton buttonOui = new JButton("Fermer");
 		buttonOui.addActionListener(this);
 
+		JButton buttonAdd = new JButton("Ajouter une activite");
+		buttonAdd.addActionListener(this);
+
+		getButtons().add(buttonAdd);
 		getButtons().add(buttonOui);
 
 	}

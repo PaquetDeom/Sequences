@@ -24,7 +24,7 @@ public class ActiviteCompButton extends CommunJPanelButton {
 
 	public ActiviteCompButton(String titleButton, int column,
 			ActivitePanelCompetencesSavoirs activitePanelCompetencesSavoirs) {
-		super(titleButton, column);
+		super(titleButton);
 
 		// set des composants
 		setActivitePanelCompetencesSavoirs(activitePanelCompetencesSavoirs);

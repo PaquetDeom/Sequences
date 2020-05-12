@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.*;
+import javax.swing.text.BadLocationException;
 
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
@@ -127,11 +128,20 @@ public class JDialogCompetence extends JDialogGestion {
 
 		if (button.getText().equals("Valider")) {
 			// set les listes
-			getSequenceVersion().setCompetenceIntermediaires(getCompIntsSelect());
+			getSequenceVersion().setCompetenceIntermediaires(rangeComp(getCompIntsSelect()));
 			getSequenceVersion().setSavoirAssocies(getSavoirAssocieSelected());
 
 			// affiche les composants
-			getSequencePanel().getSequencePanelButtomComp().getSequencePanelButtomCompJPanelJlabel().affiche();
+			try {
+				getSequencePanel().getSequencePanelButtomComp().getSequencePanelButtomCompCompSavoir()
+						.setCompetenceIntermediaires(rangeComp(getCompIntsSelect()));
+				getSequencePanel().getSequencePanelButtomComp().getSequencePanelButtomCompCompSavoir()
+						.setSavoirAssocie(getSavoirAssocieSelected());
+				getSequencePanel().getSequencePanelButtomComp().getSequencePanelButtomCompCompSavoir().affiche();
+			} catch (BadLocationException e) {
+				e.printStackTrace();
+				new AlertWindow(AlertType.ERREUR, "Affichage impossible");
+			}
 
 			this.dispose();
 		}
@@ -139,6 +149,27 @@ public class JDialogCompetence extends JDialogGestion {
 		if (button.getText().equals("Annuler"))
 			this.dispose();
 
+	}
+
+	private List<CompetenceIntermediaire> rangeComp(List<CompetenceIntermediaire> compIntsSelect2) {
+		List<CompetenceIntermediaire> compInts = new ArrayList<CompetenceIntermediaire>();
+		List<Competence> comps = new ArrayList<Competence>();
+
+		for (CompetenceIntermediaire comp : compIntsSelect2) {
+			Competence cp = comp.getCompetence();
+			if (!comps.contains(cp))
+				comps.add(cp);
+		}
+
+		for (Competence comp : comps) {
+			for (CompetenceIntermediaire compa : compIntsSelect2) {
+				if (compa.getCompetence() == comp)
+					compInts.add(compa);
+			}
+
+		}
+
+		return compInts;
 	}
 
 	@Override

@@ -23,7 +23,7 @@ public class SequencePanelButtomCompButton extends CommunJPanelButton {
 
 	public SequencePanelButtomCompButton(String titleButton, int column,
 			SequencePanelButtomComp sequencePanelButtomComp) {
-		super(titleButton, column);
+		super(titleButton);
 
 		// setteur des objets
 		setSequencePanelButtomComp(sequencePanelButtomComp);

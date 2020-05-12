@@ -10,7 +10,7 @@ public enum Title {
 	public int getcolumn() {
 		switch (this) {
 		case COMPETENCES:
-			return 3;
+			return 1;
 		case ACTIVITES:
 			return 5;
 		case STRATEGIE:
@@ -24,9 +24,8 @@ public enum Title {
 		switch (this) {
 		case COMPETENCES:
 			List<String> values = new ArrayList<String>();
-			values.add("Compétences");
-			values.add("Indicateurs de performance");
-			values.add("Savoirs associés");
+			values.add("Compétences / Indicateur de Performance");
+
 			return values;
 		case ACTIVITES:
 			List<String> value = new ArrayList<String>();

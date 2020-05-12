@@ -22,7 +22,7 @@ public class SequencePanelButtomActButton extends CommunJPanelButton {
 	private SequencePanelButtomAct sequencePanelButtomAct = null;
 
 	public SequencePanelButtomActButton(String titleButton, int column, SequencePanelButtomAct sequencePanelButtonAct) {
-		super(titleButton, column);
+		super(titleButton);
 
 		// setteur des objets
 		setSequencePanelButtomAct(sequencePanelButtonAct);

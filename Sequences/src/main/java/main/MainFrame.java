@@ -217,7 +217,8 @@ public class MainFrame extends JFrame implements WindowListener, AlertListener {
 				Main.FermetureAvecErreur();
 			}
 		}
-
+		if (button.equals("Non"))
+			Main.FermetureSansErreur();
 	}
 
 }

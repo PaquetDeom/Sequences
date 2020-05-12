@@ -79,6 +79,9 @@ public class ActionQuitter extends ActionBDA implements AlertListener, PropertyC
 			}
 		}
 
+		if (button.equals("Non"))
+			Main.FermetureSansErreur();
+
 	}
 
 	@Override

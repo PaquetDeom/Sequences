@@ -1,6 +1,9 @@
 package fr.paquet.ihm.commun;
 
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -21,8 +24,9 @@ public class CommunTitle extends JPanel {
 		super();
 
 		// creation du layout
-		setLayout(new GridLayout(0, title.getcolumn(), 0, 0));
-
+		// setLayout(new GridLayout(0, title.getcolumn(), 0, 0));
+		setLayout(new GridBagLayout());
+		int i = 0;
 		for (String a : title.getTitle()) {
 			JLabel label = new JLabel(a);
 			label.setHorizontalAlignment(SwingConstants.CENTER);
@@ -31,7 +35,9 @@ public class CommunTitle extends JPanel {
 			panel.setBorder(StyleBorder.BORDERTITLEAREA.getBorder());
 			panel.setBackground(StyleColor.PANELTITLE.getColor());
 			panel.add(label);
-			add(panel);
+			add(panel, new GridBagConstraints(i, 0, 1, 1, 1 / title.getcolumn(), 0.0, GridBagConstraints.CENTER,
+					GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+			i++;
 		}
 
 		// attributs du panel
