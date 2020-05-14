@@ -7,6 +7,7 @@ import java.beans.PropertyChangeEvent;
 import javax.swing.text.BadLocationException;
 
 import fr.paquet.ihm.style.StyleTextDocument;
+import fr.paquet.referentiel.SavoirAssocie;
 
 public class JPanelSavoir extends CommunJLabelJTextPaneVertical {
 
@@ -17,29 +18,41 @@ public class JPanelSavoir extends CommunJLabelJTextPaneVertical {
 	private JTableCompetences jTableCompetences = null;
 
 	public JPanelSavoir(JTableCompetences jTableCompetences) throws BadLocationException {
-		this(null, jTableCompetences);
-
-	}
-
-	public JPanelSavoir(String text, JTableCompetences jTableCompetences) throws BadLocationException {
-		super(text, "Savoirs associes", StyleTextDocument.COMPETENCE.getStyleText());
+		super(null, "Savoirs associes", null);
 
 		// set des composants
 		setjTableCompetences(jTableCompetences);
+
+		// insertion du text
+		insertText();
+	}
+
+	private void insertText() throws BadLocationException {
+
+		int pos = 0;
+
+		if (getjTableCompetences().getSavoirAssocies() != null && !getjTableCompetences().getSavoirAssocies().isEmpty())
+
+			for (SavoirAssocie sav : getjTableCompetences().getSavoirAssocies()) {
+
+				getTextPane().getStyledDocument().insertString(pos, sav.toString() + "\n",
+						StyleTextDocument.COMPETENCE.getStyleText());
+				pos = pos + getTextPane().getStyledDocument().getLength();
+			}
 	}
 
 	@Override
-	public void propertyChange(PropertyChangeEvent arg0) {
+	public void propertyChange(PropertyChangeEvent event) {
 
 	}
 
 	@Override
-	public void focusGained(FocusEvent arg0) {
+	public void focusGained(FocusEvent event) {
 
 	}
 
 	@Override
-	public void focusLost(FocusEvent arg0) {
+	public void focusLost(FocusEvent event) {
 
 	}
 

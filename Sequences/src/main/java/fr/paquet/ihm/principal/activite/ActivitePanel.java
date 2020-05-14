@@ -65,7 +65,7 @@ public class ActivitePanel extends JPanel {
 
 	private ActivitePanelCompetencesSavoirs activitePanelCompetencesSavoirs = null;
 
-	public ActivitePanelCompetencesSavoirs getActivitePanelCompetencesSavoirs() {
+	public ActivitePanelCompetencesSavoirs getActivitePanelCompetencesSavoirs() throws BadLocationException {
 		if (activitePanelCompetencesSavoirs == null)
 			activitePanelCompetencesSavoirs = new ActivitePanelCompetencesSavoirs(this);
 		return activitePanelCompetencesSavoirs;

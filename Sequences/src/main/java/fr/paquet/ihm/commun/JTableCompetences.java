@@ -21,7 +21,6 @@ public abstract class JTableCompetences extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private List<CompetenceIntermediaire> competenceIntermediaires = null;
 	private List<SavoirAssocie> savoirAssocie = null;
-	private String savoirAssocies = null;
 
 	public JTableCompetences(List<CompetenceIntermediaire> competenceIntermediaires, List<SavoirAssocie> savoirAssocies)
 			throws BadLocationException {
@@ -53,30 +52,32 @@ public abstract class JTableCompetences extends JPanel {
 		jPanelSavoir = null;
 		jPanelCompetence = null;
 
-		if (getSavoirAssociesString() != null)
+		if (getSavoirAssocies() != null) {
 			add(getJPanelTiTle(), new GridBagConstraints(0, 0, 1, 1, 0.6, 0.0, GridBagConstraints.CENTER,
 					GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-		else
-			add(getJPanelTiTle(), new GridBagConstraints(0, 0, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
-					GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-		if (getCompetenceIntermediaires() != null)
-			add(getJPanelCompetence(), new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER,
-					GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-		if (getSavoirAssociesString() != null)
+			if (getCompetenceIntermediaires() != null)
+				add(getJPanelCompetence(), new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER,
+						GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 			add(getJPanelSavoir(), new GridBagConstraints(1, 0, 1, 3, 0.4, 1.0, GridBagConstraints.CENTER,
 					GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+		} else {
+			add(getJPanelTiTle(), new GridBagConstraints(0, 0, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
+					GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+			if (getCompetenceIntermediaires() != null)
+				add(getJPanelCompetence(), new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER,
+						GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+		}
+
 		revalidate();
 	}
 
 	private JPanelSavoir jPanelSavoir = null;
 
 	public JPanelSavoir getJPanelSavoir() throws BadLocationException {
-		if (jPanelSavoir == null) {
-			if (getSavoirAssociesString() != null)
-				jPanelSavoir = new JPanelSavoir(getSavoirAssociesString(), this);
-			else
-				jPanelSavoir = new JPanelSavoir(this);
-		}
+		if (jPanelSavoir == null)
+
+			jPanelSavoir = new JPanelSavoir(this);
+
 		return jPanelSavoir;
 	}
 
@@ -96,19 +97,6 @@ public abstract class JTableCompetences extends JPanel {
 		return jPanelCompetence;
 	}
 
-	public String getSavoirAssociesString() {
-		return savoirAssocies;
-	}
-
-	private void setSavoirAssociesString(List<SavoirAssocie> savoirAssocies) {
-		for (SavoirAssocie sav : savoirAssocies) {
-			if (this.savoirAssocies == null)
-				this.savoirAssocies = sav.toString();
-			else
-				this.savoirAssocies = this.savoirAssocies.concat(sav.toString());
-		}
-	}
-
 	public List<CompetenceIntermediaire> getCompetenceIntermediaires() {
 		return competenceIntermediaires;
 	}
@@ -119,7 +107,10 @@ public abstract class JTableCompetences extends JPanel {
 
 	public void setSavoirAssocie(List<SavoirAssocie> savoirAssocie) {
 		this.savoirAssocie = savoirAssocie;
-		setSavoirAssociesString(this.savoirAssocie);
+	}
+
+	public List<SavoirAssocie> getSavoirAssocies() {
+		return savoirAssocie;
 	}
 
 }

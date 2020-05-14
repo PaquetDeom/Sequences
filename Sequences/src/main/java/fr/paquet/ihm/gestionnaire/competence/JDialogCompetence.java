@@ -16,6 +16,7 @@ import fr.paquet.referentiel.Competence;
 import fr.paquet.referentiel.CompetenceIntermediaire;
 import fr.paquet.referentiel.SavoirAssocie;
 import fr.paquet.sequence.SequenceVersion;
+import main.MainOnglet;
 
 public class JDialogCompetence extends JDialogGestion {
 
@@ -32,13 +33,13 @@ public class JDialogCompetence extends JDialogGestion {
 		setSequencePanel(sequencePanel);
 
 		if (!getSequenceVersion().getCompetenceIntermediaires().isEmpty()) {
-			compIntsSelect = (ArrayList<CompetenceIntermediaire>) ((ArrayList<CompetenceIntermediaire>) getSequenceVersion()
+			compIntsSelect = (List<CompetenceIntermediaire>) ((ArrayList<CompetenceIntermediaire>) getSequenceVersion()
 					.getCompetenceIntermediaires()).clone();
 			setButtomPanel();
 			affiche();
 			if (!getSequenceVersion().getSavoirAssocies().isEmpty())
 				setSavoirAssocieSelected(
-						(ArrayList<SavoirAssocie>) ((ArrayList<SavoirAssocie>) getSequenceVersion().getSavoirAssocies())
+						(List<SavoirAssocie>) ((ArrayList<SavoirAssocie>) getSequenceVersion().getSavoirAssocies())
 								.clone());
 
 		}
@@ -136,8 +137,9 @@ public class JDialogCompetence extends JDialogGestion {
 				getSequencePanel().getSequencePanelButtomComp().getSequencePanelButtomCompCompSavoir()
 						.setCompetenceIntermediaires(rangeComp(getCompIntsSelect()));
 				getSequencePanel().getSequencePanelButtomComp().getSequencePanelButtomCompCompSavoir()
-						.setSavoirAssocie(getSavoirAssocieSelected());
+						.setSavoirAssocie(getSequenceVersion().getSavoirAssocies());
 				getSequencePanel().getSequencePanelButtomComp().getSequencePanelButtomCompCompSavoir().affiche();
+				MainOnglet.getUniqInstance().affiche();
 			} catch (BadLocationException e) {
 				e.printStackTrace();
 				new AlertWindow(AlertType.ERREUR, "Affichage impossible");

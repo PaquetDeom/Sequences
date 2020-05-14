@@ -32,7 +32,7 @@ public class JDialogSavoir extends JDialogGestion {
 
 		if (!getjDialogCompetence().getSavoirAssocieSelected().isEmpty()) {
 
-			savAssSelect = (ArrayList<SavoirAssocie>) ((ArrayList<SavoirAssocie>) getjDialogCompetence()
+			savAssSelect = (List<SavoirAssocie>) ((ArrayList<SavoirAssocie>) getjDialogCompetence()
 					.getSavoirAssocieSelected()).clone();
 
 			setButtomPanel();

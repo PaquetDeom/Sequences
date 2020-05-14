@@ -5,7 +5,9 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import javax.swing.JPanel;
+import javax.swing.text.BadLocationException;
 
+import fr.paquet.activite.Activite_1;
 import fr.paquet.ihm.commun.Title;
 import fr.paquet.ihm.style.StyleBorder;
 
@@ -17,7 +19,7 @@ public class ActivitePanelCompetencesSavoirs extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private ActivitePanel activitePanel = null;
 
-	public ActivitePanelCompetencesSavoirs(ActivitePanel activitePanel)  {
+	public ActivitePanelCompetencesSavoirs(ActivitePanel activitePanel) throws BadLocationException {
 		super();
 
 		// set des composants
@@ -27,11 +29,9 @@ public class ActivitePanelCompetencesSavoirs extends JPanel {
 		setLayout(new GridBagLayout());
 
 		// Ajout des composants
-		add(getActiviteCompTitre(), new GridBagConstraints(0, 0, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
+		add(getActiviteCompCompSavoir(), new GridBagConstraints(0, 0, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-		add(getActiviteJPanelJlabel(), new GridBagConstraints(0, 1, 1, 1, 1.0, 0, GridBagConstraints.CENTER,
-				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-		add(getActiviteCompButton(), new GridBagConstraints(0, 2, 1, 1, 1, 0, GridBagConstraints.CENTER,
+		add(getActiviteCompButton(), new GridBagConstraints(0, 1, 1, 1, 1, 0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
 		// Attribut du panel
@@ -39,28 +39,32 @@ public class ActivitePanelCompetencesSavoirs extends JPanel {
 
 	}
 
+	private ActiviteCompCompSavoir activiteCompCompSavoir = null;
+
+	public ActiviteCompCompSavoir getActiviteCompCompSavoir() throws BadLocationException {
+		if (activiteCompCompSavoir == null) {
+			if (getActivite().getCompetencesIntermediaires().isEmpty())
+				activiteCompCompSavoir = new ActiviteCompCompSavoir(this);
+			else if (getActivite().getSavoirAssocies().isEmpty())
+				activiteCompCompSavoir = new ActiviteCompCompSavoir(getActivite().getCompetencesIntermediaires(), null,
+						this);
+			else
+				activiteCompCompSavoir = new ActiviteCompCompSavoir(getActivite().getCompetencesIntermediaires(),
+						getActivite().getSavoirAssocies(), this);
+		}
+		return activiteCompCompSavoir;
+	}
+
+	private Activite_1 getActivite() {
+		return getActivitePanel().getOngletActivite().getActivite();
+	}
+
 	private ActiviteCompButton activiteCompButton = null;
 
-	private ActiviteCompButton getActiviteCompButton() {
+	public ActiviteCompButton getActiviteCompButton() {
 		if (activiteCompButton == null)
 			activiteCompButton = new ActiviteCompButton("+ Compétence", Title.COMPETENCES.getcolumn(), this);
 		return activiteCompButton;
-	}
-
-	private ActiviteJPanelJlabel activiteJPanelJlabel = null;
-
-	public ActiviteJPanelJlabel getActiviteJPanelJlabel() {
-		if (activiteJPanelJlabel == null)
-			activiteJPanelJlabel = new ActiviteJPanelJlabel(this);
-		return activiteJPanelJlabel;
-	}
-
-	private ActiviteCompTitre activiteCompTitre = null;
-
-	private ActiviteCompTitre getActiviteCompTitre()  {
-		if (activiteCompTitre == null)
-			activiteCompTitre = new ActiviteCompTitre(Title.COMPETENCES, this);
-		return activiteCompTitre;
 	}
 
 	public ActivitePanel getActivitePanel() {
@@ -71,9 +75,5 @@ public class ActivitePanelCompetencesSavoirs extends JPanel {
 		this.activitePanel = activitePanel;
 	}
 
-	public void addCompetence() throws Exception {
-		getActiviteJPanelJlabel().addCompetence();
-		
-	}
-
+	
 }

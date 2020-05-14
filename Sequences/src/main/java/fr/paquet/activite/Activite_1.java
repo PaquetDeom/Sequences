@@ -1,5 +1,8 @@
 package fr.paquet.activite;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,18 +16,21 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import fr.paquet.dataBase.Factory.Activite.Activite_1Factory;
 import fr.paquet.dataBase.Factory.Activite.RessourceDocumentFactory;
 import fr.paquet.dataBase.Factory.Activite.RessourceRessourcesFactory;
 import fr.paquet.dataBase.Factory.Activite.RessourceTraceFactory;
+import fr.paquet.referentiel.Competence;
 import fr.paquet.referentiel.CompetenceIntermediaire;
+import fr.paquet.referentiel.Savoir;
 import fr.paquet.referentiel.SavoirAssocie;
 import fr.paquet.sequence.SequenceVersion;
 
 @Entity
 @Table(name = "ACTIVITE_1")
-public class Activite_1 {
+public class Activite_1 implements PropertyChangeListener {
 
 	@Id
 	@GeneratedValue
@@ -53,6 +59,10 @@ public class Activite_1 {
 		setSequence(sequence);
 		this.nActivite = getSequenceVersion().getActivites().size() + 1;
 		getSequenceVersion().addActivite(this);
+
+		// listener
+		getSequenceVersion().addPropertyChangeListener(this);
+
 		new Activite_1Factory().persist(this);
 
 	}
@@ -100,12 +110,33 @@ public class Activite_1 {
 	}
 
 	public void addSavoirAssocie(SavoirAssocie savoirAssocie) {
-		getSavoirAssocies().add(savoirAssocie);
+		Savoir sav = savoirAssocie.getSavoir();
+
+		for (CompetenceIntermediaire compint : getCompetencesIntermediaires()) {
+			Competence comp = compint.getCompetence();
+			if (comp.getSavoirs().contains(sav)) {
+				getSavoirAssocies().add(savoirAssocie);
+				break;
+			}
+		}
+
+	}
+
+	@Transient
+	private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+
+	public void addPropertyChangeListener(PropertyChangeListener listener) {
+		this.pcs.addPropertyChangeListener(listener);
+	}
+
+	public void removePropertyChangeListener(PropertyChangeListener listener) {
+		this.pcs.removePropertyChangeListener(listener);
 	}
 
 	public void setSavoirAssocies(List<SavoirAssocie> savoirAssocies) {
-
+		List<SavoirAssocie> old = this.savoirAssocies;
 		this.savoirAssocies = savoirAssocies;
+		this.pcs.firePropertyChange("savoirAssocies", old, savoirAssocies);
 
 	}
 
@@ -307,6 +338,19 @@ public class Activite_1 {
 
 		getTrace().remove(res1);
 		new RessourceTraceFactory().removeObject(res1);
+
+	}
+
+	@Override
+	public void propertyChange(PropertyChangeEvent event) {
+		@SuppressWarnings("unchecked")
+		List<SavoirAssocie> savs = (List<SavoirAssocie>) event.getNewValue();
+
+		this.savoirAssocies = new ArrayList<SavoirAssocie>();
+
+		for (SavoirAssocie savAss : savs) {
+			addSavoirAssocie(savAss);
+		}
 
 	}
 

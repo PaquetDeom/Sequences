@@ -2,12 +2,12 @@ package fr.paquet.sequence;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
 
 import fr.paquet.activite.Activite_1;
+import fr.paquet.commun.CastList;
 import fr.paquet.dataBase.Connect;
 import fr.paquet.dataBase.Factory.sequence.SequenceImplFactory;
 import fr.paquet.dataBase.Factory.sequence.SequenceVersionFactory;
@@ -71,15 +71,19 @@ public class SequenceVersion implements Sequence {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<SavoirAssocie> getSavoirAssocies() {
-		if (savoirAssocies == null)
-			savoirAssocies = (ArrayList<SavoirAssocie>) ((ArrayList<SavoirAssocie>) getParent().getSavoirAssocies())
-					.clone();
+		if (savoirAssocies == null) {
+			List<SavoirAssocie> savAss = (List<SavoirAssocie>) CastList.toArrayList(getParent().getSavoirAssocies());
+			this.savoirAssocies = savAss;
+		} else
+			savoirAssocies = (List<SavoirAssocie>) CastList.toArrayList(savoirAssocies);
 		return savoirAssocies;
 	}
 
 	@Override
 	public void setSavoirAssocies(List<SavoirAssocie> savoirAssocies) {
+		List<SavoirAssocie> old = this.savoirAssocies;
 		this.savoirAssocies = savoirAssocies;
+		pcs.firePropertyChange("savoirAssocies", old, savoirAssocies);
 
 	}
 
@@ -89,10 +93,13 @@ public class SequenceVersion implements Sequence {
 
 	@SuppressWarnings("unchecked")
 	public List<CompetenceIntermediaire> getCompetenceIntermediaires() {
-
-		if (competenceIntermediaires == null)
-			competenceIntermediaires = (ArrayList<CompetenceIntermediaire>) ((ArrayList<CompetenceIntermediaire>) getParent()
-					.getCompetenceIntermediaires()).clone();
+		if (competenceIntermediaires == null) {
+			List<CompetenceIntermediaire> compInts = (List<CompetenceIntermediaire>) CastList
+					.toArrayList(getParent().getCompetenceIntermediaires());
+			this.competenceIntermediaires = compInts;
+		} else {
+			competenceIntermediaires = (List<CompetenceIntermediaire>) CastList.toArrayList(competenceIntermediaires);
+		}
 		return competenceIntermediaires;
 	}
 
@@ -111,8 +118,12 @@ public class SequenceVersion implements Sequence {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Activite_1> getActivites() {
-		if (activites == null)
-			activites = (ArrayList<Activite_1>) ((ArrayList<Activite_1>) getParent().getActivites()).clone();
+		if (activites == null) {
+			List<Activite_1> acts = (List<Activite_1>) CastList.toArrayList(getParent().getActivites());
+			this.activites = acts;
+		} else
+			activites = (List<Activite_1>) CastList.toArrayList(activites);
+
 		return activites;
 	}
 

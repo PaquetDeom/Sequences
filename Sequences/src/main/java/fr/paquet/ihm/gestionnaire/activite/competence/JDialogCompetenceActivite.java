@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.text.BadLocationException;
 
 import fr.paquet.activite.Activite_1;
 import fr.paquet.ihm.alert.AlertType;
@@ -12,9 +13,12 @@ import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.ihm.commun.gestionnaire.JDialogGestion;
 import fr.paquet.ihm.gestionnaire.competence.JPanelGestionnaireCompetenceRight;
 import fr.paquet.ihm.principal.activite.ActivitePanel;
+import fr.paquet.referentiel.Competence;
 import fr.paquet.referentiel.CompetenceIntermediaire;
+import fr.paquet.referentiel.Savoir;
 import fr.paquet.referentiel.SavoirAssocie;
 import fr.paquet.sequence.SequenceVersion;
+import main.MainFrame;
 
 public class JDialogCompetenceActivite extends JDialogGestion {
 
@@ -31,14 +35,13 @@ public class JDialogCompetenceActivite extends JDialogGestion {
 		setActivitePanel(activitePanel);
 
 		if (!getActivite().getCompetencesIntermediaires().isEmpty()) {
-			compIntsSelect = (ArrayList<CompetenceIntermediaire>) ((ArrayList<CompetenceIntermediaire>) getActivite()
+			compIntsSelect = (List<CompetenceIntermediaire>) ((ArrayList<CompetenceIntermediaire>) getActivite()
 					.getCompetencesIntermediaires()).clone();
 			setButtomPanel();
 			affiche();
 			if (!getActivite().getSavoirAssocies().isEmpty())
 				setSavoirAssocieSelected(
-						(ArrayList<SavoirAssocie>) ((ArrayList<SavoirAssocie>) getActivite().getSavoirAssocies())
-								.clone());
+						(List<SavoirAssocie>) ((ArrayList<SavoirAssocie>) getActivite().getSavoirAssocies()).clone());
 
 		}
 
@@ -73,7 +76,16 @@ public class JDialogCompetenceActivite extends JDialogGestion {
 			getActivite().setSavoirAssocies(getSavoirAssocieSelected());
 
 			// affiche les composants
-			getActivitePanel().getActivitePanelCompetencesSavoirs().getActiviteJPanelJlabel().affiche();
+			try {
+				getActivitePanel().getActivitePanelCompetencesSavoirs().getActiviteCompCompSavoir()
+						.setCompetenceIntermediaires(rangeComp(getCompIntsSelect()));
+				getActivitePanel().getActivitePanelCompetencesSavoirs().getActiviteCompCompSavoir()
+						.setSavoirAssocie(getActivite().getSavoirAssocies());
+				getActivitePanel().getActivitePanelCompetencesSavoirs().getActiviteCompCompSavoir().affiche();
+			} catch (BadLocationException e) {
+				e.printStackTrace();
+				new AlertWindow(AlertType.ERREUR, "Affichage impossible");
+			}
 
 			this.dispose();
 		}
@@ -81,6 +93,27 @@ public class JDialogCompetenceActivite extends JDialogGestion {
 		if (button.getText().equals("Annuler"))
 			this.dispose();
 
+	}
+
+	private List<CompetenceIntermediaire> rangeComp(List<CompetenceIntermediaire> compIntsSelect2) {
+		List<CompetenceIntermediaire> compInts = new ArrayList<CompetenceIntermediaire>();
+		List<Competence> comps = new ArrayList<Competence>();
+
+		for (CompetenceIntermediaire comp : compIntsSelect2) {
+			Competence cp = comp.getCompetence();
+			if (!comps.contains(cp))
+				comps.add(cp);
+		}
+
+		for (Competence comp : comps) {
+			for (CompetenceIntermediaire compa : compIntsSelect2) {
+				if (compa.getCompetence() == comp)
+					compInts.add(compa);
+			}
+
+		}
+
+		return compInts;
 	}
 
 	private List<SavoirAssocie> savAssSelect = new ArrayList<SavoirAssocie>();
@@ -104,8 +137,27 @@ public class JDialogCompetenceActivite extends JDialogGestion {
 	private void addCompetenceIntermediaire(CompetenceIntermediaire compInt) throws Exception {
 		if (getCompIntsSelect().contains(compInt))
 			throw new Exception("La competence est déja dans la liste");
-		else
+		else {
 			getCompIntsSelect().add(compInt);
+			addSavoirAssocie(compInt);
+		}
+	}
+
+	private void addSavoirAssocie(CompetenceIntermediaire compInt) {
+		// pour savoir de competenceint.getCompetence
+		for (Savoir sav : compInt.getCompetence().getSavoirs()) {
+			// pour savoirAssocie de la liste de la sequence
+			for (SavoirAssocie savAss : MainFrame.getUniqInstance().getSequenceVersion().getSavoirAssocies()) {
+				// si savoirAss n'est pas dans la liste
+				if (!getSavoirAssocieSelected().contains(savAss)) {
+					// si savvoirAss est dans la liste de savoir
+					if (sav.getSavoirsAssocies().contains(savAss))
+						// add savAss à la liste de savoirAssocie selected
+						getSavoirAssocieSelected().add(savAss);
+				}
+			}
+		}
+
 	}
 
 	private SequenceVersion getSequenceVersion() {
@@ -122,7 +174,7 @@ public class JDialogCompetenceActivite extends JDialogGestion {
 
 		if (getSequenceVersion().getCompetenceIntermediaires().isEmpty())
 			throw new Exception("Construction de la fenêtre impossible");
-		List<CompetenceIntermediaire> compInts = (ArrayList<CompetenceIntermediaire>) ((ArrayList<CompetenceIntermediaire>) getSequenceVersion()
+		List<CompetenceIntermediaire> compInts = (List<CompetenceIntermediaire>) ((ArrayList<CompetenceIntermediaire>) getSequenceVersion()
 				.getCompetenceIntermediaires()).clone();
 
 		return compInts;
@@ -165,7 +217,7 @@ public class JDialogCompetenceActivite extends JDialogGestion {
 	@Override
 	protected void addButton() {
 
-		JButton buttonOui = new JButton("Oui");
+		JButton buttonOui = new JButton("Valider");
 		buttonOui.addActionListener(this);
 
 		JButton buttonAnnuler = new JButton("Annuler");

@@ -1,7 +1,6 @@
 package fr.paquet.ihm.gestionnaire.activite;
 
 import java.awt.event.ActionEvent;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -50,7 +49,10 @@ public class JDialogActivte extends JDialogGestion implements AlertListener {
 				getSequenceVersion().setActivites(getActivites());
 				MainOnglet.getUniqInstance().removeAllOngletActivites();
 				for (Activite_1 act : getSequenceVersion().getActivites()) {
-					MainOnglet.getUniqInstance().addOngletsActivites(new OngletActivite(act));
+					OngletActivite Oa = new OngletActivite(act);
+
+					MainOnglet.getUniqInstance().addOngletsActivites(Oa);
+					MainOnglet.getUniqInstance().setSelectedIndex(0);
 				}
 				MainOnglet.getUniqInstance().affiche();
 				this.dispose();
@@ -70,6 +72,7 @@ public class JDialogActivte extends JDialogGestion implements AlertListener {
 					new Activite_1(MainFrame.getUniqInstance().getSequenceVersion());
 
 					MainOnglet.getUniqInstance().affiche();
+					MainOnglet.getUniqInstance().setSelectedIndex(MainOnglet.getUniqInstance().getTabCount()-1);
 
 					this.dispose();
 				} else
@@ -93,7 +96,7 @@ public class JDialogActivte extends JDialogGestion implements AlertListener {
 
 	private List<Activite_1> getActivites() {
 		if (activites == null)
-			activites = (ArrayList<Activite_1>) ((ArrayList<Activite_1>) getSequenceVersion().getActivites());
+			activites = (List<Activite_1>) ((List<Activite_1>) getSequenceVersion().getActivites());
 		return activites;
 	}
 

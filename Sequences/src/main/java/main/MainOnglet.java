@@ -61,11 +61,13 @@ public class MainOnglet extends JTabbedPane {
 				OngletActivite Oa = new OngletActivite(act);
 				getOngletsActivites().add(Oa);
 				addTab(Oa.getActivitePanel().getTitre(), Oa);
+
 			}
 		}
 
 		revalidate();
 	}
+	
 
 	public void init(SequenceVersion sequence) throws Exception {
 
