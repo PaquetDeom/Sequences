@@ -277,11 +277,6 @@ public class Activite_1 implements PropertyChangeListener {
 			}
 		}
 
-		if (getStrategie().getActiviteProfs().size() != 0) {
-			for (ActiviteProf aP : getStrategie().getActiviteProfs()) {
-				duree = duree + aP.getDuree();
-			}
-		}
 		return duree;
 	}
 

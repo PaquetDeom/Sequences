@@ -1,5 +1,7 @@
 package fr.paquet.ihm.principal.activite;
 
+import fr.paquet.activite.ActiviteEleve;
+import fr.paquet.activite.ActiviteStrategie;
 import fr.paquet.ihm.commun.JPanelCommunEleveProf;
 
 public class JPanelActiviteEleve extends JPanelCommunEleveProf {
@@ -16,10 +18,17 @@ public class JPanelActiviteEleve extends JPanelCommunEleveProf {
 
 	@Override
 	protected void addActiviteProfEleve() {
-		// TODO Auto-generated method stub
-		
+		setActiviteProfEleve(new ActiviteEleve());
+		getActiviteStrategie().addPropertyChangeListener(
+				getjSplitPaneActProFEleve().getActivitePanelStrategie().getPanelStrtegieDemarche());
+		getActivite().getStrategie().addActiviteEleve((ActiviteEleve) getActiviteStrategie());
+
 	}
 
-	
+	@Override
+	protected void setActiviteProfEleve(ActiviteStrategie activitePE) {
+		this.activiteStrategie = activitePE;
+
+	}
 
 }

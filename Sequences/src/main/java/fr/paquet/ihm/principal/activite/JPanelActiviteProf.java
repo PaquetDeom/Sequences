@@ -1,5 +1,9 @@
 package fr.paquet.ihm.principal.activite;
 
+
+
+import fr.paquet.activite.ActiviteProf;
+import fr.paquet.activite.ActiviteStrategie;
 import fr.paquet.ihm.commun.JPanelCommunEleveProf;
 
 public class JPanelActiviteProf extends JPanelCommunEleveProf {
@@ -16,8 +20,18 @@ public class JPanelActiviteProf extends JPanelCommunEleveProf {
 
 	@Override
 	protected void addActiviteProfEleve() {
-		// TODO Auto-generated method stub
+		setActiviteProfEleve(new ActiviteProf());
+
+		getActivite().getStrategie().addActiviteProf((ActiviteProf) getActiviteStrategie());
 
 	}
+
+	@Override
+	protected void setActiviteProfEleve(ActiviteStrategie activitePE) {
+		this.activiteStrategie = activitePE;
+
+	}
+
+	
 
 }

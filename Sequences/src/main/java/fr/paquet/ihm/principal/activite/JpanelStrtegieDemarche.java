@@ -3,6 +3,8 @@ package fr.paquet.ihm.principal.activite;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.EnumSet;
 
 import javax.swing.JComboBox;
@@ -11,8 +13,9 @@ import javax.swing.JPanel;
 
 import fr.paquet.activite.DemarchePedagogique;
 import fr.paquet.ihm.style.StyleBorder;
+import fr.paquet.ihm.style.StyleFont;
 
-public class JpanelStrtegieDemarche extends JPanel {
+public class JpanelStrtegieDemarche extends JPanel implements PropertyChangeListener {
 
 	/**
 	 * 
@@ -32,18 +35,34 @@ public class JpanelStrtegieDemarche extends JPanel {
 		setLayout(new GridBagLayout());
 
 		// ajout des composants
-		add(new JLabel("Démarche pédagogique : "), new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
-				GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-		add(getDemarche(), new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER,
-				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-		add(new JPanel(), new GridBagConstraints(2, 0, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
-				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+		affiche();
 
 		// attributs du panel
 		setBorder(StyleBorder.BORDERPANEL.getBorder());
 
-		// listener
+	}
 
+	private void affiche() {
+		removeAll();
+		add(new JLabel("Démarche pédagogique : "), new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
+				GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+		add(getDemarche(), new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER,
+				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+		add(getLabelDuree(), new GridBagConstraints(2, 0, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
+				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+		add(new JPanel(), new GridBagConstraints(3, 0, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
+				GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+		revalidate();
+
+	}
+
+	private JLabel getLabelDuree() {
+		double duree = getActivitePanelStrategie().getActivitepanel().getOngletActivite().getActivite().getDuree();
+
+		JLabel labelTemps = new JLabel("<u>" + String.valueOf(duree) + "</u>");
+		labelTemps.setFont(StyleFont.TEXTEAREASEQUENCE.getFont());
+
+		return null;
 	}
 
 	private void setDemarche(JComboBox<String> demarcheBox) {
@@ -67,6 +86,12 @@ public class JpanelStrtegieDemarche extends JPanel {
 
 	private void setActivitePanelStrategie(ActivitePanelStrategie activitePanelStrategie) {
 		this.activitePanelStrategie = activitePanelStrategie;
+	}
+
+	@Override
+	public void propertyChange(PropertyChangeEvent arg0) {
+		affiche();
+
 	}
 
 }

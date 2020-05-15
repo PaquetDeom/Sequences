@@ -45,7 +45,7 @@ public class ActivitePanelStrategie extends JPanel {
 
 	private JpanelStrtegieDemarche jpanelStrtegieDemarche = null;
 
-	private JpanelStrtegieDemarche getPanelStrtegieDemarche() {
+	public JpanelStrtegieDemarche getPanelStrtegieDemarche() {
 		if (jpanelStrtegieDemarche == null)
 			jpanelStrtegieDemarche = new JpanelStrtegieDemarche(this);
 		return jpanelStrtegieDemarche;

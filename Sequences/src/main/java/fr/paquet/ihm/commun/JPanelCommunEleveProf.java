@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 
 import javax.swing.SwingConstants;
 
+import fr.paquet.activite.ActiviteStrategie;
 import fr.paquet.activite.Activite_1;
 import fr.paquet.ihm.principal.activite.JSplitPaneActProFEleve;
 import fr.paquet.ihm.style.StyleBorder;
@@ -114,6 +115,14 @@ public abstract class JPanelCommunEleveProf extends JPanel {
 
 	protected abstract void addActiviteProfEleve();
 
+	protected abstract void setActiviteProfEleve(ActiviteStrategie activitePE);
+
+	protected ActiviteStrategie activiteStrategie = null;
+
+	public ActiviteStrategie getActiviteStrategie() {
+		return activiteStrategie;
+	}
+
 	private JPanel PanelButton = null;
 
 	private JPanel getPanelButton() {
@@ -138,7 +147,7 @@ public abstract class JPanelCommunEleveProf extends JPanel {
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					addjPanelActiviteProfEleves(new JPanelActiviteProfEleve(JPanelCommunEleveProf.this));
-
+					addActiviteProfEleve();
 				}
 			});
 		}
