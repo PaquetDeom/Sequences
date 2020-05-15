@@ -58,6 +58,7 @@ public class MainOnglet extends JTabbedPane {
 
 		if (!MainFrame.getUniqInstance().getSequenceVersion().getActivites().isEmpty()) {
 			for (Activite_1 act : MainFrame.getUniqInstance().getSequenceVersion().getActivites()) {
+				MainFrame.getUniqInstance().getSequenceVersion().addPropertyChangeListener(act);
 				OngletActivite Oa = new OngletActivite(act);
 				getOngletsActivites().add(Oa);
 				addTab(Oa.getActivitePanel().getTitre(), Oa);
@@ -67,7 +68,6 @@ public class MainOnglet extends JTabbedPane {
 
 		revalidate();
 	}
-	
 
 	public void init(SequenceVersion sequence) throws Exception {
 

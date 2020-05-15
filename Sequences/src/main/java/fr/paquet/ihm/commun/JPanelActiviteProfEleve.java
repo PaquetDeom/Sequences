@@ -11,7 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
+import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 
 import fr.paquet.ihm.style.StyleBorder;
@@ -23,7 +23,7 @@ public class JPanelActiviteProfEleve extends JPanel implements ActionListener {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTextArea JtextDescription = null;
+	private JTextPane JtextDescription = null;
 	private JComboBox<String> JComboTemps = null;
 	private JButton buttonSuppr = null;
 	private JPanelCommunEleveProf jPanelCommunEleveProf = null;
@@ -34,7 +34,7 @@ public class JPanelActiviteProfEleve extends JPanel implements ActionListener {
 		// ajout du layout
 		setjPanelCommunEleveProf(jPanelCommunEleveProf);
 		setLayout(new GridBagLayout());
-		setJtextDescription(new JTextArea());
+		setJtextDescription(new JTextPane());
 		setJComboTemps(new JComboBox<String>());
 		setButtonSuppr(new JButton("suppr"));
 
@@ -68,14 +68,13 @@ public class JPanelActiviteProfEleve extends JPanel implements ActionListener {
 		return panel;
 	}
 
-	public JTextArea getJtextDescription() {
+	public JTextPane getJtextDescription() {
 		return JtextDescription;
 	}
 
-	private void setJtextDescription(JTextArea jtextDescription) {
+	private void setJtextDescription(JTextPane jtextDescription) {
 
 		JtextDescription = jtextDescription;
-		JtextDescription.setLineWrap(true);
 
 	}
 

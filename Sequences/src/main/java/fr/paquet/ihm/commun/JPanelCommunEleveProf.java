@@ -14,12 +14,13 @@ import javax.swing.JPanel;
 
 import javax.swing.SwingConstants;
 
+import fr.paquet.activite.Activite_1;
 import fr.paquet.ihm.principal.activite.JSplitPaneActProFEleve;
 import fr.paquet.ihm.style.StyleBorder;
 import fr.paquet.ihm.style.StyleColor;
 import fr.paquet.ihm.style.StyleFont;
 
-public class JPanelCommunEleveProf extends JPanel {
+public abstract class JPanelCommunEleveProf extends JPanel {
 
 	/**
 	 * 
@@ -105,6 +106,13 @@ public class JPanelCommunEleveProf extends JPanel {
 		this.revalidate();
 
 	}
+
+	protected Activite_1 getActivite() {
+		return getjSplitPaneActProFEleve().getActivitePanelStrategie().getActivitepanel().getOngletActivite()
+				.getActivite();
+	}
+
+	protected abstract void addActiviteProfEleve();
 
 	private JPanel PanelButton = null;
 

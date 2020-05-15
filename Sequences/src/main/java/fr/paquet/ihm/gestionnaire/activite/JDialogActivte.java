@@ -72,7 +72,7 @@ public class JDialogActivte extends JDialogGestion implements AlertListener {
 					new Activite_1(MainFrame.getUniqInstance().getSequenceVersion());
 
 					MainOnglet.getUniqInstance().affiche();
-					MainOnglet.getUniqInstance().setSelectedIndex(MainOnglet.getUniqInstance().getTabCount()-1);
+					MainOnglet.getUniqInstance().setSelectedIndex(MainOnglet.getUniqInstance().getTabCount() - 1);
 
 					this.dispose();
 				} else
@@ -117,7 +117,9 @@ public class JDialogActivte extends JDialogGestion implements AlertListener {
 		try {
 			if (button.equals("Oui")) {
 
+				// supprime l'activité
 				Activite_1 activite = (Activite_1) getJPanelGestionnaireRight().getObjectSelected();
+				MainFrame.getUniqInstance().getSequenceVersion().removePropertyChangeListener(activite);
 				getActivites().remove(activite);
 
 				// supprimer le noeud du Jtree

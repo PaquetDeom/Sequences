@@ -14,4 +14,12 @@ public class JPanelActiviteEleve extends JPanelCommunEleveProf {
 
 	}
 
+	@Override
+	protected void addActiviteProfEleve() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+
 }

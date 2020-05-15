@@ -60,9 +60,6 @@ public class Activite_1 implements PropertyChangeListener {
 		this.nActivite = getSequenceVersion().getActivites().size() + 1;
 		getSequenceVersion().addActivite(this);
 
-		// listener
-		getSequenceVersion().addPropertyChangeListener(this);
-
 		new Activite_1Factory().persist(this);
 
 	}
@@ -343,13 +340,16 @@ public class Activite_1 implements PropertyChangeListener {
 
 	@Override
 	public void propertyChange(PropertyChangeEvent event) {
-		@SuppressWarnings("unchecked")
-		List<SavoirAssocie> savs = (List<SavoirAssocie>) event.getNewValue();
 
-		this.savoirAssocies = new ArrayList<SavoirAssocie>();
+		if (event.getNewValue() instanceof List<?> == true) {
+			@SuppressWarnings("unchecked")
+			List<SavoirAssocie> savs = (List<SavoirAssocie>) event.getNewValue();
 
-		for (SavoirAssocie savAss : savs) {
-			addSavoirAssocie(savAss);
+			this.savoirAssocies = new ArrayList<SavoirAssocie>();
+
+			for (SavoirAssocie savAss : savs) {
+				addSavoirAssocie(savAss);
+			}
 		}
 
 	}

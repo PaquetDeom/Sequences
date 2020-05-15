@@ -362,6 +362,7 @@ public class SequenceVersion implements Sequence {
 
 	@Override
 	public void addActivite(Activite_1 activite) {
+
 		getActivites().add(activite);
 	}
 
@@ -376,6 +377,7 @@ public class SequenceVersion implements Sequence {
 
 	@Override
 	public void removeActivite(Activite_1 activite) {
+
 		getActivites().remove(activite);
 
 	}
