@@ -44,7 +44,7 @@ public abstract class JDialogGestion extends JDialog implements ActionListener, 
 
 		// construction de la fenetre
 		setTitle(title);
-		setSize(2000, 600);
+		setSize(1800, 600);
 		setResizable(true);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -175,7 +175,7 @@ public abstract class JDialogGestion extends JDialog implements ActionListener, 
 
 		return panel;
 	}
-	
+
 	private DefaultMutableTreeNode node = null;
 
 	protected DefaultMutableTreeNode getNode() {

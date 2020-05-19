@@ -67,4 +67,6 @@ public class ActivitePanelStrategie extends JPanel {
 		this.activitepanel = activitepanel;
 	}
 
+	
+
 }

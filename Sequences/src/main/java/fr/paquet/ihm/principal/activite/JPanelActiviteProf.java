@@ -1,9 +1,11 @@
 package fr.paquet.ihm.principal.activite;
 
-
+import javax.swing.text.BadLocationException;
 
 import fr.paquet.activite.ActiviteProf;
-import fr.paquet.activite.ActiviteStrategie;
+import fr.paquet.ihm.alert.AlertType;
+import fr.paquet.ihm.alert.AlertWindow;
+import fr.paquet.ihm.commun.JPanelActiviteProfEleve;
 import fr.paquet.ihm.commun.JPanelCommunEleveProf;
 
 public class JPanelActiviteProf extends JPanelCommunEleveProf {
@@ -20,18 +22,30 @@ public class JPanelActiviteProf extends JPanelCommunEleveProf {
 
 	@Override
 	protected void addActiviteProfEleve() {
-		setActiviteProfEleve(new ActiviteProf());
 
-		getActivite().getStrategie().addActiviteProf((ActiviteProf) getActiviteStrategie());
+		try {
+			ActiviteProf aP = new ActiviteProf(getActivite().getStrategie());
+			addjPanelActiviteProfEleves(new JPanelActiviteProfEleve(aP, null, this));
+		} catch (Exception e) {
+			new AlertWindow(AlertType.ERREUR, "Sauvegarde impossible");
+			e.printStackTrace();
+		}
 
 	}
 
 	@Override
-	protected void setActiviteProfEleve(ActiviteStrategie activitePE) {
-		this.activiteStrategie = activitePE;
+	protected void initData() {
+		if (!getActivite().getStrategie().getActiviteProfs().isEmpty()) {
+			for (ActiviteProf Ae : getActivite().getStrategie().getActiviteProfs()) {
+				try {
+					JPanelActiviteProfEleve panel = new JPanelActiviteProfEleve(Ae, Ae.getDescription(), this);
+					getJPanelActiviteProfEleves().add(panel);
+				} catch (BadLocationException e) {
+					new AlertWindow(AlertType.ERREUR, "erreur de texte");
+				}
+			}
+		}
 
 	}
-
-	
 
 }

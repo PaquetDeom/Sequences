@@ -128,7 +128,7 @@ public class SequenceVersion implements Sequence {
 	}
 
 	public SequenceVersion(String titre, String classe, Referentiel referentiel, Auteur auteur) throws Exception {
-		super();
+		this();
 		this.firstSequence = new SequenceImpl(titre, referentiel);
 		this.numVersion = 1;
 		setAuteur(auteur);
@@ -140,13 +140,17 @@ public class SequenceVersion implements Sequence {
 	}
 
 	public SequenceVersion(SequenceVersion previousVersion) throws Exception {
-		super();
+		this();
 		this.previousParent = previousVersion;
 		this.firstSequence = previousVersion.firstSequence;
 		setNumVersion(previousVersion.firstSequence);
 		setVisible(false);
 		setAuteur(Connect.getPConnexion().getUser().getAuteur());
 		previousVersion.lock();
+	}
+
+	public SequenceVersion() {
+		super();
 	}
 
 	public Sequence getParent() {
@@ -158,10 +162,6 @@ public class SequenceVersion implements Sequence {
 
 	public SequenceImpl getFirstSequence() {
 		return firstSequence;
-	}
-
-	public SequenceVersion() {
-		super();
 	}
 
 	private void setNumVersion(SequenceImpl firstSequence) throws Exception {

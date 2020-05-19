@@ -57,8 +57,11 @@ public class Activite_1 implements PropertyChangeListener {
 		super();
 
 		setSequence(sequence);
+
 		this.nActivite = getSequenceVersion().getActivites().size() + 1;
 		getSequenceVersion().addActivite(this);
+
+		setStrategie(new Strategie(this));
 
 		new Activite_1Factory().persist(this);
 
@@ -156,12 +159,14 @@ public class Activite_1 implements PropertyChangeListener {
 
 	}
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Strategie strategie = null;
 
+	private void setStrategie(Strategie strategie) {
+		this.strategie = strategie;
+	}
+
 	public Strategie getStrategie() {
-		if (strategie == null)
-			strategie = new Strategie();
 		return strategie;
 	}
 
@@ -205,6 +210,19 @@ public class Activite_1 implements PropertyChangeListener {
 
 	}
 
+	public void removeDocument(String text) {
+		RessourceDocument dcc = null;
+
+		for (RessourceDocument doc : getDocument()) {
+			if (doc.getText().equals(text)) {
+				doc = dcc;
+				break;
+			}
+			getDocument().remove(dcc);
+		}
+
+	}
+
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<RessourceRessouces> ressources = null;
 
@@ -230,6 +248,18 @@ public class Activite_1 implements PropertyChangeListener {
 
 		getRessources().add(ressource);
 		new RessourceRessourcesFactory().persist(ressource);
+	}
+
+	public void removeRessource(String text) {
+		RessourceRessouces re = null;
+		for (RessourceRessouces doc : getRessources()) {
+			if (doc.getText().equals(text)) {
+				doc = re;
+				break;
+			}
+
+			getRessources().remove(re);
+		}
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -258,6 +288,18 @@ public class Activite_1 implements PropertyChangeListener {
 		new RessourceTraceFactory().persist(ressource);
 	}
 
+	public void removeTrace(String text) {
+		RessourceTrace tr = null;
+
+		for (RessourceTrace trace : getTrace()) {
+			if (trace.getText().equals(text)) {
+				tr = trace;
+				break;
+			}
+		}
+		getTrace().remove(tr);
+	}
+
 	public String getQuestionnement() {
 		return questionnement;
 	}
@@ -269,7 +311,7 @@ public class Activite_1 implements PropertyChangeListener {
 
 	public double getDuree() {
 
-		double duree = 0;
+		double duree = 0.0;
 
 		if (getStrategie().getActiviteEleves().size() != 0) {
 			for (ActiviteEleve aE : getStrategie().getActiviteEleves()) {

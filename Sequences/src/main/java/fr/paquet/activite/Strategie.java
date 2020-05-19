@@ -1,5 +1,6 @@
 package fr.paquet.activite;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,7 +12,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import fr.paquet.dataBase.Factory.Activite.StrategieFactory;
 
 @Entity
 @Table(name = "STRATEGIE")
@@ -31,11 +35,24 @@ public class Strategie {
 	@Enumerated(EnumType.STRING)
 	private DemarchePedagogique demarchePedagogique = null;
 
+	@OneToOne
+	private Activite_1 activite = null;
+
 	public Strategie() {
 		super();
+
+	}
+
+	public Strategie(Activite_1 activite) throws Exception {
+		super();
+
+		setActivite(activite);
+		new StrategieFactory().persist(this);
 	}
 
 	public List<ActiviteEleve> getActiviteEleves() {
+		if (activiteEleves == null)
+			activiteEleves = new ArrayList<ActiviteEleve>();
 		return activiteEleves;
 	}
 
@@ -48,6 +65,8 @@ public class Strategie {
 	}
 
 	public List<ActiviteProf> getActiviteProfs() {
+		if (activiteProfs == null)
+			activiteProfs = new ArrayList<ActiviteProf>();
 		return activiteProfs;
 	}
 
@@ -65,5 +84,13 @@ public class Strategie {
 
 	public void setDemarchePedagogique(DemarchePedagogique demarchePedagogique) {
 		this.demarchePedagogique = demarchePedagogique;
+	}
+
+	public Activite_1 getActivite() {
+		return activite;
+	}
+
+	public void setActivite(Activite_1 activite) {
+		this.activite = activite;
 	}
 }

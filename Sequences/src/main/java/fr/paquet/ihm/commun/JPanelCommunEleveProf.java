@@ -16,10 +16,14 @@ import javax.swing.SwingConstants;
 
 import fr.paquet.activite.ActiviteStrategie;
 import fr.paquet.activite.Activite_1;
+import fr.paquet.dataBase.Connect;
+import fr.paquet.ihm.alert.AlertType;
+import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.ihm.principal.activite.JSplitPaneActProFEleve;
 import fr.paquet.ihm.style.StyleBorder;
 import fr.paquet.ihm.style.StyleColor;
 import fr.paquet.ihm.style.StyleFont;
+import main.MainFrame;
 
 public abstract class JPanelCommunEleveProf extends JPanel {
 
@@ -39,11 +43,14 @@ public abstract class JPanelCommunEleveProf extends JPanel {
 		// set des composants
 		setjSplitPaneActProFEleve(jSplitPaneActProFEleve);
 		setTitre(titre);
+		initData();
 
 		// Ajout des composants
 		affiche();
 
 	}
+
+	protected abstract void initData();
 
 	private JPanel jpanelTitre = null;
 
@@ -115,12 +122,12 @@ public abstract class JPanelCommunEleveProf extends JPanel {
 
 	protected abstract void addActiviteProfEleve();
 
-	protected abstract void setActiviteProfEleve(ActiviteStrategie activitePE);
+	protected List<ActiviteStrategie> activiteStrategies = null;
 
-	protected ActiviteStrategie activiteStrategie = null;
-
-	public ActiviteStrategie getActiviteStrategie() {
-		return activiteStrategie;
+	public List<ActiviteStrategie> getActiviteStrategie() {
+		if (activiteStrategies == null)
+			activiteStrategies = new ArrayList<ActiviteStrategie>();
+		return activiteStrategies;
 	}
 
 	private JPanel PanelButton = null;
@@ -146,8 +153,13 @@ public abstract class JPanelCommunEleveProf extends JPanel {
 
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					addjPanelActiviteProfEleves(new JPanelActiviteProfEleve(JPanelCommunEleveProf.this));
-					addActiviteProfEleve();
+
+					if (MainFrame.getUniqInstance().getSequenceVersion()
+							.isModifiable(Connect.getPConnexion().getUser().getAuteur()))
+						addActiviteProfEleve();
+					else
+						new AlertWindow(AlertType.INFORMATION, "La séquence n'est pas modifiable");
+
 				}
 			});
 		}
@@ -155,7 +167,7 @@ public abstract class JPanelCommunEleveProf extends JPanel {
 
 	}
 
-	protected void addjPanelActiviteProfEleves(JPanelActiviteProfEleve jPanelActiviteProfEleves) {
+	public void addjPanelActiviteProfEleves(JPanelActiviteProfEleve jPanelActiviteProfEleves) {
 		getJPanelActiviteProfEleves().add(jPanelActiviteProfEleves);
 		affiche();
 	}

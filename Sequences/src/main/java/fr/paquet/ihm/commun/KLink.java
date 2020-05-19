@@ -17,7 +17,15 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.border.Border;
 
+import fr.paquet.activite.Activite_1;
+import fr.paquet.dataBase.Connect;
+import fr.paquet.ihm.alert.AlertType;
+import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.ihm.commun.explorerInternet.SwingBrowserJavaFxWeb;
+import fr.paquet.ihm.principal.activite.ActivitePanelConceptionDocuments;
+import fr.paquet.ihm.principal.activite.ActivitePanelConceptionRessources;
+import fr.paquet.ihm.principal.activite.ActivitePanelConceptionTrace;
+import main.MainFrame;
 
 public class KLink extends JLabel implements ActionListener {
 
@@ -104,12 +112,28 @@ public class KLink extends JLabel implements ActionListener {
 
 	private void fireActionEvent(KeyEvent event) {
 
-		if (getText() != null && !getText().equals(""))
-			if (getUrl() != null && !getUrl().equals(""))
-				getjPanelListJLabelButton().removeRessouce(getText(), getUrl());
-			else
-				getjPanelListJLabelButton().removeRessouce(getText(), null);
+		if (MainFrame.getUniqInstance().getSequenceVersion()
+				.isModifiable(Connect.getPConnexion().getUser().getAuteur())) {
+			if (getText() != null && !getText().equals("")) {
+				if (getUrl() != null && !getUrl().equals(""))
+					getjPanelListJLabelButton().removeRessouce(getText(), getUrl());
+				else
+					getjPanelListJLabelButton().removeRessouce(getText(), null);
+			}
+			if (getjPanelListJLabelButton() instanceof ActivitePanelConceptionDocuments == true)
+				getActivite().removeDocument(getText());
+			if (getjPanelListJLabelButton() instanceof ActivitePanelConceptionRessources == true)
+				getActivite().removeRessource(getText());
+			if (getjPanelListJLabelButton() instanceof ActivitePanelConceptionTrace == true)
+				getActivite().removeTrace(getText());
+		} else
+			new AlertWindow(AlertType.ATTENTION, "La séquence n'est pas modifiable");
 
+	}
+
+	private Activite_1 getActivite() {
+		return getjPanelListJLabelButton().getActivitePanelConception().getActivitepanel().getOngletActivite()
+				.getActivite();
 	}
 
 	private void fireActionEvent(MouseEvent event) {

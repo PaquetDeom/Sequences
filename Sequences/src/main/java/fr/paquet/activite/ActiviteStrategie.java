@@ -1,8 +1,5 @@
 package fr.paquet.activite;
 
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
-
 import javax.persistence.*;
 
 @MappedSuperclass
@@ -14,7 +11,7 @@ public class ActiviteStrategie {
 	@Column(name = "ACACID")
 	private long id = 0;
 
-	@Column(name = "ACACDE", length = 20)
+	@Column(name = "ACACDE", length = 500)
 	private String description = null;
 
 	@Column(name = "ACACDU")
@@ -23,17 +20,6 @@ public class ActiviteStrategie {
 	@ManyToOne
 	private Strategie strategie = null;
 
-	@Transient
-	private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
-
-	public void addPropertyChangeListener(PropertyChangeListener listener) {
-		this.pcs.addPropertyChangeListener(listener);
-	}
-
-	public void removePropertyChangeListener(PropertyChangeListener listener) {
-		this.pcs.removePropertyChangeListener(listener);
-	}
-
 	public ActiviteStrategie() {
 		super();
 	}
@@ -41,7 +27,9 @@ public class ActiviteStrategie {
 	public ActiviteStrategie(String description, double duree, Strategie strategie) {
 		super();
 
-		setDescription(description);
+		if (description != null)
+			setDescription(description);
+
 		setDuree(duree);
 		setStrategie(strategie);
 	}
@@ -60,9 +48,9 @@ public class ActiviteStrategie {
 	}
 
 	public void setDuree(double duree) {
-		double old = this.duree;
+
 		this.duree = duree;
-		pcs.firePropertyChange("duree", old, duree);
+
 	}
 
 	public Strategie getStrategie() {

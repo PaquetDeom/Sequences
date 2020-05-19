@@ -58,4 +58,6 @@ public class JSplitPaneActProFEleve extends JSplitPane {
 		this.activitePanelStrategie = activitePanelStrategie;
 	}
 
+	
+
 }

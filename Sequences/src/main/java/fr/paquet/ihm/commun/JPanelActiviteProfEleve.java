@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -15,13 +17,20 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
+import javax.swing.text.BadLocationException;
 
-import fr.paquet.ihm.principal.activite.JPanelActiviteEleve;
-import fr.paquet.ihm.principal.activite.JPanelActiviteProf;
+import fr.paquet.activite.ActiviteEleve;
+import fr.paquet.activite.ActiviteProf;
+import fr.paquet.activite.ActiviteStrategie;
+import fr.paquet.dataBase.Connect;
+import fr.paquet.dataBase.Factory.Activite.ActiviteEleveFactory;
+import fr.paquet.dataBase.Factory.Activite.ActiviteProfFactory;
 import fr.paquet.ihm.style.StyleBorder;
 import fr.paquet.ihm.style.StyleColor;
+import fr.paquet.ihm.style.StyleTextDocument;
+import main.MainFrame;
 
-public class JPanelActiviteProfEleve extends JPanel implements ActionListener, FocusListener {
+public class JPanelActiviteProfEleve extends JPanel implements ActionListener, FocusListener, PropertyChangeListener {
 
 	/**
 	 * 
@@ -31,14 +40,35 @@ public class JPanelActiviteProfEleve extends JPanel implements ActionListener, F
 	private JComboBox<String> JComboTemps = null;
 	private JButton buttonSuppr = null;
 	private JPanelCommunEleveProf jPanelCommunEleveProf = null;
+	private ActiviteStrategie activiteStrategie = null;
 
-	public JPanelActiviteProfEleve(JPanelCommunEleveProf jPanelCommunEleveProf) {
+	public JPanelActiviteProfEleve(ActiviteEleve activiteEleve, String text,
+			JPanelCommunEleveProf jPanelCommunEleveProf) throws BadLocationException {
+		this(text, jPanelCommunEleveProf);
+
+		setActiviteStrategie(activiteEleve);
+	}
+
+	public JPanelActiviteProfEleve(ActiviteProf activiteProf, String text, JPanelCommunEleveProf jPanelCommunEleveProf)
+			throws BadLocationException {
+		this(text, jPanelCommunEleveProf);
+
+		setActiviteStrategie(activiteProf);
+	}
+
+	private JPanelActiviteProfEleve(String text, JPanelCommunEleveProf jPanelCommunEleveProf)
+			throws BadLocationException {
 		super();
 
 		// ajout du layout
 		setjPanelCommunEleveProf(jPanelCommunEleveProf);
 		setLayout(new GridBagLayout());
-		setJtextDescription(new JTextPane());
+
+		if (text == null || text.equals(""))
+			setJtextDescription(null);
+		else
+			setJtextDescription(text);
+
 		setJComboTemps(new JComboBox<String>());
 		setButtonSuppr(new JButton("suppr"));
 
@@ -57,7 +87,8 @@ public class JPanelActiviteProfEleve extends JPanel implements ActionListener, F
 
 		// Listener
 		getButtonSuppr().addActionListener(this);
-		addFocusListener(this);
+		getJtextDescription().addFocusListener(this);
+		MainFrame.getUniqInstance().getSequenceVersion().addPropertyChangeListener(this);
 	}
 
 	private JPanel getJPanelTitre() {
@@ -77,9 +108,20 @@ public class JPanelActiviteProfEleve extends JPanel implements ActionListener, F
 		return JtextDescription;
 	}
 
-	private void setJtextDescription(JTextPane jtextDescription) {
+	private void setJtextDescription(String jtextDescription) throws BadLocationException {
 
-		JtextDescription = jtextDescription;
+		JTextPane textPane = new JTextPane();
+
+		if (jtextDescription != null)
+			textPane.getDocument().insertString(textPane.getDocument().getLength(), jtextDescription,
+					StyleTextDocument.SAISI.getStyleText());
+		else
+			textPane.getStyledDocument().setCharacterAttributes(0, textPane.getStyledDocument().getLength(),
+					StyleTextDocument.SAISI.getStyleText(), false);
+
+		textPane.setEditable(Enable());
+
+		this.JtextDescription = textPane;
 
 	}
 
@@ -88,6 +130,7 @@ public class JPanelActiviteProfEleve extends JPanel implements ActionListener, F
 	}
 
 	private void setButtonSuppr(JButton buttonSuppr) {
+		buttonSuppr.setEnabled(Enable());
 		this.buttonSuppr = buttonSuppr;
 	}
 
@@ -109,6 +152,29 @@ public class JPanelActiviteProfEleve extends JPanel implements ActionListener, F
 		jComboTemps.addItem("50");
 		jComboTemps.addItem("55");
 
+		jComboTemps.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent event) {
+
+				@SuppressWarnings("rawtypes")
+				JComboBox combo = (JComboBox) event.getSource();
+
+				String temps = (String) combo.getSelectedItem();
+				double tmps = 0.0;
+
+				if (getActiviteStrategie() instanceof ActiviteEleve == true) {
+					ActiviteEleve act = (ActiviteEleve) getActiviteStrategie();
+					if (temps != null && !temps.equals("")) {
+						tmps = Double.parseDouble(temps);
+						act.setDuree(tmps);
+					}
+
+				}
+			}
+
+		});
+
 		JComboTemps = jComboTemps;
 	}
 
@@ -123,13 +189,15 @@ public class JPanelActiviteProfEleve extends JPanel implements ActionListener, F
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		if (getjPanelCommunEleveProf() instanceof JPanelActiviteEleve == true)
-			getjPanelCommunEleveProf().getActivite().getStrategie().getActiviteEleves()
-					.remove(getjPanelCommunEleveProf().getActiviteStrategie());
+		if (getActiviteStrategie() instanceof ActiviteEleve == true) {
+			getjPanelCommunEleveProf().getActivite().getStrategie().getActiviteEleves().remove(getActiviteStrategie());
+			new ActiviteEleveFactory().removeObject((ActiviteEleve) getActiviteStrategie());
+		}
 
-		if (getjPanelCommunEleveProf() instanceof JPanelActiviteProf == true)
-			getjPanelCommunEleveProf().getActivite().getStrategie().getActiviteProfs()
-					.remove(getjPanelCommunEleveProf().getActiviteStrategie());
+		if (getActiviteStrategie() instanceof ActiviteProf == true) {
+			getjPanelCommunEleveProf().getActivite().getStrategie().getActiviteProfs().remove(getActiviteStrategie());
+			new ActiviteProfFactory().removeObject((ActiviteProf) getActiviteStrategie());
+		}
 
 		getjPanelCommunEleveProf().removePanelActiviteProfEleve(this);
 
@@ -143,7 +211,30 @@ public class JPanelActiviteProfEleve extends JPanel implements ActionListener, F
 	@Override
 	public void focusLost(FocusEvent event) {
 
-		getjPanelCommunEleveProf().getActiviteStrategie().setDescription(getJtextDescription().getText());
+		getActiviteStrategie().setDescription(getJtextDescription().getText());
+
+	}
+
+	public ActiviteStrategie getActiviteStrategie() {
+		return activiteStrategie;
+	}
+
+	public void setActiviteStrategie(ActiviteStrategie activiteStrategie) {
+		this.activiteStrategie = activiteStrategie;
+	}
+
+	private boolean Enable() {
+		if (!MainFrame.getUniqInstance().getSequenceVersion()
+				.isModifiable(Connect.getPConnexion().getUser().getAuteur()))
+			return false;
+		else
+			return true;
+	}
+
+	@Override
+	public void propertyChange(PropertyChangeEvent event) {
+		getButtonSuppr().setEnabled(Enable());
+		getJtextDescription().setEditable(Enable());
 
 	}
 
