@@ -36,12 +36,14 @@ public class Connect {
 			properties.put(PersistenceUnitProperties.ECLIPSELINK_PERSISTENCE_XML, "META-INF/persistence.xml");
 			properties.put(PersistenceUnitProperties.JDBC_USER, getPConnexion().getUser().getUtilisateur());
 			properties.put(PersistenceUnitProperties.JDBC_PASSWORD, getPConnexion().getUser().getPass());
-			properties.put(PersistenceUnitProperties.JDBC_URL, "jdbc:postgresql://localhost:5432/sequence");
+			// properties.put(PersistenceUnitProperties.JDBC_URL,
+			// "jdbc:postgresql://localhost:5432/sequence");
+			properties.put(PersistenceUnitProperties.JDBC_URL,
+					"jdbc:postgresql://8c700b76-ff58-4bf2-9825-8bba06b94fbd.bm49h38l0bihsg5ne8d0.databases.appdomain.cloud:30362/sequence");
 			properties.put(PersistenceUnitProperties.JDBC_DRIVER, "org.postgresql.Driver");
 
 			emf = Persistence.createEntityManagerFactory("sequence", properties);
-			// emf.getPersistenceUnitUtil();
-			// emf.getMetamodel();
+
 		}
 		return emf;
 	}
