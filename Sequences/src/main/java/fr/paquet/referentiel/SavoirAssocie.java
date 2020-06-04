@@ -48,18 +48,14 @@ public class SavoirAssocie {
 	/**
 	 * Contructeur de la classe SavoirAssocie<br/>
 	 * 
-	 * @param sav
-	 *            SavoirAssocie est lie a Savoir<br/>
-	 * @param unCode
-	 *            code du savoir est compose du code Savoir + "." + un chiffre
-	 *            <br/>
-	 *            exemple : S1.1, S2.3, etc...
-	 * @param unIntitule
-	 *            le libelle du savoir : <br/>
-	 *            exemple : "Les differents partenaire de l'acte de construire"
-	 *            <br/>
-	 * @throws Exception
-	 *             Si le code est egale a 0
+	 * @param sav        SavoirAssocie est lie a Savoir<br/>
+	 * @param unCode     code du savoir est compose du code Savoir + "." + un
+	 *                   chiffre <br/>
+	 *                   exemple : S1.1, S2.3, etc...
+	 * @param unIntitule le libelle du savoir : <br/>
+	 *                   exemple : "Les differents partenaire de l'acte de
+	 *                   construire" <br/>
+	 * @throws Exception Si le code est egale a 0
 	 */
 
 	public SavoirAssocie(Savoir sav, int unCode, String unIntitule) throws Exception {
@@ -134,8 +130,7 @@ public class SavoirAssocie {
 
 	/**
 	 * 
-	 * @return L'intitule du savoir associe sans espace a droite et a
-	 *         gauche<br/>
+	 * @return L'intitule du savoir associe sans espace a droite et a gauche<br/>
 	 */
 	public String getIntitule() {
 		return intitule;
@@ -143,12 +138,15 @@ public class SavoirAssocie {
 
 	/**
 	 * 
-	 * @return le code du savoir associe sous la forme : code du savoir + "." +
-	 *         1, 2, 3...<br/>
+	 * @return le code du savoir associe sous la forme : code du savoir + "." + 1,
+	 *         2, 3...<br/>
 	 */
 	public String getCode() {
+		
 		return getSavoir().getCode() + "." + code;
 	}
+
+	
 
 	/**
 	 * 

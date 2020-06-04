@@ -33,7 +33,7 @@ public class Connect {
 
 			Map<String, String> properties = new HashMap<String, String>();
 
-			properties.put(PersistenceUnitProperties.ECLIPSELINK_PERSISTENCE_XML, "META-INF/persistence.xml");
+			properties.put(PersistenceUnitProperties.ECLIPSELINK_PERSISTENCE_XML_DEFAULT, "META-INF/persistence.xml");
 			properties.put(PersistenceUnitProperties.JDBC_USER, getPConnexion().getUser().getUtilisateur());
 			properties.put(PersistenceUnitProperties.JDBC_PASSWORD, getPConnexion().getUser().getPass());
 			// properties.put(PersistenceUnitProperties.JDBC_URL,

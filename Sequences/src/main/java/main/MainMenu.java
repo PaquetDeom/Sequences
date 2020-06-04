@@ -34,8 +34,17 @@ public class MainMenu extends JMenuBar {
 		getJMenu(getActionVisible().getParentMenuName()).add(getActionVisible().getJMenuItem());
 		getJMenu(getActionCompetences().getParentMenuName()).add(getActionCompetences().getJMenuItem());
 		getJMenu(getActionActivites().getParentMenuName()).add(getActionActivites().getJMenuItem());
+		getJMenu(getActionQuitter().getParentMenuName()).add(getActionPDF().getJMenuItem());
 		getJMenu(getActionQuitter().getParentMenuName()).add(getActionQuitter().getJMenuItem());
 
+	}
+
+	private ActionPdf actionPdf = null;
+
+	private ActionBDA getActionPDF() {
+		if (actionPdf == null)
+			actionPdf = new ActionPdf();
+		return actionPdf;
 	}
 
 	private ActionQuitter actionQuitter = null;

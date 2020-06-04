@@ -40,7 +40,7 @@ public class JDialogGestionnaireOuvrir extends JDialog implements ActionListener
 
 		// construction de la fenetre
 		setTitle("Gestionnaire de séquence");
-		setSize(2000, 600);
+		setSize(1800, 600);
 		setResizable(true);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);

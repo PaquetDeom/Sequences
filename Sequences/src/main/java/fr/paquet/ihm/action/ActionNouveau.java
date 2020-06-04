@@ -101,7 +101,7 @@ public class ActionNouveau extends ActionBDA implements AlertListener, PropertyC
 	public JMenuItem getJMenuItem() {
 		JMenuItem mItem = new JMenuItem(this);
 
-		mItem.setIcon(new ImageIcon("./target/classes/images/icons/new.png"));
+		mItem.setIcon(new ImageIcon("./target/classes/images/icons/gen.png"));
 		return mItem;
 	}
 
