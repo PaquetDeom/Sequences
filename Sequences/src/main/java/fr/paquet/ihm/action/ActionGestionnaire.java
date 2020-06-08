@@ -22,6 +22,7 @@ public class ActionGestionnaire extends ActionBDA implements AlertListener {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	@SuppressWarnings("deprecation")
 	public ActionGestionnaire() {
 		super();
 		putValue(NAME, getName());

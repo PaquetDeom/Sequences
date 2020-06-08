@@ -72,8 +72,7 @@ public class GeneratePDF {
 		addSequenceParameters("elementRetenir", getSequenceVersion().getElementsARetenir());
 		addSequenceParameters("lienDiscipline", getSequenceVersion().getLien());
 		addSequenceParameters("modaliteEval", getSequenceVersion().getEval());
-		
-		
+
 	}
 
 	private void createActiviteParameters(Activite_1 activite) {
@@ -82,11 +81,11 @@ public class GeneratePDF {
 		hM.put("titreSequence", getSequenceVersion().getTitre());
 		hM.put("numVersion", getSequenceVersion().getnVersion());
 		hM.put("classe", getSequenceVersion().getClasse());
-		hM.put("auteur", getSequenceVersion().getAuteur());
-		hM.put("referentiel", getSequenceVersion().getReferentiel());
-		
+		hM.put("auteur", getSequenceVersion().getAuteur().toString());
+		hM.put("referentiel", getSequenceVersion().getReferentiel().toString());
+
 		hM.put("nActivite", activite.getnActivite());
-		
+
 		getListActiviteParameters().add(hM);
 
 	}
@@ -131,19 +130,18 @@ public class GeneratePDF {
 			jasperReportSeq.setWhenNoDataType(WhenNoDataTypeEnum.ALL_SECTIONS_NO_DETAIL);
 
 			// - Execution du rapport de sequence
-			JasperPrint jasperPrintSeq = null;
-			jasperPrintSeq = JasperFillManager.fillReport(jasperReportSeq, getSequenceParameters());
+			JasperPrint jasperPrintSeq = JasperFillManager.fillReport(jasperReportSeq, getSequenceParameters());
 
 			// - Envoi de la sequence dans le pdf
 			JasperExportManager.exportReportToPdfFile(jasperPrintSeq, getFilePdf().getAbsolutePath());
 
-			if (!getSequenceVersion().getActivites().isEmpty()) {
+			/**if (!getSequenceVersion().getActivites().isEmpty()) {
 
 				for (HashMap<String, Object> hM : getListActiviteParameters()) {
 					JasperReport jasperReportAct = JasperCompileManager
 							.compileReport("./target/classes/jrxml/classicActivite.jrxml");
 					jasperReportAct.setWhenNoDataType(WhenNoDataTypeEnum.ALL_SECTIONS_NO_DETAIL);
-					
+
 					// - Execution du rapport de sequence
 					JasperPrint jasperPrintAct = null;
 					jasperPrintAct = JasperFillManager.fillReport(jasperReportAct, hM);
@@ -151,7 +149,7 @@ public class GeneratePDF {
 					// - Envoi de la sequence dans le pdf
 					JasperExportManager.exportReportToPdfFile(jasperPrintAct, getFilePdf().getAbsolutePath());
 				}
-			}
+			}*/
 
 			new AlertWindow(AlertType.INFORMATION, "La création du rapport est faite");
 

@@ -24,6 +24,7 @@ public class ActionNouveau extends ActionBDA implements AlertListener, PropertyC
 	 */
 	private static final long serialVersionUID = 1L;
 
+	@SuppressWarnings("deprecation")
 	public ActionNouveau() {
 		super();
 

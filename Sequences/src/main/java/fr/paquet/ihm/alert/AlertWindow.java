@@ -86,6 +86,7 @@ public class AlertWindow extends JOptionPane {
 				}
 			}
 		}
+		
 	}
 
 	public AlertType getAlertType() {

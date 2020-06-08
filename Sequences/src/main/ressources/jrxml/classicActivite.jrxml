@@ -4,7 +4,7 @@
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<parameter name="nActivite" class="java.lang.String"/>
 	<parameter name="titreSequence" class="java.lang.String"/>
-	<parameter name="numVersion" class="java.lang.String"/>
+	<parameter name="numVersion" class="java.lang.Integer"/>
 	<parameter name="classe" class="java.lang.String"/>
 	<parameter name="auteur" class="java.lang.String"/>
 	<parameter name="referentiel" class="java.lang.String"/>

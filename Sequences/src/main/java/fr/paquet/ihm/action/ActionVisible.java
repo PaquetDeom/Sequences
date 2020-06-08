@@ -8,6 +8,7 @@ import javax.swing.JMenuItem;
 import javax.swing.text.BadLocationException;
 
 import fr.paquet.dataBase.Connect;
+import fr.paquet.dataBase.Factory.sequence.SequenceVersionFactory;
 import fr.paquet.ihm.alert.AlertListener;
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
@@ -77,7 +78,13 @@ public class ActionVisible extends ActionBDA implements AlertListener, PropertyC
 	public void buttonClick(String button) {
 
 		if (button.equals("Oui")) {
-			getSequenceVersion().setVisible(true);
+			try {
+				getSequenceVersion().setVisible(true);
+				new SequenceVersionFactory().persist(getSequenceVersion());
+			} catch (Exception e) {
+				new AlertWindow(AlertType.ERREUR, "Opération impossible");
+				e.printStackTrace();
+			}
 		}
 	}
 

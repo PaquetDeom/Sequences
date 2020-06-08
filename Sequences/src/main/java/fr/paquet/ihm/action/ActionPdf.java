@@ -22,6 +22,7 @@ public class ActionPdf extends ActionBDA implements PropertyChangeListener {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	@SuppressWarnings("deprecation")
 	public ActionPdf() {
 		super();
 

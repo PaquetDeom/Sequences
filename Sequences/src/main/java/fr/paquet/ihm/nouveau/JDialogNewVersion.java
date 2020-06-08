@@ -30,7 +30,6 @@ public class JDialogNewVersion extends JDialog implements ActionListener {
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setAlwaysOnTop(false);
-		setVisible(true);
 
 		// setteur des elements
 		setSequenceVersionOld(sequenceVersionOld);
@@ -41,6 +40,8 @@ public class JDialogNewVersion extends JDialog implements ActionListener {
 		// listener
 		getJPanelNewVersion().getjPanelNewSequenceButton().getBtnAnnul().addActionListener(this);
 		getJPanelNewVersion().getjPanelNewSequenceButton().getBtnOk().addActionListener(this);
+
+		setVisible(true);
 
 	}
 
