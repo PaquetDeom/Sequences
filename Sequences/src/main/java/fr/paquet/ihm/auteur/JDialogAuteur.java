@@ -29,7 +29,7 @@ public class JDialogAuteur extends JDialog implements ActionListener {
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setAlwaysOnTop(false);
-		setVisible(true);
+		
 
 		// ajout du panel
 		setContentPane(getJPanelAuteur());
@@ -38,6 +38,7 @@ public class JDialogAuteur extends JDialog implements ActionListener {
 		getJPanelAuteur().getButtonOk().addActionListener(this);
 		getJPanelAuteur().getButtonAnnul().addActionListener(this);
 
+		setVisible(true);
 	}
 
 	private JPanelAuteur jPanelAuteur = null;

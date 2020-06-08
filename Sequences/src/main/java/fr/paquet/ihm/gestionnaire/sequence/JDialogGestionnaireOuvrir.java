@@ -60,10 +60,10 @@ public class JDialogGestionnaireOuvrir extends JDialog implements ActionListener
 				button.addActionListener(this);
 			}
 
+		affiche();
+
 		// visible
 		setVisible(true);
-
-		affiche();
 
 	}
 

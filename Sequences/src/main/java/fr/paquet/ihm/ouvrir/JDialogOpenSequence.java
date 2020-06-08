@@ -32,7 +32,7 @@ public class JDialogOpenSequence extends JDialog implements ActionListener, Chan
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setAlwaysOnTop(false);
-		setVisible(true);
+		
 
 		// setteur des elements
 		setJPanelOpenSequence(new JPanelOpenSequence(this));
@@ -44,6 +44,8 @@ public class JDialogOpenSequence extends JDialog implements ActionListener, Chan
 		getJPanelOpenSequence().getJPanelOpenSequenceButton().getBtnAnnul().addActionListener(this);
 		getJPanelOpenSequence().getJPanelOpenSequenceButton().getBtnOk().addActionListener(this);
 		getJPanelOpenSequence().getRadioButton().addChangeListener(this);
+		
+		setVisible(true);
 	}
 
 	private JPanelOpenSequence getJPanelOpenSequence() {

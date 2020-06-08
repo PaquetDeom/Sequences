@@ -27,7 +27,7 @@ public class JDialogRessource extends JDialog implements ActionListener {
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setAlwaysOnTop(false);
-		setVisible(true);
+		
 
 		// setteur des elements
 		setJpanelOrigin(jpanel);
@@ -38,6 +38,8 @@ public class JDialogRessource extends JDialog implements ActionListener {
 		// listener
 		getMainPanel().getPanelButton().getBtnValider().addActionListener(this);
 		getMainPanel().getPanelButton().getBtnAnnuler().addActionListener(this);
+		
+		setVisible(true);
 	}
 
 	private MainPanelActiviteRessource mainPanelActiviteRessource = null;
