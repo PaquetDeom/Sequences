@@ -32,7 +32,7 @@ public class Activite {
 	@Column(name = "ID")
 	private int id;
 
-	@Column(name = "INTITULE", length = 140)
+	@Column(name = "INTITULE", length = 500)
 	private String intitule;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "activite")

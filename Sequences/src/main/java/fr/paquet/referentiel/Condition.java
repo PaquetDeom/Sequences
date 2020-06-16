@@ -27,7 +27,7 @@ public class Condition {
 	@Column(name = "ID")
 	private int id;
 
-	@Column(name = "CONDITION", length = 300)
+	@Column(name = "CONDITION", length = 3000)
 	private String condition = null;
 
 	public Condition(String cond) {

@@ -34,25 +34,25 @@ public class SequenceVersion implements Sequence {
 	@JoinColumn
 	private SequenceVersion previousParent;
 
-	@Column(name = "SEVECO", length = 20)
+	@Column(name = "SEVECO", length = 500)
 	private String contexte = null;
 
 	@Column(name = "SEVELAST")
 	private boolean dernier = true;
 
-	@Column(name = "SEVEPR", length = 20)
+	@Column(name = "SEVEPR", length = 500)
 	private String problematique = null;
 
-	@Column(name = "SEVEPRE", length = 20)
+	@Column(name = "SEVEPRE", length = 500)
 	private String prerequis = null;
 
-	@Column(name = "SEVEEL", length = 20)
+	@Column(name = "SEVEEL", length = 500)
 	private String elementsARetenir = null;
 
-	@Column(name = "SEVELI", length = 20)
+	@Column(name = "SEVELI", length = 500)
 	private String lien = null;
 
-	@Column(name = "SEVEEV", length = 20)
+	@Column(name = "SEVEEV", length = 500)
 	private String Eval = null;
 
 	@Column(name = "SEVECL")

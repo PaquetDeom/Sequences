@@ -39,7 +39,7 @@ public class SavoirAssocie {
 	@Column(name = "CODE")
 	private int code = 0;
 
-	@Column(name = "INTITULE", length = 200)
+	@Column(name = "INTITULE", length = 500)
 	private String intitule;
 
 	@OneToMany(mappedBy = "savAss", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

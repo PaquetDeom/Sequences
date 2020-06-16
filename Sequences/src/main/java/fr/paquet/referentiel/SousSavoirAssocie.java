@@ -33,7 +33,7 @@ public class SousSavoirAssocie {
 	@Column(name = "CODE")
 	private int code = 0;
 
-	@Column(name = "INTITULE")
+	@Column(name = "INTITULE", length = 1000)
 	private String intitule;
 
 	@Column(name = "NIVEAU")

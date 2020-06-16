@@ -29,7 +29,7 @@ public class SequenceImpl implements Sequence {
 	@Column(name = "SESEID")
 	private long id = 0;
 
-	@Column(name = "SESETI", length = 20)
+	@Column(name = "SESETI", length = 50)
 	private String titre = null;
 
 	@JoinColumn

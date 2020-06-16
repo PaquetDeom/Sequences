@@ -29,15 +29,12 @@ public class JPanelSavoir extends CommunJLabelJTextPaneVertical {
 
 	private void insertText() throws BadLocationException {
 
-		int pos = 0;
-
 		if (getjTableCompetences().getSavoirAssocies() != null && !getjTableCompetences().getSavoirAssocies().isEmpty())
 
 			for (SavoirAssocie sav : getjTableCompetences().getSavoirAssocies()) {
 
-				getTextPane().getStyledDocument().insertString(pos, sav.toString() + "\n",
+				getTextPane().getStyledDocument().insertString(0, sav.toString() + "\n",
 						StyleTextDocument.COMPETENCE.getStyleText());
-				pos = pos + getTextPane().getStyledDocument().getLength();
 			}
 	}
 

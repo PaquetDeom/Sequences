@@ -43,10 +43,10 @@ public class Activite_1 implements PropertyChangeListener {
 	@ManyToOne
 	private SequenceVersion sequence = null;
 
-	@Column(name = "ACACCO", length = 400)
+	@Column(name = "ACACCO", length = 500)
 	private String contexte = null;
 
-	@Column(name = "ACACQU", length = 400)
+	@Column(name = "ACACQU", length = 500)
 	private String questionnement = null;
 
 	public Activite_1() {

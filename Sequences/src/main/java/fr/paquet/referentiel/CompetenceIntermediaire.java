@@ -38,7 +38,7 @@ public class CompetenceIntermediaire {
 	@Column(name = "CODE")
 	private int code;
 
-	@Column(name = "INTITULE", length = 400)
+	@Column(name = "INTITULE", length = 3000)
 	private String intitule;
 
 	@ManyToMany(fetch = FetchType.LAZY)

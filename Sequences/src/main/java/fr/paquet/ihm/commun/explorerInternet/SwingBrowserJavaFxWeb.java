@@ -41,7 +41,7 @@ public class SwingBrowserJavaFxWeb extends JDialog implements WindowListener {
 
 		SwingBrowserJavaFxWeb.url = url;
 		initComponents();
-		setVisible(true);
+
 	}
 
 	private void initComponents() {

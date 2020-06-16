@@ -38,7 +38,7 @@ public class Savoir {
 	@Column(name = "CODE", length = 20)
 	private String code;
 
-	@Column(name = "INTITULE", length = 200)
+	@Column(name = "INTITULE", length = 500)
 	private String intitule;
 
 	@ManyToOne()

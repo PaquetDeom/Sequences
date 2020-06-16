@@ -11,10 +11,10 @@ public class Ressource {
 	@Column(name = "REREID")
 	public long Id = 0;
 
-	@Column(name = "RERETE", length = 200)
+	@Column(name = "RERETE", length = 500)
 	private String text = null;
 
-	@Column(name = "REREUR", length = 500)
+	@Column(name = "REREUR", length = 1000)
 	private String url = null;
 
 	@ManyToOne

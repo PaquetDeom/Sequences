@@ -26,7 +26,7 @@ public class CritereEvaluation {
 	@Column(name = "ID")
 	private int id;
 
-	@Column(name = "CRITERE", length = 300)
+	@Column(name = "CRITERE", length = 3000)
 	private String criteresEvaluations;
 
 	public CritereEvaluation(String crit) {

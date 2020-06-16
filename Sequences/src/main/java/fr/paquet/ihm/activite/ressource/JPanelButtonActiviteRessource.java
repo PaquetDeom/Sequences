@@ -3,11 +3,13 @@ package fr.paquet.ihm.activite.ressource;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class JPanelButtonActiviteRessource extends JPanel {
+public class JPanelButtonActiviteRessource extends JPanel  {
 
 	/**
 	 * 
@@ -56,4 +58,6 @@ public class JPanelButtonActiviteRessource extends JPanel {
 	private void setMainPanelActiviteRessource(MainPanelActiviteRessource mainPanelActiviteRessource) {
 		this.mainPanelActiviteRessource = mainPanelActiviteRessource;
 	}
+
+	
 }

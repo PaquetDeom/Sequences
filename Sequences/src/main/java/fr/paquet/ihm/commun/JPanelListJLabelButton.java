@@ -6,6 +6,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -15,13 +17,15 @@ import javax.swing.SwingConstants;
 
 import fr.paquet.activite.Activite_1;
 import fr.paquet.activite.Ressource;
+import fr.paquet.dataBase.Connect;
 import fr.paquet.ihm.activite.ressource.JDialogRessource;
 import fr.paquet.ihm.principal.activite.ActivitePanelConception;
 import fr.paquet.ihm.style.StyleBorder;
 import fr.paquet.ihm.style.StyleColor;
 import fr.paquet.ihm.style.StyleFont;
+import main.MainFrame;
 
-public abstract class JPanelListJLabelButton extends JPanel implements ActionListener {
+public abstract class JPanelListJLabelButton extends JPanel implements ActionListener, PropertyChangeListener {
 
 	/**
 	 * 
@@ -48,6 +52,9 @@ public abstract class JPanelListJLabelButton extends JPanel implements ActionLis
 
 		// listerner
 		getButtonoAdd().addActionListener(this);
+		MainFrame.getUniqInstance().addPropertyChangeListener(this);
+
+		Enable();
 
 	}
 
@@ -101,6 +108,16 @@ public abstract class JPanelListJLabelButton extends JPanel implements ActionLis
 		return btnAdd;
 	}
 
+	protected void Enable() {
+
+		if (MainFrame.getUniqInstance().getSequenceVersion()
+				.isModifiable(Connect.getPConnexion().getUser().getAuteur()))
+			getButtonoAdd().setEnabled(true);
+		else
+			getButtonoAdd().setEnabled(false);
+
+	}
+
 	private JLabel titleLabel = null;
 
 	private JLabel getTitleLabel() {
@@ -151,5 +168,11 @@ public abstract class JPanelListJLabelButton extends JPanel implements ActionLis
 	public abstract void addRessouce(String text, String url);
 
 	public abstract void removeRessouce(String text, String url);
+
+	@Override
+	public void propertyChange(PropertyChangeEvent arg0) {
+		Enable();
+
+	}
 
 }
