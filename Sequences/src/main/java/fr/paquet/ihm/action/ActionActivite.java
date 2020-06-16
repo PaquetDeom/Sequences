@@ -6,7 +6,6 @@ import java.beans.PropertyChangeListener;
 
 import javax.swing.JMenuItem;
 
-import fr.paquet.dataBase.Connect;
 import fr.paquet.ihm.gestionnaire.activite.JDialogActivte;
 import fr.paquet.sequence.SequenceVersion;
 import main.MainFrame;
@@ -54,7 +53,7 @@ public class ActionActivite extends ActionBDA implements PropertyChangeListener 
 	@Override
 	protected void Enable() {
 		if (getSequenceVersion() != null) {
-			if (getSequenceVersion().isModifiable(Connect.getPConnexion().getUser().getAuteur()))
+			if (getSequenceVersion().isModifiable())
 				setEnabled(true);
 			else
 				setEnabled(false);

@@ -224,6 +224,10 @@ public class JDialogGestionnaireOuvrir extends JDialog implements ActionListener
 		if (button.equals("Oui")) {
 
 			try {
+				
+				MainFrame.getUniqInstance().setSequenceVersion(null);
+				MainFrame.getUniqInstance().affichePanelOuverture();
+				
 				new SequenceVersionFactory().removeObject(getSequence());
 
 				// supprimer le noeud du Jtree

@@ -7,7 +7,6 @@ import java.beans.PropertyChangeListener;
 import javax.swing.JMenuItem;
 import javax.swing.text.BadLocationException;
 
-import fr.paquet.dataBase.Connect;
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.ihm.gestionnaire.competence.JDialogCompetence;
@@ -66,7 +65,7 @@ public class ActionCompetences extends ActionBDA implements PropertyChangeListen
 	@Override
 	protected void Enable() {
 		if (getSequenceVersion() != null) {
-			if (getSequenceVersion().isModifiable(Connect.getPConnexion().getUser().getAuteur()))
+			if (getSequenceVersion().isModifiable())
 				setEnabled(true);
 			else
 				setEnabled(false);

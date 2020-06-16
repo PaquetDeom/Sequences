@@ -16,7 +16,6 @@ import javax.swing.SwingConstants;
 
 import fr.paquet.activite.ActiviteStrategie;
 import fr.paquet.activite.Activite_1;
-import fr.paquet.dataBase.Connect;
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.ihm.principal.activite.JSplitPaneActProFEleve;
@@ -155,7 +154,7 @@ public abstract class JPanelCommunEleveProf extends JPanel {
 				public void actionPerformed(ActionEvent arg0) {
 
 					if (MainFrame.getUniqInstance().getSequenceVersion()
-							.isModifiable(Connect.getPConnexion().getUser().getAuteur()))
+							.isModifiable())
 						addActiviteProfEleve();
 					else
 						new AlertWindow(AlertType.INFORMATION, "La séquence n'est pas modifiable");

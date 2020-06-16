@@ -8,7 +8,7 @@ import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="Dali", date="2020-05-25T15:00:21.905+0200")
+@Generated(value="Dali", date="2020-06-16T14:01:28.718+0200")
 @StaticMetamodel(SequenceVersion.class)
 public class SequenceVersion_ {
 	public static volatile SingularAttribute<SequenceVersion, Long> Id;

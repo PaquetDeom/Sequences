@@ -201,7 +201,7 @@ public class SequenceImpl implements Sequence {
 	}
 
 	@Override
-	public boolean isModifiable(Auteur auteur) {
+	public boolean isModifiable() {
 
 		return true;
 	}

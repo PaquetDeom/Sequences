@@ -17,7 +17,6 @@ import javax.swing.SwingConstants;
 
 import fr.paquet.activite.Activite_1;
 import fr.paquet.activite.Ressource;
-import fr.paquet.dataBase.Connect;
 import fr.paquet.ihm.activite.ressource.JDialogRessource;
 import fr.paquet.ihm.principal.activite.ActivitePanelConception;
 import fr.paquet.ihm.style.StyleBorder;
@@ -111,7 +110,7 @@ public abstract class JPanelListJLabelButton extends JPanel implements ActionLis
 	protected void Enable() {
 
 		if (MainFrame.getUniqInstance().getSequenceVersion()
-				.isModifiable(Connect.getPConnexion().getUser().getAuteur()))
+				.isModifiable())
 			getButtonoAdd().setEnabled(true);
 		else
 			getButtonoAdd().setEnabled(false);

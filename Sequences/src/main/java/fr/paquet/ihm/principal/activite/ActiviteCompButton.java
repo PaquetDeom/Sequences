@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import fr.paquet.activite.Activite_1;
-import fr.paquet.dataBase.Connect;
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.ihm.commun.CommunJPanelButton;
@@ -44,7 +43,7 @@ public class ActiviteCompButton extends CommunJPanelButton {
 					Activite_1 activite = getActivitePanelCompetencesSavoirs().getActivitePanel().getOngletActivite()
 							.getActivite();
 
-					if (sequence.isModifiable(Connect.getPConnexion().getUser().getAuteur())) {
+					if (sequence.isModifiable()) {
 						new JDialogCompetenceActivite(activite,
 								getActivitePanelCompetencesSavoirs().getActivitePanel());
 

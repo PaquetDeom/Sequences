@@ -18,7 +18,6 @@ import javax.swing.JLabel;
 import javax.swing.border.Border;
 
 import fr.paquet.activite.Activite_1;
-import fr.paquet.dataBase.Connect;
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.ihm.commun.explorerInternet.SwingBrowserJavaFxWeb;
@@ -113,7 +112,7 @@ public class KLink extends JLabel implements ActionListener {
 	private void fireActionEvent(KeyEvent event) {
 
 		if (MainFrame.getUniqInstance().getSequenceVersion()
-				.isModifiable(Connect.getPConnexion().getUser().getAuteur())) {
+				.isModifiable()) {
 			if (getText() != null && !getText().equals("")) {
 				if (getUrl() != null && !getUrl().equals(""))
 					getjPanelListJLabelButton().removeRessouce(getText(), getUrl());

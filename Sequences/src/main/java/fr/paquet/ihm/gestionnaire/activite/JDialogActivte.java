@@ -8,7 +8,6 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.MutableTreeNode;
 
 import fr.paquet.activite.Activite_1;
-import fr.paquet.dataBase.Connect;
 import fr.paquet.ihm.alert.AlertListener;
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
@@ -67,7 +66,7 @@ public class JDialogActivte extends JDialogGestion implements AlertListener {
 			try {
 
 				if (MainFrame.getUniqInstance().getSequenceVersion()
-						.isModifiable(Connect.getPConnexion().getUser().getAuteur())) {
+						.isModifiable()) {
 
 					new Activite_1(MainFrame.getUniqInstance().getSequenceVersion());
 

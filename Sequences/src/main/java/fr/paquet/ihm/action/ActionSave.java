@@ -9,8 +9,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
-import fr.paquet.dataBase.Connect;
-
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.sequence.SequenceVersion;
@@ -68,7 +66,7 @@ public class ActionSave extends ActionBDA implements PropertyChangeListener {
 	@Override
 	protected void Enable() {
 		if (getSequenceVersion() != null) {
-			if (getSequenceVersion().isModifiable(Connect.getPConnexion().getUser().getAuteur()))
+			if (getSequenceVersion().isModifiable())
 				setEnabled(true);
 			else
 				setEnabled(false);

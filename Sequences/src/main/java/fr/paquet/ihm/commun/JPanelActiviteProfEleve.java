@@ -22,7 +22,6 @@ import javax.swing.text.BadLocationException;
 import fr.paquet.activite.ActiviteEleve;
 import fr.paquet.activite.ActiviteProf;
 import fr.paquet.activite.ActiviteStrategie;
-import fr.paquet.dataBase.Connect;
 import fr.paquet.dataBase.Factory.Activite.ActiviteEleveFactory;
 import fr.paquet.dataBase.Factory.Activite.ActiviteProfFactory;
 import fr.paquet.ihm.style.StyleBorder;
@@ -225,7 +224,7 @@ public class JPanelActiviteProfEleve extends JPanel implements ActionListener, F
 
 	private boolean Enable() {
 		if (!MainFrame.getUniqInstance().getSequenceVersion()
-				.isModifiable(Connect.getPConnexion().getUser().getAuteur()))
+				.isModifiable())
 			return false;
 		else
 			return true;

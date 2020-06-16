@@ -17,7 +17,6 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-import fr.paquet.dataBase.Connect;
 import fr.paquet.ihm.ToolBar.SequenceToolBar;
 import fr.paquet.ihm.action.Save;
 import fr.paquet.ihm.alert.AlertListener;
@@ -137,8 +136,14 @@ public class MainFrame extends JFrame implements WindowListener, AlertListener {
 
 	public void setSequenceVersion(SequenceVersion sequenceVersion) {
 		SequenceVersion oldValue = this.sequenceVersion;
-		this.sequenceVersion = sequenceVersion;
-		this.pcs.firePropertyChange("sequenceVersion", oldValue, sequenceVersion);
+
+		if (sequenceVersion != null) {
+			this.sequenceVersion = sequenceVersion;
+			this.pcs.firePropertyChange("sequenceVersion", oldValue, sequenceVersion);
+		} else {
+			this.sequenceVersion = sequenceVersion;
+		}
+
 	}
 
 	private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
@@ -171,8 +176,7 @@ public class MainFrame extends JFrame implements WindowListener, AlertListener {
 
 	@Override
 	public void windowClosing(WindowEvent arg0) {
-		if (getSequenceVersion() != null
-				&& getSequenceVersion().isModifiable(Connect.getPConnexion().getUser().getAuteur()))
+		if (getSequenceVersion() != null && getSequenceVersion().isModifiable())
 			new AlertWindow(AlertType.QUESTION, "Voulez-vous enregistrer avant de quitter", this);
 		else
 			Main.Fermeture();

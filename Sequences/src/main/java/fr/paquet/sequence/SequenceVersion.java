@@ -81,10 +81,10 @@ public class SequenceVersion implements Sequence {
 
 	@Override
 	public void setSavoirAssocies(List<SavoirAssocie> savoirAssocies) {
-		List<SavoirAssocie> old = this.savoirAssocies;
-		this.savoirAssocies = savoirAssocies;
-		pcs.firePropertyChange("savoirAssocies", old, savoirAssocies);
 
+			List<SavoirAssocie> old = this.savoirAssocies;
+			this.savoirAssocies = savoirAssocies;
+			pcs.firePropertyChange("savoirAssocies", old, savoirAssocies);
 	}
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
@@ -324,8 +324,8 @@ public class SequenceVersion implements Sequence {
 	}
 
 	@Override
-	public boolean isModifiable(Auteur auteur) {
-		return dernier && this.auteur.equals(auteur) && !isVisible();
+	public boolean isModifiable() {
+		return dernier && this.auteur.equals(Connect.getPConnexion().getUser().getAuteur());
 	}
 
 	@Override

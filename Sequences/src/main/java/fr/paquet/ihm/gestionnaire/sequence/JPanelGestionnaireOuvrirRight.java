@@ -10,7 +10,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.text.BadLocationException;
 
-import fr.paquet.dataBase.Connect;
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.ihm.commun.gestionnaire.JPanelGestionnaireRight;
@@ -138,7 +137,7 @@ public class JPanelGestionnaireOuvrirRight extends JPanelGestionnaireRight {
 
 		private void Enable() {
 			if (getSequenceVersion() == null
-					|| !getSequenceVersion().isModifiable(Connect.getPConnexion().getUser().getAuteur()))
+					|| !getSequenceVersion().isModifiable())
 				this.setEnabled(false);
 			else
 				this.setEnabled(true);

@@ -7,7 +7,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
-import fr.paquet.dataBase.Connect;
 import fr.paquet.ihm.alert.AlertListener;
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
@@ -35,7 +34,7 @@ public class ActionGestionnaire extends ActionBDA implements AlertListener {
 
 		try {
 			if (getSequenceVersion() == null
-					|| !getSequenceVersion().isModifiable(Connect.getPConnexion().getUser().getAuteur()))
+					|| !getSequenceVersion().isModifiable())
 				new JDialogOpenSequence();
 			else
 				new AlertWindow(AlertType.QUESTION, "Voulez vous enregistrer la séquence", this);

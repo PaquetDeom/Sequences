@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-import fr.paquet.dataBase.Connect;
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.ihm.commun.CommunJPanelButton;
@@ -49,7 +48,7 @@ public class SequencePanelButtomCompButton extends CommunJPanelButton {
 
 					SequenceVersion sequence = MainFrame.getUniqInstance().getSequenceVersion();
 
-					if (sequence.isModifiable(Connect.getPConnexion().getUser().getAuteur())) {
+					if (sequence.isModifiable()) {
 						new JDialogCompetence(sequence, getSequencePanelButtomComp().getSequencePanel());
 
 					} else

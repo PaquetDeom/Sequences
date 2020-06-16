@@ -6,7 +6,6 @@ import java.beans.PropertyChangeEvent;
 
 import javax.swing.text.BadLocationException;
 
-import fr.paquet.dataBase.Connect;
 import fr.paquet.ihm.commun.CommunJLabelJTextPaneVertical;
 import fr.paquet.ihm.style.StyleTextDocument;
 import main.MainFrame;
@@ -50,7 +49,7 @@ public class SequencePanelEntetePbTempsProblematique extends CommunJLabelJTextPa
 	@Override
 	protected void Editable() {
 		if (MainFrame.getUniqInstance().getSequenceVersion()
-				.isModifiable(Connect.getPConnexion().getUser().getAuteur()))
+				.isModifiable())
 			getTextPane().setEditable(true);
 		else
 			getTextPane().setEditable(false);
@@ -71,7 +70,7 @@ public class SequencePanelEntetePbTempsProblematique extends CommunJLabelJTextPa
 	public void focusLost(FocusEvent arg0) {
 
 		if (MainFrame.getUniqInstance().getSequenceVersion()
-				.isModifiable(Connect.getPConnexion().getUser().getAuteur()))
+				.isModifiable())
 			if (getTextPane().getText() != null && !getTextPane().getText().equals(""))
 				MainFrame.getUniqInstance().getSequenceVersion().setProblematique(getTextPane().getText());
 
