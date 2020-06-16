@@ -29,7 +29,6 @@ public class Main {
 				} catch (Exception e) {
 
 					// fermeture avec erreur
-					System.out.println("Fermeture avec erreur");
 					new AlertWindow(AlertType.ERREUR, "Fatal Erreur");
 					e.printStackTrace();
 					FermetureAvecErreur();
@@ -72,6 +71,7 @@ public class Main {
 		} catch (Exception e) {
 
 			e.printStackTrace();
+			new AlertWindow(AlertType.ERREUR, "Connexion à la base impossible - vérifier votre connexion internet");
 			FermetureAvecErreur();
 
 		}
