@@ -18,6 +18,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import fr.paquet.commun.CastList;
 import fr.paquet.dataBase.Factory.Activite.Activite_1Factory;
 import fr.paquet.dataBase.Factory.Activite.RessourceDocumentFactory;
 import fr.paquet.dataBase.Factory.Activite.RessourceRessourcesFactory;
@@ -103,9 +104,13 @@ public class Activite_1 implements PropertyChangeListener {
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
 	private List<SavoirAssocie> savoirAssocies = null;
 
+	@SuppressWarnings("unchecked")
 	public List<SavoirAssocie> getSavoirAssocies() {
 		if (savoirAssocies == null)
 			savoirAssocies = new ArrayList<SavoirAssocie>();
+		else {
+			savoirAssocies = (List<SavoirAssocie>) CastList.toArrayList(savoirAssocies);
+		}
 		return savoirAssocies;
 	}
 
@@ -143,9 +148,13 @@ public class Activite_1 implements PropertyChangeListener {
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
 	private List<CompetenceIntermediaire> competencesIntermédiaires = null;
 
+	@SuppressWarnings("unchecked")
 	public List<CompetenceIntermediaire> getCompetencesIntermediaires() {
 		if (competencesIntermédiaires == null)
 			competencesIntermédiaires = new ArrayList<CompetenceIntermediaire>();
+		else {
+			competencesIntermédiaires = (List<CompetenceIntermediaire>) CastList.toArrayList(competencesIntermédiaires);
+		}
 		return competencesIntermédiaires;
 	}
 
