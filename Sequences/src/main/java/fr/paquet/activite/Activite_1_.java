@@ -8,7 +8,7 @@ import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="Dali", date="2020-06-24T09:34:11.182+0200")
+@Generated(value="Dali", date="2020-06-24T10:29:52.903+0200")
 @StaticMetamodel(Activite_1.class)
 public class Activite_1_ {
 	public static volatile SingularAttribute<Activite_1, Long> id;
@@ -18,9 +18,9 @@ public class Activite_1_ {
 	public static volatile SingularAttribute<Activite_1, String> questionnement;
 	public static volatile ListAttribute<Activite_1, CorpsDEtat> corpsDetatsConcernes;
 	public static volatile ListAttribute<Activite_1, SavoirAssocie> savoirAssocies;
+	public static volatile ListAttribute<Activite_1, CompetenceIntermediaire> competencesIntermédiaires;
 	public static volatile SingularAttribute<Activite_1, Strategie> strategie;
 	public static volatile ListAttribute<Activite_1, RessourceDocument> documents;
 	public static volatile ListAttribute<Activite_1, RessourceRessouces> ressources;
 	public static volatile ListAttribute<Activite_1, RessourceTrace> traces;
-	public static volatile ListAttribute<Activite_1, CompetenceIntermediaire> competencesIntermédiaires;
 }
