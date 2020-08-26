@@ -1,6 +1,7 @@
 package fr.paquet.io.jrxml;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,6 +11,7 @@ import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.ihm.io.FileChooser;
 import fr.paquet.sequence.SequenceVersion;
+import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -125,12 +127,15 @@ public class GeneratePDF {
 		setFilePdf(fc.getSelectedFile());
 
 		try {
+			File f=new File("./target/classes/jrxml/classicSequence.jrxml");
+			System.out.println(f.getAbsolutePath());
+			FileInputStream in=new FileInputStream(f);
 			JasperReport jasperReportSeq = JasperCompileManager
-					.compileReport("./target/classes/jrxml/classicSequence.jrxml");
+					.compileReport(in);
 			jasperReportSeq.setWhenNoDataType(WhenNoDataTypeEnum.ALL_SECTIONS_NO_DETAIL);
 
 			// - Execution du rapport de sequence
-			JasperPrint jasperPrintSeq = JasperFillManager.fillReport(jasperReportSeq, getSequenceParameters());
+			JasperPrint jasperPrintSeq = JasperFillManager.fillReport(jasperReportSeq, getSequenceParameters(),new JREmptyDataSource(1));
 
 			// - Envoi de la sequence dans le pdf
 			JasperExportManager.exportReportToPdfFile(jasperPrintSeq, getFilePdf().getAbsolutePath());

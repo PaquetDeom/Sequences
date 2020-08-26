@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="activites" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="404df8cf-9b69-4466-90fa-b4ef0e369c6f">
+	<property name="com.jaspersoft.studio.data.sql.tables" value="YWN0aXZpdGVfMSAsMTUsMTUsOTY3MjcxM2MtZjU0NS00NmIwLTk5ZTEtNDQ3ZWIzZWUzZDY4Ow=="/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="sequence"/>
+	<parameter name="sequenceId" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[302]]></defaultValueExpression>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[SELECT activite_1.acacco,
+	activite_1.acacna,
+	activite_1.acacqu
+FROM activite_1
+WHERE 
+	 sequence_seveid = $P{sequenceId}]]>
+	</queryString>
+	<field name="acacco" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="acacco"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="activite_1"/>
+	</field>
+	<field name="acacna" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="acacna"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="activite_1"/>
+	</field>
+	<field name="acacqu" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="acacqu"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="activite_1"/>
+	</field>
+	<group name="acacco" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{acacco}]]></groupExpression>
+	</group>
+	<group name="acacna">
+		<groupExpression><![CDATA[$F{acacna}]]></groupExpression>
+	</group>
+	<group name="acacqu">
+		<groupExpression><![CDATA[$F{acacqu}]]></groupExpression>
+	</group>
+	<group name="Groupe1">
+		<groupExpression><![CDATA[$F{acacco}]]></groupExpression>
+		<groupHeader>
+			<band height="50">
+				<textField>
+					<reportElement x="-10" y="12" width="570" height="30" uuid="5bd12cb0-ddc6-4393-a65e-7a288151575c"/>
+					<textFieldExpression><![CDATA[$F{acacco}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="50"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

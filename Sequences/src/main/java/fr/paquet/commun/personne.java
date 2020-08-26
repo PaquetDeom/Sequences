@@ -52,7 +52,7 @@ public class personne {
 		return nom;
 	}
 
-	private void setNom(String nom) {
+	public void setNom(String nom) {
 		this.nom = nom.trim().toLowerCase();
 	}
 
@@ -60,7 +60,7 @@ public class personne {
 		return prenom;
 	}
 
-	protected void setPrenom(String prenom) {
+	public void setPrenom(String prenom) {
 		this.prenom = prenom.trim().toLowerCase();
 	}
 
