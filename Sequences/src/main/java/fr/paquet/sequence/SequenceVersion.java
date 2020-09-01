@@ -78,6 +78,11 @@ public class SequenceVersion implements Sequence {
 			savoirAssocies = (List<SavoirAssocie>) CastList.toArrayList(savoirAssocies);
 		return savoirAssocies;
 	}
+	
+	public long getId() {
+		
+		return Id;
+	}
 
 	@Override
 	public void setSavoirAssocies(List<SavoirAssocie> savoirAssocies) {

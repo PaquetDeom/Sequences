@@ -17,7 +17,7 @@ import fr.paquet.sequence.SequenceVersion;
 import main.MainFrame;
 
 public class SequenceVersionFactory extends Factory {
-
+	
 	public SequenceVersion findSequenceVersionBySequenceImplAndNVersion(SequenceImpl firstSequence, int numVersion)
 			throws Exception {
 

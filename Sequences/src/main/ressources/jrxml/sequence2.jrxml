@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="sequence2" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f76e2c63-3935-4546-b0c8-0d79d1ebaba3">
-	<property name="com.jaspersoft.studio.data.sql.tables">
-		<![CDATA[c2VxdWVuY2VudW0gLDI0MiwzNCw1ZTRlMmYzMy0zYjg5LTQ0MGEtYjkxYS0xYjc3MjQwMTI0ZTQ7
-c2VxdWVuY2V2ZXJzaW9uICwxNSwxNSxlOTBiZDlmOS0wMjYwLTRmZmMtYTYwNS1kNjVmMWVjNTI3
-OWM7YXV0ZXVyICwyNDIsMjgxLGZhZGZiYmVhLTgzYTctNGVmZC05NTljLTJmNWFkM2JmNTkxZjty
-ZWZlcmVudGllbCAsNDEyLDE4MCw4MzgzM2Y3ZS1mMTg2LTQ1YmEtYTdlMi02ZDQ2ZTNlZjk1ZDI7
-ZGlwbG9tZSAsNTMzLDE4MCxjODYwYmVjZS0xOWRkLTRiMmItYTJhOC01OWYyZjNjZWM1Y2U7]]>
-	</property>
+	<property name="com.jaspersoft.studio.data.sql.tables"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="sequence"/>
 	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
 		<box>
@@ -66,7 +60,9 @@ ZGlwbG9tZSAsNTMzLDE4MCxjODYwYmVjZS0xOWRkLTRiMmItYTJhOC01OWYyZjNjZWM1Y2U7]]>
 	<subDataset name="DSCompetence" uuid="a5e10175-1d38-4229-9f1a-d47c8faacbea">
 		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="sequence"/>
-		<parameter name="sequenceId" class="java.lang.Integer"/>
+		<parameter name="sequenceId" class="java.lang.Long">
+			<defaultValueExpression><![CDATA[302]]></defaultValueExpression>
+		</parameter>
 		<queryString language="SQL">
 			<![CDATA[SELECT competence_intermediaire.code,
 	competence_intermediaire.intitule,
@@ -108,7 +104,9 @@ WHERE
 	<subDataset name="DSSavoir" uuid="1c3a23f8-53a0-4dbf-83c6-a4ac144c8a43">
 		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="sequence"/>
 		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-		<parameter name="seveid" class="java.lang.Integer"/>
+		<parameter name="seveid" class="java.lang.Long">
+			<defaultValueExpression><![CDATA[302]]></defaultValueExpression>
+		</parameter>
 		<queryString>
 			<![CDATA[SELECT savoir_associe.code,
 	savoir_associe.intitule,
@@ -134,7 +132,7 @@ WHERE
 			<property name="com.jaspersoft.studio.field.tree.path" value="savoir"/>
 		</field>
 	</subDataset>
-	<parameter name="sequenceId" class="java.lang.Integer">
+	<parameter name="sequenceId" class="java.lang.Long">
 		<defaultValueExpression><![CDATA[302]]></defaultValueExpression>
 	</parameter>
 	<queryString language="SQL">
@@ -518,7 +516,7 @@ WHERE
 	<title>
 		<band height="68" splitType="Stretch">
 			<image>
-				<reportElement x="0" y="0" width="98" height="68" isPrintWhenDetailOverflows="true" uuid="ed9754da-a67c-493a-80a6-8a2555912027">
+				<reportElement isPrintRepeatedValues="false" mode="Opaque" x="0" y="0" width="98" height="68" isPrintWhenDetailOverflows="true" printWhenGroupChanges="Groupe1" uuid="ed9754da-a67c-493a-80a6-8a2555912027">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
