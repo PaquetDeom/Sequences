@@ -50,6 +50,10 @@ public class Activite_1 implements PropertyChangeListener {
 	@Column(name = "ACACQU", length = 500)
 	private String questionnement = null;
 
+	public long getId() {
+		return id;
+	}
+
 	public Activite_1() {
 		super();
 	}

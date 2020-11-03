@@ -2,8 +2,10 @@ package fr.paquet.io.jrxml;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 
+import fr.paquet.activite.Activite_1;
 import fr.paquet.dataBase.Connect;
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
@@ -28,8 +30,36 @@ public class GeneratePDF {
 		// création des paramètres
 		createSequenceParameters();
 
+		// Création du répertoire au nom de la séquence
+		createDirectory(getSequenceVersion());
+
 		// Création du rapport
-		CreateReport();
+		createReport();
+
+	}
+
+	private HashMap<String, Object> activiteParameters = null;
+
+	private HashMap<String, Object> getActiviteParameters() {
+		if (activiteParameters == null)
+			activiteParameters = new HashMap<String, Object>();
+		return activiteParameters;
+	}
+
+	private void addActiviteParameters(String key, Object value) {
+
+		this.activiteParameters = null;
+		getActiviteParameters().put(key, value);
+
+	}
+
+	private void createActiviteParameters(Activite_1 activite) {
+		try {
+			addActiviteParameters("activiteId", activite.getId());
+		} catch (Exception e) {
+			e.printStackTrace();
+			new AlertWindow(AlertType.ERREUR, "L'activite n'existe pas");
+		}
 
 	}
 
@@ -38,6 +68,7 @@ public class GeneratePDF {
 			addSequenceParameters("sequenceId", getSequenceVersion().getId());
 		} catch (Exception e) {
 			e.printStackTrace();
+			new AlertWindow(AlertType.ERREUR, "La séquence n'existe pas");
 		}
 
 	}
@@ -57,20 +88,74 @@ public class GeneratePDF {
 
 	}
 
-	private File filePdf = null;
-
-	private void CreateReport() throws Exception {
-
-		// - Chargement et compilation du rapport
-		// JasperDesign jasperDesign;
-
-		// - Enregistrement du rapport au format PDF
+	private void createDirectory(SequenceVersion sequenceVersion) {
 		FileChooser fc = new FileChooser(this);
-		setFilePdf(fc.getSelectedFile());
+		new File(fc.getPath()).mkdir();
+		this.path = fc.getPath();
+
+	}
+
+	private String path = null;
+
+	private void createReport() throws Exception {
+
+		createSequencePdf();
+
+		int i = 0;
+
+		while (i < getSequenceVersion().getActivites().size()) {
+
+			Activite_1 activite = getSequenceVersion().getActivites().get(i);
+
+			createActiviteParameters(activite);
+			createActivitePdf(activite);
+
+			i++;
+		}
+
+		new AlertWindow(AlertType.INFORMATION, "La création du rapport est faite");
+
+	}
+
+	private void createActivitePdf(Activite_1 activite) {
+		// - Enregistrement du rapport au format PDF
+
+		File filePdf = new File(this.path + "/activite" + activite.getnActivite());
+
+		try {
+			File f = new File("./target/classes/jrxml/activite.jrxml");
+			// System.out.println(f.getAbsolutePath());
+			FileInputStream in = new FileInputStream(f);
+			JasperReport jasperReportSeq = JasperCompileManager.compileReport(in);
+			jasperReportSeq.setWhenNoDataType(WhenNoDataTypeEnum.ALL_SECTIONS_NO_DETAIL);
+
+			// - Execution du rapport de sequence
+			JasperPrint jasperPrintSeq = JasperFillManager.fillReport(jasperReportSeq, getActiviteParameters(),
+					Connect.getConnectionToSequenceDb());
+
+			// - Envoi de la sequence dans le pdf
+			JasperExportManager.exportReportToPdfFile(jasperPrintSeq, filePdf.getAbsolutePath());
+
+		} catch (JRException e) {
+			e.printStackTrace();
+			new AlertWindow(AlertType.ERREUR, "Erreur lors de la génération du rapport");
+
+		} catch (FileNotFoundException e) {
+
+			e.printStackTrace();
+			new AlertWindow(AlertType.ERREUR, "Erreur lors de la rcréation du fichier");
+
+		}
+	}
+
+	private void createSequencePdf() {
+		// - Enregistrement du rapport au format PDF
+
+		File filePdf = new File(this.path + "/00sequence");
 
 		try {
 			File f = new File("./target/classes/jrxml/sequence2.jrxml");
-			System.out.println(f.getAbsolutePath());
+			// System.out.println(f.getAbsolutePath());
 			FileInputStream in = new FileInputStream(f);
 			JasperReport jasperReportSeq = JasperCompileManager.compileReport(in);
 			jasperReportSeq.setWhenNoDataType(WhenNoDataTypeEnum.ALL_SECTIONS_NO_DETAIL);
@@ -80,23 +165,16 @@ public class GeneratePDF {
 					Connect.getConnectionToSequenceDb());
 
 			// - Envoi de la sequence dans le pdf
-			JasperExportManager.exportReportToPdfFile(jasperPrintSeq, getFilePdf().getAbsolutePath());
-
-			new AlertWindow(AlertType.INFORMATION, "La création du rapport est faite");
+			JasperExportManager.exportReportToPdfFile(jasperPrintSeq, filePdf.getAbsolutePath());
 
 		} catch (JRException e) {
 			e.printStackTrace();
 			new AlertWindow(AlertType.ERREUR, "Erreur lors de la génération du rapport");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			new AlertWindow(AlertType.ERREUR, "Erreur lors de la rcréation du fichier");
+
 		}
-
-	}
-
-	private File getFilePdf() {
-		return filePdf;
-	}
-
-	private void setFilePdf(File filePdf) {
-		this.filePdf = filePdf;
 	}
 
 	public SequenceVersion getSequenceVersion() {
