@@ -57,7 +57,9 @@ public class MainOnglet extends JTabbedPane {
 		addTab("Séquence " + MainFrame.getUniqInstance().getSequenceVersion().getTitre(), getOngletSequence());
 
 		if (!MainFrame.getUniqInstance().getSequenceVersion().getActivites().isEmpty()) {
-			for (Activite_1 act : MainFrame.getUniqInstance().getSequenceVersion().getActivites()) {
+			for (int i = 0; i < MainFrame.getUniqInstance().getSequenceVersion().getMapActivite().size(); i++) {
+
+				Activite_1 act = MainFrame.getUniqInstance().getSequenceVersion().getMapActivite().get(i + 1);
 				MainFrame.getUniqInstance().getSequenceVersion().addPropertyChangeListener(act);
 				OngletActivite Oa = new OngletActivite(act);
 				getOngletsActivites().add(Oa);
@@ -65,6 +67,18 @@ public class MainOnglet extends JTabbedPane {
 
 			}
 		}
+
+		/**
+		 * if
+		 * (!MainFrame.getUniqInstance().getSequenceVersion().getActivites().isEmpty())
+		 * { for (Activite_1 act :
+		 * MainFrame.getUniqInstance().getSequenceVersion().getActivites()) {
+		 * MainFrame.getUniqInstance().getSequenceVersion().addPropertyChangeListener(act);
+		 * OngletActivite Oa = new OngletActivite(act); getOngletsActivites().add(Oa);
+		 * addTab(Oa.getActivitePanel().getTitre(), Oa);
+		 * 
+		 * } }
+		 */
 
 		revalidate();
 	}

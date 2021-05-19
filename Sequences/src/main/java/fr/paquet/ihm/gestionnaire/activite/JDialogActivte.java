@@ -8,6 +8,7 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.MutableTreeNode;
 
 import fr.paquet.activite.Activite_1;
+import fr.paquet.dataBase.Factory.Activite.Activite_1Factory;
 import fr.paquet.ihm.alert.AlertListener;
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
@@ -117,9 +118,8 @@ public class JDialogActivte extends JDialogGestion implements AlertListener {
 			if (button.equals("Oui")) {
 
 				// supprime l'activité
-				Activite_1 activite = (Activite_1) getJPanelGestionnaireRight().getObjectSelected();
-				MainFrame.getUniqInstance().getSequenceVersion().removePropertyChangeListener(activite);
-				getActivites().remove(activite);
+				removeActivite((Activite_1) getJPanelGestionnaireRight().getObjectSelected());
+						
 
 				// supprimer le noeud du Jtree
 				((DefaultTreeModel) getJtreGestionnaire().getJTreeValue().getModel())
@@ -139,6 +139,19 @@ public class JDialogActivte extends JDialogGestion implements AlertListener {
 			new AlertWindow(AlertType.ERREUR, e.getMessage());
 		}
 
+	}
+
+	private void removeActivite(Activite_1 activite) {
+		//suppr des listeners
+		MainFrame.getUniqInstance().getSequenceVersion().removePropertyChangeListener(activite);
+	
+		//suppr de la liste
+		getActivites().remove(activite);
+		
+		//suppr de la db
+		Activite_1Factory actF = new Activite_1Factory();
+		actF.removeObject(activite);
+		
 	}
 
 	@Override

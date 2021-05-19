@@ -85,5 +85,5 @@ public interface Sequence {
 	public void removeCompetenceIntermediaire(CompetenceIntermediaire competenceIntermediaire);
 
 	public void removeSavoirAssocies(SavoirAssocie savoirAssocie);
-	
+
 }

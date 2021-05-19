@@ -2,6 +2,7 @@ package fr.paquet.sequence;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.persistence.*;
@@ -78,18 +79,18 @@ public class SequenceVersion implements Sequence {
 			savoirAssocies = (List<SavoirAssocie>) CastList.toArrayList(savoirAssocies);
 		return savoirAssocies;
 	}
-	
+
 	public long getId() {
-		
+
 		return Id;
 	}
 
 	@Override
 	public void setSavoirAssocies(List<SavoirAssocie> savoirAssocies) {
 
-			List<SavoirAssocie> old = this.savoirAssocies;
-			this.savoirAssocies = savoirAssocies;
-			pcs.firePropertyChange("savoirAssocies", old, savoirAssocies);
+		List<SavoirAssocie> old = this.savoirAssocies;
+		this.savoirAssocies = savoirAssocies;
+		pcs.firePropertyChange("savoirAssocies", old, savoirAssocies);
 	}
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
@@ -121,7 +122,6 @@ public class SequenceVersion implements Sequence {
 	private List<Activite_1> activites = null;
 
 	@SuppressWarnings("unchecked")
-	@Override
 	public List<Activite_1> getActivites() {
 		if (activites == null) {
 			List<Activite_1> acts = (List<Activite_1>) CastList.toArrayList(getParent().getActivites());
@@ -130,6 +130,17 @@ public class SequenceVersion implements Sequence {
 			activites = (List<Activite_1>) CastList.toArrayList(activites);
 
 		return activites;
+	}
+
+	public HashMap<Integer, Activite_1> getMapActivite() {
+
+		HashMap<Integer, Activite_1> mapActivite = new HashMap<Integer, Activite_1>();
+
+		for (Activite_1 act : getActivites()) {
+			mapActivite.put(act.getnActivite(), act);
+		}
+		return mapActivite;
+
 	}
 
 	public SequenceVersion(String titre, String classe, Referentiel referentiel, Auteur auteur) throws Exception {
