@@ -22,6 +22,8 @@ import fr.paquet.ihm.action.Save;
 import fr.paquet.ihm.alert.AlertListener;
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
+import fr.paquet.module.ModuleVersion;
+import fr.paquet.progression.ProgressionVersion;
 import fr.paquet.sequence.SequenceVersion;
 
 public class MainFrame extends JFrame implements WindowListener, AlertListener {
@@ -119,8 +121,11 @@ public class MainFrame extends JFrame implements WindowListener, AlertListener {
 	 * @param panelAdd
 	 * @throws Exception
 	 */
-	public void addPanel(SequenceVersion sequenceVersion) throws Exception {
+	public void addPanel(SequenceVersion sequenceVersion, ProgressionVersion progressionVersion,
+			ModuleVersion moduleVersion) throws Exception {
 		removePanel(getPanelOuverture());
+		setModuleVersion(moduleVersion);
+		setProgressionVersion(progressionVersion);
 		setSequenceVersion(sequenceVersion);
 		getMainOnglet().init(getSequenceVersion());
 		add(SequenceToolBar.getUniqintance(), BorderLayout.NORTH);
@@ -142,6 +147,30 @@ public class MainFrame extends JFrame implements WindowListener, AlertListener {
 			this.pcs.firePropertyChange("sequenceVersion", oldValue, sequenceVersion);
 		} else {
 			this.sequenceVersion = sequenceVersion;
+		}
+
+	}
+
+	public void setProgressionVersion(ProgressionVersion progressionVersion) {
+		ProgressionVersion oldValue = this.progressionVersion;
+
+		if (progressionVersion != null) {
+			this.progressionVersion = progressionVersion;
+			this.pcs.firePropertyChange("progressionVersion", oldValue, progressionVersion);
+		} else {
+			this.progressionVersion = progressionVersion;
+		}
+
+	}
+
+	public void setModuleVersion(ModuleVersion moduleVersion) {
+		ModuleVersion oldValue = this.moduleVersion;
+
+		if (moduleVersion != null) {
+			this.moduleVersion = moduleVersion;
+			this.pcs.firePropertyChange("moduleVersion", oldValue, moduleVersion);
+		} else {
+			this.moduleVersion = moduleVersion;
 		}
 
 	}
@@ -223,6 +252,18 @@ public class MainFrame extends JFrame implements WindowListener, AlertListener {
 		}
 		if (button.equals("Non"))
 			Main.FermetureSansErreur();
+	}
+
+	private ProgressionVersion progressionVersion = null;
+
+	public ProgressionVersion getProgressionVersion() {
+		return progressionVersion;
+	}
+
+	private ModuleVersion moduleVersion = null;
+
+	public ModuleVersion getModuleVersion() {
+		return moduleVersion;
 	}
 
 }

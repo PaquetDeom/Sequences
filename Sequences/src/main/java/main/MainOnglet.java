@@ -7,13 +7,18 @@ import javax.swing.text.BadLocationException;
 
 import fr.paquet.activite.Activite_1;
 import fr.paquet.ihm.principal.activite.OngletActivite;
+import fr.paquet.ihm.principal.progression.OngletModule;
+import fr.paquet.ihm.principal.progression.OngletProgression;
 import fr.paquet.ihm.principal.sequence.OngletSequence;
+import fr.paquet.module.ModuleVersion;
+import fr.paquet.progression.ProgressionVersion;
 import fr.paquet.sequence.SequenceVersion;
 
 @SuppressWarnings("serial")
 public class MainOnglet extends JTabbedPane {
 
 	private OngletSequence ongletSequence = null;
+	private OngletModule ongletModule = null;
 	private List<OngletActivite> ongletsActivites = null;
 
 	/**
@@ -94,6 +99,34 @@ public class MainOnglet extends JTabbedPane {
 
 	}
 
+	public void init(ProgressionVersion progression) throws Exception {
+
+		this.removeAll();
+
+		// setteur des component
+		setOngletProgression(new OngletProgression(progression));
+		affiche();
+
+	}
+	
+	public void init(ModuleVersion module) throws Exception {
+
+		this.removeAll();
+
+		// setteur des component
+		setOngletModule(new OngletModule(module));
+		affiche();
+
+	}
+	
+	public OngletModule getOngletModule() {
+		return ongletModule;
+	}
+
+	public void setOngletModule(OngletModule ongletModule) {
+		this.ongletModule = ongletModule;
+	}
+	
 	public OngletSequence getOngletSequence() {
 		return ongletSequence;
 	}
@@ -111,6 +144,18 @@ public class MainOnglet extends JTabbedPane {
 
 	public void addOngletsActivites(OngletActivite ongletsActivite) {
 		getOngletsActivites().add(ongletsActivite);
+	}
+
+	private OngletProgression ongletProgression = null;
+	
+	public void setOngletProgression(OngletProgression ongletProgression) {
+		this.ongletProgression = ongletProgression;
+			
+		
+	}
+	
+	public OngletProgression getOngletProgression() {
+		return ongletProgression;
 	}
 
 }

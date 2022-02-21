@@ -19,7 +19,7 @@ import fr.paquet.dataBase.Factory.sequence.SequenceVersionFactory;
 import fr.paquet.ihm.alert.AlertListener;
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
-import fr.paquet.ihm.nouveau.JDialogNewSequence;
+import fr.paquet.ihm.nouveau.sequence.JDialogNewSequence;
 import fr.paquet.ihm.style.StyleBorder;
 import fr.paquet.referentiel.Referentiel;
 import fr.paquet.sequence.SequenceVersion;

@@ -12,7 +12,10 @@ import javax.swing.KeyStroke;
 import fr.paquet.ihm.alert.AlertListener;
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
-import fr.paquet.ihm.nouveau.JDialogNewSequence;
+import fr.paquet.ihm.commun.type.JDialogType;
+import fr.paquet.ihm.nouveau.sequence.JDialogNewSequence;
+import fr.paquet.module.ModuleVersion;
+import fr.paquet.progression.ProgressionVersion;
 import fr.paquet.sequence.SequenceVersion;
 import main.MainFrame;
 
@@ -37,11 +40,10 @@ public class ActionNouveau extends ActionBDA implements AlertListener, PropertyC
 	public void actionPerformed(ActionEvent arg0) {
 
 		try {
-			if (getSequenceVersion() == null
-					|| !getSequenceVersion().isModifiable())
-				new JDialogNewSequence();
+			if (getObjectVersion() == null || !isModifiable())
+				new JDialogType(this);
 			else
-				new AlertWindow(AlertType.QUESTION, "Voulez vous enregistrer la séquence", this);
+				new AlertWindow(AlertType.QUESTION, "Voulez vous enregistrer", this);
 
 		} catch (Exception e) {
 			new AlertWindow(AlertType.ERREUR, "Erreur lors du chargement de la fenêtre");
@@ -66,10 +68,25 @@ public class ActionNouveau extends ActionBDA implements AlertListener, PropertyC
 
 	}
 
-	private SequenceVersion getSequenceVersion() {
+	private Object getObjectVersion() {
 
-		return MainFrame.getUniqInstance().getSequenceVersion();
+		if (ObjectType.SEQUENCE.getObjectVersion() != null)
+			return (SequenceVersion) ObjectType.SEQUENCE.getObjectVersion();
+		if (ObjectType.MODULE.getObjectVersion() != null)
+			return (ModuleVersion) ObjectType.MODULE.getObjectVersion();
+		if (ObjectType.PROGRESSION.getObjectVersion() != null)
+			return (ProgressionVersion) ObjectType.PROGRESSION.getObjectVersion();
+		return null;
+	}
 
+	private boolean isModifiable() {
+		if (ObjectType.SEQUENCE.isModifiable())
+			return true;
+		if (ObjectType.MODULE.isModifiable())
+			return true;
+		if (ObjectType.PROGRESSION.isModifiable())
+			return true;
+		return false;
 	}
 
 	@Override
@@ -77,7 +94,7 @@ public class ActionNouveau extends ActionBDA implements AlertListener, PropertyC
 		if (button.equals("Oui"))
 			try {
 				new Save();
-				
+
 			} catch (Exception e) {
 				new AlertWindow(AlertType.ERREUR, "La séquence n'a pas été sauvegardée");
 				e.printStackTrace();
